@@ -1,6 +1,14 @@
 <script lang="ts">
 	import { _ } from 'svelte-i18n';
+	import SEO from '$lib/components/SEO.svelte';
 </script>
+
+<SEO
+	title="Products - US Manufactured Goods for Export | KG Industries"
+	description="Browse US-manufactured products available for international export: beverages (Coca-Cola, Pepsi), consumer electronics, home goods, health & beauty, industrial equipment. B2B container shipping."
+	keywords="US manufactured products, American beverages export, Coca-Cola export, Pepsi international, US consumer goods, industrial equipment export, B2B wholesale, made in USA products"
+	canonical="/products"
+/>
 
 <div class="container">
 	<div class="grain"></div>

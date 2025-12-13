@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { _ } from 'svelte-i18n';
+	import SEO from '$lib/components/SEO.svelte';
 
 	let globeCanvas: HTMLCanvasElement;
 
@@ -235,6 +236,12 @@
 		drawGlobe();
 	});
 </script>
+
+<SEO
+	title="KG Industries - Global Freight Operations | US Export Logistics"
+	description="KG Industries helps international businesses source and ship US-manufactured products worldwide. Full-service export logistics from sourcing to delivery. B2B container shipping."
+	keywords="US export logistics, international freight, US manufactured products, B2B export, container shipping, customs clearance, American products export, global freight, freight forwarding, export company"
+/>
 
 <div class="container">
 	<div class="grain"></div>

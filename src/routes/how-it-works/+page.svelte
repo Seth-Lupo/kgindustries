@@ -1,7 +1,14 @@
 <script lang="ts">
 	import { _ } from 'svelte-i18n';
+	import SEO from '$lib/components/SEO.svelte';
 </script>
 
+<SEO
+	title="How It Works - US Export Process | KG Industries"
+	description="Learn how KG Industries handles US product exports: request a quote, product sourcing, ocean freight coordination, customs clearance, and delivery. Full-service B2B logistics."
+	keywords="US export process, how freight forwarding works, international shipping process, customs clearance process, B2B export logistics, container shipping process, export quote"
+	canonical="/how-it-works"
+/>
 
 <div class="container">
 	<div class="grain"></div>
