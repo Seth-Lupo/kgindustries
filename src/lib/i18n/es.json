@@ -11,9 +11,9 @@
   },
   "home": {
     "hero": {
-      "global": "OPERACIONES",
-      "freight": "DE CARGA",
-      "operations": "GLOBALES",
+      "global": "CARGA",
+      "freight": "GLOBAL",
+      "operations": "MUNDIAL",
       "subtitle": "Productos fabricados en EE.UU. a mercados internacionales"
     },
     "overview": {
