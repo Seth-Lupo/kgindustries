@@ -8,7 +8,7 @@
 	<section class="products-hero">
 		<div class="flag-container">
 			<img
-				src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a4/Flag_of_the_United_States.svg/1600px-Flag_of_the_United_States.svg.png?20250221172329"
+				src="/images/us-flag.png"
 				alt="American Flag"
 				class="hero-flag"
 			/>
@@ -30,7 +30,7 @@
 					<div class="carousel-track">
 						<div class="carousel-item">
 							<img
-								src="https://images.unsplash.com/photo-1554866585-cd94860890b7?w=400&q=80"
+								src="/images/coca-cola.jpg"
 								alt="Coca-Cola"
 								class="bev-image"
 							/>
@@ -39,7 +39,7 @@
 						</div>
 						<div class="carousel-item">
 							<img
-								src="https://images.unsplash.com/photo-1629203851122-3726ecdf080e?w=400&q=80"
+								src="/images/pepsi.jpg"
 								alt="Pepsi"
 								class="bev-image"
 							/>
@@ -48,7 +48,7 @@
 						</div>
 						<div class="carousel-item">
 							<img
-								src="https://contenthandler-raleys.fieldera.com/prod/503234/1/0/0/30080850-Lifestyle.jpg"
+								src="/images/sprite.jpg"
 								alt="Sprite"
 								class="bev-image"
 							/>
@@ -57,7 +57,7 @@
 						</div>
 						<div class="carousel-item">
 							<img
-								src="https://images.unsplash.com/photo-1581006852262-e4307cf6283a?w=400&q=80"
+								src="/images/ginger-ale.jpg"
 								alt="Ginger Ale"
 								class="bev-image"
 							/>
@@ -66,7 +66,7 @@
 						</div>
 						<div class="carousel-item">
 							<img
-								src="https://images.unsplash.com/photo-1603833797131-3c0a18fcb6b1?w=400&q=80"
+								src="/images/ale-8-one.jpg"
 								alt="Ale-8-One"
 								class="bev-image"
 							/>
@@ -76,7 +76,7 @@
 						<!-- Duplicate for seamless loop -->
 						<div class="carousel-item">
 							<img
-								src="https://images.unsplash.com/photo-1554866585-cd94860890b7?w=400&q=80"
+								src="/images/coca-cola.jpg"
 								alt="Coca-Cola"
 								class="bev-image"
 							/>
@@ -85,7 +85,7 @@
 						</div>
 						<div class="carousel-item">
 							<img
-								src="https://images.unsplash.com/photo-1629203851122-3726ecdf080e?w=400&q=80"
+								src="/images/pepsi.jpg"
 								alt="Pepsi"
 								class="bev-image"
 							/>
@@ -94,7 +94,7 @@
 						</div>
 						<div class="carousel-item">
 							<img
-								src="https://images.unsplash.com/photo-1625740515928-c1e3b3d36e74?w=400&q=80"
+								src="/images/sprite.jpg"
 								alt="Sprite"
 								class="bev-image"
 							/>
@@ -103,7 +103,7 @@
 						</div>
 						<div class="carousel-item">
 							<img
-								src="https://images.unsplash.com/photo-1581006852262-e4307cf6283a?w=400&q=80"
+								src="/images/ginger-ale.jpg"
 								alt="Ginger Ale"
 								class="bev-image"
 							/>
@@ -112,7 +112,7 @@
 						</div>
 						<div class="carousel-item">
 							<img
-								src="https://images.unsplash.com/photo-1603833797131-3c0a18fcb6b1?w=400&q=80"
+								src="/images/ale-8-one.jpg"
 								alt="Ale-8-One"
 								class="bev-image"
 							/>

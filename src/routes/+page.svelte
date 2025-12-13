@@ -273,7 +273,7 @@
 
 		<section class="image-full">
 			<img
-				src="https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?w=1600&q=80"
+				src="/images/container-operations.jpg"
 				alt="Container operations"
 			/>
 		</section>
@@ -314,7 +314,7 @@
 		<section class="image-split" id="products">
 			<div class="split-left">
 				<img
-					src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=1200&q=80"
+					src="/images/port-operations.jpg"
 					alt="Port operations"
 				/>
 				<div class="split-caption">MADE IN USA</div>

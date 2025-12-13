@@ -53,7 +53,7 @@
 				<div class="sidebar-sticky">
 					<div class="flag-img flag-top">
 						<img
-							src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a4/Flag_of_the_United_States.svg/1280px-Flag_of_the_United_States.svg.png"
+							src="/images/us-flag.png"
 							alt="US"
 						/>
 					</div>
@@ -65,7 +65,7 @@
 					</div>
 					<div class="flag-img flag-bottom">
 						<img
-							src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Flag_of_Azerbaijan.svg/1280px-Flag_of_Azerbaijan.svg.png"
+							src="/images/azerbaijan-flag.png"
 							alt="Destination"
 						/>
 					</div>
