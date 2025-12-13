@@ -734,11 +734,6 @@
 			gap: 2rem;
 		}
 
-		.process-layout {
-			grid-template-columns: 1fr;
-			gap: 3rem;
-		}
-
 		.image-split {
 			grid-template-columns: 1fr;
 		}
@@ -746,6 +741,27 @@
 		.split-right {
 			border-left: none;
 			border-top: 1px solid #1a1a22;
+		}
+	}
+
+	@media (max-width: 768px) {
+		.process-layout {
+			grid-template-columns: 1fr;
+			gap: 3rem;
+		}
+
+		.process-text {
+			text-align: center;
+		}
+
+		.process-data {
+			align-items: center;
+		}
+
+		.data-point {
+			text-align: center;
+			width: 100%;
+			max-width: 300px;
 		}
 	}
 
