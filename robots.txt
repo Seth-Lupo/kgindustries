@@ -1,3 +1,9 @@
-# allow crawling everything by default
+# KG Industries - Global Freight Operations
 User-agent: *
-Disallow:
+Allow: /
+
+# Sitemap
+Sitemap: https://kgindustries.us/sitemap.xml
+
+# Crawl delay (optional, be polite to your server)
+Crawl-delay: 1
