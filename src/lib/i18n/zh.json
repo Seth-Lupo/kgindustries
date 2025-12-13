@@ -1,0 +1,140 @@
+{
+  "nav": {
+    "overview": "概览",
+    "products": "产品",
+    "howItWorks": "运作方式",
+    "contact": "联系我们"
+  },
+  "footer": {
+    "email": "info@kgindustries.us",
+    "copyright": "© 2025 KG Industries"
+  },
+  "home": {
+    "hero": {
+      "global": "全球",
+      "freight": "货运",
+      "operations": "业务",
+      "subtitle": "美国制造产品出口国际市场"
+    },
+    "overview": {
+      "description": "我们帮助国际企业采购美国制造产品并运往海外。从寻找供应商到管理海关和交付，我们作为单一联络点处理整个流程。",
+      "label": "单一联络点",
+      "value": "从采购到交付"
+    },
+    "process": {
+      "title": "我们的服务范围",
+      "description1": "直接从美国制造商采购产品。验证产品真实性和美国原产地。国际货运物流。海关文件和进口合规。协调运送至您的目的地国家。作为供应商、承运商和海关代理之间的单一联络点。",
+      "description2": "订单根据产品选择、数量、目的地和时间表进行个性化报价。您可以在同一集装箱内混装不同产品以满足最低订单要求。",
+      "minContainer": "20FCL",
+      "minContainerLabel": "最小集装箱尺寸",
+      "b2b": "B2B",
+      "b2bLabel": "仅限企业客户",
+      "custom": "定制",
+      "customLabel": "按需报价"
+    },
+    "products": {
+      "madeInUsa": "美国制造",
+      "title": "产品类别",
+      "description": "消费品：电子产品、家居用品、健康美容产品、服装。美国制造饮料：可口可乐、百事可乐、雪碧、姜汁汽水、Ale-8-One。工业和商业：设备、供应品、材料、工具。我们可以按需采购几乎任何美国制造的产品。"
+    },
+    "contact": {
+      "title": "提交订单",
+      "description": "发送您的需求，我们将在24小时内提供详细报价。请包含产品类型、数量、目的地国家和期望时间。",
+      "button": "发送邮件至 INFO@KGINDUSTRIES.US"
+    }
+  },
+  "productsPage": {
+    "hero": {
+      "title": "产品目录",
+      "subtitle": "消费品、饮料和工业类别的美国制造商品"
+    },
+    "beverages": {
+      "title": "美国饮料",
+      "cocaCola": "可口可乐",
+      "pepsi": "百事可乐",
+      "sprite": "雪碧",
+      "gingerAle": "姜汁汽水",
+      "ale8One": "Ale-8-One",
+      "atlanta": "亚特兰大，乔治亚州",
+      "purchase": "帕切斯，纽约州",
+      "usProduction": "美国生产",
+      "winchester": "温彻斯特，肯塔基州"
+    },
+    "consumer": {
+      "title": "消费品",
+      "electronics": "电子产品",
+      "electronicsDesc": "音频设备 / 智能家居设备 / 电脑配件",
+      "homeGoods": "家居用品",
+      "homeGoodsDesc": "厨房用品 / 家具 / 纺织品 / 装饰品",
+      "healthBeauty": "健康与美容",
+      "healthBeautyDesc": "护肤品 / 化妆品 / 保健品 / 个人护理",
+      "apparel": "服装",
+      "apparelDesc": "衣物 / 鞋类 / 配饰 / 纺织品"
+    },
+    "industrial": {
+      "title": "工业与",
+      "titleLine2": "商业",
+      "equipment": "设备",
+      "equipmentDesc": "生产设备、机械、工业工具",
+      "supplies": "供应品",
+      "suppliesDesc": "商业用品、办公材料、包装",
+      "materials": "材料",
+      "materialsDesc": "原材料、零部件、建筑材料",
+      "tools": "工具",
+      "toolsDesc": "手动工具、电动工具、专业设备"
+    },
+    "requirements": {
+      "title": "订单信息",
+      "minOrder": "最低订单",
+      "minOrderValue": "20英尺集装箱",
+      "minOrderNote": "可混装产品",
+      "verification": "验证",
+      "verificationValue": "美国原产",
+      "verificationNote": "所有产品均经验证",
+      "pricing": "定价",
+      "pricingValue": "定制报价",
+      "pricingNote": "根据您的需求"
+    }
+  },
+  "howItWorks": {
+    "hero": {
+      "title": "我们如何运作",
+      "subtitle": "从美国仓库到您的目的地。为国际运输美国商品的企业提供全方位出口物流服务。"
+    },
+    "steps": {
+      "request": {
+        "label": "01 — 需求",
+        "title": "告诉我们您的需求",
+        "description": "分享您的产品需求、数量和交付时间。我们处理从单一类别订单到复杂多产品发货的所有事务。"
+      },
+      "quote": {
+        "label": "02 — 报价",
+        "title": "透明的全包价格",
+        "description": "获取包含产品成本、海运费、关税和最终交付的综合报价。无隐藏费用，港口无意外。"
+      },
+      "source": {
+        "label": "03 — 采购",
+        "title": "经验证的美国产品",
+        "description": "我们从可信赖的美国供应商处定位和验证产品。每件商品在离开仓库前都会进行原产地和质量验证。"
+      },
+      "ship": {
+        "label": "04 — 运输",
+        "title": "海运协调",
+        "description": "您的集装箱从美国港口到目的地全程装载、封箱和追踪。我们端到端管理承运商关系和运输物流。"
+      },
+      "deliver": {
+        "label": "05 — 交付",
+        "title": "清关并交付",
+        "description": "我们在您的目的港处理海关文件和清关。您的货物到达时即可分销。"
+      }
+    }
+  },
+  "languages": {
+    "en": "English",
+    "az": "阿塞拜疆语",
+    "ru": "俄语",
+    "tr": "土耳其语",
+    "es": "西班牙语",
+    "zh": "中文"
+  }
+}

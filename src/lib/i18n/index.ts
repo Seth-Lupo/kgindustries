@@ -6,6 +6,9 @@ const defaultLocale = 'en';
 register('en', () => import('./en.json'));
 register('az', () => import('./az.json'));
 register('ru', () => import('./ru.json'));
+register('tr', () => import('./tr.json'));
+register('es', () => import('./es.json'));
+register('zh', () => import('./zh.json'));
 
 init({
 	fallbackLocale: defaultLocale,
@@ -24,5 +27,8 @@ export function setLocale(newLocale: string) {
 export const supportedLocales = [
 	{ code: 'en', name: 'English', flag: '🇺🇸' },
 	{ code: 'az', name: 'Azərbaycanca', flag: '🇦🇿' },
-	{ code: 'ru', name: 'Русский', flag: '🇷🇺' }
+	{ code: 'ru', name: 'Русский', flag: '🇷🇺' },
+	{ code: 'tr', name: 'Türkçe', flag: '🇹🇷' },
+	{ code: 'es', name: 'Español', flag: '🇪🇸' },
+	{ code: 'zh', name: '中文', flag: '🇨🇳' }
 ];
