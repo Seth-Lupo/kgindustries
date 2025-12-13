@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { _ } from 'svelte-i18n';
 </script>
 
 <div class="container">
@@ -14,8 +15,8 @@
 			/>
 		</div>
 		<div class="hero-content">
-			<h1>PRODUCT CATALOG</h1>
-			<p>US-manufactured goods across consumer, beverage, and industrial categories</p>
+			<h1>{$_('productsPage.hero.title')}</h1>
+			<p>{$_('productsPage.hero.subtitle')}</p>
 		</div>
 	</section>
 
@@ -23,7 +24,7 @@
 		<div class="category-layout">
 			<div class="category-block beverage-block">
 				<div class="category-header">
-					<h2>US BEVERAGES</h2>
+					<h2>{$_('productsPage.beverages.title')}</h2>
 					<div class="category-line"></div>
 				</div>
 				<div class="beverage-carousel">
@@ -34,8 +35,8 @@
 								alt="Coca-Cola"
 								class="bev-image"
 							/>
-							<div class="bev-name">Coca-Cola</div>
-							<div class="bev-origin">Atlanta, GA</div>
+							<div class="bev-name">{$_('productsPage.beverages.cocaCola')}</div>
+							<div class="bev-origin">{$_('productsPage.beverages.atlanta')}</div>
 						</div>
 						<div class="carousel-item">
 							<img
@@ -43,8 +44,8 @@
 								alt="Pepsi"
 								class="bev-image"
 							/>
-							<div class="bev-name">Pepsi</div>
-							<div class="bev-origin">Purchase, NY</div>
+							<div class="bev-name">{$_('productsPage.beverages.pepsi')}</div>
+							<div class="bev-origin">{$_('productsPage.beverages.purchase')}</div>
 						</div>
 						<div class="carousel-item">
 							<img
@@ -52,8 +53,8 @@
 								alt="Sprite"
 								class="bev-image"
 							/>
-							<div class="bev-name">Sprite</div>
-							<div class="bev-origin">US Production</div>
+							<div class="bev-name">{$_('productsPage.beverages.sprite')}</div>
+							<div class="bev-origin">{$_('productsPage.beverages.usProduction')}</div>
 						</div>
 						<div class="carousel-item">
 							<img
@@ -61,8 +62,8 @@
 								alt="Ginger Ale"
 								class="bev-image"
 							/>
-							<div class="bev-name">Ginger Ale</div>
-							<div class="bev-origin">US Production</div>
+							<div class="bev-name">{$_('productsPage.beverages.gingerAle')}</div>
+							<div class="bev-origin">{$_('productsPage.beverages.usProduction')}</div>
 						</div>
 						<div class="carousel-item">
 							<img
@@ -70,8 +71,8 @@
 								alt="Ale-8-One"
 								class="bev-image"
 							/>
-							<div class="bev-name">Ale-8-One</div>
-							<div class="bev-origin">Winchester, KY</div>
+							<div class="bev-name">{$_('productsPage.beverages.ale8One')}</div>
+							<div class="bev-origin">{$_('productsPage.beverages.winchester')}</div>
 						</div>
 						<!-- Duplicate for seamless loop -->
 						<div class="carousel-item">
@@ -80,8 +81,8 @@
 								alt="Coca-Cola"
 								class="bev-image"
 							/>
-							<div class="bev-name">Coca-Cola</div>
-							<div class="bev-origin">Atlanta, GA</div>
+							<div class="bev-name">{$_('productsPage.beverages.cocaCola')}</div>
+							<div class="bev-origin">{$_('productsPage.beverages.atlanta')}</div>
 						</div>
 						<div class="carousel-item">
 							<img
@@ -89,8 +90,8 @@
 								alt="Pepsi"
 								class="bev-image"
 							/>
-							<div class="bev-name">Pepsi</div>
-							<div class="bev-origin">Purchase, NY</div>
+							<div class="bev-name">{$_('productsPage.beverages.pepsi')}</div>
+							<div class="bev-origin">{$_('productsPage.beverages.purchase')}</div>
 						</div>
 						<div class="carousel-item">
 							<img
@@ -98,8 +99,8 @@
 								alt="Sprite"
 								class="bev-image"
 							/>
-							<div class="bev-name">Sprite</div>
-							<div class="bev-origin">US Production</div>
+							<div class="bev-name">{$_('productsPage.beverages.sprite')}</div>
+							<div class="bev-origin">{$_('productsPage.beverages.usProduction')}</div>
 						</div>
 						<div class="carousel-item">
 							<img
@@ -107,8 +108,8 @@
 								alt="Ginger Ale"
 								class="bev-image"
 							/>
-							<div class="bev-name">Ginger Ale</div>
-							<div class="bev-origin">US Production</div>
+							<div class="bev-name">{$_('productsPage.beverages.gingerAle')}</div>
+							<div class="bev-origin">{$_('productsPage.beverages.usProduction')}</div>
 						</div>
 						<div class="carousel-item">
 							<img
@@ -116,8 +117,8 @@
 								alt="Ale-8-One"
 								class="bev-image"
 							/>
-							<div class="bev-name">Ale-8-One</div>
-							<div class="bev-origin">Winchester, KY</div>
+							<div class="bev-name">{$_('productsPage.beverages.ale8One')}</div>
+							<div class="bev-origin">{$_('productsPage.beverages.winchester')}</div>
 						</div>
 					</div>
 				</div>
@@ -125,31 +126,31 @@
 
 			<div class="category-block consumer-block">
 				<div class="category-header">
-					<h2>CONSUMER GOODS</h2>
+					<h2>{$_('productsPage.consumer.title')}</h2>
 				</div>
 				<div class="consumer-grid">
 					<div class="product-card">
 						<div class="card-content">
-							<h3>Electronics</h3>
-							<p>Audio equipment / Smart home devices / Computing accessories</p>
+							<h3>{$_('productsPage.consumer.electronics')}</h3>
+							<p>{$_('productsPage.consumer.electronicsDesc')}</p>
 						</div>
 					</div>
 					<div class="product-card">
 						<div class="card-content">
-							<h3>Home Goods</h3>
-							<p>Kitchenware / Furniture / Textiles / Décor items</p>
+							<h3>{$_('productsPage.consumer.homeGoods')}</h3>
+							<p>{$_('productsPage.consumer.homeGoodsDesc')}</p>
 						</div>
 					</div>
 					<div class="product-card">
 						<div class="card-content">
-							<h3>Health & Beauty</h3>
-							<p>Skincare / Cosmetics / Supplements / Personal care</p>
+							<h3>{$_('productsPage.consumer.healthBeauty')}</h3>
+							<p>{$_('productsPage.consumer.healthBeautyDesc')}</p>
 						</div>
 					</div>
 					<div class="product-card">
 						<div class="card-content">
-							<h3>Apparel</h3>
-							<p>Clothing / Footwear / Accessories / Textiles</p>
+							<h3>{$_('productsPage.consumer.apparel')}</h3>
+							<p>{$_('productsPage.consumer.apparelDesc')}</p>
 						</div>
 					</div>
 				</div>
@@ -158,32 +159,32 @@
 			<div class="category-block industrial-block">
 				<div class="split-layout">
 					<div class="split-header">
-						<h2>INDUSTRIAL &<br />COMMERCIAL</h2>
+						<h2>{$_('productsPage.industrial.title')}<br />{$_('productsPage.industrial.titleLine2')}</h2>
 					</div>
 					<div class="split-content">
 						<div class="industrial-list">
 							<div class="industrial-item">
 								<div class="item-info">
-									<h4>Equipment</h4>
-									<p>Manufacturing equipment, machinery, industrial tools</p>
+									<h4>{$_('productsPage.industrial.equipment')}</h4>
+									<p>{$_('productsPage.industrial.equipmentDesc')}</p>
 								</div>
 							</div>
 							<div class="industrial-item">
 								<div class="item-info">
-									<h4>Supplies</h4>
-									<p>Business supplies, office materials, packaging</p>
+									<h4>{$_('productsPage.industrial.supplies')}</h4>
+									<p>{$_('productsPage.industrial.suppliesDesc')}</p>
 								</div>
 							</div>
 							<div class="industrial-item">
 								<div class="item-info">
-									<h4>Materials</h4>
-									<p>Raw materials, components, building supplies</p>
+									<h4>{$_('productsPage.industrial.materials')}</h4>
+									<p>{$_('productsPage.industrial.materialsDesc')}</p>
 								</div>
 							</div>
 							<div class="industrial-item">
 								<div class="item-info">
-									<h4>Tools</h4>
-									<p>Hand tools, power tools, specialty equipment</p>
+									<h4>{$_('productsPage.industrial.tools')}</h4>
+									<p>{$_('productsPage.industrial.toolsDesc')}</p>
 								</div>
 							</div>
 						</div>
@@ -196,28 +197,28 @@
 	<section class="requirements">
 		<div class="req-container">
 			<div class="req-header">
-				<h2>ORDER INFO</h2>
+				<h2>{$_('productsPage.requirements.title')}</h2>
 			</div>
 			<div class="req-grid">
 				<div class="req-item">
 					<div class="req-content">
-						<div class="req-label">MINIMUM ORDER</div>
-						<div class="req-value">20ft Container</div>
-						<div class="req-note">Mix products within container</div>
+						<div class="req-label">{$_('productsPage.requirements.minOrder')}</div>
+						<div class="req-value">{$_('productsPage.requirements.minOrderValue')}</div>
+						<div class="req-note">{$_('productsPage.requirements.minOrderNote')}</div>
 					</div>
 				</div>
 				<div class="req-item">
 					<div class="req-content">
-						<div class="req-label">VERIFICATION</div>
-						<div class="req-value">US Origin</div>
-						<div class="req-note">All products verified</div>
+						<div class="req-label">{$_('productsPage.requirements.verification')}</div>
+						<div class="req-value">{$_('productsPage.requirements.verificationValue')}</div>
+						<div class="req-note">{$_('productsPage.requirements.verificationNote')}</div>
 					</div>
 				</div>
 				<div class="req-item">
 					<div class="req-content">
-						<div class="req-label">PRICING</div>
-						<div class="req-value">Custom Quote</div>
-						<div class="req-note">Based on your needs</div>
+						<div class="req-label">{$_('productsPage.requirements.pricing')}</div>
+						<div class="req-value">{$_('productsPage.requirements.pricingValue')}</div>
+						<div class="req-note">{$_('productsPage.requirements.pricingNote')}</div>
 					</div>
 				</div>
 			</div>

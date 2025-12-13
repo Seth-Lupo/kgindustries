@@ -3,6 +3,9 @@
 	import './layout.css';
 	import favicon from '$lib/assets/favicon.svg';
 	import logo from '$lib/assets/logo.png';
+	import '$lib/i18n';
+	import { _, isLoading } from 'svelte-i18n';
+	import LanguageSwitcher from '$lib/components/LanguageSwitcher.svelte';
 
 	let { children } = $props();
 	let mobileMenuOpen = $state(false);
@@ -54,41 +57,78 @@
 
 <svelte:head><link rel="icon" href={favicon} /></svelte:head>
 
-<header>
-	<div class="logo">
-		<img src={logo} alt="KG Industries Logo" />
-		<span>KG</span>
+{#if $isLoading}
+	<div class="loading-screen">
+		<div class="loading-spinner"></div>
 	</div>
-	<nav class="desktop-nav">
-		<a href="/">OVERVIEW</a>
-		<a href="/products">PRODUCTS</a>
-		<a href="/how-it-works">HOW IT WORKS</a>
-		<a href="/#contact">CONTACT</a>
-	</nav>
-	<button class="hamburger" onclick={toggleMenu} aria-label="Toggle menu">
-		<span class="hamburger-line" class:open={mobileMenuOpen}></span>
-		<span class="hamburger-line" class:open={mobileMenuOpen}></span>
-		<span class="hamburger-line" class:open={mobileMenuOpen}></span>
-	</button>
-</header>
+{:else}
+	<header>
+		<div class="logo">
+			<img src={logo} alt="KG Industries Logo" />
+			<span>KG</span>
+		</div>
+		<nav class="desktop-nav">
+			<a href="/">{$_('nav.overview')}</a>
+			<a href="/products">{$_('nav.products')}</a>
+			<a href="/how-it-works">{$_('nav.howItWorks')}</a>
+			<a href="/#contact">{$_('nav.contact')}</a>
+		</nav>
+		<div class="header-right">
+			<LanguageSwitcher />
+			<button class="hamburger" onclick={toggleMenu} aria-label="Toggle menu">
+				<span class="hamburger-line" class:open={mobileMenuOpen}></span>
+				<span class="hamburger-line" class:open={mobileMenuOpen}></span>
+				<span class="hamburger-line" class:open={mobileMenuOpen}></span>
+			</button>
+		</div>
+	</header>
 
-<div class="mobile-menu" class:open={mobileMenuOpen}>
-	<nav class="mobile-nav">
-		<a href="/" onclick={closeMenu}>OVERVIEW</a>
-		<a href="/products" onclick={closeMenu}>PRODUCTS</a>
-		<a href="/how-it-works" onclick={closeMenu}>HOW IT WORKS</a>
-		<a href="/#contact" onclick={closeMenu}>CONTACT</a>
-	</nav>
-</div>
+	<div class="mobile-menu" class:open={mobileMenuOpen}>
+		<nav class="mobile-nav">
+			<a href="/" onclick={closeMenu}>{$_('nav.overview')}</a>
+			<a href="/products" onclick={closeMenu}>{$_('nav.products')}</a>
+			<a href="/how-it-works" onclick={closeMenu}>{$_('nav.howItWorks')}</a>
+			<a href="/#contact" onclick={closeMenu}>{$_('nav.contact')}</a>
+		</nav>
+	</div>
 
-{@render children()}
+	{@render children()}
 
-<footer class="site-footer">
-	<span class="footer-email">info@kgindustries.us</span>
-	<span class="footer-copy">© 2025 KG Industries</span>
-</footer>
+	<footer class="site-footer">
+		<span class="footer-email">{$_('footer.email')}</span>
+		<span class="footer-copy">{$_('footer.copyright')}</span>
+	</footer>
+{/if}
 
 <style>
+	.loading-screen {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100vh;
+		background: #050508;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		z-index: 1000;
+	}
+
+	.loading-spinner {
+		width: 40px;
+		height: 40px;
+		border: 3px solid #1a1a22;
+		border-top-color: #1c71d8;
+		border-radius: 50%;
+		animation: spin 1s linear infinite;
+	}
+
+	@keyframes spin {
+		to {
+			transform: rotate(360deg);
+		}
+	}
+
 	header {
 		position: fixed;
 		top: 0;
@@ -165,6 +205,12 @@
 
 	.desktop-nav a:hover {
 		color: #1c71d8;
+	}
+
+	.header-right {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
 	}
 
 	.hamburger {

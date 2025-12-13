@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { _ } from 'svelte-i18n';
 </script>
 
 
@@ -8,8 +9,8 @@
 	<div class="how-page">
 	<section class="how-hero">
 		<div class="hero-content">
-			<h1>How We Work</h1>
-			<p>From US warehouses to your destination. Full-service export logistics for businesses moving American goods internationally.</p>
+			<h1>{$_('howItWorks.hero.title')}</h1>
+			<p>{$_('howItWorks.hero.subtitle')}</p>
 		</div>
 	</section>
 
@@ -19,33 +20,33 @@
 				<div class="flow-line"></div>
 
 				<div class="flow-step">
-					<div class="step-label">01 — REQUEST</div>
-					<div class="step-text">Tell us what you need</div>
-					<div class="step-description">Share your product requirements, quantities, and delivery timeline. We handle everything from single-category orders to complex multi-product shipments.</div>
+					<div class="step-label">{$_('howItWorks.steps.request.label')}</div>
+					<div class="step-text">{$_('howItWorks.steps.request.title')}</div>
+					<div class="step-description">{$_('howItWorks.steps.request.description')}</div>
 				</div>
 
 				<div class="flow-step">
-					<div class="step-label">02 — QUOTE</div>
-					<div class="step-text">Transparent all-in pricing</div>
-					<div class="step-description">Receive a comprehensive quote covering product costs, ocean freight, customs duties, and final delivery. No hidden fees, no surprises at the port.</div>
+					<div class="step-label">{$_('howItWorks.steps.quote.label')}</div>
+					<div class="step-text">{$_('howItWorks.steps.quote.title')}</div>
+					<div class="step-description">{$_('howItWorks.steps.quote.description')}</div>
 				</div>
 
 				<div class="flow-step">
-					<div class="step-label">03 — SOURCE</div>
-					<div class="step-text">Verified American products</div>
-					<div class="step-description">We locate and authenticate products from trusted US suppliers. Every item is verified for origin and quality before it leaves the warehouse.</div>
+					<div class="step-label">{$_('howItWorks.steps.source.label')}</div>
+					<div class="step-text">{$_('howItWorks.steps.source.title')}</div>
+					<div class="step-description">{$_('howItWorks.steps.source.description')}</div>
 				</div>
 
 				<div class="flow-step">
-					<div class="step-label">04 — SHIP</div>
-					<div class="step-text">Ocean freight coordination</div>
-					<div class="step-description">Your container is loaded, sealed, and tracked from US port to destination. We manage carrier relationships and transit logistics end-to-end.</div>
+					<div class="step-label">{$_('howItWorks.steps.ship.label')}</div>
+					<div class="step-text">{$_('howItWorks.steps.ship.title')}</div>
+					<div class="step-description">{$_('howItWorks.steps.ship.description')}</div>
 				</div>
 
 				<div class="flow-step">
-					<div class="step-label">05 — DELIVER</div>
-					<div class="step-text">Cleared and delivered</div>
-					<div class="step-description">We handle customs documentation and clearance at your destination port. Your goods arrive ready for distribution.</div>
+					<div class="step-label">{$_('howItWorks.steps.deliver.label')}</div>
+					<div class="step-text">{$_('howItWorks.steps.deliver.title')}</div>
+					<div class="step-description">{$_('howItWorks.steps.deliver.description')}</div>
 				</div>
 			</div>
 

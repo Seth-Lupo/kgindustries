@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { _ } from 'svelte-i18n';
 
 	let globeCanvas: HTMLCanvasElement;
 
@@ -242,31 +243,27 @@
 		<section class="hero">
 			<div class="hero-layout">
 				<div class="hero-text">
-					<h1 class="title-massive">GLOBAL</h1>
-					<h1 class="title-medium">FREIGHT</h1>
-					<div class="title-small">OPERATIONS</div>
+					<h1 class="title-massive">{$_('home.hero.global')}</h1>
+					<h1 class="title-medium">{$_('home.hero.freight')}</h1>
+					<div class="title-small">{$_('home.hero.operations')}</div>
 				</div>
 				<div class="globe-container">
 					<canvas bind:this={globeCanvas} width="600" height="600"></canvas>
 				</div>
 			</div>
 			<div class="hero-footer">
-				<p class="subtitle">US-made products to international markets</p>
+				<p class="subtitle">{$_('home.hero.subtitle')}</p>
 			</div>
 		</section>
 
 		<section class="overview" id="overview">
 			<div class="overview-content">
 				<div class="overview-text">
-					<p>
-						We help international businesses source US-manufactured products and ship them overseas.
-						From finding suppliers to managing customs and delivery, we handle the full process as a
-						single point of contact.
-					</p>
+					<p>{$_('home.overview.description')}</p>
 				</div>
 				<div class="overview-detail">
-					<span class="detail-label">SINGLE POINT OF CONTACT</span>
-					<span class="detail-value">Source to Delivery</span>
+					<span class="detail-label">{$_('home.overview.label')}</span>
+					<span class="detail-value">{$_('home.overview.value')}</span>
 				</div>
 			</div>
 		</section>
@@ -281,31 +278,22 @@
 		<section class="process">
 			<div class="process-layout">
 				<div class="process-text">
-					<h2>WHAT WE HANDLE</h2>
-					<p>
-						Sourcing products directly from US manufacturers. Verifying authenticity and US origin.
-						International freight shipping. Customs paperwork and import compliance. Coordinating
-						delivery to your destination country. Acting as your single point of contact across
-						suppliers, carriers, and customs agents.
-					</p>
-					<p>
-						Orders are priced as custom quotes based on product selection, quantities, destination,
-						and timeline. You can mix different products within the same container to meet the
-						minimum order requirement.
-					</p>
+					<h2>{$_('home.process.title')}</h2>
+					<p>{$_('home.process.description1')}</p>
+					<p>{$_('home.process.description2')}</p>
 				</div>
 				<div class="process-data">
 					<div class="data-point">
-						<div class="data-number">20FCL</div>
-						<div class="data-label">Minimum container size</div>
+						<div class="data-number">{$_('home.process.minContainer')}</div>
+						<div class="data-label">{$_('home.process.minContainerLabel')}</div>
 					</div>
 					<div class="data-point">
-						<div class="data-number">B2B</div>
-						<div class="data-label">Business customers only</div>
+						<div class="data-number">{$_('home.process.b2b')}</div>
+						<div class="data-label">{$_('home.process.b2bLabel')}</div>
 					</div>
 					<div class="data-point">
-						<div class="data-number">CUSTOM</div>
-						<div class="data-label">Quote-based pricing</div>
+						<div class="data-number">{$_('home.process.custom')}</div>
+						<div class="data-label">{$_('home.process.customLabel')}</div>
 					</div>
 				</div>
 			</div>
@@ -317,31 +305,21 @@
 					src="/images/port-operations.jpg"
 					alt="Port operations"
 				/>
-				<div class="split-caption">MADE IN USA</div>
+				<div class="split-caption">{$_('home.products.madeInUsa')}</div>
 			</div>
 			<div class="split-right">
 				<div class="split-info">
-					<h3>PRODUCT CATEGORIES</h3>
-					<p>
-						Consumer goods: electronics, home goods, health and beauty products, apparel. US-made
-						beverages: Coca-Cola, Pepsi, Sprite, Ginger Ale, Ale-8-One. Industrial and commercial:
-						equipment, supplies, materials, tools. We can source virtually any US-manufactured
-						product on request.
-					</p>
+					<h3>{$_('home.products.title')}</h3>
+					<p>{$_('home.products.description')}</p>
 				</div>
 			</div>
 		</section>
 
 		<section class="contact-simple" id="contact">
 			<div class="contact-wrapper">
-				<h2>REQUEST ORDER</h2>
-				<p class="contact-description">
-					Send your requirements and we'll provide a detailed quote within 24 hours. Include product
-					types, quantities, destination country, and preferred timeline.
-				</p>
-				<a href="mailto:info@kgindustries.us" class="contact-button"
-					>EMAIL INFO@KGINDUSTRIES.US</a
-				>
+				<h2>{$_('home.contact.title')}</h2>
+				<p class="contact-description">{$_('home.contact.description')}</p>
+				<a href="mailto:info@kgindustries.us" class="contact-button">{$_('home.contact.button')}</a>
 			</div>
 		</section>
 	</main>
