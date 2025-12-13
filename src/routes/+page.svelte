@@ -14,6 +14,35 @@
 	}
 
 	onMount(() => {
+		// Header scroll behavior
+		let lastScroll = 0;
+		const header = document.querySelector('header');
+
+		const handleScroll = () => {
+			const currentScroll = window.pageYOffset;
+
+			if (currentScroll <= 0) {
+				header?.classList.remove('scroll-up');
+				header?.classList.remove('scroll-down');
+				return;
+			}
+
+			if (currentScroll > lastScroll && !header?.classList.contains('scroll-down')) {
+				// Scrolling down
+				header?.classList.remove('scroll-up');
+				header?.classList.add('scroll-down');
+			} else if (currentScroll < lastScroll && header?.classList.contains('scroll-down')) {
+				// Scrolling up
+				header?.classList.remove('scroll-down');
+				header?.classList.add('scroll-up');
+			}
+
+			lastScroll = currentScroll;
+		};
+
+		window.addEventListener('scroll', handleScroll);
+
+		// Globe animation
 		const ctx = globeCanvas.getContext('2d');
 		if (!ctx) return;
 
@@ -90,16 +119,25 @@
 			return { x: centerX + x, y: centerY - y, z };
 		}
 
+		let frameCount = 0;
 		function drawGlobe() {
 			if (!ctx) return;
+			frameCount++;
+
+			// Only render every other frame (30fps instead of 60fps)
+			if (frameCount % 2 !== 0) {
+				requestAnimationFrame(drawGlobe);
+				return;
+			}
+
 			ctx.clearRect(0, 0, globeCanvas.width, globeCanvas.height);
 
-			ctx.shadowBlur = 15;
+			ctx.shadowBlur = 8;
 			ctx.shadowColor = '#1a5fb4';
 
-			// Draw longitude lines
-			for (let i = 0; i < 16; i++) {
-				const lon = (i * Math.PI) / 8;
+			// Draw longitude lines (reduced from 16 to 12)
+			for (let i = 0; i < 12; i++) {
+				const lon = (i * Math.PI) / 6;
 
 				ctx.strokeStyle = '#1c71d8';
 				ctx.lineWidth = 1.2;
@@ -107,7 +145,7 @@
 
 				ctx.beginPath();
 				let first = true;
-				for (let lat = -Math.PI / 2; lat <= Math.PI / 2; lat += 0.02) {
+				for (let lat = -Math.PI / 2; lat <= Math.PI / 2; lat += 0.05) {
 					const point = latLonToXYZ(lat, lon, rotation);
 					if (point.z > 0) {
 						if (first) {
@@ -123,10 +161,10 @@
 				ctx.stroke();
 			}
 
-			// Draw latitude lines
-			for (let i = 0; i < 7; i++) {
-				const lat = ((i - 3) * Math.PI) / 8;
-				const isEquator = i === 3;
+			// Draw latitude lines (reduced from 7 to 5)
+			for (let i = 0; i < 5; i++) {
+				const lat = ((i - 2) * Math.PI) / 6;
+				const isEquator = i === 2;
 
 				ctx.strokeStyle = isEquator ? '#3584e4' : '#1c71d8';
 				ctx.lineWidth = isEquator ? 2 : 1;
@@ -134,7 +172,7 @@
 
 				ctx.beginPath();
 				let first = true;
-				for (let lon = 0; lon < Math.PI * 2; lon += 0.02) {
+				for (let lon = 0; lon < Math.PI * 2; lon += 0.05) {
 					const point = latLonToXYZ(lat, lon, rotation);
 					if (point.z > 0) {
 						if (first) {
@@ -151,6 +189,7 @@
 			}
 
 			// Draw flight paths
+			ctx.shadowBlur = 10;
 			flights.forEach((flight) => {
 				flight.progress += flight.speed;
 				if (flight.progress > 1) {
@@ -176,75 +215,43 @@
 				if (point.z > 0) {
 					const intensity = Math.min(1, point.z / radius);
 
-					// Draw trail as continuous arc
-					ctx.strokeStyle = 'rgba(255, 255, 255, 0.8)';
-					ctx.lineWidth = 2;
-					ctx.shadowBlur = 20;
-					ctx.shadowColor = 'rgba(255, 255, 255, 0.6)';
+					// Draw simplified trail
+					ctx.strokeStyle = 'rgba(255, 255, 255, 0.7)';
+					ctx.lineWidth = 1.8;
+					ctx.shadowColor = 'rgba(255, 255, 255, 0.4)';
+					ctx.globalAlpha = 0.5 * intensity;
 
-					for (let i = 0; i < 15; i++) {
-						const trailIndex = Math.max(0, currentIndex - i * 2);
-						const nextTrailIndex = Math.max(0, currentIndex - (i + 1) * 2);
-
+					ctx.beginPath();
+					let trailFirst = true;
+					for (let i = 0; i < 8; i++) {
+						const trailIndex = Math.max(0, currentIndex - i * 3);
 						const trailPoint = flight.arcPoints[trailIndex];
-						const nextPoint = flight.arcPoints[nextTrailIndex];
-
 						const trail = latLonToXYZ(trailPoint.lat, trailPoint.lon, rotation);
-						const nextTrail = latLonToXYZ(nextPoint.lat, nextPoint.lon, rotation);
 
-						// Only draw if both points are visible
-						if (trail.z > 0 && nextTrail.z > 0) {
-							const trailIntensity = (1 - i / 15) * intensity;
-							ctx.globalAlpha = 0.6 * trailIntensity;
-
-							ctx.beginPath();
-							ctx.moveTo(trail.x, trail.y);
-							ctx.lineTo(nextTrail.x, nextTrail.y);
-							ctx.stroke();
+						if (trail.z > 0) {
+							if (trailFirst) {
+								ctx.moveTo(trail.x, trail.y);
+								trailFirst = false;
+							} else {
+								ctx.lineTo(trail.x, trail.y);
+							}
 						}
 					}
+					ctx.stroke();
 
-					// Draw directional point
-					ctx.shadowBlur = 25;
-					ctx.shadowColor = 'rgba(255, 255, 255, 0.8)';
-
-					// Bright white core
-					ctx.globalAlpha = 0.95 * intensity;
+					// Draw point
+					ctx.shadowBlur = 12;
+					ctx.globalAlpha = 0.9 * intensity;
 					ctx.fillStyle = '#ffffff';
 					ctx.beginPath();
-					ctx.arc(point.x, point.y, 4, 0, Math.PI * 2);
+					ctx.arc(point.x, point.y, 3.5, 0, Math.PI * 2);
 					ctx.fill();
 
-					// Outer glow
-					ctx.globalAlpha = 0.4 * intensity;
-					ctx.fillStyle = 'rgba(200, 220, 255, 0.6)';
+					// Simplified glow
+					ctx.globalAlpha = 0.3 * intensity;
 					ctx.beginPath();
-					ctx.arc(point.x, point.y, 8, 0, Math.PI * 2);
+					ctx.arc(point.x, point.y, 6, 0, Math.PI * 2);
 					ctx.fill();
-
-					// Direction indicator
-					if (currentIndex < flight.arcPoints.length - 3) {
-						const nextIndex = currentIndex + 3;
-						const nextPointData = flight.arcPoints[nextIndex];
-						const nextPos = latLonToXYZ(nextPointData.lat, nextPointData.lon, rotation);
-
-						if (nextPos.z > 0) {
-							const angle = Math.atan2(nextPos.y - point.y, nextPos.x - point.x);
-							ctx.globalAlpha = 0.8 * intensity;
-							ctx.fillStyle = '#ffffff';
-							ctx.beginPath();
-							ctx.moveTo(point.x + Math.cos(angle) * 6, point.y + Math.sin(angle) * 6);
-							ctx.lineTo(
-								point.x + Math.cos(angle + 2.5) * 3,
-								point.y + Math.sin(angle + 2.5) * 3
-							);
-							ctx.lineTo(
-								point.x + Math.cos(angle - 2.5) * 3,
-								point.y + Math.sin(angle - 2.5) * 3
-							);
-							ctx.fill();
-						}
-					}
 				}
 			});
 
@@ -260,10 +267,10 @@
 	<div class="grain"></div>
 
 	<header>
-		<div class="logo">KG</div>
+		<div class="logo">KG Industries</div>
 		<nav>
-			<a href="#services">SERVICES</a>
-			<a href="#fleet">FLEET</a>
+			<a href="#overview">OVERVIEW</a>
+			<a href="#products">PRODUCTS</a>
 			<a href="#contact">CONTACT</a>
 		</nav>
 	</header>
@@ -281,45 +288,129 @@
 				</div>
 			</div>
 			<div class="hero-footer">
-				<p class="subtitle">Moving cargo across continents since 1987</p>
+				<p class="subtitle">🇺🇸 US-made products to international markets 🌍</p>
 			</div>
 		</section>
 
-		<section class="stats">
-			<div class="stat">
-				<div class="stat-number">847</div>
-				<div class="stat-label">VESSELS</div>
-			</div>
-			<div class="stat">
-				<div class="stat-number">156</div>
-				<div class="stat-label">PORTS</div>
-			</div>
-			<div class="stat">
-				<div class="stat-number">24/7</div>
-				<div class="stat-label">OPERATIONS</div>
+		<section class="overview" id="overview">
+			<div class="overview-content">
+				<div class="overview-text">
+					<p>
+						We help international businesses source US-manufactured products and ship them overseas.
+						From finding suppliers to managing customs and delivery, we handle the full process as a
+						single point of contact.
+					</p>
+				</div>
+				<div class="overview-detail">
+					<span class="detail-label">MINIMUM ORDER</span>
+					<span class="detail-value">20ft Container (FCL)</span>
+				</div>
 			</div>
 		</section>
 
-		<section class="image-section">
+		<section class="image-full">
 			<img
-				src="https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?w=1200&q=80"
-				alt="Container ship"
+				src="https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?w=1600&q=80"
+				alt="Container operations"
 			/>
-			<div class="image-overlay">
-				<h2>CONTAINERIZED<br />SHIPPING</h2>
+		</section>
+
+		<section class="process">
+			<div class="process-layout">
+				<div class="process-text">
+					<h2>WHAT WE HANDLE</h2>
+					<p>
+						Sourcing products directly from US manufacturers. Verifying authenticity and US origin.
+						International freight shipping. Customs paperwork and import compliance. Coordinating
+						delivery to your destination country. Acting as your single point of contact across
+						suppliers, carriers, and customs agents.
+					</p>
+					<p>
+						Orders are priced as custom quotes based on product selection, quantities, destination,
+						and timeline. You can mix different products within the same container to meet the
+						minimum order requirement.
+					</p>
+				</div>
+				<div class="process-data">
+					<div class="data-point">
+						<div class="data-number">20FCL</div>
+						<div class="data-label">Minimum container size</div>
+					</div>
+					<div class="data-point">
+						<div class="data-number">B2B</div>
+						<div class="data-label">Business customers only</div>
+					</div>
+					<div class="data-point">
+						<div class="data-number">CUSTOM</div>
+						<div class="data-label">Quote-based pricing</div>
+					</div>
+				</div>
 			</div>
 		</section>
 
-		<section class="cta">
-			<h2 class="cta-title">REQUEST QUOTE</h2>
-			<a href="#contact" class="cta-button">INITIATE</a>
+		<section class="image-split" id="products">
+			<div class="split-left">
+				<img
+					src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=1200&q=80"
+					alt="Port operations"
+				/>
+				<div class="split-caption">MADE IN USA</div>
+			</div>
+			<div class="split-right">
+				<div class="split-info">
+					<h3>PRODUCT CATEGORIES</h3>
+					<p>
+						Consumer goods: electronics, home goods, health and beauty products, apparel. US-made
+						beverages: Coca-Cola, Pepsi, Sprite, Ginger Ale, Ale-8-One. Industrial and commercial:
+						equipment, supplies, materials, tools. We can source virtually any US-manufactured
+						product on request.
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<section class="contact-simple" id="contact">
+			<div class="contact-wrapper">
+				<h2>REQUEST A QUOTE</h2>
+				<div class="contact-detail">
+					<a href="mailto:info@kgindustries.us">INFO@KGINDUSTRIES.US</a>
+				</div>
+				<div class="contact-note">
+					Include: product types, estimated quantities, destination, and timeline
+				</div>
+			</div>
 		</section>
 	</main>
 
 	<footer>
-		<div class="footer-content">
-			<div>KG INDUSTRIES</div>
-			<div class="footer-right">EST. 1987</div>
+		<div class="footer-grid">
+			<div class="footer-col">
+				<div class="footer-brand">KG INDUSTRIES</div>
+				<div class="footer-tagline">US-made products to international markets</div>
+			</div>
+			<div class="footer-col">
+				<div class="footer-heading">CONTACT</div>
+				<a href="mailto:info@kgindustries.us" class="footer-link">info@kgindustries.us</a>
+			</div>
+			<div class="footer-col">
+				<div class="footer-heading">CUSTOMER TYPE</div>
+				<div class="footer-text">Business to business only</div>
+				<div class="footer-text">International distributors</div>
+				<div class="footer-text">Wholesalers & retailers</div>
+			</div>
+			<div class="footer-col">
+				<div class="footer-heading">SERVICES</div>
+				<div class="footer-text">Product sourcing</div>
+				<div class="footer-text">Freight coordination</div>
+				<div class="footer-text">Customs & delivery</div>
+			</div>
+		</div>
+		<div class="footer-bottom">
+			<div class="footer-legal">
+				<span>Minimum order: 20ft container (FCL)</span>
+				<span>•</span>
+				<span>Custom quote-based pricing</span>
+			</div>
 		</div>
 	</footer>
 </div>
@@ -354,13 +445,42 @@
 	}
 
 	header {
-		position: relative;
-		z-index: 10;
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		width: 100%;
+		z-index: 100;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 		padding: 2rem 4vw;
 		border-bottom: 1px solid #1a1a22;
+		background: rgba(10, 10, 13, 0.97);
+		backdrop-filter: blur(8px);
+		transform: translateY(0);
+		transition: transform 0.3s ease;
+	}
+
+	header.scroll-down {
+		transform: translateY(-100%);
+	}
+
+	header.scroll-up {
+		transform: translateY(0);
+	}
+
+	header::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='6.5' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+		opacity: 0.18;
+		pointer-events: none;
+		z-index: -1;
 	}
 
 	.logo {
@@ -391,6 +511,7 @@
 	main {
 		position: relative;
 		z-index: 2;
+		padding-top: 5rem;
 	}
 
 	.hero {
@@ -471,121 +592,297 @@
 		font-weight: 500;
 	}
 
-	.stats {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		gap: 1px;
-		background: #1a1a22;
-		margin: 6rem 0 0 0;
+	.overview {
+		padding: 5rem 4vw;
 		border-top: 1px solid #1a1a22;
 		border-bottom: 1px solid #1a1a22;
 	}
 
-	.stat {
-		background: #050508;
-		padding: 3.5rem 2rem;
-		text-align: center;
+	.overview-content {
+		max-width: 1200px;
+		margin: 0 auto;
+		display: grid;
+		grid-template-columns: 2fr 1fr;
+		gap: 4rem;
+		align-items: center;
 	}
 
-	.stat-number {
-		font-size: 4rem;
-		font-weight: 900;
-		color: #1c71d8;
-		letter-spacing: -0.03em;
-		margin-bottom: 0.75rem;
+	.overview-text p {
+		font-size: 1.15rem;
+		line-height: 1.7;
+		color: #d4d4d8;
+		margin: 0;
+		font-weight: 400;
 	}
 
-	.stat-label {
+	.overview-detail {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+		padding: 2rem;
+		border-left: 2px solid #1a1a22;
+	}
+
+	.detail-label {
 		font-size: 0.7rem;
-		letter-spacing: 0.22em;
+		font-weight: 700;
+		letter-spacing: 0.15em;
 		color: #52525b;
-		font-weight: 600;
 	}
 
-	.image-section {
-		position: relative;
-		margin: 8rem 0;
-		height: 65vh;
+	.detail-value {
+		font-size: 1.2rem;
+		font-weight: 700;
+		letter-spacing: 0.02em;
+		color: #ffffff;
+	}
+
+	.image-full {
+		width: 100%;
+		height: 50vh;
 		overflow: hidden;
 	}
 
-	.image-section img {
+	.image-full img {
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
-		filter: grayscale(70%) contrast(1.2) brightness(0.8);
-		opacity: 0.6;
+		display: block;
+		filter: grayscale(60%) contrast(1.1) brightness(0.85);
 	}
 
-	.image-overlay {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		background: linear-gradient(to bottom, rgba(5, 5, 8, 0.2), rgba(5, 5, 8, 0.8));
-	}
-
-	.image-overlay h2 {
-		font-size: clamp(2.5rem, 7vw, 5rem);
-		font-weight: 900;
-		letter-spacing: 0.12em;
-		color: #ffffff;
-		text-transform: uppercase;
-		line-height: 1.1;
-		text-align: center;
-	}
-
-	.cta {
-		padding: 8rem 4vw;
-		text-align: center;
+	.process {
+		padding: 6rem 4vw;
 		border-top: 1px solid #1a1a22;
 	}
 
-	.cta-title {
-		font-size: clamp(3rem, 8vw, 6rem);
-		font-weight: 900;
-		letter-spacing: 0.06em;
-		margin-bottom: 3rem;
-		color: #ffffff;
+	.process-layout {
+		max-width: 1200px;
+		margin: 0 auto;
+		display: grid;
+		grid-template-columns: 1.5fr 1fr;
+		gap: 5rem;
 	}
 
-	.cta-button {
-		display: inline-block;
-		padding: 1.3rem 4.5rem;
-		background: transparent;
-		border: 2px solid #1c71d8;
+	.process-text h2 {
+		font-size: 1.5rem;
+		font-weight: 900;
+		letter-spacing: 0.08em;
+		color: #ffffff;
+		margin: 0 0 2rem 0;
+		text-transform: uppercase;
+	}
+
+	.process-text p {
+		font-size: 1rem;
+		line-height: 1.8;
+		color: #a1a1aa;
+		margin: 0 0 1.5rem 0;
+		font-weight: 400;
+	}
+
+	.process-text p:last-child {
+		margin-bottom: 0;
+	}
+
+	.process-data {
+		display: flex;
+		flex-direction: column;
+		gap: 3rem;
+		padding-top: 3rem;
+	}
+
+	.data-point {
+		border-top: 1px solid #1a1a22;
+		padding-top: 1rem;
+	}
+
+	.data-number {
+		font-size: 2rem;
+		font-weight: 900;
+		letter-spacing: 0.02em;
+		color: #1c71d8;
+		margin-bottom: 0.5rem;
+	}
+
+	.data-label {
+		font-size: 0.85rem;
+		line-height: 1.4;
+		color: #71717a;
+		font-weight: 500;
+	}
+
+	.image-split {
+		display: grid;
+		grid-template-columns: 1.2fr 0.8fr;
+		min-height: 50vh;
+		border-top: 1px solid #1a1a22;
+	}
+
+	.split-left {
+		position: relative;
+		overflow: hidden;
+	}
+
+	.split-left img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		filter: grayscale(60%) contrast(1.1) brightness(0.85);
+	}
+
+	.split-caption {
+		position: absolute;
+		bottom: 1.5rem;
+		left: 1.5rem;
+		font-size: 0.7rem;
+		font-weight: 700;
+		letter-spacing: 0.15em;
+		color: #ffffff;
+		background: rgba(5, 5, 8, 0.9);
+		padding: 0.5rem 1rem;
+		border: 1px solid #1a1a22;
+	}
+
+	.split-right {
+		background: #0a0a0d;
+		border-left: 1px solid #1a1a22;
+		display: flex;
+		align-items: center;
+	}
+
+	.split-info {
+		padding: 3rem 2.5rem;
+	}
+
+	.split-info h3 {
+		font-size: 1.2rem;
+		font-weight: 900;
+		letter-spacing: 0.08em;
+		color: #ffffff;
+		margin: 0 0 1.5rem 0;
+		text-transform: uppercase;
+	}
+
+	.split-info p {
+		font-size: 0.95rem;
+		line-height: 1.7;
+		color: #a1a1aa;
+		margin: 0;
+		font-weight: 400;
+	}
+
+	.contact-simple {
+		padding: 7rem 4vw;
+		border-top: 1px solid #1a1a22;
+		border-bottom: 1px solid #1a1a22;
+		text-align: center;
+	}
+
+	.contact-wrapper {
+		max-width: 800px;
+		margin: 0 auto;
+	}
+
+	.contact-wrapper h2 {
+		font-size: 2.5rem;
+		font-weight: 900;
+		letter-spacing: 0.05em;
+		color: #ffffff;
+		margin: 0 0 2rem 0;
+		text-transform: uppercase;
+	}
+
+	.contact-detail {
+		margin-bottom: 1.5rem;
+	}
+
+	.contact-detail a {
+		font-size: 1.1rem;
+		font-weight: 700;
+		letter-spacing: 0.08em;
 		color: #1c71d8;
 		text-decoration: none;
-		font-size: 0.9rem;
-		font-weight: 700;
-		letter-spacing: 0.3em;
-		transition: all 0.3s;
 	}
 
-	.cta-button:hover {
-		background: #1c71d8;
-		color: #050508;
-		box-shadow: 0 0 25px rgba(28, 113, 216, 0.4);
+	.contact-note {
+		font-size: 0.9rem;
+		color: #71717a;
+		font-weight: 400;
 	}
 
 	footer {
 		position: relative;
 		z-index: 10;
-		padding: 2rem 4vw;
+		padding: 5rem 4vw 3rem;
 		border-top: 1px solid #1a1a22;
 	}
 
-	.footer-content {
+	.footer-grid {
+		display: grid;
+		grid-template-columns: 1.5fr 1fr 1fr 1fr;
+		gap: 4rem;
+		max-width: 1400px;
+		margin: 0 auto 3rem;
+	}
+
+	.footer-col {
 		display: flex;
-		justify-content: space-between;
-		font-size: 0.75rem;
-		letter-spacing: 0.12em;
+		flex-direction: column;
+		gap: 1rem;
+	}
+
+	.footer-brand {
+		font-size: 1.2rem;
+		font-weight: 900;
+		letter-spacing: 0.05em;
+		color: #ffffff;
+		margin-bottom: 0.5rem;
+	}
+
+	.footer-tagline {
+		font-size: 0.85rem;
+		color: #71717a;
+		font-weight: 400;
+		line-height: 1.5;
+	}
+
+	.footer-heading {
+		font-size: 0.7rem;
+		font-weight: 700;
+		letter-spacing: 0.15em;
 		color: #52525b;
+		margin-bottom: 0.5rem;
+	}
+
+	.footer-link {
+		font-size: 0.85rem;
+		color: #1c71d8;
+		text-decoration: none;
 		font-weight: 600;
+	}
+
+	.footer-text {
+		font-size: 0.85rem;
+		color: #a1a1aa;
+		font-weight: 400;
+		line-height: 1.6;
+	}
+
+	.footer-bottom {
+		padding-top: 2rem;
+		border-top: 1px solid #1a1a22;
+		max-width: 1400px;
+		margin: 0 auto;
+	}
+
+	.footer-legal {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		font-size: 0.75rem;
+		color: #52525b;
+		font-weight: 500;
 	}
 
 	@media (max-width: 1200px) {
@@ -597,6 +894,30 @@
 		canvas {
 			width: 500px;
 			height: 500px;
+		}
+
+		.overview-content {
+			grid-template-columns: 1fr;
+			gap: 2rem;
+		}
+
+		.process-layout {
+			grid-template-columns: 1fr;
+			gap: 3rem;
+		}
+
+		.image-split {
+			grid-template-columns: 1fr;
+		}
+
+		.split-right {
+			border-left: none;
+			border-top: 1px solid #1a1a22;
+		}
+
+		.footer-grid {
+			grid-template-columns: 1fr 1fr;
+			gap: 3rem;
 		}
 	}
 
@@ -622,12 +943,49 @@
 			text-align: center;
 		}
 
-		.stats {
-			grid-template-columns: 1fr;
-		}
-
 		nav {
 			gap: 2rem;
+		}
+
+		.overview,
+		.process,
+		.contact-simple {
+			padding: 4rem 4vw;
+		}
+
+		.overview-text p {
+			font-size: 1rem;
+		}
+
+		.process-text p {
+			font-size: 0.95rem;
+		}
+
+		.image-full {
+			height: 40vh;
+		}
+
+		.image-split {
+			min-height: auto;
+		}
+
+		.split-left {
+			min-height: 40vh;
+		}
+
+		.footer-grid {
+			grid-template-columns: 1fr;
+			gap: 2.5rem;
+		}
+
+		.footer-legal {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 0.5rem;
+		}
+
+		.footer-legal span:nth-child(2) {
+			display: none;
 		}
 	}
 </style>
