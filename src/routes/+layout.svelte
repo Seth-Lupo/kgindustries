@@ -6,6 +6,7 @@
 	import '$lib/i18n';
 	import { _, isLoading } from 'svelte-i18n';
 	import LanguageSwitcher from '$lib/components/LanguageSwitcher.svelte';
+	import { base } from '$app/paths';
 
 	let { children } = $props();
 	let mobileMenuOpen = $state(false);
@@ -68,10 +69,10 @@
 			<span>KG</span>
 		</div>
 		<nav class="desktop-nav">
-			<a href="/">{$_('nav.overview')}</a>
-			<a href="/products">{$_('nav.products')}</a>
-			<a href="/how-it-works">{$_('nav.howItWorks')}</a>
-			<a href="/#contact">{$_('nav.contact')}</a>
+			<a href="{base}/">{$_('nav.overview')}</a>
+			<a href="{base}/products">{$_('nav.products')}</a>
+			<a href="{base}/how-it-works">{$_('nav.howItWorks')}</a>
+			<a href="{base}/#contact">{$_('nav.contact')}</a>
 		</nav>
 		<div class="header-right">
 			<LanguageSwitcher />
@@ -85,10 +86,10 @@
 
 	<div class="mobile-menu" class:open={mobileMenuOpen}>
 		<nav class="mobile-nav">
-			<a href="/" onclick={closeMenu}>{$_('nav.overview')}</a>
-			<a href="/products" onclick={closeMenu}>{$_('nav.products')}</a>
-			<a href="/how-it-works" onclick={closeMenu}>{$_('nav.howItWorks')}</a>
-			<a href="/#contact" onclick={closeMenu}>{$_('nav.contact')}</a>
+			<a href="{base}/" onclick={closeMenu}>{$_('nav.overview')}</a>
+			<a href="{base}/products" onclick={closeMenu}>{$_('nav.products')}</a>
+			<a href="{base}/how-it-works" onclick={closeMenu}>{$_('nav.howItWorks')}</a>
+			<a href="{base}/#contact" onclick={closeMenu}>{$_('nav.contact')}</a>
 		</nav>
 	</div>
 

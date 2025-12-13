@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import { _ } from 'svelte-i18n';
 	import SEO from '$lib/components/SEO.svelte';
+	import { base } from '$app/paths';
 
 	let globeCanvas: HTMLCanvasElement;
 
@@ -277,7 +278,7 @@
 
 		<section class="image-full">
 			<img
-				src="/images/container-operations.jpg"
+				src="{base}/images/container-operations.jpg"
 				alt="Container operations"
 			/>
 		</section>
@@ -309,7 +310,7 @@
 		<section class="image-split" id="products">
 			<div class="split-left">
 				<img
-					src="/images/port-operations.jpg"
+					src="{base}/images/port-operations.jpg"
 					alt="Port operations"
 				/>
 				<div class="split-caption">{$_('home.products.madeInUsa')}</div>

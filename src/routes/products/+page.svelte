@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { _ } from 'svelte-i18n';
 	import SEO from '$lib/components/SEO.svelte';
+	import { base } from '$app/paths';
 </script>
 
 <SEO
@@ -17,7 +18,7 @@
 	<section class="products-hero">
 		<div class="flag-container">
 			<img
-				src="/images/us-flag.png"
+				src="{base}/images/us-flag.png"
 				alt="American Flag"
 				class="hero-flag"
 			/>
@@ -39,7 +40,7 @@
 					<div class="carousel-track">
 						<div class="carousel-item">
 							<img
-								src="/images/coca-cola.jpg"
+								src="{base}/images/coca-cola.jpg"
 								alt="Coca-Cola"
 								class="bev-image"
 							/>
@@ -48,7 +49,7 @@
 						</div>
 						<div class="carousel-item">
 							<img
-								src="/images/pepsi.jpg"
+								src="{base}/images/pepsi.jpg"
 								alt="Pepsi"
 								class="bev-image"
 							/>
@@ -57,7 +58,7 @@
 						</div>
 						<div class="carousel-item">
 							<img
-								src="/images/sprite.jpg"
+								src="{base}/images/sprite.jpg"
 								alt="Sprite"
 								class="bev-image"
 							/>
@@ -66,7 +67,7 @@
 						</div>
 						<div class="carousel-item">
 							<img
-								src="/images/ginger-ale.jpg"
+								src="{base}/images/ginger-ale.jpg"
 								alt="Ginger Ale"
 								class="bev-image"
 							/>
@@ -75,7 +76,7 @@
 						</div>
 						<div class="carousel-item">
 							<img
-								src="/images/ale-8-one.jpg"
+								src="{base}/images/ale-8-one.jpg"
 								alt="Ale-8-One"
 								class="bev-image"
 							/>
@@ -85,7 +86,7 @@
 						<!-- Duplicate for seamless loop -->
 						<div class="carousel-item">
 							<img
-								src="/images/coca-cola.jpg"
+								src="{base}/images/coca-cola.jpg"
 								alt="Coca-Cola"
 								class="bev-image"
 							/>
@@ -94,7 +95,7 @@
 						</div>
 						<div class="carousel-item">
 							<img
-								src="/images/pepsi.jpg"
+								src="{base}/images/pepsi.jpg"
 								alt="Pepsi"
 								class="bev-image"
 							/>
@@ -103,7 +104,7 @@
 						</div>
 						<div class="carousel-item">
 							<img
-								src="/images/sprite.jpg"
+								src="{base}/images/sprite.jpg"
 								alt="Sprite"
 								class="bev-image"
 							/>
@@ -112,7 +113,7 @@
 						</div>
 						<div class="carousel-item">
 							<img
-								src="/images/ginger-ale.jpg"
+								src="{base}/images/ginger-ale.jpg"
 								alt="Ginger Ale"
 								class="bev-image"
 							/>
@@ -121,7 +122,7 @@
 						</div>
 						<div class="carousel-item">
 							<img
-								src="/images/ale-8-one.jpg"
+								src="{base}/images/ale-8-one.jpg"
 								alt="Ale-8-One"
 								class="bev-image"
 							/>

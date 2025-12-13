@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { _ } from 'svelte-i18n';
 	import SEO from '$lib/components/SEO.svelte';
+	import { base } from '$app/paths';
 </script>
 
 <SEO
@@ -61,7 +62,7 @@
 				<div class="sidebar-sticky">
 					<div class="flag-img flag-top">
 						<img
-							src="/images/us-flag.png"
+							src="{base}/images/us-flag.png"
 							alt="US"
 						/>
 					</div>
@@ -73,7 +74,7 @@
 					</div>
 					<div class="flag-img flag-bottom">
 						<img
-							src="/images/azerbaijan-flag.png"
+							src="{base}/images/azerbaijan-flag.png"
 							alt="Destination"
 						/>
 					</div>
