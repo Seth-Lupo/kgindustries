@@ -14,34 +14,6 @@
 	}
 
 	onMount(() => {
-		// Header scroll behavior
-		let lastScroll = 0;
-		const header = document.querySelector('header');
-
-		const handleScroll = () => {
-			const currentScroll = window.pageYOffset;
-
-			if (currentScroll <= 0) {
-				header?.classList.remove('scroll-up');
-				header?.classList.remove('scroll-down');
-				return;
-			}
-
-			if (currentScroll > lastScroll && !header?.classList.contains('scroll-down')) {
-				// Scrolling down
-				header?.classList.remove('scroll-up');
-				header?.classList.add('scroll-down');
-			} else if (currentScroll < lastScroll && header?.classList.contains('scroll-down')) {
-				// Scrolling up
-				header?.classList.remove('scroll-down');
-				header?.classList.add('scroll-up');
-			}
-
-			lastScroll = currentScroll;
-		};
-
-		window.addEventListener('scroll', handleScroll);
-
 		// Globe animation
 		const ctx = globeCanvas.getContext('2d');
 		if (!ctx) return;
@@ -266,15 +238,6 @@
 <div class="container">
 	<div class="grain"></div>
 
-	<header>
-		<div class="logo">KG Industries</div>
-		<nav>
-			<a href="#overview">OVERVIEW</a>
-			<a href="#products">PRODUCTS</a>
-			<a href="#contact">CONTACT</a>
-		</nav>
-	</header>
-
 	<main>
 		<section class="hero">
 			<div class="hero-layout">
@@ -288,7 +251,7 @@
 				</div>
 			</div>
 			<div class="hero-footer">
-				<p class="subtitle">🇺🇸 US-made products to international markets 🌍</p>
+				<p class="subtitle">US-made products to international markets</p>
 			</div>
 		</section>
 
@@ -302,8 +265,8 @@
 					</p>
 				</div>
 				<div class="overview-detail">
-					<span class="detail-label">MINIMUM ORDER</span>
-					<span class="detail-value">20ft Container (FCL)</span>
+					<span class="detail-label">SINGLE POINT OF CONTACT</span>
+					<span class="detail-value">Source to Delivery</span>
 				</div>
 			</div>
 		</section>
@@ -371,65 +334,49 @@
 
 		<section class="contact-simple" id="contact">
 			<div class="contact-wrapper">
-				<h2>REQUEST A QUOTE</h2>
-				<div class="contact-detail">
-					<a href="mailto:info@kgindustries.us">INFO@KGINDUSTRIES.US</a>
-				</div>
-				<div class="contact-note">
-					Include: product types, estimated quantities, destination, and timeline
-				</div>
+				<h2>REQUEST ORDER</h2>
+				<p class="contact-description">
+					Send your requirements and we'll provide a detailed quote within 24 hours. Include product
+					types, quantities, destination country, and preferred timeline.
+				</p>
+				<a href="mailto:info@kgindustries.us" class="contact-button"
+					>EMAIL INFO@KGINDUSTRIES.US</a
+				>
 			</div>
 		</section>
 	</main>
-
-	<footer>
-		<div class="footer-grid">
-			<div class="footer-col">
-				<div class="footer-brand">KG INDUSTRIES</div>
-				<div class="footer-tagline">US-made products to international markets</div>
-			</div>
-			<div class="footer-col">
-				<div class="footer-heading">CONTACT</div>
-				<a href="mailto:info@kgindustries.us" class="footer-link">info@kgindustries.us</a>
-			</div>
-			<div class="footer-col">
-				<div class="footer-heading">CUSTOMER TYPE</div>
-				<div class="footer-text">Business to business only</div>
-				<div class="footer-text">International distributors</div>
-				<div class="footer-text">Wholesalers & retailers</div>
-			</div>
-			<div class="footer-col">
-				<div class="footer-heading">SERVICES</div>
-				<div class="footer-text">Product sourcing</div>
-				<div class="footer-text">Freight coordination</div>
-				<div class="footer-text">Customs & delivery</div>
-			</div>
-		</div>
-		<div class="footer-bottom">
-			<div class="footer-legal">
-				<span>Minimum order: 20ft container (FCL)</span>
-				<span>•</span>
-				<span>Custom quote-based pricing</span>
-			</div>
-		</div>
-	</footer>
 </div>
 
 <style>
 	@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
 
+	:global(*),
+	:global(*::before),
+	:global(*::after) {
+		box-sizing: border-box;
+	}
+
+	:global(html),
 	:global(body) {
 		margin: 0;
 		padding: 0;
+		width: 100%;
+		overflow-x: clip;
+	}
+
+	:global(body) {
 		background: #050508;
 		color: #d4d4d8;
 		font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-		overflow-x: hidden;
 	}
 
 	.container {
 		position: relative;
 		min-height: 100vh;
+		width: 100%;
+		max-width: 100vw;
+		margin: 0 auto;
+		overflow-x: clip;
 	}
 
 	.grain {
@@ -444,78 +391,14 @@
 		z-index: 1;
 	}
 
-	header {
-		position: fixed;
-		top: 0;
-		left: 0;
-		right: 0;
-		width: 100%;
-		z-index: 100;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		padding: 2rem 4vw;
-		border-bottom: 1px solid #1a1a22;
-		background: rgba(10, 10, 13, 0.97);
-		backdrop-filter: blur(8px);
-		transform: translateY(0);
-		transition: transform 0.3s ease;
-	}
-
-	header.scroll-down {
-		transform: translateY(-100%);
-	}
-
-	header.scroll-up {
-		transform: translateY(0);
-	}
-
-	header::before {
-		content: '';
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='6.5' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-		opacity: 0.18;
-		pointer-events: none;
-		z-index: -1;
-	}
-
-	.logo {
-		font-size: 2rem;
-		font-weight: 900;
-		letter-spacing: -0.05em;
-		color: #1c71d8;
-	}
-
-	nav {
-		display: flex;
-		gap: 3rem;
-	}
-
-	nav a {
-		color: #a1a1aa;
-		text-decoration: none;
-		font-size: 0.75rem;
-		letter-spacing: 0.12em;
-		font-weight: 600;
-		transition: color 0.2s;
-	}
-
-	nav a:hover {
-		color: #1c71d8;
-	}
-
 	main {
 		position: relative;
 		z-index: 2;
-		padding-top: 5rem;
+		padding-top: 10rem;
 	}
 
 	.hero {
-		min-height: 92vh;
+		min-height: 85vh;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -528,7 +411,7 @@
 		align-items: center;
 		justify-content: center;
 		position: relative;
-		gap: 4rem;
+		gap: 2rem;
 		margin-bottom: 3rem;
 	}
 
@@ -536,6 +419,7 @@
 		position: relative;
 		z-index: 3;
 		flex-shrink: 0;
+		text-align: center;
 	}
 
 	.title-massive {
@@ -568,7 +452,7 @@
 
 	.globe-container {
 		position: absolute;
-		right: -5vw;
+		right: 2vw;
 		top: 50%;
 		transform: translateY(-50%);
 		z-index: 2;
@@ -773,116 +657,65 @@
 	}
 
 	.contact-simple {
-		padding: 7rem 4vw;
+		padding: 10rem 4vw;
 		border-top: 1px solid #1a1a22;
-		border-bottom: 1px solid #1a1a22;
-		text-align: center;
+		background: #0a0a0d;
+		position: relative;
 	}
 
 	.contact-wrapper {
-		max-width: 800px;
+		max-width: 900px;
 		margin: 0 auto;
+		text-align: center;
+		position: relative;
+	}
+
+	.contact-number {
+		font-size: 8rem;
+		font-weight: 900;
+		color: rgba(28, 113, 216, 0.08);
+		position: absolute;
+		top: -5rem;
+		left: 50%;
+		transform: translateX(-50%);
+		letter-spacing: -0.05em;
+		pointer-events: none;
 	}
 
 	.contact-wrapper h2 {
-		font-size: 2.5rem;
+		font-size: clamp(3rem, 8vw, 5rem);
 		font-weight: 900;
 		letter-spacing: 0.05em;
 		color: #ffffff;
-		margin: 0 0 2rem 0;
+		margin: 0 0 2.5rem 0;
 		text-transform: uppercase;
 	}
 
-	.contact-detail {
-		margin-bottom: 1.5rem;
+	.contact-description {
+		font-size: 1.15rem;
+		line-height: 1.8;
+		color: #a1a1aa;
+		margin: 0 0 3.5rem 0;
+		font-weight: 400;
 	}
 
-	.contact-detail a {
-		font-size: 1.1rem;
-		font-weight: 700;
-		letter-spacing: 0.08em;
+	.contact-button {
+		display: inline-block;
+		padding: 1.5rem 3.5rem;
+		background: transparent;
+		border: 2px solid #1c71d8;
 		color: #1c71d8;
 		text-decoration: none;
-	}
-
-	.contact-note {
 		font-size: 0.9rem;
-		color: #71717a;
-		font-weight: 400;
-	}
-
-	footer {
-		position: relative;
-		z-index: 10;
-		padding: 5rem 4vw 3rem;
-		border-top: 1px solid #1a1a22;
-	}
-
-	.footer-grid {
-		display: grid;
-		grid-template-columns: 1.5fr 1fr 1fr 1fr;
-		gap: 4rem;
-		max-width: 1400px;
-		margin: 0 auto 3rem;
-	}
-
-	.footer-col {
-		display: flex;
-		flex-direction: column;
-		gap: 1rem;
-	}
-
-	.footer-brand {
-		font-size: 1.2rem;
-		font-weight: 900;
-		letter-spacing: 0.05em;
-		color: #ffffff;
-		margin-bottom: 0.5rem;
-	}
-
-	.footer-tagline {
-		font-size: 0.85rem;
-		color: #71717a;
-		font-weight: 400;
-		line-height: 1.5;
-	}
-
-	.footer-heading {
-		font-size: 0.7rem;
 		font-weight: 700;
 		letter-spacing: 0.15em;
-		color: #52525b;
-		margin-bottom: 0.5rem;
+		text-transform: uppercase;
+		transition: all 0.3s;
 	}
 
-	.footer-link {
-		font-size: 0.85rem;
-		color: #1c71d8;
-		text-decoration: none;
-		font-weight: 600;
-	}
-
-	.footer-text {
-		font-size: 0.85rem;
-		color: #a1a1aa;
-		font-weight: 400;
-		line-height: 1.6;
-	}
-
-	.footer-bottom {
-		padding-top: 2rem;
-		border-top: 1px solid #1a1a22;
-		max-width: 1400px;
-		margin: 0 auto;
-	}
-
-	.footer-legal {
-		display: flex;
-		align-items: center;
-		gap: 1rem;
-		font-size: 0.75rem;
-		color: #52525b;
-		font-weight: 500;
+	.contact-button:hover {
+		background: #1c71d8;
+		color: #050508;
 	}
 
 	@media (max-width: 1200px) {
@@ -914,37 +747,64 @@
 			border-left: none;
 			border-top: 1px solid #1a1a22;
 		}
-
-		.footer-grid {
-			grid-template-columns: 1fr 1fr;
-			gap: 3rem;
-		}
 	}
 
 	@media (max-width: 900px) {
+		main {
+			padding-top: 8rem;
+		}
+
+		.hero {
+			min-height: auto;
+			padding: 2rem 4vw 4rem;
+		}
+
 		.hero-layout {
 			flex-direction: column;
-			gap: 3rem;
-		}
-
-		.globe-container {
-			position: relative;
-			right: 0;
-			transform: none;
-			opacity: 0.5;
-		}
-
-		canvas {
-			width: 400px;
-			height: 400px;
+			gap: 1.5rem;
 		}
 
 		.hero-text {
 			text-align: center;
 		}
 
-		nav {
-			gap: 2rem;
+		.title-massive {
+			font-size: clamp(3.5rem, 15vw, 7rem);
+			line-height: 0.85;
+		}
+
+		.title-medium {
+			font-size: clamp(2rem, 10vw, 4rem);
+			letter-spacing: 0.3em;
+			padding-left: 0.3em;
+		}
+
+		.title-small {
+			font-size: 0.75rem;
+			letter-spacing: 0.4em;
+			padding-left: 0.4em;
+			margin-top: 1rem;
+		}
+
+		.globe-container {
+			position: relative;
+			right: 0;
+			transform: none;
+			opacity: 0.6;
+		}
+
+		canvas {
+			width: 280px;
+			height: 280px;
+		}
+
+		.hero-footer {
+			margin-top: 1rem;
+		}
+
+		.subtitle {
+			font-size: 0.75rem;
+			letter-spacing: 0.1em;
 		}
 
 		.overview,
@@ -971,21 +831,6 @@
 
 		.split-left {
 			min-height: 40vh;
-		}
-
-		.footer-grid {
-			grid-template-columns: 1fr;
-			gap: 2.5rem;
-		}
-
-		.footer-legal {
-			flex-direction: column;
-			align-items: flex-start;
-			gap: 0.5rem;
-		}
-
-		.footer-legal span:nth-child(2) {
-			display: none;
 		}
 	}
 </style>

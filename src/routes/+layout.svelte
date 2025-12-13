@@ -1,9 +1,283 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import './layout.css';
 	import favicon from '$lib/assets/favicon.svg';
+	import logo from '$lib/assets/logo.png';
 
 	let { children } = $props();
+	let mobileMenuOpen = $state(false);
+
+	const toggleMenu = () => {
+		mobileMenuOpen = !mobileMenuOpen;
+		if (mobileMenuOpen) {
+			document.body.style.overflow = 'hidden';
+		} else {
+			document.body.style.overflow = '';
+		}
+	};
+
+	const closeMenu = () => {
+		mobileMenuOpen = false;
+		document.body.style.overflow = '';
+	};
+
+	onMount(() => {
+		// Header scroll behavior
+		let lastScroll = 0;
+		const header = document.querySelector('header');
+
+		const handleScroll = () => {
+			const currentScroll = window.pageYOffset;
+
+			if (currentScroll <= 0) {
+				header?.classList.remove('scroll-up');
+				header?.classList.remove('scroll-down');
+				return;
+			}
+
+			if (currentScroll > lastScroll && !header?.classList.contains('scroll-down')) {
+				// Scrolling down
+				header?.classList.remove('scroll-up');
+				header?.classList.add('scroll-down');
+			} else if (currentScroll < lastScroll && header?.classList.contains('scroll-down')) {
+				// Scrolling up
+				header?.classList.remove('scroll-down');
+				header?.classList.add('scroll-up');
+			}
+
+			lastScroll = currentScroll;
+		};
+
+		window.addEventListener('scroll', handleScroll);
+	});
 </script>
 
 <svelte:head><link rel="icon" href={favicon} /></svelte:head>
+
+<header>
+	<div class="logo">
+		<img src={logo} alt="KG Industries Logo" />
+		<span>KG</span>
+	</div>
+	<nav class="desktop-nav">
+		<a href="/">OVERVIEW</a>
+		<a href="/products">PRODUCTS</a>
+		<a href="/how-it-works">HOW IT WORKS</a>
+		<a href="/#contact">CONTACT</a>
+	</nav>
+	<button class="hamburger" onclick={toggleMenu} aria-label="Toggle menu">
+		<span class="hamburger-line" class:open={mobileMenuOpen}></span>
+		<span class="hamburger-line" class:open={mobileMenuOpen}></span>
+		<span class="hamburger-line" class:open={mobileMenuOpen}></span>
+	</button>
+</header>
+
+<div class="mobile-menu" class:open={mobileMenuOpen}>
+	<nav class="mobile-nav">
+		<a href="/" onclick={closeMenu}>OVERVIEW</a>
+		<a href="/products" onclick={closeMenu}>PRODUCTS</a>
+		<a href="/how-it-works" onclick={closeMenu}>HOW IT WORKS</a>
+		<a href="/#contact" onclick={closeMenu}>CONTACT</a>
+	</nav>
+</div>
+
 {@render children()}
+
+<footer class="site-footer">
+	<span class="footer-email">info@kgindustries.us</span>
+	<span class="footer-copy">© 2025 KG Industries</span>
+</footer>
+
+<style>
+	header {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		width: 100%;
+		max-width: 100vw;
+		z-index: 100;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 2rem 4vw;
+		border-bottom: 1px solid #1a1a22;
+		background: rgba(10, 10, 13, 0.97);
+		backdrop-filter: blur(8px);
+		transform: translateY(0);
+		transition: transform 0.3s ease;
+		box-sizing: border-box;
+	}
+
+	header.scroll-down {
+		transform: translateY(-100%);
+	}
+
+	header.scroll-up {
+		transform: translateY(0);
+	}
+
+	header::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='6.5' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+		opacity: 0.18;
+		pointer-events: none;
+		z-index: -1;
+	}
+
+	.logo {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+	}
+
+	.logo img {
+		width: 32px;
+		height: 32px;
+		object-fit: contain;
+	}
+
+	.logo span {
+		font-size: 2rem;
+		font-weight: 900;
+		letter-spacing: -0.05em;
+		color: #1c71d8;
+	}
+
+	.desktop-nav {
+		display: flex;
+		gap: 3rem;
+	}
+
+	.desktop-nav a {
+		color: #a1a1aa;
+		text-decoration: none;
+		font-size: 0.75rem;
+		letter-spacing: 0.12em;
+		font-weight: 600;
+		transition: color 0.2s;
+	}
+
+	.desktop-nav a:hover {
+		color: #1c71d8;
+	}
+
+	.hamburger {
+		display: none;
+		flex-direction: column;
+		justify-content: center;
+		gap: 5px;
+		width: 28px;
+		height: 28px;
+		background: none;
+		border: none;
+		cursor: pointer;
+		padding: 0;
+		z-index: 101;
+	}
+
+	.hamburger-line {
+		display: block;
+		width: 100%;
+		height: 2px;
+		background: #a1a1aa;
+		transition: all 0.3s ease;
+	}
+
+	.hamburger-line.open:nth-child(1) {
+		transform: rotate(45deg) translate(5px, 5px);
+	}
+
+	.hamburger-line.open:nth-child(2) {
+		opacity: 0;
+	}
+
+	.hamburger-line.open:nth-child(3) {
+		transform: rotate(-45deg) translate(5px, -5px);
+	}
+
+	.mobile-menu {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100vh;
+		background: #050508;
+		z-index: 99;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		opacity: 0;
+		visibility: hidden;
+		transition: opacity 0.3s ease, visibility 0.3s ease;
+	}
+
+	.mobile-menu.open {
+		opacity: 1;
+		visibility: visible;
+	}
+
+	.mobile-nav {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 2.5rem;
+	}
+
+	.mobile-nav a {
+		color: #ffffff;
+		text-decoration: none;
+		font-size: 1.5rem;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		transition: color 0.2s;
+	}
+
+	.mobile-nav a:hover {
+		color: #1c71d8;
+	}
+
+	@media (max-width: 768px) {
+		.desktop-nav {
+			display: none;
+		}
+
+		.hamburger {
+			display: flex;
+		}
+	}
+
+	.site-footer {
+		position: relative;
+		z-index: 10;
+		padding: 2rem 4vw;
+		border-top: 1px solid #1a1a22;
+		background: #050508;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.footer-email {
+		font-size: 0.8rem;
+		color: #71717a;
+	}
+
+	.footer-copy {
+		font-size: 0.7rem;
+		color: #3f3f46;
+	}
+
+	@media (max-width: 600px) {
+		.site-footer {
+			flex-direction: column;
+			gap: 0.75rem;
+			text-align: center;
+		}
+	}
+</style>
