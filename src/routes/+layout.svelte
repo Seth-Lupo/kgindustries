@@ -2,7 +2,6 @@
 	import { onMount } from 'svelte';
 	import './layout.css';
 	import favicon from '$lib/assets/favicon.svg';
-	import logo from '$lib/assets/logo.png';
 	import '$lib/i18n';
 	import { _, isLoading } from 'svelte-i18n';
 	import LanguageSwitcher from '$lib/components/LanguageSwitcher.svelte';
@@ -64,10 +63,10 @@
 	</div>
 {:else}
 	<header>
-		<div class="logo">
-			<img src={logo} alt="KG Industries Logo" />
-			<span>KG</span>
-		</div>
+		<a href="{base}/" class="logo">
+			<span class="logo-kg">KG</span>
+			<span class="logo-industries">INDUSTRIES</span>
+		</a>
 		<nav class="desktop-nav">
 			<a href="{base}/">{$_('nav.overview')}</a>
 			<a href="{base}/products">{$_('nav.products')}</a>
@@ -173,21 +172,26 @@
 
 	.logo {
 		display: flex;
-		align-items: center;
-		gap: 0.75rem;
+		flex-direction: column;
+		align-items: flex-start;
+		text-decoration: none;
+		line-height: 1;
 	}
 
-	.logo img {
-		width: 32px;
-		height: 32px;
-		object-fit: contain;
-	}
-
-	.logo span {
+	.logo-kg {
 		font-size: 2rem;
-		font-weight: 900;
-		letter-spacing: -0.05em;
-		color: #1c71d8;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		color: #ffffff;
+	}
+
+	.logo-industries {
+		font-size: 0.95rem;
+		font-weight: 600;
+		letter-spacing: 0.25em;
+		color: #a1a1aa;
+		font-family: 'Times New Roman', Times, serif;
+		margin-top: 2px;
 	}
 
 	.desktop-nav {

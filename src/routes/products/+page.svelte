@@ -45,7 +45,6 @@
 								class="bev-image"
 							/>
 							<div class="bev-name">{$_('productsPage.beverages.cocaCola')}</div>
-							<div class="bev-origin">{$_('productsPage.beverages.atlanta')}</div>
 						</div>
 						<div class="carousel-item">
 							<img
@@ -54,7 +53,6 @@
 								class="bev-image"
 							/>
 							<div class="bev-name">{$_('productsPage.beverages.pepsi')}</div>
-							<div class="bev-origin">{$_('productsPage.beverages.purchase')}</div>
 						</div>
 						<div class="carousel-item">
 							<img
@@ -63,7 +61,6 @@
 								class="bev-image"
 							/>
 							<div class="bev-name">{$_('productsPage.beverages.sprite')}</div>
-							<div class="bev-origin">{$_('productsPage.beverages.usProduction')}</div>
 						</div>
 						<div class="carousel-item">
 							<img
@@ -72,16 +69,14 @@
 								class="bev-image"
 							/>
 							<div class="bev-name">{$_('productsPage.beverages.gingerAle')}</div>
-							<div class="bev-origin">{$_('productsPage.beverages.usProduction')}</div>
 						</div>
 						<div class="carousel-item">
 							<img
-								src="{base}/images/ale-8-one.jpg"
-								alt="Ale-8-One"
+								src="{base}/images/dr-pepper.webp"
+								alt="Dr Pepper"
 								class="bev-image"
 							/>
-							<div class="bev-name">{$_('productsPage.beverages.ale8One')}</div>
-							<div class="bev-origin">{$_('productsPage.beverages.winchester')}</div>
+							<div class="bev-name">{$_('productsPage.beverages.drPepper')}</div>
 						</div>
 						<!-- Duplicate for seamless loop -->
 						<div class="carousel-item">
@@ -91,7 +86,6 @@
 								class="bev-image"
 							/>
 							<div class="bev-name">{$_('productsPage.beverages.cocaCola')}</div>
-							<div class="bev-origin">{$_('productsPage.beverages.atlanta')}</div>
 						</div>
 						<div class="carousel-item">
 							<img
@@ -100,7 +94,6 @@
 								class="bev-image"
 							/>
 							<div class="bev-name">{$_('productsPage.beverages.pepsi')}</div>
-							<div class="bev-origin">{$_('productsPage.beverages.purchase')}</div>
 						</div>
 						<div class="carousel-item">
 							<img
@@ -109,7 +102,6 @@
 								class="bev-image"
 							/>
 							<div class="bev-name">{$_('productsPage.beverages.sprite')}</div>
-							<div class="bev-origin">{$_('productsPage.beverages.usProduction')}</div>
 						</div>
 						<div class="carousel-item">
 							<img
@@ -118,16 +110,14 @@
 								class="bev-image"
 							/>
 							<div class="bev-name">{$_('productsPage.beverages.gingerAle')}</div>
-							<div class="bev-origin">{$_('productsPage.beverages.usProduction')}</div>
 						</div>
 						<div class="carousel-item">
 							<img
-								src="{base}/images/ale-8-one.jpg"
-								alt="Ale-8-One"
+								src="{base}/images/dr-pepper.webp"
+								alt="Dr Pepper"
 								class="bev-image"
 							/>
-							<div class="bev-name">{$_('productsPage.beverages.ale8One')}</div>
-							<div class="bev-origin">{$_('productsPage.beverages.winchester')}</div>
+							<div class="bev-name">{$_('productsPage.beverages.drPepper')}</div>
 						</div>
 					</div>
 				</div>
@@ -461,7 +451,8 @@
 	}
 
 	.carousel-item {
-		min-width: 320px;
+		min-width: 280px;
+		width: 280px;
 		padding: 0;
 		background: #050508;
 		border: 1px solid #1a1a22;
@@ -474,8 +465,9 @@
 
 	.bev-image {
 		width: 100%;
-		height: 280px;
+		aspect-ratio: 4 / 5;
 		object-fit: cover;
+		object-position: center;
 		display: block;
 		filter: grayscale(20%) contrast(1.1) brightness(0.9);
 	}
@@ -485,16 +477,8 @@
 		font-weight: 900;
 		letter-spacing: 0.05em;
 		color: #ffffff;
-		margin: 2rem 2rem 0.75rem 2rem;
+		margin: 2rem;
 		text-transform: uppercase;
-	}
-
-	.bev-origin {
-		font-size: 0.85rem;
-		color: #71717a;
-		font-weight: 500;
-		letter-spacing: 0.05em;
-		margin: 0 2rem 2rem 2rem;
 	}
 
 	@keyframes scroll {
@@ -502,7 +486,7 @@
 			transform: translateX(0);
 		}
 		100% {
-			transform: translateX(calc((-320px - 3rem) * 5));
+			transform: translateX(calc((-280px - 3rem) * 5));
 		}
 	}
 
@@ -639,20 +623,12 @@
 
 		.carousel-item {
 			min-width: 200px;
-		}
-
-		.bev-image {
-			height: 180px;
+			width: 200px;
 		}
 
 		.bev-name {
 			font-size: 1rem;
-			margin: 1.25rem 1rem 0.5rem 1rem;
-		}
-
-		.bev-origin {
-			font-size: 0.75rem;
-			margin: 0 1rem 1.25rem 1rem;
+			margin: 1.25rem 1rem;
 		}
 
 		@keyframes scroll {
@@ -671,25 +647,17 @@
 		}
 
 		.carousel-track {
-			gap: 1rem;
+			gap: 0.75rem;
 		}
 
 		.carousel-item {
-			min-width: 160px;
-		}
-
-		.bev-image {
-			height: 140px;
+			min-width: 140px;
+			width: 140px;
 		}
 
 		.bev-name {
-			font-size: 0.9rem;
-			margin: 1rem 0.75rem 0.4rem 0.75rem;
-		}
-
-		.bev-origin {
-			font-size: 0.7rem;
-			margin: 0 0.75rem 1rem 0.75rem;
+			font-size: 0.85rem;
+			margin: 0.75rem 0.5rem;
 		}
 
 		@keyframes scroll {
@@ -697,7 +665,7 @@
 				transform: translateX(0);
 			}
 			100% {
-				transform: translateX(calc((-160px - 1rem) * 5));
+				transform: translateX(calc((-140px - 0.75rem) * 5));
 			}
 		}
 	}
