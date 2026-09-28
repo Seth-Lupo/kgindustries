@@ -2,6 +2,28 @@
 	import { _ } from 'svelte-i18n';
 	import SEO from '$lib/components/SEO.svelte';
 	import { base } from '$app/paths';
+	import { onMount } from 'svelte';
+
+	const destinations = [
+		{ file: 'azerbaijan-flag.png', name: 'Azerbaijan' },
+		{ file: 'uae-flag.png', name: 'United Arab Emirates' },
+		{ file: 'saudi-arabia-flag.png', name: 'Saudi Arabia' },
+		{ file: 'qatar-flag.png', name: 'Qatar' },
+		{ file: 'egypt-flag.png', name: 'Egypt' },
+		{ file: 'georgia-flag.png', name: 'Georgia' },
+		{ file: 'portugal-flag.png', name: 'Portugal' },
+		{ file: 'brazil-flag.png', name: 'Brazil' },
+		{ file: 'kazakhstan-flag.png', name: 'Kazakhstan' }
+	];
+
+	let activeFlag = $state(0);
+
+	onMount(() => {
+		const interval = setInterval(() => {
+			activeFlag = (activeFlag + 1) % destinations.length;
+		}, 1500);
+		return () => clearInterval(interval);
+	});
 </script>
 
 <SEO
@@ -73,10 +95,14 @@
 						<div class="arrow-mask"></div>
 					</div>
 					<div class="flag-img flag-bottom">
-						<img
-							src="{base}/images/azerbaijan-flag.png"
-							alt="Destination"
-						/>
+						{#each destinations as dest, i}
+							<img
+								src="{base}/images/{dest.file}"
+								alt={dest.name}
+								class:active={i === activeFlag}
+								aria-hidden={i !== activeFlag}
+							/>
+						{/each}
 					</div>
 				</div>
 			</div>
@@ -213,6 +239,21 @@
 		height: 100%;
 		object-fit: cover;
 		display: block;
+	}
+
+	.flag-bottom {
+		position: relative;
+	}
+
+	.flag-bottom img {
+		position: absolute;
+		inset: 0;
+		opacity: 0;
+		transition: opacity 0.5s ease;
+	}
+
+	.flag-bottom img.active {
+		opacity: 1;
 	}
 
 	.arrow-container {
