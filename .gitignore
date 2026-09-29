@@ -21,3 +21,6 @@ Thumbs.db
 # Vite
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# Raw source images (not for publishing; processed copies live in static/assets/products)
+/US_soda_images/

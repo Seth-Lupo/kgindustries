@@ -1,4 +1,4 @@
-# KG Industries - Global Freight Operations
+# KG Industries - US Sourcing and Export
 User-agent: *
 Allow: /
 

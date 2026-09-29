@@ -1,142 +1,212 @@
 {
   "nav": {
-    "overview": "RESUMEN",
+    "overview": "INICIO",
     "products": "PRODUCTOS",
-    "howItWorks": "COMO FUNCIONA",
-    "contact": "CONTACTO"
+    "howItWorks": "CÓMO FUNCIONA",
+    "contact": "CONTACTO",
+    "rfq": "SOLICITAR COTIZACIÓN"
   },
   "footer": {
-    "email": "info@kgindustries.us",
-    "copyright": "© 2025 KG Industries"
+    "location": "Delaware, EE. UU.",
+    "disclaimer": "Todas las marcas comerciales son propiedad de sus respectivos titulares. KG Industries es una empresa comercial independiente y no está afiliada ni respaldada por los titulares de las marcas mencionadas."
   },
   "home": {
     "hero": {
-      "global": "CARGA",
-      "freight": "GLOBAL",
-      "operations": "MUNDIAL",
-      "subtitle": "Productos fabricados en EE.UU. a mercados internacionales"
+      "global": "GLOBAL",
+      "freight": "COMPRAS",
+      "operations": "COMERCIO Y EXPORTACIÓN DESDE EE. UU.",
+      "subtitle": "Productos de EE. UU. para compradores internacionales, entregados en su puerto"
     },
     "overview": {
-      "description": "Ayudamos a empresas internacionales a obtener productos fabricados en Estados Unidos y enviarlos al extranjero. Desde encontrar proveedores hasta gestionar aduanas y entregas, manejamos todo el proceso como un unico punto de contacto.",
-      "label": "UNICO PUNTO DE CONTACTO",
-      "value": "Del origen a la entrega"
+      "label": "QUIÉNES SOMOS",
+      "p1": "KG Industries es una empresa estadounidense de comercio y abastecimiento. Damos a compradores internacionales acceso a productos de EE. UU. que los fabricantes no exportan directamente.",
+      "p2": "Muchos fabricantes estadounidenses venden solo a través de distribuidores nacionales o no tienen área de exportación. Los compradores extranjeros terminan pagando a través de dos o tres agentes regionales, o no pueden comprar. Nosotros compramos en Estados Unidos como comprador nacional, gestionamos la exportación y entregamos en su puerto.",
+      "p3": "Trabajamos con equipos de compras, importadores, distribuidores y operadores en el Golfo, Oriente Medio y el Norte de África, el Cáucaso, Asia Central, Europa y América Latina.",
+      "factsLabel": "EMPRESA",
+      "registered": "Registrada en Delaware, EE. UU."
     },
-    "process": {
-      "title": "LO QUE MANEJAMOS",
-      "description1": "Obtencion de productos directamente de fabricantes estadounidenses. Verificacion de autenticidad y origen estadounidense. Envio de carga internacional. Documentacion aduanera y cumplimiento de importaciones. Coordinacion de entrega a su pais de destino. Actuar como su unico punto de contacto entre proveedores, transportistas y agentes aduanales.",
-      "description2": "Los pedidos se cotizan de forma personalizada segun la seleccion de productos, cantidades, destino y plazos. Puede mezclar diferentes productos dentro del mismo contenedor para cumplir con el requisito minimo de pedido.",
-      "minContainer": "20FCL",
-      "minContainerLabel": "Tamano minimo de contenedor",
-      "b2b": "B2B",
-      "b2bLabel": "Solo clientes empresariales",
-      "custom": "PERSONAL.",
-      "customLabel": "Precios basados en cotizacion"
+    "handle": {
+      "title": "DE QUÉ NOS ENCARGAMOS",
+      "items": [
+        { "title": "Abastecimiento", "text": "Encontramos al fabricante o canal en EE. UU., verificamos la especificación y negociamos el precio de fábrica." },
+        { "title": "Compra", "text": "Compramos como comprador nacional en EE. UU. Usted trata con una sola contraparte." },
+        { "title": "Exportación y documentación", "text": "Declaración de exportación, factura comercial, lista de empaque, certificado de origen y certificados de producto según se requiera." },
+        { "title": "Flete y seguro hasta su puerto", "text": "Cotizaciones puestas en destino en términos CIP o CIF hasta el puerto que usted indique." },
+        { "title": "Consolidación", "text": "Varios productos, y varios proveedores si es necesario, en un solo contenedor." }
+      ],
+      "risk": "Una sola contraparte en EE. UU. Asumimos la compra en EE. UU., el cumplimiento de exportación y la coordinación del flete.",
+      "data": [
+        { "value": "CIP / CIF", "label": "Cotizaciones puestas en el puerto que usted indique" },
+        { "value": "B2B", "label": "Solo compradores empresariales" },
+        { "value": "RFQ", "label": "Precio según solicitud de cotización" }
+      ]
     },
-    "products": {
-      "madeInUsa": "HECHO EN EE.UU.",
-      "title": "CATEGORIAS DE PRODUCTOS",
-      "description": "Bienes de consumo: electronica, articulos para el hogar, productos de salud y belleza, ropa. Bebidas fabricadas en EE.UU.: Coca-Cola, Pepsi, Sprite, Ginger Ale, Ale-8-One. Industrial y comercial: equipos, suministros, materiales, herramientas. Podemos obtener practicamente cualquier producto fabricado en EE.UU. bajo pedido."
+    "categories": {
+      "caption": "ABASTECIDO EN EE. UU. · ENVIADO A SU PUERTO",
+      "title": "CATEGORÍAS DE PRODUCTOS",
+      "tiles": [
+        { "title": "Bebidas de EE. UU.", "text": "Refrescos del mercado estadounidense y sabores especiales que no se embotellan para su región" },
+        { "title": "Bienes de consumo", "text": "Alimentos y productos de consumo masivo de EE. UU. bajo pedido" },
+        { "title": "Industrial y comercial", "text": "Equipos para servicios de alimentos, repuestos originales Ford, EPP, suministros para instalaciones y MRO, envases" },
+        { "title": "Abastecimiento a medida (RFQ)", "text": "Si se vende en EE. UU., envíenos la especificación" }
+      ]
     },
     "contact": {
-      "title": "SOLICITAR PEDIDO",
-      "description": "Envie sus requisitos y le proporcionaremos una cotizacion detallada en 24 horas. Incluya tipos de productos, cantidades, pais de destino y plazo preferido.",
-      "button": "EMAIL INFO@KGINDUSTRIES.US"
+      "title": "SOLICITAR COTIZACIÓN",
+      "description": "Envíe nombres de producto o códigos, cantidad y puerto de destino. El precio se cotiza por solicitud, puesto en su puerto.",
+      "button": "ABRIR SOLICITUD"
     }
   },
   "productsPage": {
     "hero": {
-      "title": "CATALOGO DE PRODUCTOS",
-      "subtitle": "Productos fabricados en EE.UU. en categorias de consumo, bebidas e industrial"
+      "title": "PRODUCTOS",
+      "subtitle": "Productos de EE. UU. para importadores, distribuidores y operadores. Precio según solicitud de cotización, puesto en su puerto."
     },
+    "originLabel": "Origen",
     "beverages": {
-      "title": "BEBIDAS DE EE.UU.",
-      "cocaCola": "Coca-Cola",
-      "pepsi": "Pepsi",
-      "sprite": "Sprite",
-      "gingerAle": "Ginger Ale",
-      "ale8One": "Ale-8-One",
-      "drPepper": "Dr Pepper",
-      "atlanta": "Atlanta, GA",
-      "waco": "Waco, TX",
-      "purchase": "Purchase, NY",
-      "usProduction": "Produccion EE.UU.",
-      "winchester": "Winchester, KY"
+      "title": "BEBIDAS DE EE. UU.",
+      "intro": "Refrescos del mercado estadounidense, incluidos sabores y fórmulas que no se embotellan ni se venden en la mayoría de los mercados de exportación. Se venden por palé completo y se envían en contenedores consolidados.",
+      "specialty": "Sabores especiales y fórmulas estadounidenses que los embotelladores locales no producen.",
+      "families": {
+        "crush": "Crush",
+        "specialty": "Sabores especiales",
+        "pepsi": "Pepsi",
+        "mexican": "Botellas de vidrio mexicanas",
+        "cocaCola": "Coca-Cola",
+        "fanta": "Fanta",
+        "sprite": "Sprite"
+      },
+      "size": "Tamaño",
+      "glass355": "Botella de vidrio de 355 ml",
+      "glass500": "Botella de vidrio de 500 ml",
+      "pack": "Empaque",
+      "caseOf": "Caja de {n}",
+      "pallet": "Configuración del palé",
+      "palletValue": "{cases} cajas · {units} unidades",
+      "originUS": "Hecho en EE. UU. · Abastecido en EE. UU.",
+      "originMX": "Hecho en México · Abastecido en EE. UU.",
+      "add": "Añadir a la solicitud",
+      "added": "En la solicitud ✓",
+      "selectedCount": "{n, plural, one {# producto seleccionado} other {# productos seleccionados}}"
     },
     "consumer": {
       "title": "BIENES DE CONSUMO",
-      "electronics": "Electronica",
-      "electronicsDesc": "Equipos de audio / Dispositivos inteligentes / Accesorios informaticos",
-      "homeGoods": "Articulos del Hogar",
-      "homeGoodsDesc": "Utensilios de cocina / Muebles / Textiles / Decoracion",
-      "healthBeauty": "Salud y Belleza",
-      "healthBeautyDesc": "Cuidado de la piel / Cosmeticos / Suplementos / Cuidado personal",
-      "apparel": "Ropa",
-      "apparelDesc": "Vestimenta / Calzado / Accesorios / Textiles"
+      "intro": "Marcas estadounidenses de alimentación y consumo para importadores y minoristas, según su lista. Envíe nombres de artículos o códigos UPC y las cantidades objetivo.",
+      "onRequestTitle": "Bajo pedido",
+      "onRequest": ["Snacks y confitería", "Bebidas fuera de la gama principal", "Productos para el hogar"],
+      "howTitle": "Cómo pedir",
+      "how": "Envíe su lista con nombres o códigos UPC, cantidades objetivo y puerto de destino. Confirmamos disponibilidad y origen por línea y luego cotizamos puesto en su puerto."
     },
     "industrial": {
       "title": "INDUSTRIAL Y",
       "titleLine2": "COMERCIAL",
-      "equipment": "Equipos",
-      "equipmentDesc": "Equipos de fabricacion, maquinaria, herramientas industriales",
-      "supplies": "Suministros",
-      "suppliesDesc": "Suministros empresariales, materiales de oficina, embalaje",
-      "materials": "Materiales",
-      "materialsDesc": "Materias primas, componentes, materiales de construccion",
-      "tools": "Herramientas",
-      "toolsDesc": "Herramientas manuales, herramientas electricas, equipos especializados"
+      "intro": "Abastecimiento según especificación de fabricantes de EE. UU. y Europa. El país de origen se indica por línea en cada cotización.",
+      "cards": [
+        {
+          "title": "Equipos comerciales para servicios de alimentos",
+          "text": "Bandejas gastronorm, contenedores de policarbonato, contenedores isotérmicos para transporte de alimentos, bandejas de fibra de vidrio y racks de lavavajillas. Para hoteles, catering, cocinas institucionales, hospitales y distribuidores del sector.",
+          "note": "Base de pedido: contenedor completo.",
+          "origin": "Hecho en EE. UU."
+        },
+        {
+          "title": "Repuestos originales Ford (especificación EE. UU.)",
+          "text": "Repuestos originales Ford OEM para vehículos con especificación estadounidense, a través de la red de concesionarios de EE. UU. Envíe números de pieza y cantidades.",
+          "note": "Plazo de entrega cotizado por pedido.",
+          "origin": "Abastecido en EE. UU."
+        },
+        {
+          "title": "Guantes de nitrilo / EPP",
+          "text": "Guantes desechables resistentes de nitrilo puro (sin relleno), de 6 y 8 mil de espesor, para uso industrial, automotriz y policial.",
+          "origin": "Hecho en Malasia"
+        },
+        {
+          "title": "Instalaciones, MRO y suministro industrial",
+          "text": "Bombas, válvulas, instrumentación, repuestos y consumibles de fabricantes estadounidenses sin canal de exportación. Abastecido según su especificación.",
+          "origin": "Indicado por línea en la cotización"
+        },
+        {
+          "title": "Envases y equipos de procesamiento",
+          "text": "Botellas, tapas compatibles y maquinaria de procesamiento de alimentos de fabricantes de EE. UU. y Europa. Nos encargamos de la compatibilidad y la documentación.",
+          "note": "Tapas y maquinaria de procesamiento suministradas a un productor de alimentos en Azerbaiyán.",
+          "origin": "EE. UU. o UE, indicado en la cotización"
+        }
+      ]
     },
-    "requirements": {
-      "title": "INFO DEL PEDIDO",
-      "minOrder": "PEDIDO MINIMO",
-      "minOrderValue": "Contenedor 20ft",
-      "minOrderNote": "Mezcle productos en el contenedor",
-      "verification": "VERIFICACION",
-      "verificationValue": "Origen EE.UU.",
-      "verificationNote": "Todos los productos verificados",
-      "pricing": "PRECIOS",
-      "pricingValue": "Cotizacion Personal",
-      "pricingNote": "Segun sus necesidades"
+    "custom": {
+      "title": "ABASTECIMIENTO A MEDIDA (RFQ)",
+      "text": "Si se vende en EE. UU., envíenos la especificación. Incluya códigos de artículo, cantidad y puerto de destino."
+    },
+    "order": {
+      "title": "INFORMACIÓN DE PEDIDOS",
+      "rows": [
+        { "label": "Mínimos: bebidas", "text": "Palés completos. Se pueden combinar productos en distintos palés; el mínimo práctico es el contenedor." },
+        { "label": "Mínimos: equipos para servicios de alimentos", "text": "Contenedor completo por pedido." },
+        { "label": "Mínimos: otras líneas", "text": "Según solicitud de cotización." },
+        { "label": "Origen", "text": "Cada cotización indica el país de origen por línea. Los productos hechos en EE. UU., los abastecidos en EE. UU. y los de otro origen se identifican por separado. El certificado de origen se entrega con el envío." },
+        { "label": "Precios", "text": "Precio según solicitud de cotización, puesto en el puerto que usted indique (CIP o CIF). Aranceles, impuestos y gastos en destino no están incluidos salvo que la cotización lo indique." },
+        { "label": "Validez de la cotización", "text": "Cada cotización tiene fecha de vencimiento. Los precios de fábrica y del flete cambian; tras el vencimiento, los precios se vuelven a confirmar." },
+        { "label": "Pago", "text": "Clientes nuevos: 100% de pago anticipado contra factura proforma. Se prefiere transferencia bancaria en USD." },
+        { "label": "Documentos", "text": "Factura comercial, lista de empaque, conocimiento de embarque, certificado de origen. Certificados de producto (por ejemplo, sanitarios o fitosanitarios para alimentos, palés tratados térmicamente ISPM 15) según exija su mercado. Indíquenos sus requisitos de importación en la solicitud." },
+        { "label": "Importador", "text": "El comprador, o el agente que designe, es el importador y despacha la mercancía en destino." },
+        { "label": "Datos bancarios", "text": "Nuestros datos bancarios nunca cambian por correo electrónico. Verifique cualquier cambio con nosotros por teléfono antes de pagar." }
+      ]
     }
   },
   "howItWorks": {
     "hero": {
-      "title": "Como Trabajamos",
-      "subtitle": "Desde almacenes de EE.UU. hasta su destino. Logistica de exportacion de servicio completo para empresas que mueven productos americanos internacionalmente."
+      "title": "Cómo funciona",
+      "subtitle": "Desde su solicitud de cotización hasta la entrega en su puerto en términos CIP o CIF."
     },
-    "steps": {
-      "request": {
-        "label": "01 — SOLICITUD",
-        "title": "Diganos que necesita",
-        "description": "Comparta sus requisitos de productos, cantidades y plazos de entrega. Manejamos todo, desde pedidos de una sola categoria hasta envios complejos de multiples productos."
-      },
-      "quote": {
-        "label": "02 — COTIZACION",
-        "title": "Precios transparentes todo incluido",
-        "description": "Reciba una cotizacion completa que cubre costos de productos, flete maritimo, aranceles aduaneros y entrega final. Sin cargos ocultos, sin sorpresas en el puerto."
-      },
-      "source": {
-        "label": "03 — OBTENCION",
-        "title": "Productos americanos verificados",
-        "description": "Localizamos y autenticamos productos de proveedores estadounidenses confiables. Cada articulo es verificado en origen y calidad antes de salir del almacen."
-      },
-      "ship": {
-        "label": "04 — ENVIO",
-        "title": "Coordinacion de flete maritimo",
-        "description": "Su contenedor se carga, sella y rastrea desde el puerto de EE.UU. hasta el destino. Gestionamos las relaciones con transportistas y la logistica de transito de principio a fin."
-      },
-      "deliver": {
-        "label": "05 — ENTREGA",
-        "title": "Despachado y entregado",
-        "description": "Manejamos la documentacion y despacho aduanero en su puerto de destino. Sus productos llegan listos para distribucion."
-      }
+    "steps": [
+      { "title": "Envíe su solicitud", "text": "Productos o códigos, especificación, cantidad, puerto o ciudad de destino y plazo de entrega deseado. Si tiene un precio actual de proveedor, inclúyalo. Así podemos decirle rápido si podemos competir.", "who": "Usted indica el requerimiento." },
+      { "title": "Confirmamos el alcance", "text": "Antes de cotizar confirmamos especificación, cantidades, empaque y sus requisitos de documentos de importación. No suponemos nada por usted." },
+      { "title": "Compramos en fábrica", "text": "Compramos al fabricante o canal en EE. UU. como comprador nacional, en términos EXW o FCA.", "who": "KG asume la compra en EE. UU." },
+      { "title": "Recibe una cotización puesta en destino", "text": "Precio por línea en términos CIP o CIF hasta el puerto que indique, con flete y seguro incluidos, fecha de vencimiento y una lista clara de exclusiones." },
+      { "title": "Factura proforma y pago", "text": "Tras su confirmación, emitimos una factura proforma con el Incoterm acordado, las condiciones de pago y el calendario de envío." },
+      { "title": "Producción, consolidación y exportación", "text": "Recogemos la mercancía, la consolidamos en su contenedor y presentamos la declaración de exportación de EE. UU. Preparamos la factura comercial, la lista de empaque y el certificado de origen, además de los certificados de producto que exija su mercado.", "who": "KG actúa como exportador en EE. UU." },
+      { "title": "Envío y seguro", "text": "Reservamos el flete marítimo hasta su puerto y aseguramos la carga. Recibe el seguimiento y una copia de los documentos de embarque a la salida." },
+      { "title": "Llegada y despacho", "text": "Usted o su agente despachan la aduana como importador y pagan aranceles e impuestos locales. Los gastos de terminal en destino y la entrega terrestre corren por su cuenta, salvo que la cotización indique otra cosa.", "who": "Usted despacha y recibe la mercancía." }
+    ],
+    "incoterms": {
+      "title": "CIP o CIF",
+      "items": [
+        { "term": "CIP (Carriage and Insurance Paid to)", "text": "Se usa para carga en contenedor. Pagamos el transporte y el seguro hasta el lugar que indique. El seguro es a todo riesgo (Institute Cargo Clauses A) según Incoterms 2020." },
+        { "term": "CIF (Cost, Insurance and Freight)", "text": "Solo marítimo, de puerto a puerto. Pagamos flete y seguro hasta el puerto que indique. La cobertura mínima es Institute Cargo Clauses C según Incoterms 2020, salvo que se acuerde una mayor." }
+      ],
+      "risk": "En ambos términos, el riesgo pasa al comprador cuando la mercancía se entrega al transportista o se carga a bordo en origen, no a la llegada. Por eso se incluye el seguro.",
+      "other": "Otros términos (FCA, DAP) disponibles bajo pedido."
+    },
+    "table": {
+      "title": "Quién se encarga de qué",
+      "item": "Concepto",
+      "buyer": "Comprador",
+      "rows": [
+        { "item": "Compra en EE. UU. y gestión de proveedores", "kg": true, "buyer": false },
+        { "item": "Transporte en origen, despacho de exportación, declaración de exportación de EE. UU.", "kg": true, "buyer": false },
+        { "item": "Flete marítimo y seguro de carga (CIP/CIF)", "kg": true, "buyer": false },
+        { "item": "Documentos comerciales y certificado de origen", "kg": true, "buyer": false },
+        { "item": "Despacho de importación, aranceles, IVA", "kg": false, "buyer": true },
+        { "item": "Gastos de terminal en destino, entrega terrestre", "kg": false, "buyer": true, "note": "salvo cotización" },
+        { "item": "Descarga en sus instalaciones", "kg": false, "buyer": true },
+        { "item": "Devolución del contenedor / demora tras el tiempo libre", "kg": false, "buyer": true }
+      ]
     }
   },
-  "languages": {
-    "en": "English",
-    "az": "Azerbaiyano",
-    "ru": "Ruso",
-    "tr": "Turco",
-    "es": "Espanol",
-    "zh": "Chino"
+  "rfq": {
+    "title": "Solicitar cotización",
+    "intro": "Envíe su solicitud por correo electrónico. Indique abajo el producto y el puerto de destino y le prellenamos el correo.",
+    "selected": "Productos seleccionados",
+    "remove": "Quitar",
+    "clear": "Borrar todo",
+    "product": "Producto / códigos",
+    "productPh": "p. ej. Crush Orange, 20 palés",
+    "destination": "Puerto / ciudad de destino",
+    "destinationPh": "p. ej. Santos",
+    "emailButton": "Enviar solicitud por correo",
+    "emailNote": "Se abre su aplicación de correo con una plantilla prellenada. O escriba a",
+    "linkedin": "KG Industries en LinkedIn",
+    "bank": "Nuestros datos bancarios nunca cambian por correo electrónico. Verifique cualquier cambio con nosotros por teléfono antes de pagar.",
+    "shortcut": "Atajo: pulse Q para abrir y Esc para cerrar.",
+    "close": "Cerrar"
   }
 }

@@ -1,13 +1,32 @@
 <script lang="ts">
-	import { _ } from 'svelte-i18n';
+	import { _, json } from 'svelte-i18n';
 	import SEO from '$lib/components/SEO.svelte';
 	import { base } from '$app/paths';
+	import { beverageFamilies, SHOW_PALLET_CONFIG, type Beverage } from '$lib/data/beverages';
+	import { rfqOpen, rfqItems, toggleRfqItem } from '$lib/stores/rfq';
+
+	type Card = { title: string; text: string; origin: string; note?: string };
+	type Row = { label: string; text: string };
+
+	const sizeLabel = (b: Beverage) => (b.size ? $_(`productsPage.beverages.${b.size}`) : '');
+
+	// English label used in the RFQ email, so the request reads the same for our team.
+	const rfqLabel = (b: Beverage) =>
+		[b.name, b.size === 'glass355' ? '355 ml glass' : b.size === 'glass500' ? '500 ml glass' : '']
+			.filter(Boolean)
+			.join(', ');
+
+	const altText = (b: Beverage) =>
+		[b.name, sizeLabel(b), $_('productsPage.beverages.caseOf', { values: { n: b.pack } })]
+			.filter(Boolean)
+			.join(', ');
+
+	let openRow = $state<number | null>(0);
 </script>
 
 <SEO
-	title="Products - US Manufactured Goods for Export | KG Industries"
-	description="Browse US-manufactured products available for international export: beverages (Coca-Cola, Pepsi), consumer electronics, home goods, health & beauty, industrial equipment. B2B container shipping."
-	keywords="US manufactured products, American beverages export, Coca-Cola export, Pepsi international, US consumer goods, industrial equipment export, B2B wholesale, made in USA products"
+	title="Products | KG Industries"
+	description="US beverages, consumer goods, commercial foodservice equipment, genuine Ford parts, nitrile gloves, MRO supply, and packaging. Pricing quoted per RFQ, landed to your port."
 	canonical="/products"
 />
 
@@ -15,214 +34,198 @@
 	<div class="grain"></div>
 
 	<div class="products-page">
-	<section class="products-hero">
-		<div class="flag-container">
-			<img
-				src="{base}/images/us-flag.png"
-				alt="American Flag"
-				class="hero-flag"
-			/>
-		</div>
-		<div class="hero-content">
-			<h1>{$_('productsPage.hero.title')}</h1>
-			<p>{$_('productsPage.hero.subtitle')}</p>
-		</div>
-	</section>
-
-	<section class="category-section">
-		<div class="category-layout">
-			<div class="category-block beverage-block">
-				<div class="category-header">
-					<h2>{$_('productsPage.beverages.title')}</h2>
-					<div class="category-line"></div>
-				</div>
-				<div class="beverage-carousel">
-					<div class="carousel-track">
-						<div class="carousel-item">
-							<img
-								src="{base}/images/coca-cola.jpg"
-								alt="Coca-Cola"
-								class="bev-image"
-							/>
-							<div class="bev-name">{$_('productsPage.beverages.cocaCola')}</div>
-						</div>
-						<div class="carousel-item">
-							<img
-								src="{base}/images/pepsi.jpg"
-								alt="Pepsi"
-								class="bev-image"
-							/>
-							<div class="bev-name">{$_('productsPage.beverages.pepsi')}</div>
-						</div>
-						<div class="carousel-item">
-							<img
-								src="{base}/images/sprite.jpg"
-								alt="Sprite"
-								class="bev-image"
-							/>
-							<div class="bev-name">{$_('productsPage.beverages.sprite')}</div>
-						</div>
-						<div class="carousel-item">
-							<img
-								src="{base}/images/ginger-ale.jpg"
-								alt="Ginger Ale"
-								class="bev-image"
-							/>
-							<div class="bev-name">{$_('productsPage.beverages.gingerAle')}</div>
-						</div>
-						<div class="carousel-item">
-							<img
-								src="{base}/images/dr-pepper.webp"
-								alt="Dr Pepper"
-								class="bev-image"
-							/>
-							<div class="bev-name">{$_('productsPage.beverages.drPepper')}</div>
-						</div>
-						<!-- Duplicate for seamless loop -->
-						<div class="carousel-item">
-							<img
-								src="{base}/images/coca-cola.jpg"
-								alt="Coca-Cola"
-								class="bev-image"
-							/>
-							<div class="bev-name">{$_('productsPage.beverages.cocaCola')}</div>
-						</div>
-						<div class="carousel-item">
-							<img
-								src="{base}/images/pepsi.jpg"
-								alt="Pepsi"
-								class="bev-image"
-							/>
-							<div class="bev-name">{$_('productsPage.beverages.pepsi')}</div>
-						</div>
-						<div class="carousel-item">
-							<img
-								src="{base}/images/sprite.jpg"
-								alt="Sprite"
-								class="bev-image"
-							/>
-							<div class="bev-name">{$_('productsPage.beverages.sprite')}</div>
-						</div>
-						<div class="carousel-item">
-							<img
-								src="{base}/images/ginger-ale.jpg"
-								alt="Ginger Ale"
-								class="bev-image"
-							/>
-							<div class="bev-name">{$_('productsPage.beverages.gingerAle')}</div>
-						</div>
-						<div class="carousel-item">
-							<img
-								src="{base}/images/dr-pepper.webp"
-								alt="Dr Pepper"
-								class="bev-image"
-							/>
-							<div class="bev-name">{$_('productsPage.beverages.drPepper')}</div>
-						</div>
-					</div>
-				</div>
+		<section class="products-hero">
+			<div class="flag-container">
+				<img src="{base}/images/us-flag.png" alt="" class="hero-flag" />
 			</div>
-
-			<div class="category-block consumer-block">
-				<div class="category-header">
-					<h2>{$_('productsPage.consumer.title')}</h2>
-				</div>
-				<div class="consumer-grid">
-					<div class="product-card">
-						<div class="card-content">
-							<h3>{$_('productsPage.consumer.electronics')}</h3>
-							<p>{$_('productsPage.consumer.electronicsDesc')}</p>
-						</div>
-					</div>
-					<div class="product-card">
-						<div class="card-content">
-							<h3>{$_('productsPage.consumer.homeGoods')}</h3>
-							<p>{$_('productsPage.consumer.homeGoodsDesc')}</p>
-						</div>
-					</div>
-					<div class="product-card">
-						<div class="card-content">
-							<h3>{$_('productsPage.consumer.healthBeauty')}</h3>
-							<p>{$_('productsPage.consumer.healthBeautyDesc')}</p>
-						</div>
-					</div>
-					<div class="product-card">
-						<div class="card-content">
-							<h3>{$_('productsPage.consumer.apparel')}</h3>
-							<p>{$_('productsPage.consumer.apparelDesc')}</p>
-						</div>
-					</div>
-				</div>
+			<div class="hero-content">
+				<h1>{$_('productsPage.hero.title')}</h1>
+				<p>{$_('productsPage.hero.subtitle')}</p>
 			</div>
+		</section>
 
-			<div class="category-block industrial-block">
-				<div class="split-layout">
-					<div class="split-header">
-						<h2>{$_('productsPage.industrial.title')}<br />{$_('productsPage.industrial.titleLine2')}</h2>
+		<section class="category-section">
+			<div class="category-layout">
+				<!-- US BEVERAGES -->
+				<div class="category-block beverage-block" id="beverages">
+					<div class="category-header">
+						<h2>{$_('productsPage.beverages.title')}</h2>
+						<p class="category-intro">{$_('productsPage.beverages.intro')}</p>
+						<p class="category-sub">{$_('productsPage.beverages.specialty')}</p>
 					</div>
-					<div class="split-content">
-						<div class="industrial-list">
-							<div class="industrial-item">
-								<div class="item-info">
-									<h4>{$_('productsPage.industrial.equipment')}</h4>
-									<p>{$_('productsPage.industrial.equipmentDesc')}</p>
-								</div>
+
+					{#each beverageFamilies as family (family.id)}
+						<div class="family">
+							<h3 class="family-title">
+								{$_(`productsPage.beverages.families.${family.id}`)}
+								<span class="family-count">{family.items.length}</span>
+							</h3>
+							<div class="bev-grid">
+								{#each family.items as bev (bev.image ?? bev.name)}
+									{@const label = rfqLabel(bev)}
+									<article class="bev-card">
+										<div class="bev-photo">
+											{#if bev.image}
+												<img
+													src="{base}{bev.image}"
+													alt={altText(bev)}
+													loading="lazy"
+													width="800"
+													height="800"
+												/>
+											{:else}
+												<div class="bev-placeholder">{bev.name}</div>
+											{/if}
+										</div>
+										<div class="bev-body">
+											<h4 class="bev-name">{bev.name}</h4>
+											<dl class="bev-meta">
+												{#if bev.size}
+													<div><dt>{$_('productsPage.beverages.size')}</dt><dd>{sizeLabel(bev)}</dd></div>
+												{/if}
+												<div>
+													<dt>{$_('productsPage.beverages.pack')}</dt>
+													<dd>{$_('productsPage.beverages.caseOf', { values: { n: bev.pack } })}</dd>
+												</div>
+												{#if SHOW_PALLET_CONFIG}
+													<div>
+														<dt>{$_('productsPage.beverages.pallet')}</dt>
+														<dd>
+															{$_('productsPage.beverages.palletValue', {
+																values: {
+																	cases: bev.casesPerPallet,
+																	units: bev.unitsPerPallet.toLocaleString('en-US')
+																}
+															})}
+														</dd>
+													</div>
+												{/if}
+											</dl>
+											<p class="bev-origin" class:non-us={bev.origin !== 'US'}>
+												{bev.origin === 'MX'
+													? $_('productsPage.beverages.originMX')
+													: $_('productsPage.beverages.originUS')}
+											</p>
+											<button
+												class="add-rfq"
+												class:added={$rfqItems.includes(label)}
+												aria-pressed={$rfqItems.includes(label)}
+												onclick={() => toggleRfqItem(label)}
+											>
+												{$rfqItems.includes(label)
+													? $_('productsPage.beverages.added')
+													: $_('productsPage.beverages.add')}
+											</button>
+										</div>
+									</article>
+								{/each}
 							</div>
-							<div class="industrial-item">
-								<div class="item-info">
-									<h4>{$_('productsPage.industrial.supplies')}</h4>
-									<p>{$_('productsPage.industrial.suppliesDesc')}</p>
-								</div>
+						</div>
+					{/each}
+
+					{#if $rfqItems.length}
+						<div class="rfq-bar">
+							<span>{$_('productsPage.beverages.selectedCount', { values: { n: $rfqItems.length } })}</span>
+							<button onclick={() => rfqOpen.set(true)}>{$_('nav.rfq')}</button>
+						</div>
+					{/if}
+				</div>
+
+				<!-- CONSUMER GOODS -->
+				<div class="category-block consumer-block" id="consumer">
+					<div class="category-header">
+						<h2>{$_('productsPage.consumer.title')}</h2>
+						<p class="category-intro">{$_('productsPage.consumer.intro')}</p>
+					</div>
+					<div class="consumer-grid">
+						<div class="product-card">
+							<div class="card-content">
+								<h3>{$_('productsPage.consumer.onRequestTitle')}</h3>
+								<ul class="plain-list">
+									{#each $json('productsPage.consumer.onRequest') as string[] as line}
+										<li>{line}</li>
+									{/each}
+								</ul>
+								<!-- CONFIRM: named FMCG brand examples (only once confirmed sourced) -->
 							</div>
-							<div class="industrial-item">
-								<div class="item-info">
-									<h4>{$_('productsPage.industrial.materials')}</h4>
-									<p>{$_('productsPage.industrial.materialsDesc')}</p>
-								</div>
+						</div>
+						<div class="product-card">
+							<div class="card-content">
+								<h3>{$_('productsPage.consumer.howTitle')}</h3>
+								<p>{$_('productsPage.consumer.how')}</p>
 							</div>
-							<div class="industrial-item">
-								<div class="item-info">
-									<h4>{$_('productsPage.industrial.tools')}</h4>
-									<p>{$_('productsPage.industrial.toolsDesc')}</p>
-								</div>
+						</div>
+						<!-- CONFIRM: additional consumer line pending agreement; not published -->
+					</div>
+				</div>
+
+				<!-- INDUSTRIAL & COMMERCIAL -->
+				<div class="category-block industrial-block" id="industrial">
+					<div class="split-layout">
+						<div class="split-header">
+							<h2>{$_('productsPage.industrial.title')}<br />{$_('productsPage.industrial.titleLine2')}</h2>
+							<p class="category-intro">{$_('productsPage.industrial.intro')}</p>
+						</div>
+						<div class="split-content">
+							<div class="industrial-list">
+								<!-- CONFIRM: foodservice brand name and logo withheld pending approval -->
+								{#each $json('productsPage.industrial.cards') as Card[] as card}
+									<div class="industrial-item">
+										<div class="item-info">
+											<h4>{card.title}</h4>
+											<p>{card.text}</p>
+											{#if card.note}<p class="item-note">{card.note}</p>{/if}
+											<p class="item-origin">
+												<span>{$_('productsPage.originLabel')}</span>
+												{card.origin}
+											</p>
+										</div>
+									</div>
+								{/each}
+								<!-- CONFIRM: glove certification status (CE / EN 455 / EN ISO 374) per market before any claim -->
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-	</section>
 
-	<section class="requirements">
-		<div class="req-container">
-			<div class="req-header">
-				<h2>{$_('productsPage.requirements.title')}</h2>
-			</div>
-			<div class="req-grid">
-				<div class="req-item">
-					<div class="req-content">
-						<div class="req-label">{$_('productsPage.requirements.minOrder')}</div>
-						<div class="req-value">{$_('productsPage.requirements.minOrderValue')}</div>
-						<div class="req-note">{$_('productsPage.requirements.minOrderNote')}</div>
-					</div>
-				</div>
-				<div class="req-item">
-					<div class="req-content">
-						<div class="req-label">{$_('productsPage.requirements.verification')}</div>
-						<div class="req-value">{$_('productsPage.requirements.verificationValue')}</div>
-						<div class="req-note">{$_('productsPage.requirements.verificationNote')}</div>
-					</div>
-				</div>
-				<div class="req-item">
-					<div class="req-content">
-						<div class="req-label">{$_('productsPage.requirements.pricing')}</div>
-						<div class="req-value">{$_('productsPage.requirements.pricingValue')}</div>
-						<div class="req-note">{$_('productsPage.requirements.pricingNote')}</div>
+				<!-- CUSTOM SOURCING -->
+				<div class="category-block custom-block" id="custom">
+					<div class="custom-inner">
+						<div>
+							<h2>{$_('productsPage.custom.title')}</h2>
+							<p class="category-intro">{$_('productsPage.custom.text')}</p>
+						</div>
+						<button class="custom-button" onclick={() => rfqOpen.set(true)}>{$_('nav.rfq')}</button>
 					</div>
 				</div>
 			</div>
-		</div>
-	</section>
+		</section>
+
+		<!-- ORDER INFORMATION -->
+		<section class="requirements" id="order-info">
+			<div class="req-container">
+				<div class="req-header">
+					<h2>{$_('productsPage.order.title')}</h2>
+				</div>
+				<!-- CONFIRM: beverage minimum (pallets per order; 20' vs 40' container) -->
+				<!-- CONFIRM: foodservice minimum container size -->
+				<div class="order-list">
+					{#each $json('productsPage.order.rows') as Row[] as row, i}
+						<div class="order-row" class:open={openRow === i}>
+							<button
+								class="order-label"
+								aria-expanded={openRow === i}
+								onclick={() => (openRow = openRow === i ? null : i)}
+							>
+								<span>{row.label}</span>
+								<span class="chev" aria-hidden="true">+</span>
+							</button>
+							<div class="order-text">{row.text}</div>
+						</div>
+					{/each}
+				</div>
+			</div>
+		</section>
 	</div>
 </div>
 
@@ -286,10 +289,12 @@
 	.hero-content {
 		position: relative;
 		z-index: 1;
+		max-width: 760px;
+		margin: 0 auto;
 	}
 
 	.hero-content h1 {
-		font-size: clamp(3rem, 8vw, 5.5rem);
+		font-size: clamp(2.5rem, 8vw, 5.5rem);
 		font-weight: 900;
 		letter-spacing: 0.05em;
 		color: #ffffff;
@@ -299,12 +304,15 @@
 
 	.hero-content p {
 		font-size: 1.1rem;
+		line-height: 1.6;
 		color: #a1a1aa;
 		margin: 0;
 		font-weight: 400;
 	}
 
 	.category-section {
+		position: relative;
+		z-index: 2;
 		padding: 6rem 4vw;
 	}
 
@@ -319,13 +327,16 @@
 	.category-block {
 		border-top: 1px solid #1a1a22;
 		padding-top: 3rem;
+		scroll-margin-top: 6rem;
 	}
 
 	.category-header {
 		margin-bottom: 3rem;
+		max-width: 820px;
 	}
 
-	.category-header h2 {
+	.category-header h2,
+	.custom-block h2 {
 		font-size: 1.8rem;
 		font-weight: 900;
 		letter-spacing: 0.08em;
@@ -334,6 +345,199 @@
 		text-transform: uppercase;
 	}
 
+	.category-intro {
+		font-size: 1.05rem;
+		line-height: 1.7;
+		color: #d4d4d8;
+		margin: 0;
+	}
+
+	.category-sub {
+		font-size: 0.95rem;
+		line-height: 1.6;
+		color: #a1a1aa;
+		margin: 0.75rem 0 0;
+	}
+
+	/* Beverages */
+	.beverage-block {
+		background: #0a0a0d;
+		padding: 3rem;
+		border: 1px solid #1a1a22;
+	}
+
+	.family + .family {
+		margin-top: 3rem;
+	}
+
+	.family-title {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		font-size: 0.85rem;
+		font-weight: 700;
+		letter-spacing: 0.15em;
+		color: #a1a1aa;
+		text-transform: uppercase;
+		margin: 0 0 1.25rem;
+		padding-bottom: 0.75rem;
+		border-bottom: 1px solid #1a1a22;
+	}
+
+	.family-count {
+		font-size: 0.7rem;
+		color: #52525b;
+	}
+
+	.bev-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+		gap: 1.25rem;
+	}
+
+	.bev-card {
+		background: #050508;
+		border: 1px solid #1a1a22;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.bev-photo {
+		aspect-ratio: 1 / 1;
+		background: #ffffff;
+		overflow: hidden;
+	}
+
+	.bev-photo img {
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
+		display: block;
+	}
+
+	.bev-placeholder {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		padding: 1.5rem;
+		background: #111116;
+		color: #71717a;
+		font-weight: 700;
+		letter-spacing: 0.05em;
+		font-size: 0.95rem;
+	}
+
+	.bev-body {
+		padding: 1rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.6rem;
+		flex: 1;
+	}
+
+	.bev-name {
+		margin: 0;
+		font-size: 0.95rem;
+		font-weight: 700;
+		color: #ffffff;
+		line-height: 1.3;
+	}
+
+	.bev-meta {
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+		font-size: 0.8rem;
+	}
+
+	.bev-meta div {
+		display: flex;
+		justify-content: space-between;
+		gap: 0.5rem;
+	}
+
+	.bev-meta dt {
+		color: #71717a;
+	}
+
+	.bev-meta dd {
+		margin: 0;
+		color: #d4d4d8;
+		text-align: end;
+	}
+
+	.bev-origin {
+		margin: 0;
+		font-size: 0.75rem;
+		color: #a1a1aa;
+		letter-spacing: 0.02em;
+	}
+
+	.bev-origin.non-us {
+		color: #f5c211;
+	}
+
+	.add-rfq {
+		margin-top: auto;
+		padding: 0.6rem;
+		background: transparent;
+		border: 1px solid #27272a;
+		color: #a1a1aa;
+		font-family: inherit;
+		font-size: 0.7rem;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		cursor: pointer;
+		transition: all 0.2s;
+	}
+
+	.add-rfq:hover {
+		border-color: #1c71d8;
+		color: #ffffff;
+	}
+
+	.add-rfq.added {
+		background: #1c71d8;
+		border-color: #1c71d8;
+		color: #ffffff;
+	}
+
+	.rfq-bar {
+		position: sticky;
+		bottom: 1rem;
+		margin-top: 2rem;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 1rem;
+		padding: 0.9rem 1.2rem;
+		background: #111116;
+		border: 1px solid #1c71d8;
+		font-size: 0.9rem;
+		color: #ffffff;
+		z-index: 5;
+	}
+
+	.rfq-bar button,
+	.custom-button {
+		padding: 0.7rem 1.2rem;
+		background: #1c71d8;
+		border: none;
+		color: #ffffff;
+		font-family: inherit;
+		font-size: 0.75rem;
+		font-weight: 700;
+		letter-spacing: 0.12em;
+		cursor: pointer;
+		white-space: nowrap;
+	}
+
+	/* Consumer */
 	.consumer-block {
 		background: #0a0a0d;
 		padding: 4rem;
@@ -343,8 +547,6 @@
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
 		gap: 2rem;
-		max-width: 1200px;
-		margin: 0 auto;
 	}
 
 	.product-card {
@@ -355,7 +557,7 @@
 	}
 
 	.card-content h3 {
-		font-size: 1.3rem;
+		font-size: 1.1rem;
 		font-weight: 900;
 		letter-spacing: 0.05em;
 		color: #ffffff;
@@ -363,14 +565,20 @@
 		text-transform: uppercase;
 	}
 
-	.card-content p {
-		font-size: 0.9rem;
+	.card-content p,
+	.plain-list {
+		font-size: 0.95rem;
 		line-height: 1.7;
 		color: #a1a1aa;
 		margin: 0;
 		font-weight: 400;
 	}
 
+	.plain-list {
+		padding-inline-start: 1.1rem;
+	}
+
+	/* Industrial */
 	.industrial-block {
 		background: #050508;
 		padding: 4rem;
@@ -396,7 +604,7 @@
 		font-weight: 900;
 		letter-spacing: 0.05em;
 		color: #ffffff;
-		margin: 0;
+		margin: 0 0 1.5rem;
 		text-transform: uppercase;
 		line-height: 1.1;
 	}
@@ -404,110 +612,93 @@
 	.industrial-list {
 		display: flex;
 		flex-direction: column;
-		gap: 2rem;
+		gap: 1.5rem;
 	}
 
 	.industrial-item {
 		padding: 2rem;
 		background: #0a0a0d;
-		border-left: 3px solid #1c71d8;
+		border-inline-start: 3px solid #1c71d8;
 	}
 
 	.item-info h4 {
-		font-size: 1.1rem;
+		font-size: 1.05rem;
 		font-weight: 900;
 		letter-spacing: 0.05em;
 		color: #ffffff;
-		margin: 0 0 0.5rem 0;
+		margin: 0 0 0.75rem 0;
 		text-transform: uppercase;
 	}
 
 	.item-info p {
-		font-size: 0.9rem;
+		font-size: 0.95rem;
 		line-height: 1.6;
 		color: #a1a1aa;
 		margin: 0;
 		font-weight: 400;
 	}
 
-	.beverage-block {
+	.item-info .item-note {
+		margin-top: 0.75rem;
+		font-size: 0.85rem;
+		color: #71717a;
+	}
+
+	.item-info .item-origin {
+		margin-top: 1rem;
+		font-size: 0.8rem;
+		color: #d4d4d8;
+	}
+
+	.item-origin span {
+		color: #52525b;
+		font-weight: 700;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		font-size: 0.7rem;
+		margin-inline-end: 0.5rem;
+	}
+
+	/* Custom sourcing */
+	.custom-block {
 		background: #0a0a0d;
 		padding: 3rem;
-		border: 1px solid #1a1a22;
+		border: 1px solid #1c71d8;
 	}
 
-	.beverage-carousel {
-		overflow: hidden;
-		max-width: 900px;
-		margin: 0 auto;
-		position: relative;
-		padding: 2rem 0;
-	}
-
-	.carousel-track {
+	.custom-inner {
 		display: flex;
-		animation: scroll 20s linear infinite;
-		gap: 3rem;
+		justify-content: space-between;
+		align-items: center;
+		gap: 2rem;
 	}
 
-	.carousel-item {
-		min-width: 280px;
-		width: 280px;
-		padding: 0;
-		background: #050508;
-		border: 1px solid #1a1a22;
-		text-align: center;
-		flex-shrink: 0;
-		overflow: hidden;
-		display: flex;
-		flex-direction: column;
+	.custom-inner > div {
+		max-width: 720px;
 	}
 
-	.bev-image {
-		width: 100%;
-		aspect-ratio: 4 / 5;
-		object-fit: cover;
-		object-position: center;
-		display: block;
-		filter: grayscale(20%) contrast(1.1) brightness(0.9);
+	.custom-button {
+		padding: 1.1rem 1.8rem;
 	}
 
-	.bev-name {
-		font-size: 1.3rem;
-		font-weight: 900;
-		letter-spacing: 0.05em;
-		color: #ffffff;
-		margin: 2rem;
-		text-transform: uppercase;
-	}
-
-	@keyframes scroll {
-		0% {
-			transform: translateX(0);
-		}
-		100% {
-			transform: translateX(calc((-280px - 3rem) * 5));
-		}
-	}
-
-	.carousel-track:hover {
-		animation-play-state: paused;
-	}
-
+	/* Order information */
 	.requirements {
+		position: relative;
+		z-index: 2;
 		padding: 6rem 4vw;
 		background: #0a0a0d;
 		border-top: 1px solid #1a1a22;
+		scroll-margin-top: 5rem;
 	}
 
 	.req-container {
-		max-width: 1400px;
+		max-width: 1100px;
 		margin: 0 auto;
 	}
 
 	.req-header {
 		text-align: center;
-		margin-bottom: 4rem;
+		margin-bottom: 3rem;
 	}
 
 	.req-header h2 {
@@ -519,47 +710,44 @@
 		text-transform: uppercase;
 	}
 
-	.req-grid {
+	.order-list {
+		border-top: 1px solid #1a1a22;
+	}
+
+	.order-row {
 		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		gap: 3rem;
+		grid-template-columns: 260px 1fr;
+		gap: 2rem;
+		padding: 1.25rem 0;
+		border-bottom: 1px solid #1a1a22;
 	}
 
-	.req-item {
-		background: #050508;
-		border: 2px solid #1a1a22;
-		padding: 3rem 2rem;
-		text-align: center;
-		position: relative;
-	}
-
-	.req-content {
-		width: 100%;
-	}
-
-	.req-label {
+	.order-label {
+		background: none;
+		border: none;
+		padding: 0;
+		text-align: start;
+		font-family: inherit;
 		font-size: 0.75rem;
 		font-weight: 700;
 		letter-spacing: 0.15em;
-		color: #52525b;
-		margin-bottom: 1rem;
+		color: #71717a;
 		text-transform: uppercase;
+		cursor: default;
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		pointer-events: none;
 	}
 
-	.req-value {
-		font-size: 1.8rem;
-		font-weight: 900;
-		letter-spacing: 0.02em;
-		color: #ffffff;
-		margin-bottom: 0.75rem;
-		text-transform: uppercase;
+	.chev {
+		display: none;
 	}
 
-	.req-note {
-		font-size: 0.85rem;
-		color: #a1a1aa;
-		font-weight: 400;
-		line-height: 1.5;
+	.order-text {
+		font-size: 0.95rem;
+		line-height: 1.7;
+		color: #d4d4d8;
 	}
 
 	@media (max-width: 900px) {
@@ -576,25 +764,30 @@
 		}
 
 		.consumer-block,
-		.industrial-block {
-			padding: 2.5rem;
+		.industrial-block,
+		.custom-block {
+			padding: 2rem 1.25rem;
 		}
 
 		.split-layout {
 			grid-template-columns: 1fr;
-			gap: 3rem;
+			gap: 2rem;
+		}
+
+		.split-header {
+			padding-top: 0;
 		}
 
 		.split-header h2 {
 			font-size: 2rem;
 		}
 
-		.req-grid {
-			grid-template-columns: 1fr;
+		.industrial-item {
+			padding: 1.5rem 1.25rem;
 		}
 
-		.req-value {
-			font-size: 1.5rem;
+		.product-card {
+			padding: 1.75rem 1.25rem;
 		}
 
 		.req-header h2 {
@@ -606,67 +799,82 @@
 		}
 
 		.category-section {
-			padding: 4rem 4vw;
+			padding: 3rem 4vw;
+		}
+
+		.category-layout {
+			gap: 3.5rem;
 		}
 
 		.beverage-block {
-			padding: 2rem 1rem;
+			padding: 1.5rem 1rem;
 		}
 
-		.beverage-carousel {
-			padding: 1.5rem 0;
-		}
-
-		.carousel-track {
-			gap: 1.5rem;
-		}
-
-		.carousel-item {
-			min-width: 200px;
-			width: 200px;
-		}
-
-		.bev-name {
-			font-size: 1rem;
-			margin: 1.25rem 1rem;
-		}
-
-		@keyframes scroll {
-			0% {
-				transform: translateX(0);
-			}
-			100% {
-				transform: translateX(calc((-200px - 1.5rem) * 5));
-			}
-		}
-	}
-
-	@media (max-width: 480px) {
-		.beverage-block {
-			padding: 1.5rem 0.5rem;
-		}
-
-		.carousel-track {
+		.bev-grid {
+			grid-template-columns: repeat(2, 1fr);
 			gap: 0.75rem;
 		}
 
-		.carousel-item {
-			min-width: 140px;
-			width: 140px;
+		.bev-body {
+			padding: 0.75rem;
 		}
 
 		.bev-name {
 			font-size: 0.85rem;
-			margin: 0.75rem 0.5rem;
 		}
 
-		@keyframes scroll {
-			0% {
-				transform: translateX(0);
-			}
-			100% {
-				transform: translateX(calc((-140px - 0.75rem) * 5));
-			}
+		.bev-meta div {
+			flex-direction: column;
+			gap: 0;
+		}
+
+		.bev-meta dd {
+			text-align: start;
+		}
+
+		.custom-inner {
+			flex-direction: column;
+			align-items: stretch;
+		}
+
+		.requirements {
+			padding: 4rem 4vw;
+		}
+
+		/* Accordion on mobile */
+		.order-row {
+			grid-template-columns: 1fr;
+			gap: 0;
+			padding: 0;
+		}
+
+		.order-label {
+			pointer-events: auto;
+			cursor: pointer;
+			padding: 1.1rem 0;
+			width: 100%;
+			color: #d4d4d8;
+		}
+
+		.chev {
+			display: inline;
+			font-size: 1.1rem;
+			color: #1c71d8;
+			transition: transform 0.2s;
+		}
+
+		.order-row.open .chev {
+			transform: rotate(45deg);
+		}
+
+		.order-text {
+			display: none;
+			padding-bottom: 1.1rem;
+			color: #a1a1aa;
+		}
+
+		.order-row.open .order-text {
+			display: block;
 		}
 	}
 </style>

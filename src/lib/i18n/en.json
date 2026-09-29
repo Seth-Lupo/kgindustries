@@ -3,137 +3,238 @@
     "overview": "OVERVIEW",
     "products": "PRODUCTS",
     "howItWorks": "HOW IT WORKS",
-    "contact": "CONTACT"
+    "contact": "CONTACT",
+    "rfq": "REQUEST A QUOTE"
   },
   "footer": {
-    "email": "info@kgindustries.us",
-    "copyright": "© 2025 KG Industries"
+    "location": "Delaware, USA",
+    "disclaimer": "All trademarks are the property of their respective owners. KG Industries is an independent trading company and is not affiliated with or endorsed by the brand owners listed."
   },
   "home": {
     "hero": {
       "global": "GLOBAL",
-      "freight": "FREIGHT",
-      "operations": "OPERATIONS",
-      "subtitle": "US-made products to international markets"
+      "freight": "SOURCING",
+      "operations": "US TRADE & EXPORT",
+      "subtitle": "US products for international buyers, delivered to your port"
     },
     "overview": {
-      "description": "We help international businesses source US-manufactured products and ship them overseas. From finding suppliers to managing customs and delivery, we handle the full process as a single point of contact.",
-      "label": "SINGLE POINT OF CONTACT",
-      "value": "Source to Delivery"
+      "label": "WHO WE ARE",
+      "p1": "KG Industries is a US trading and sourcing company. We give international buyers access to US products that manufacturers do not export directly.",
+      "p2": "Many US manufacturers sell only through domestic distributors, or have no export function at all. Overseas buyers end up paying through two or three regional agents, or cannot buy at all. We purchase in the United States as the domestic buyer, handle the export ourselves, and deliver to your port.",
+      "p3": "We work with procurement teams, importers, distributors, and operators across the Gulf, the Middle East and North Africa, the Caucasus, Central Asia, Europe, and Latin America.",
+      "factsLabel": "COMPANY",
+      "registered": "Registered in Delaware, USA"
     },
-    "process": {
+    "handle": {
       "title": "WHAT WE HANDLE",
-      "description1": "Sourcing products directly from US manufacturers. Verifying authenticity and US origin. International freight shipping. Customs paperwork and import compliance. Coordinating delivery to your destination country. Acting as your single point of contact across suppliers, carriers, and customs agents.",
-      "description2": "Orders are priced as custom quotes based on product selection, quantities, destination, and timeline. You can mix different products within the same container to meet the minimum order requirement.",
-      "minContainer": "20FCL",
-      "minContainerLabel": "Minimum container size",
-      "b2b": "B2B",
-      "b2bLabel": "Business customers only",
-      "custom": "CUSTOM",
-      "customLabel": "Quote-based pricing"
+      "items": [
+        { "title": "Sourcing", "text": "We find the US manufacturer or channel, verify the specification, and negotiate factory pricing." },
+        { "title": "Purchasing", "text": "We buy as the US domestic purchaser. You deal with one counterparty." },
+        { "title": "Export and documentation", "text": "Export filing, commercial invoice, packing list, certificate of origin, and product certificates as required." },
+        { "title": "Freight and insurance to your port", "text": "Landed quotes on CIP or CIF terms to your named port." },
+        { "title": "Consolidation", "text": "Multiple SKUs, and multiple suppliers where needed, combined into one container." }
+      ],
+      "risk": "One US counterparty. We carry the US-side purchasing, export compliance, and freight coordination.",
+      "data": [
+        { "value": "CIP / CIF", "label": "Landed quotes to your named port" },
+        { "value": "B2B", "label": "Business buyers only" },
+        { "value": "RFQ", "label": "Pricing quoted per RFQ" }
+      ]
     },
-    "products": {
-      "madeInUsa": "MADE IN USA",
+    "categories": {
+      "caption": "US-SOURCED · SHIPPED TO YOUR PORT",
       "title": "PRODUCT CATEGORIES",
-      "description": "Consumer goods: electronics, home goods, health and beauty products, apparel. US-made beverages: Coca-Cola, Pepsi, Sprite, Ginger Ale, Ale-8-One. Industrial and commercial: equipment, supplies, materials, tools. We can source virtually any US-manufactured product on request."
+      "tiles": [
+        { "title": "US Beverages", "text": "US-market sodas and specialty flavors not bottled for your region" },
+        { "title": "Consumer Goods", "text": "US grocery and FMCG lines on request" },
+        { "title": "Industrial & Commercial", "text": "Foodservice equipment, genuine Ford parts, PPE, facilities and MRO supply, packaging" },
+        { "title": "Custom Sourcing (RFQ)", "text": "If it is sold in the US, send us the spec" }
+      ]
     },
     "contact": {
-      "title": "REQUEST ORDER",
-      "description": "Send your requirements and we'll provide a detailed quote within 24 hours. Include product types, quantities, destination country, and preferred timeline.",
-      "button": "EMAIL INFO@KGINDUSTRIES.US"
+      "title": "REQUEST A QUOTE",
+      "description": "Send product names or item numbers, quantity, and destination port. Pricing is quoted per RFQ, landed to your port.",
+      "button": "OPEN RFQ"
     }
   },
   "productsPage": {
     "hero": {
-      "title": "PRODUCT CATALOG",
-      "subtitle": "US-manufactured goods across consumer, beverage, and industrial categories"
+      "title": "PRODUCTS",
+      "subtitle": "US products for importers, distributors, and operators. Pricing quoted per RFQ, landed to your port."
     },
+    "originLabel": "Origin",
     "beverages": {
       "title": "US BEVERAGES",
-      "cocaCola": "Coca-Cola",
-      "pepsi": "Pepsi",
-      "sprite": "Sprite",
-      "gingerAle": "Ginger Ale",
-      "ale8One": "Ale-8-One",
-      "drPepper": "Dr Pepper",
-      "atlanta": "Atlanta, GA",
-      "waco": "Waco, TX",
-      "purchase": "Purchase, NY",
-      "usProduction": "US Production",
-      "winchester": "Winchester, KY"
+      "intro": "US-market soft drinks, including flavors and formulations that are not bottled or sold in most export markets. Sold by the full pallet and shipped in consolidated containers.",
+      "specialty": "Specialty and US-formula variants that local bottlers do not produce.",
+      "families": {
+        "crush": "Crush",
+        "specialty": "Specialty flavors",
+        "pepsi": "Pepsi",
+        "mexican": "Mexican glass bottles",
+        "cocaCola": "Coca-Cola",
+        "fanta": "Fanta",
+        "sprite": "Sprite"
+      },
+      "size": "Size",
+      "glass355": "355 ml glass bottle",
+      "glass500": "500 ml glass bottle",
+      "pack": "Pack",
+      "caseOf": "Case of {n}",
+      "pallet": "Pallet configuration",
+      "palletValue": "{cases} cases · {units} units",
+      "originUS": "Made in USA · Sourced in the US",
+      "originMX": "Made in Mexico · Sourced in the US",
+      "add": "Add to RFQ",
+      "added": "Added to RFQ ✓",
+      "selectedCount": "{n, plural, one {# product selected} other {# products selected}}"
     },
     "consumer": {
       "title": "CONSUMER GOODS",
-      "electronics": "Electronics",
-      "electronicsDesc": "Audio equipment / Smart home devices / Computing accessories",
-      "homeGoods": "Home Goods",
-      "homeGoodsDesc": "Kitchenware / Furniture / Textiles / Décor items",
-      "healthBeauty": "Health & Beauty",
-      "healthBeautyDesc": "Skincare / Cosmetics / Supplements / Personal care",
-      "apparel": "Apparel",
-      "apparelDesc": "Clothing / Footwear / Accessories / Textiles"
+      "intro": "US grocery and consumer brands for importers and retailers, sourced against your list. Send item names or UPCs and target quantities.",
+      "onRequestTitle": "On request",
+      "onRequest": ["Snacks and confectionery", "Beverages outside the core range", "Household lines"],
+      "howTitle": "How to order",
+      "how": "Send your list with item names or UPCs, target quantities, and destination port. We confirm availability and origin per line, then quote landed to your port."
     },
     "industrial": {
       "title": "INDUSTRIAL &",
       "titleLine2": "COMMERCIAL",
-      "equipment": "Equipment",
-      "equipmentDesc": "Manufacturing equipment, machinery, industrial tools",
-      "supplies": "Supplies",
-      "suppliesDesc": "Business supplies, office materials, packaging",
-      "materials": "Materials",
-      "materialsDesc": "Raw materials, components, building supplies",
-      "tools": "Tools",
-      "toolsDesc": "Hand tools, power tools, specialty equipment"
+      "intro": "Specification-driven sourcing from US and European manufacturers. Country of origin is stated per line on every quote.",
+      "cards": [
+        {
+          "title": "Commercial foodservice equipment",
+          "text": "Food pans, polycarbonate storage containers, insulated food carriers, fiberglass trays, and dishwashing racks. Built for hotels, caterers, institutional kitchens, hospitals, and foodservice distributors.",
+          "note": "Order basis: full container.",
+          "origin": "Made in USA"
+        },
+        {
+          "title": "Genuine Ford parts (US-spec)",
+          "text": "Genuine Ford OEM parts for US-specification vehicles, sourced through the US dealer network. Send part numbers and quantities.",
+          "note": "Lead time quoted per order.",
+          "origin": "Sourced in the US"
+        },
+        {
+          "title": "Nitrile gloves / PPE",
+          "text": "Heavy-duty, pure nitrile disposable gloves (no filler), in 6 and 8 mil thickness, for industrial, automotive, and law-enforcement use.",
+          "origin": "Made in Malaysia"
+        },
+        {
+          "title": "Facilities, MRO, and industrial supply",
+          "text": "Pumps, valves, instrumentation, spares, and consumables from US manufacturers without an export channel. Sourced to your specification.",
+          "origin": "Stated per line on the quote"
+        },
+        {
+          "title": "Packaging and processing equipment",
+          "text": "Bottles, matched closures, and food-processing machinery sourced from US and European manufacturers, with compatibility and documentation handled on our side.",
+          "note": "Closures and processing machinery supplied to a food producer in Azerbaijan.",
+          "origin": "US or EU, stated on the quote"
+        }
+      ]
     },
-    "requirements": {
-      "title": "ORDER INFO",
-      "minOrder": "MINIMUM ORDER",
-      "minOrderValue": "20ft Container",
-      "minOrderNote": "Mix products within container",
-      "verification": "VERIFICATION",
-      "verificationValue": "US Origin",
-      "verificationNote": "All products verified",
-      "pricing": "PRICING",
-      "pricingValue": "Custom Quote",
-      "pricingNote": "Based on your needs"
+    "custom": {
+      "title": "CUSTOM SOURCING (RFQ)",
+      "text": "If it is sold in the US, send us the spec. Include item numbers, quantity, and destination port."
+    },
+    "order": {
+      "title": "ORDER INFORMATION",
+      "rows": [
+        { "label": "Minimums: beverages", "text": "Full pallets. Mixed SKUs across pallets are fine; the container is the practical minimum." },
+        { "label": "Minimums: foodservice equipment", "text": "Full container per order." },
+        { "label": "Minimums: other lines", "text": "Quoted per RFQ." },
+        { "label": "Origin", "text": "Every quote states country of origin per line item. US-made, US-sourced, and non-US items are labelled separately. Certificate of origin provided with shipment." },
+        { "label": "Pricing", "text": "Pricing quoted per RFQ, landed to your named port (CIP or CIF). Duties, taxes, and destination charges are excluded unless stated on the quote." },
+        { "label": "Quote validity", "text": "Every quote carries an expiry date. Factory and freight prices move; prices are re-confirmed after expiry." },
+        { "label": "Payment", "text": "New accounts: 100% prepayment against a proforma invoice. Wire transfer in USD preferred." },
+        { "label": "Documents", "text": "Commercial invoice, packing list, bill of lading, certificate of origin. Product certificates (for example health or phytosanitary for food, heat-treated ISPM 15 pallets) as required by your market. Tell us your import requirements at RFQ." },
+        { "label": "Importer of record", "text": "The buyer, or the buyer's nominated agent, is importer of record and clears goods at destination." },
+        { "label": "Bank details", "text": "Our bank details never change by email. Verify any change by phone with us before paying." }
+      ]
     }
   },
   "howItWorks": {
     "hero": {
-      "title": "How We Work",
-      "subtitle": "From US warehouses to your destination. Full-service export logistics for businesses moving American goods internationally."
+      "title": "How It Works",
+      "subtitle": "From your RFQ to delivery at your port on CIP or CIF terms."
     },
-    "steps": {
-      "request": {
-        "label": "01 — REQUEST",
-        "title": "Tell us what you need",
-        "description": "Share your product requirements, quantities, and delivery timeline. We handle everything from single-category orders to complex multi-product shipments."
+    "steps": [
+      {
+        "title": "Send your RFQ",
+        "text": "Product or item numbers, specification, quantity, destination port or city, and target delivery window. If you have a current supplier price, include it. It lets us tell you quickly whether we can compete.",
+        "who": "You provide the requirement."
       },
-      "quote": {
-        "label": "02 — QUOTE",
-        "title": "Transparent all-in pricing",
-        "description": "Receive a comprehensive quote covering product costs, ocean freight, customs duties, and final delivery. No hidden fees, no surprises at the port."
+      {
+        "title": "We confirm scope",
+        "text": "We confirm specification, quantities, packaging, and your import document requirements before quoting. No guesswork on your behalf."
       },
-      "source": {
-        "label": "03 — SOURCE",
-        "title": "Verified American products",
-        "description": "We locate and authenticate products from trusted US suppliers. Every item is verified for origin and quality before it leaves the warehouse."
+      {
+        "title": "We source at the factory",
+        "text": "We buy from the US manufacturer or channel as the domestic purchaser, at ex-works (EXW) or FCA terms.",
+        "who": "KG carries the US-side purchase."
       },
-      "ship": {
-        "label": "04 — SHIP",
-        "title": "Ocean freight coordination",
-        "description": "Your container is loaded, sealed, and tracked from US port to destination. We manage carrier relationships and transit logistics end-to-end."
+      {
+        "title": "You receive a landed quote",
+        "text": "Line-item pricing delivered CIP or CIF to your named port, with freight and insurance included, a stated expiry date, and a clear list of exclusions."
       },
-      "deliver": {
-        "label": "05 — DELIVER",
-        "title": "Cleared and delivered",
-        "description": "We handle customs documentation and clearance at your destination port. Your goods arrive ready for distribution."
+      {
+        "title": "Proforma invoice and payment",
+        "text": "Once you confirm, we issue a proforma invoice with the agreed Incoterm, payment terms, and shipment schedule."
+      },
+      {
+        "title": "Production, consolidation, and export",
+        "text": "We collect goods, consolidate into your container, and file the US export declaration. We prepare the commercial invoice, packing list, and certificate of origin, plus any product certificates your market requires.",
+        "who": "KG acts as the US exporter."
+      },
+      {
+        "title": "Shipment and insurance",
+        "text": "We book ocean freight to your port and insure the cargo. You receive tracking and a copy of the shipping documents at departure."
+      },
+      {
+        "title": "Arrival and clearance",
+        "text": "You or your agent clear customs as importer of record and pay local duties and taxes. Destination terminal charges and inland delivery are on your side unless your quote says otherwise.",
+        "who": "You clear and receive the goods."
       }
+    ],
+    "incoterms": {
+      "title": "CIP vs CIF",
+      "items": [
+        { "term": "CIP (Carriage and Insurance Paid to)", "text": "Used for containerized cargo. We pay carriage and insurance to your named place. Insurance is all-risks cover (Institute Cargo Clauses A) under Incoterms 2020." },
+        { "term": "CIF (Cost, Insurance and Freight)", "text": "Sea and port-to-port only. We pay freight and insurance to your named port. Minimum insurance cover is Institute Cargo Clauses C under Incoterms 2020, unless agreed higher." }
+      ],
+      "risk": "Under both terms, risk passes to the buyer when goods are handed to the carrier or loaded on board at origin, not on arrival. That is why insurance is included.",
+      "other": "Other terms (FCA, DAP) available on request."
+    },
+    "table": {
+      "title": "Who handles what",
+      "item": "Item",
+      "buyer": "Buyer",
+      "rows": [
+        { "item": "US purchasing and supplier management", "kg": true, "buyer": false },
+        { "item": "Origin trucking, export clearance, US export filing", "kg": true, "buyer": false },
+        { "item": "Ocean freight and cargo insurance (CIP/CIF)", "kg": true, "buyer": false },
+        { "item": "Commercial documents and certificate of origin", "kg": true, "buyer": false },
+        { "item": "Import clearance, duties, VAT", "kg": false, "buyer": true },
+        { "item": "Destination terminal charges, inland delivery", "kg": false, "buyer": true, "note": "unless quoted" },
+        { "item": "Unloading at your facility", "kg": false, "buyer": true },
+        { "item": "Container return / detention after free time", "kg": false, "buyer": true }
+      ]
     }
   },
-  "languages": {
-    "en": "English",
-    "az": "Azərbaycanca",
-    "ru": "Русский"
+  "rfq": {
+    "title": "Request a Quote",
+    "intro": "Send your RFQ by email. Add the product and destination port below and we pre-fill the email for you.",
+    "selected": "Selected products",
+    "remove": "Remove",
+    "clear": "Clear all",
+    "product": "Product / item numbers",
+    "productPh": "e.g. Crush Orange, 20 pallets",
+    "destination": "Destination port / city",
+    "destinationPh": "e.g. Jebel Ali",
+    "emailButton": "Email RFQ",
+    "emailNote": "Opens your email app with a pre-filled template. Or write to",
+    "linkedin": "KG Industries on LinkedIn",
+    "bank": "Our bank details never change by email. Verify any change by phone with us before paying.",
+    "shortcut": "Shortcut: press Q to open, Esc to close.",
+    "close": "Close"
   }
 }

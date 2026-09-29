@@ -12,11 +12,11 @@
 	}
 
 	const {
-		title = 'KG Industries - Global Freight Operations | US Export Logistics',
-		description = 'KG Industries helps international businesses source and ship US-manufactured products worldwide. Full-service export logistics: sourcing, freight, customs, and delivery.',
-		keywords = 'US export logistics, international freight, US manufactured products, B2B export, container shipping, customs clearance, American products export, global freight operations',
+		title = 'KG Industries | US Sourcing and Export for International Buyers',
+		description = 'US trading company supplying beverages, foodservice equipment, genuine Ford parts, and industrial goods to buyers in the Gulf, MENA, Caucasus, and Central Asia. Landed CIP/CIF quotes.',
+		keywords = 'US sourcing, US export, US trading company, US beverages wholesale, foodservice equipment export, genuine Ford parts export, nitrile gloves, MRO sourcing, CIP, CIF, Gulf, MENA, Caucasus, Central Asia',
 		canonical = '',
-		ogImage = '/og-image.jpg',
+		ogImage = '/og-image.png',
 		ogType = 'website',
 		noindex = false
 	}: Props = $props();
@@ -66,39 +66,17 @@
 		"@context": "https://schema.org",
 		"@type": "Organization",
 		"name": "KG Industries",
+		"legalName": "KG Industries LLC",
 		"url": "${siteUrl}",
-		"logo": "${siteUrl}${base}/logo.png",
 		"email": "info@kgindustries.us",
 		"description": "${description}",
-		"areaServed": "Worldwide",
-		"serviceType": ["Export Logistics", "Freight Forwarding", "Customs Clearance", "Product Sourcing"]
-	}
-	</script>`}
-
-	<!-- Structured Data - LocalBusiness -->
-	{@html `<script type="application/ld+json">
-	{
-		"@context": "https://schema.org",
-		"@type": "LocalBusiness",
-		"name": "KG Industries",
-		"url": "${siteUrl}",
-		"email": "info@kgindustries.us",
-		"description": "Full-service US export logistics company specializing in sourcing and shipping American-manufactured products to international markets.",
-		"priceRange": "$$$$",
 		"address": {
 			"@type": "PostalAddress",
+			"addressRegion": "DE",
 			"addressCountry": "US"
 		},
-		"geo": {
-			"@type": "GeoCoordinates",
-			"addressCountry": "US"
-		},
-		"openingHoursSpecification": {
-			"@type": "OpeningHoursSpecification",
-			"dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-			"opens": "09:00",
-			"closes": "17:00"
-		}
+		"sameAs": ["https://www.linkedin.com/company/kg-industries-us/"],
+		"areaServed": ["Gulf", "Middle East and North Africa", "Caucasus", "Central Asia", "Europe", "Latin America"]
 	}
 	</script>`}
 </svelte:head>

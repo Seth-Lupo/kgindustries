@@ -1,139 +1,212 @@
 {
   "nav": {
-    "overview": "ÜMUMI BAXIŞ",
+    "overview": "ÜMUMİ BAXIŞ",
     "products": "MƏHSULLAR",
     "howItWorks": "NECƏ İŞLƏYİR",
-    "contact": "ƏLAQƏ"
+    "contact": "ƏLAQƏ",
+    "rfq": "QİYMƏT SORĞUSU"
   },
   "footer": {
-    "email": "info@kgindustries.us",
-    "copyright": "© 2025 KG Industries"
+    "location": "Delaver, ABŞ",
+    "disclaimer": "Bütün ticarət nişanları müvafiq sahiblərinin mülkiyyətidir. KG Industries müstəqil ticarət şirkətidir və adı çəkilən brend sahibləri ilə əlaqəli deyil, onlar tərəfindən təsdiq edilməyib."
   },
   "home": {
     "hero": {
       "global": "QLOBAL",
-      "freight": "YÜK",
-      "operations": "ƏMƏLİYYATLARI",
-      "subtitle": "ABŞ istehsalı məhsullar beynəlxalq bazarlara"
+      "freight": "TƏDARÜK",
+      "operations": "ABŞ TİCARƏTİ VƏ İXRACI",
+      "subtitle": "Beynəlxalq alıcılar üçün ABŞ məhsulları, limanınıza qədər çatdırılma ilə"
     },
     "overview": {
-      "description": "Beynəlxalq biznes təşkilatlarına ABŞ istehsalı məhsulları tapmağa və xaricə göndərməyə kömək edirik. Təchizatçı tapmaqdan tutmuş gömrük və çatdırılmanı idarə etməyə qədər bütün prosesi vahid əlaqə nöqtəsi kimi həyata keçiririk.",
-      "label": "VAHİD ƏLAQƏ NÖQTƏSİ",
-      "value": "Mənbədən Çatdırılmaya"
+      "label": "BİZ KİMİK",
+      "p1": "KG Industries ABŞ-da ticarət və tədarük şirkətidir. Biz beynəlxalq alıcılara istehsalçıların birbaşa ixrac etmədiyi ABŞ məhsullarını əldə etmək imkanı veririk.",
+      "p2": "ABŞ-dakı bir çox istehsalçı yalnız yerli distribyutorlar vasitəsilə satır və ya ümumiyyətlə ixracla məşğul olmur. Xarici alıcılar iki-üç regional agent vasitəsilə ödəyir və ya məhsulu heç ala bilmir. Biz ABŞ-da yerli alıcı kimi alırıq, ixracı özümüz həyata keçiririk və malı limanınıza çatdırırıq.",
+      "p3": "Biz Körfəz ölkələri, Yaxın Şərq və Şimali Afrika, Qafqaz, Mərkəzi Asiya, Avropa və Latın Amerikasında satınalma komandaları, idxalçılar, distribyutorlar və operatorlarla işləyirik.",
+      "factsLabel": "ŞİRKƏT",
+      "registered": "Delaver ştatında (ABŞ) qeydiyyatdan keçib"
     },
-    "process": {
-      "title": "NƏ İLƏ MƏŞĞUL OLURUQ",
-      "description1": "Məhsulları birbaşa ABŞ istehsalçılarından əldə etmək. Orijinallığı və ABŞ mənşəyini yoxlamaq. Beynəlxalq yük daşımaları. Gömrük sənədləri və idxal uyğunluğu. Təyinat ölkənizə çatdırılmanı koordinasiya etmək. Təchizatçılar, daşıyıcılar və gömrük agentləri arasında vahid əlaqə nöqtəsi kimi fəaliyyət göstərmək.",
-      "description2": "Sifarişlər məhsul seçimi, miqdar, təyinat və müddətə əsasən fərdi qiymətlərlə hesablanır. Minimum sifariş tələbini ödəmək üçün eyni konteynerdə müxtəlif məhsulları birləşdirə bilərsiniz.",
-      "minContainer": "20FCL",
-      "minContainerLabel": "Minimum konteyner ölçüsü",
-      "b2b": "B2B",
-      "b2bLabel": "Yalnız biznes müştərilər",
-      "custom": "FƏRDİ",
-      "customLabel": "Təklifə əsaslanan qiymət"
+    "handle": {
+      "title": "NƏYİ ÜZƏRİMİZƏ GÖTÜRÜRÜK",
+      "items": [
+        { "title": "Tədarükçü axtarışı", "text": "ABŞ istehsalçısını və ya kanalını tapırıq, spesifikasiyanı yoxlayırıq və zavod qiymətini razılaşdırırıq." },
+        { "title": "Satınalma", "text": "ABŞ-da yerli alıcı kimi alırıq. Siz bir tərəf-müqabil ilə işləyirsiniz." },
+        { "title": "İxrac və sənədlər", "text": "İxrac bəyannaməsi, kommersiya invoysu, qablaşdırma vərəqi, mənşə sertifikatı və tələb olunarsa məhsul sertifikatları." },
+        { "title": "Limanınıza qədər yükdaşıma və sığorta", "text": "Göstərdiyiniz limana qədər CIP və ya CIF şərtləri ilə çatdırılma daxil qiymət." },
+        { "title": "Konsolidasiya", "text": "Bir neçə məhsul, lazım olduqda isə bir neçə tədarükçü, bir konteynerdə birləşdirilir." }
+      ],
+      "risk": "ABŞ-da bir tərəf-müqabil. ABŞ tərəfində satınalma, ixrac tələblərinə uyğunluq və yükdaşımanın təşkili bizim üzərimizdədir.",
+      "data": [
+        { "value": "CIP / CIF", "label": "Göstərdiyiniz limana qədər çatdırılma daxil qiymət" },
+        { "value": "B2B", "label": "Yalnız biznes alıcılar üçün" },
+        { "value": "RFQ", "label": "Qiymət sorğu əsasında verilir" }
+      ]
     },
-    "products": {
-      "madeInUsa": "ABŞ İSTEHSALI",
+    "categories": {
+      "caption": "ABŞ-DAN TƏDARÜK · LİMANINIZA GÖNDƏRİLİR",
       "title": "MƏHSUL KATEQORİYALARI",
-      "description": "İstehlak malları: elektronika, ev əşyaları, sağlamlıq və gözəllik məhsulları, geyim. ABŞ istehsalı içkilər: Coca-Cola, Pepsi, Sprite, Ginger Ale, Ale-8-One. Sənaye və ticarət: avadanlıq, ləvazimat, materiallar, alətlər. Sorğu əsasında demək olar ki, istənilən ABŞ istehsalı məhsulu tapa bilərik."
+      "tiles": [
+        { "title": "ABŞ içkiləri", "text": "Regionunuz üçün doldurulmayan ABŞ bazarı qazlı içkiləri və xüsusi dadlar" },
+        { "title": "İstehlak malları", "text": "Sorğu əsasında ABŞ ərzaq və FMCG məhsulları" },
+        { "title": "Sənaye və kommersiya", "text": "İctimai iaşə avadanlığı, orijinal Ford hissələri, fərdi qoruyucu vasitələr, obyekt və MRO təchizatı, qablaşdırma" },
+        { "title": "Fərdi tədarük (RFQ)", "text": "Məhsul ABŞ-da satılırsa, spesifikasiyanı bizə göndərin" }
+      ]
     },
     "contact": {
-      "title": "SİFARİŞ VERİN",
-      "description": "Tələblərinizi göndərin və 24 saat ərzində ətraflı təklif alın. Məhsul növləri, miqdar, təyinat ölkəsi və istədiyiniz müddəti qeyd edin.",
-      "button": "INFO@KGINDUSTRIES.US E-POÇT"
+      "title": "QİYMƏT SORĞUSU",
+      "description": "Məhsul adlarını və ya kodlarını, miqdarı və təyinat limanını göndərin. Qiymət sorğu əsasında, limanınıza qədər çatdırılma ilə hesablanır.",
+      "button": "SORĞUNU AÇ"
     }
   },
   "productsPage": {
     "hero": {
-      "title": "MƏHSUL KATALOQU",
-      "subtitle": "İstehlak, içki və sənaye kateqoriyalarında ABŞ istehsalı mallar"
+      "title": "MƏHSULLAR",
+      "subtitle": "İdxalçılar, distribyutorlar və operatorlar üçün ABŞ məhsulları. Qiymət sorğu əsasında, limanınıza qədər çatdırılma ilə."
     },
+    "originLabel": "Mənşə",
     "beverages": {
       "title": "ABŞ İÇKİLƏRİ",
-      "cocaCola": "Coca-Cola",
-      "pepsi": "Pepsi",
-      "sprite": "Sprite",
-      "gingerAle": "Ginger Ale",
-      "ale8One": "Ale-8-One",
-      "drPepper": "Dr Pepper",
-      "atlanta": "Atlanta, GA",
-      "waco": "Waco, TX",
-      "purchase": "Purchase, NY",
-      "usProduction": "ABŞ İstehsalı",
-      "winchester": "Winchester, KY"
+      "intro": "ABŞ bazarının alkoqolsuz içkiləri, o cümlədən əksər ixrac bazarlarında doldurulmayan və satılmayan dadlar və reseptlər. Tam paletlə satılır və konsolidasiya edilmiş konteynerlərdə göndərilir.",
+      "specialty": "Yerli doldurma zavodlarının istehsal etmədiyi xüsusi dadlar və ABŞ reseptləri.",
+      "families": {
+        "crush": "Crush",
+        "specialty": "Xüsusi dadlar",
+        "pepsi": "Pepsi",
+        "mexican": "Meksika şüşə butulkaları",
+        "cocaCola": "Coca-Cola",
+        "fanta": "Fanta",
+        "sprite": "Sprite"
+      },
+      "size": "Həcm",
+      "glass355": "355 ml şüşə butulka",
+      "glass500": "500 ml şüşə butulka",
+      "pack": "Qablaşdırma",
+      "caseOf": "{n} ədədlik qutu",
+      "pallet": "Palet konfiqurasiyası",
+      "palletValue": "{cases} qutu · {units} ədəd",
+      "originUS": "ABŞ istehsalı · ABŞ-dan tədarük",
+      "originMX": "Meksika istehsalı · ABŞ-dan tədarük",
+      "add": "Sorğuya əlavə et",
+      "added": "Sorğuya əlavə edildi ✓",
+      "selectedCount": "{n, plural, other {# məhsul seçildi}}"
     },
     "consumer": {
       "title": "İSTEHLAK MALLARI",
-      "electronics": "Elektronika",
-      "electronicsDesc": "Audio avadanlıq / Ağıllı ev cihazları / Kompüter aksesuarları",
-      "homeGoods": "Ev Əşyaları",
-      "homeGoodsDesc": "Mətbəx ləvazimatları / Mebel / Tekstil / Dekor əşyaları",
-      "healthBeauty": "Sağlamlıq və Gözəllik",
-      "healthBeautyDesc": "Dəri qulluğu / Kosmetika / Əlavələr / Şəxsi baxım",
-      "apparel": "Geyim",
-      "apparelDesc": "Paltar / Ayaqqabı / Aksesuarlar / Tekstil"
+      "intro": "İdxalçılar və pərakəndəçilər üçün ABŞ ərzaq və istehlak brendləri, sizin siyahınıza əsasən. Məhsul adlarını və ya UPC kodlarını və hədəf miqdarı göndərin.",
+      "onRequestTitle": "Sorğu əsasında",
+      "onRequest": ["Qəlyanaltılar və şirniyyat", "Əsas çeşiddən kənar içkilər", "Məişət məhsulları"],
+      "howTitle": "Necə sifariş etmək olar",
+      "how": "Məhsul adları və ya UPC kodları, hədəf miqdar və təyinat limanı ilə siyahınızı göndərin. Hər mövqe üzrə mövcudluğu və mənşəyi təsdiqləyirik, sonra limanınıza qədər çatdırılma daxil qiymət veririk."
     },
     "industrial": {
       "title": "SƏNAYE VƏ",
-      "titleLine2": "TİCARƏT",
-      "equipment": "Avadanlıq",
-      "equipmentDesc": "İstehsal avadanlığı, maşınlar, sənaye alətləri",
-      "supplies": "Ləvazimat",
-      "suppliesDesc": "Biznes ləvazimatları, ofis materialları, qablaşdırma",
-      "materials": "Materiallar",
-      "materialsDesc": "Xammal, komponentlər, tikinti ləvazimatları",
-      "tools": "Alətlər",
-      "toolsDesc": "Əl alətləri, elektrik alətləri, xüsusi avadanlıq"
+      "titleLine2": "KOMMERSİYA",
+      "intro": "ABŞ və Avropa istehsalçılarından spesifikasiyaya əsaslanan tədarük. Mənşə ölkəsi hər təklifdə hər mövqe üzrə göstərilir.",
+      "cards": [
+        {
+          "title": "Kommersiya ictimai iaşə avadanlığı",
+          "text": "Qastronom qabları, polikarbonat saxlama konteynerləri, izolyasiyalı qida daşıyıcıları, şüşə lifli sinilər və qabyuyan kasetləri. Otellər, ketering şirkətləri, müəssisə mətbəxləri, xəstəxanalar və iaşə distribyutorları üçün.",
+          "note": "Sifariş əsası: tam konteyner.",
+          "origin": "ABŞ istehsalı"
+        },
+        {
+          "title": "Orijinal Ford hissələri (ABŞ spesifikasiyası)",
+          "text": "ABŞ spesifikasiyalı avtomobillər üçün orijinal Ford OEM hissələri, ABŞ diler şəbəkəsi vasitəsilə. Hissə nömrələrini və miqdarı göndərin.",
+          "note": "Çatdırılma müddəti hər sifariş üçün bildirilir.",
+          "origin": "ABŞ-dan tədarük"
+        },
+        {
+          "title": "Nitril əlcəklər / fərdi qoruyucu vasitələr",
+          "text": "Möhkəm, təmiz nitrildən (doldurucusuz) birdəfəlik əlcəklər, 6 və 8 mil qalınlığında; sənaye, avtoservis və hüquq-mühafizə istifadəsi üçün.",
+          "origin": "Malayziya istehsalı"
+        },
+        {
+          "title": "Obyekt, MRO və sənaye təchizatı",
+          "text": "İxrac kanalı olmayan ABŞ istehsalçılarından nasoslar, klapanlar, ölçü cihazları, ehtiyat hissələri və sərf materialları. Spesifikasiyanıza uyğun tədarük.",
+          "origin": "Təklifdə hər mövqe üzrə göstərilir"
+        },
+        {
+          "title": "Qablaşdırma və emal avadanlığı",
+          "text": "ABŞ və Avropa istehsalçılarından butulkalar, uyğun qapaqlar və qida emalı avadanlığı. Uyğunluq və sənədlər bizim tərəfimizdən həll olunur.",
+          "note": "Azərbaycanda qida istehsalçısına qapaqlar və emal avadanlığı tədarük edilib.",
+          "origin": "ABŞ və ya AB, təklifdə göstərilir"
+        }
+      ]
     },
-    "requirements": {
+    "custom": {
+      "title": "FƏRDİ TƏDARÜK (RFQ)",
+      "text": "Məhsul ABŞ-da satılırsa, spesifikasiyanı bizə göndərin. Məhsul kodlarını, miqdarı və təyinat limanını qeyd edin."
+    },
+    "order": {
       "title": "SİFARİŞ MƏLUMATI",
-      "minOrder": "MİNİMUM SİFARİŞ",
-      "minOrderValue": "20ft Konteyner",
-      "minOrderNote": "Konteynerdə məhsulları qarışdırın",
-      "verification": "YOXLANİŞ",
-      "verificationValue": "ABŞ Mənşəyi",
-      "verificationNote": "Bütün məhsullar yoxlanılır",
-      "pricing": "QİYMƏT",
-      "pricingValue": "Fərdi Təklif",
-      "pricingNote": "Ehtiyaclarınıza əsasən"
+      "rows": [
+        { "label": "Minimum: içkilər", "text": "Tam paletlər. Paletlər üzrə müxtəlif məhsullar mümkündür; praktiki minimum konteynerdir." },
+        { "label": "Minimum: iaşə avadanlığı", "text": "Hər sifariş üçün tam konteyner." },
+        { "label": "Minimum: digər məhsullar", "text": "Sorğu əsasında." },
+        { "label": "Mənşə", "text": "Hər təklifdə mənşə ölkəsi hər mövqe üzrə göstərilir. ABŞ istehsalı, ABŞ-dan tədarük edilən və ABŞ mənşəli olmayan məhsullar ayrıca qeyd olunur. Mənşə sertifikatı yüklə birlikdə təqdim edilir." },
+        { "label": "Qiymət", "text": "Qiymət sorğu əsasında, göstərdiyiniz limana qədər (CIP və ya CIF). Rüsumlar, vergilər və təyinat yerindəki xərclər, təklifdə göstərilməyibsə, daxil deyil." },
+        { "label": "Təklifin etibarlılığı", "text": "Hər təklifin bitmə tarixi var. Zavod və yükdaşıma qiymətləri dəyişir; müddət bitdikdən sonra qiymətlər yenidən təsdiqlənir." },
+        { "label": "Ödəniş", "text": "Yeni müştərilər: proforma invoys əsasında 100% ilkin ödəniş. ABŞ dolları ilə bank köçürməsi üstünlük təşkil edir." },
+        { "label": "Sənədlər", "text": "Kommersiya invoysu, qablaşdırma vərəqi, konosament, mənşə sertifikatı. Bazarınızın tələbinə uyğun məhsul sertifikatları (məsələn, qida üçün sanitar və ya fitosanitar, ISPM 15 termik emal olunmuş paletlər). İdxal tələblərinizi sorğu zamanı bildirin." },
+        { "label": "İdxalçı", "text": "Alıcı və ya alıcının təyin etdiyi agent idxalçıdır və malı təyinat yerində gömrükdən keçirir." },
+        { "label": "Bank rekvizitləri", "text": "Bank rekvizitlərimiz heç vaxt e-poçt vasitəsilə dəyişmir. Ödənişdən əvvəl hər hansı dəyişikliyi bizimlə telefonla təsdiqləyin." }
+      ]
     }
   },
   "howItWorks": {
     "hero": {
-      "title": "Necə İşləyirik",
-      "subtitle": "ABŞ anbarlarından təyinat yerinə. Amerika mallarını beynəlxalq bazarlara daşıyan biznes üçün tam xidmət ixrac logistikası."
+      "title": "Necə işləyir",
+      "subtitle": "Sorğunuzdan CIP və ya CIF şərtləri ilə limanınıza çatdırılmaya qədər."
     },
-    "steps": {
-      "request": {
-        "label": "01 — SORĞU",
-        "title": "Nəyə ehtiyacınız olduğunu söyləyin",
-        "description": "Məhsul tələblərinizi, miqdarları və çatdırılma müddətini paylaşın. Tək kateqoriyalı sifarişlərdən tutmuş mürəkkəb çox məhsullu göndərişlərə qədər hər şeyi həll edirik."
-      },
-      "quote": {
-        "label": "02 — TƏKLİF",
-        "title": "Şəffaf ümumi qiymət",
-        "description": "Məhsul xərcləri, okean yük daşıması, gömrük rüsumları və son çatdırılmanı əhatə edən ətraflı təklif alın. Gizli ödənişlər yoxdur, limanda sürprizlər yoxdur."
-      },
-      "source": {
-        "label": "03 — MƏNBƏ",
-        "title": "Təsdiqlənmiş Amerika məhsulları",
-        "description": "Etibarlı ABŞ təchizatçılarından məhsulları tapır və təsdiqləyirik. Hər bir məhsul anbardan çıxmazdan əvvəl mənşə və keyfiyyət üçün yoxlanılır."
-      },
-      "ship": {
-        "label": "04 — GÖNDƏRİŞ",
-        "title": "Okean yük koordinasiyası",
-        "description": "Konteyneriniz ABŞ limanından təyinat yerinə qədər yüklənir, möhürlənir və izlənilir. Daşıyıcı əlaqələri və tranzit logistikasını başdan sona idarə edirik."
-      },
-      "deliver": {
-        "label": "05 — ÇATDIRILMA",
-        "title": "Rəsmiləşdirilmiş və çatdırılmış",
-        "description": "Təyinat limanınızda gömrük sənədləşdirməsini və rəsmiləşdirməsini həyata keçiririk. Mallarınız distribusiyaya hazır şəkildə çatır."
-      }
+    "steps": [
+      { "title": "Sorğunuzu göndərin", "text": "Məhsul və ya kodlar, spesifikasiya, miqdar, təyinat limanı və ya şəhər və istədiyiniz çatdırılma müddəti. Hazırkı tədarükçü qiymətiniz varsa, onu da əlavə edin. Bu, rəqabət apara biləcəyimizi tez deməyə imkan verir.", "who": "Siz tələbi təqdim edirsiniz." },
+      { "title": "Həcmi təsdiqləyirik", "text": "Qiymət verməzdən əvvəl spesifikasiyanı, miqdarı, qablaşdırmanı və idxal sənədləri tələblərinizi təsdiqləyirik. Sizin əvəzinizə təxmin etmirik." },
+      { "title": "Zavoddan tədarük edirik", "text": "ABŞ istehsalçısından və ya kanalından yerli alıcı kimi EXW və ya FCA şərtləri ilə alırıq.", "who": "ABŞ tərəfində satınalma KG-nin üzərindədir." },
+      { "title": "Çatdırılma daxil qiymət alırsınız", "text": "Göstərdiyiniz limana qədər CIP və ya CIF şərtləri ilə mövqe üzrə qiymət; yükdaşıma və sığorta daxil, bitmə tarixi və istisnaların aydın siyahısı ilə." },
+      { "title": "Proforma invoys və ödəniş", "text": "Təsdiq etdikdən sonra razılaşdırılmış İnkoterms, ödəniş şərtləri və göndəriş qrafiki ilə proforma invoys təqdim edirik." },
+      { "title": "İstehsal, konsolidasiya və ixrac", "text": "Malı toplayırıq, konteynerinizdə birləşdiririk və ABŞ ixrac bəyannaməsini təqdim edirik. Kommersiya invoysu, qablaşdırma vərəqi, mənşə sertifikatı və bazarınızın tələb etdiyi məhsul sertifikatlarını hazırlayırıq.", "who": "KG ABŞ ixracatçısı kimi çıxış edir." },
+      { "title": "Göndəriş və sığorta", "text": "Limanınıza dəniz yükdaşımasını sifariş edir və yükü sığortalayırıq. Yola salınma zamanı izləmə məlumatı və göndəriş sənədlərinin surətini alırsınız." },
+      { "title": "Çatma və gömrük rəsmiləşdirməsi", "text": "Siz və ya agentiniz idxalçı kimi gömrük rəsmiləşdirməsini keçir və yerli rüsum və vergiləri ödəyirsiniz. Təyinat terminalı xərcləri və ölkədaxili çatdırılma, təklifdə başqa cür göstərilməyibsə, sizin tərəfinizdədir.", "who": "Siz malı rəsmiləşdirir və qəbul edirsiniz." }
+    ],
+    "incoterms": {
+      "title": "CIP və CIF",
+      "items": [
+        { "term": "CIP (Carriage and Insurance Paid to)", "text": "Konteyner yükləri üçün istifadə olunur. Göstərdiyiniz yerə qədər daşıma və sığortanı biz ödəyirik. Sığorta İnkoterms 2020 üzrə bütün risklərdən qorunmadır (Institute Cargo Clauses A)." },
+        { "term": "CIF (Cost, Insurance and Freight)", "text": "Yalnız dəniz yolu, limandan limana. Göstərdiyiniz limana qədər yükdaşıma və sığortanı biz ödəyirik. Minimum sığorta İnkoterms 2020 üzrə Institute Cargo Clauses C-dir, daha yüksək razılaşdırılmayıbsa." }
+      ],
+      "risk": "Hər iki şərtdə risk alıcıya mal göndəriş yerində daşıyıcıya təhvil verildikdə və ya gəmiyə yükləndikdə keçir, çatma zamanı deyil. Buna görə sığorta daxildir.",
+      "other": "Digər şərtlər (FCA, DAP) sorğu əsasında."
+    },
+    "table": {
+      "title": "Kim nəyə cavabdehdir",
+      "item": "Tapşırıq",
+      "buyer": "Alıcı",
+      "rows": [
+        { "item": "ABŞ-da satınalma və tədarükçülərlə iş", "kg": true, "buyer": false },
+        { "item": "Göndəriş yerinə daşınma, ixrac rəsmiləşdirməsi, ABŞ ixrac bəyannaməsi", "kg": true, "buyer": false },
+        { "item": "Dəniz yükdaşıması və yük sığortası (CIP/CIF)", "kg": true, "buyer": false },
+        { "item": "Kommersiya sənədləri və mənşə sertifikatı", "kg": true, "buyer": false },
+        { "item": "İdxal rəsmiləşdirməsi, rüsumlar, ƏDV", "kg": false, "buyer": true },
+        { "item": "Təyinat terminalı xərcləri, ölkədaxili çatdırılma", "kg": false, "buyer": true, "note": "təklifdə yoxdursa" },
+        { "item": "Obyektinizdə boşaltma", "kg": false, "buyer": true },
+        { "item": "Konteynerin qaytarılması / pulsuz müddətdən sonra demerec", "kg": false, "buyer": true }
+      ]
     }
   },
-  "languages": {
-    "en": "English",
-    "az": "Azərbaycanca",
-    "ru": "Русский"
+  "rfq": {
+    "title": "Qiymət sorğusu",
+    "intro": "Sorğunuzu e-poçtla göndərin. Aşağıda məhsulu və təyinat limanını qeyd edin, məktubu sizin üçün dolduraq.",
+    "selected": "Seçilmiş məhsullar",
+    "remove": "Sil",
+    "clear": "Hamısını sil",
+    "product": "Məhsul / kodlar",
+    "productPh": "məs. Crush Orange, 20 palet",
+    "destination": "Təyinat limanı / şəhər",
+    "destinationPh": "məs. Bakı (Ələt)",
+    "emailButton": "Sorğunu e-poçtla göndər",
+    "emailNote": "E-poçt tətbiqiniz hazır şablonla açılacaq. Və ya yazın:",
+    "linkedin": "KG Industries LinkedIn-də",
+    "bank": "Bank rekvizitlərimiz heç vaxt e-poçt vasitəsilə dəyişmir. Ödənişdən əvvəl hər hansı dəyişikliyi bizimlə telefonla təsdiqləyin.",
+    "shortcut": "Qısayol: açmaq üçün Q, bağlamaq üçün Esc.",
+    "close": "Bağla"
   }
 }

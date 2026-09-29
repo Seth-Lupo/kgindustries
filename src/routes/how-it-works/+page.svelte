@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { _ } from 'svelte-i18n';
+	import { _, json } from 'svelte-i18n';
 	import SEO from '$lib/components/SEO.svelte';
 	import { base } from '$app/paths';
 	import { onMount } from 'svelte';
@@ -16,6 +16,10 @@
 		{ file: 'kazakhstan-flag.png', name: 'Kazakhstan' }
 	];
 
+	type Step = { title: string; text: string; who?: string };
+	type Term = { term: string; text: string };
+	type TableRow = { item: string; kg: boolean; buyer: boolean; note?: string };
+
 	let activeFlag = $state(0);
 
 	onMount(() => {
@@ -27,9 +31,8 @@
 </script>
 
 <SEO
-	title="How It Works - US Export Process | KG Industries"
-	description="Learn how KG Industries handles US product exports: request a quote, product sourcing, ocean freight coordination, customs clearance, and delivery. Full-service B2B logistics."
-	keywords="US export process, how freight forwarding works, international shipping process, customs clearance process, B2B export logistics, container shipping process, export quote"
+	title="How It Works | KG Industries"
+	description="From RFQ to CIP/CIF delivery: KG Industries buys in the US as the domestic purchaser, handles US export, and delivers to your named port."
 	canonical="/how-it-works"
 />
 
@@ -46,39 +49,18 @@
 
 	<section class="process-flow">
 		<div class="flow-content">
-			<div class="flow-main">
-				<div class="flow-line"></div>
-
-				<div class="flow-step">
-					<div class="step-label">{$_('howItWorks.steps.request.label')}</div>
-					<div class="step-text">{$_('howItWorks.steps.request.title')}</div>
-					<div class="step-description">{$_('howItWorks.steps.request.description')}</div>
-				</div>
-
-				<div class="flow-step">
-					<div class="step-label">{$_('howItWorks.steps.quote.label')}</div>
-					<div class="step-text">{$_('howItWorks.steps.quote.title')}</div>
-					<div class="step-description">{$_('howItWorks.steps.quote.description')}</div>
-				</div>
-
-				<div class="flow-step">
-					<div class="step-label">{$_('howItWorks.steps.source.label')}</div>
-					<div class="step-text">{$_('howItWorks.steps.source.title')}</div>
-					<div class="step-description">{$_('howItWorks.steps.source.description')}</div>
-				</div>
-
-				<div class="flow-step">
-					<div class="step-label">{$_('howItWorks.steps.ship.label')}</div>
-					<div class="step-text">{$_('howItWorks.steps.ship.title')}</div>
-					<div class="step-description">{$_('howItWorks.steps.ship.description')}</div>
-				</div>
-
-				<div class="flow-step">
-					<div class="step-label">{$_('howItWorks.steps.deliver.label')}</div>
-					<div class="step-text">{$_('howItWorks.steps.deliver.title')}</div>
-					<div class="step-description">{$_('howItWorks.steps.deliver.description')}</div>
-				</div>
-			</div>
+			<ol class="flow-main">
+				<li class="flow-line" aria-hidden="true"></li>
+				<!-- CONFIRM: RFQ response-time promise (step 2), only one we will always meet -->
+				{#each $json('howItWorks.steps') as Step[] as step, i}
+					<li class="flow-step">
+						<div class="step-label">{String(i + 1).padStart(2, '0')}</div>
+						<div class="step-text">{step.title}</div>
+						<div class="step-description">{step.text}</div>
+						{#if step.who}<div class="step-who">{step.who}</div>{/if}
+					</li>
+				{/each}
+			</ol>
 
 			<div class="flow-sidebar">
 				<div class="sidebar-sticky">
@@ -105,6 +87,47 @@
 						{/each}
 					</div>
 				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="terms">
+		<div class="terms-inner">
+			<div class="incoterms">
+				<h2>{$_('howItWorks.incoterms.title')}</h2>
+				{#each $json('howItWorks.incoterms.items') as Term[] as t}
+					<div class="term">
+						<h3>{t.term}</h3>
+						<p>{t.text}</p>
+					</div>
+				{/each}
+				<p class="term-risk">{$_('howItWorks.incoterms.risk')}</p>
+				<p class="term-other">{$_('howItWorks.incoterms.other')}</p>
+			</div>
+
+			<div class="who-table">
+				<h2>{$_('howItWorks.table.title')}</h2>
+				<table>
+					<thead>
+						<tr>
+							<th scope="col">{$_('howItWorks.table.item')}</th>
+							<th scope="col">KG</th>
+							<th scope="col">{$_('howItWorks.table.buyer')}</th>
+						</tr>
+					</thead>
+					<tbody>
+						{#each $json('howItWorks.table.rows') as TableRow[] as row}
+							<tr>
+								<td>{row.item}</td>
+								<td class="mark">{row.kg ? '✓' : ''}</td>
+								<td class="mark">
+									{row.buyer ? '✓' : ''}
+									{#if row.note}<span class="mark-note">{row.note}</span>{/if}
+								</td>
+							</tr>
+						{/each}
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</section>
@@ -179,7 +202,10 @@
 
 	.flow-main {
 		position: relative;
-		padding-right: 2rem;
+		padding: 0;
+		padding-inline-end: 2rem;
+		margin: 0;
+		list-style: none;
 		align-self: start;
 	}
 
@@ -194,7 +220,7 @@
 
 	.flow-step {
 		max-width: 560px;
-		margin: 0 auto 6rem auto;
+		margin: 0 auto 4.5rem auto;
 		display: flex;
 		flex-direction: column;
 		gap: 0.75rem;
@@ -372,9 +398,125 @@
 	.step-description {
 		font-size: 1rem;
 		font-weight: 400;
-		color: #71717a;
+		color: #a1a1aa;
 		line-height: 1.6;
 		max-width: 480px;
+	}
+
+	.step-who {
+		font-size: 0.8rem;
+		font-weight: 600;
+		color: #1c71d8;
+		letter-spacing: 0.02em;
+	}
+
+	.terms {
+		position: relative;
+		z-index: 2;
+		padding: 6rem 4vw;
+		border-top: 1px solid #1a1a22;
+		background: #050508;
+	}
+
+	.terms-inner {
+		max-width: 1200px;
+		margin: 0 auto;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 4rem;
+		align-items: start;
+	}
+
+	.terms h2 {
+		font-size: 1.3rem;
+		font-weight: 900;
+		letter-spacing: 0.08em;
+		color: #ffffff;
+		margin: 0 0 1.5rem;
+		text-transform: uppercase;
+	}
+
+	.incoterms {
+		background: #0a0a0d;
+		border: 1px solid #1a1a22;
+		border-inline-start: 3px solid #1c71d8;
+		padding: 2rem;
+	}
+
+	.term + .term {
+		margin-top: 1.25rem;
+	}
+
+	.term h3 {
+		margin: 0 0 0.4rem;
+		font-size: 0.95rem;
+		font-weight: 700;
+		color: #ffffff;
+	}
+
+	.term p,
+	.term-risk,
+	.term-other {
+		margin: 0;
+		font-size: 0.9rem;
+		line-height: 1.6;
+		color: #a1a1aa;
+	}
+
+	.term-risk {
+		margin-top: 1.5rem;
+		padding-top: 1.25rem;
+		border-top: 1px solid #1a1a22;
+		color: #d4d4d8;
+		font-weight: 600;
+	}
+
+	.term-other {
+		margin-top: 0.75rem;
+		font-size: 0.85rem;
+	}
+
+	table {
+		width: 100%;
+		border-collapse: collapse;
+		font-size: 0.9rem;
+	}
+
+	th {
+		text-align: start;
+		font-size: 0.7rem;
+		font-weight: 700;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: #71717a;
+		padding: 0 0.5rem 0.75rem;
+		border-bottom: 1px solid #27272a;
+	}
+
+	td {
+		padding: 0.8rem 0.5rem;
+		border-bottom: 1px solid #1a1a22;
+		color: #d4d4d8;
+		line-height: 1.5;
+		vertical-align: top;
+	}
+
+	th:not(:first-child),
+	td.mark {
+		text-align: center;
+		width: 4.5rem;
+	}
+
+	td.mark {
+		color: #1c71d8;
+		font-weight: 700;
+	}
+
+	.mark-note {
+		display: block;
+		font-size: 0.7rem;
+		font-weight: 400;
+		color: #71717a;
 	}
 
 	@media (max-width: 1200px) {
@@ -435,25 +577,38 @@
 		}
 
 		.flow-main {
-			padding-right: 0;
+			padding-inline-end: 0;
 		}
 
 		.flow-line {
-			left: 50%;
+			display: none;
+		}
+
+		.terms-inner {
+			grid-template-columns: 1fr;
+			gap: 3rem;
+		}
+
+		.incoterms {
+			padding: 1.5rem 1.25rem;
 		}
 	}
 
 	@media (max-width: 900px) {
 		.how-hero {
-			padding: 6rem 4vw;
+			padding: 4rem 4vw;
 		}
 
 		.process-flow {
-			padding: 8rem 4vw;
+			padding: 4rem 4vw;
 		}
 
 		.flow-step {
-			margin-bottom: 4rem;
+			margin-bottom: 3rem;
+		}
+
+		.terms {
+			padding: 4rem 4vw;
 		}
 	}
 </style>

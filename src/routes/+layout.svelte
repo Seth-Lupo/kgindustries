@@ -5,6 +5,8 @@
 	import '$lib/i18n';
 	import { _, isLoading } from 'svelte-i18n';
 	import LanguageSwitcher from '$lib/components/LanguageSwitcher.svelte';
+	import RfqPanel from '$lib/components/RfqPanel.svelte';
+	import { rfqOpen, RFQ_EMAIL, LINKEDIN_URL } from '$lib/stores/rfq';
 	import { base } from '$app/paths';
 
 	let { children } = $props();
@@ -74,6 +76,9 @@
 			<a href="{base}/#contact">{$_('nav.contact')}</a>
 		</nav>
 		<div class="header-right">
+			<button class="nav-rfq" onclick={() => rfqOpen.set(true)} aria-haspopup="dialog">
+				{$_('nav.rfq')}
+			</button>
 			<LanguageSwitcher />
 			<button class="hamburger" onclick={toggleMenu} aria-label="Toggle menu">
 				<span class="hamburger-line" class:open={mobileMenuOpen}></span>
@@ -95,9 +100,18 @@
 	{@render children()}
 
 	<footer class="site-footer">
-		<span class="footer-email">{$_('footer.email')}</span>
-		<span class="footer-copy">{$_('footer.copyright')}</span>
+		<div class="footer-row">
+			<span class="footer-company">
+				KG Industries LLC · {$_('footer.location')} ·
+				<a href="mailto:{RFQ_EMAIL}">{RFQ_EMAIL}</a> ·
+				<a href={LINKEDIN_URL} target="_blank" rel="noopener">LinkedIn</a>
+			</span>
+			<span class="footer-copy">© 2026 KG Industries LLC</span>
+		</div>
+		<p class="footer-disclaimer">{$_('footer.disclaimer')}</p>
 	</footer>
+
+	<RfqPanel />
 {/if}
 
 <style>
@@ -303,31 +317,87 @@
 		}
 	}
 
+	.nav-rfq {
+		padding: 0.55rem 1rem;
+		background: transparent;
+		border: 1px solid #1c71d8;
+		color: #1c71d8;
+		font-family: inherit;
+		font-size: 0.7rem;
+		font-weight: 700;
+		letter-spacing: 0.12em;
+		cursor: pointer;
+		transition: all 0.2s;
+	}
+
+	.nav-rfq:hover {
+		background: #1c71d8;
+		color: #050508;
+	}
+
+	@media (max-width: 768px) {
+		.nav-rfq {
+			display: none;
+		}
+	}
+
 	.site-footer {
 		position: relative;
 		z-index: 10;
-		padding: 2rem 4vw;
+		padding: 2rem 4vw 5.5rem;
 		border-top: 1px solid #1a1a22;
 		background: #050508;
+	}
+
+	.footer-row {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+		gap: 1rem;
+		flex-wrap: wrap;
 	}
 
-	.footer-email {
+	.footer-company {
 		font-size: 0.8rem;
 		color: #71717a;
+		line-height: 1.6;
+	}
+
+	.footer-company a {
+		color: #a1a1aa;
+		text-decoration: none;
+	}
+
+	.footer-company a:hover {
+		color: #1c71d8;
 	}
 
 	.footer-copy {
 		font-size: 0.7rem;
-		color: #3f3f46;
+		color: #52525b;
+	}
+
+	.footer-disclaimer {
+		margin: 1rem 0 0;
+		font-size: 0.7rem;
+		line-height: 1.6;
+		color: #52525b;
+		max-width: 900px;
+	}
+
+	@media (min-width: 769px) {
+		.site-footer {
+			padding-bottom: 2rem;
+		}
 	}
 
 	@media (max-width: 600px) {
-		.site-footer {
+		.footer-row {
 			flex-direction: column;
-			gap: 0.75rem;
+			text-align: center;
+		}
+
+		.footer-disclaimer {
 			text-align: center;
 		}
 	}

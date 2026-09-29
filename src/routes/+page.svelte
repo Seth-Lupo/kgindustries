@@ -1,8 +1,15 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { _ } from 'svelte-i18n';
+	import { _, json } from 'svelte-i18n';
 	import SEO from '$lib/components/SEO.svelte';
 	import { base } from '$app/paths';
+	import { rfqOpen, RFQ_EMAIL, LINKEDIN_URL } from '$lib/stores/rfq';
+
+	type HandleItem = { title: string; text: string };
+	type DataPoint = { value: string; label: string };
+	type Tile = { title: string; text: string };
+
+	const tileAnchors = ['beverages', 'consumer', 'industrial', 'custom'];
 
 	let globeCanvas: HTMLCanvasElement;
 
@@ -239,9 +246,8 @@
 </script>
 
 <SEO
-	title="KG Industries - Global Freight Operations | US Export Logistics"
-	description="KG Industries helps international businesses source and ship US-manufactured products worldwide. Full-service export logistics from sourcing to delivery. B2B container shipping."
-	keywords="US export logistics, international freight, US manufactured products, B2B export, container shipping, customs clearance, American products export, global freight, freight forwarding, export company"
+	title="KG Industries | US Sourcing and Export for International Buyers"
+	description="US trading company supplying beverages, foodservice equipment, genuine Ford parts, and industrial goods to buyers in the Gulf, MENA, Caucasus, and Central Asia. Landed CIP/CIF quotes."
 />
 
 <div class="container">
@@ -252,7 +258,7 @@
 			<div class="hero-layout">
 				<div class="hero-text">
 					<h1 class="title-massive">{$_('home.hero.global')}</h1>
-					<h1 class="title-medium">{$_('home.hero.freight')}</h1>
+					<div class="title-medium">{$_('home.hero.freight')}</div>
 					<div class="title-small">{$_('home.hero.operations')}</div>
 				</div>
 				<div class="globe-container">
@@ -267,58 +273,71 @@
 		<section class="overview" id="overview">
 			<div class="overview-content">
 				<div class="overview-text">
-					<p>{$_('home.overview.description')}</p>
+					<span class="detail-label">{$_('home.overview.label')}</span>
+					<p class="lead">{$_('home.overview.p1')}</p>
+					<p>{$_('home.overview.p2')}</p>
+					<p>{$_('home.overview.p3')}</p>
 				</div>
 				<div class="overview-detail">
-					<span class="detail-label">{$_('home.overview.label')}</span>
-					<span class="detail-value">{$_('home.overview.value')}</span>
+					<span class="detail-label">{$_('home.overview.factsLabel')}</span>
+					<span class="detail-value">KG Industries LLC</span>
+					<ul class="facts">
+						<li>{$_('home.overview.registered')}</li>
+						<li><a href="mailto:{RFQ_EMAIL}">{RFQ_EMAIL}</a></li>
+						<li><a href={LINKEDIN_URL} target="_blank" rel="noopener">LinkedIn</a></li>
+					</ul>
 				</div>
 			</div>
 		</section>
 
 		<section class="image-full">
-			<img
-				src="{base}/images/container-operations.jpg"
-				alt="Container operations"
-			/>
+			<img src="{base}/images/container-operations.jpg" alt="" loading="lazy" />
 		</section>
 
 		<section class="process">
 			<div class="process-layout">
 				<div class="process-text">
-					<h2>{$_('home.process.title')}</h2>
-					<p>{$_('home.process.description1')}</p>
-					<p>{$_('home.process.description2')}</p>
+					<h2>{$_('home.handle.title')}</h2>
+					<ol class="handle-list">
+						{#each $json('home.handle.items') as HandleItem[] as item, i}
+							<li>
+								<span class="handle-num">{String(i + 1).padStart(2, '0')}</span>
+								<div>
+									<h3>{item.title}</h3>
+									<p>{item.text}</p>
+								</div>
+							</li>
+						{/each}
+					</ol>
+					<p class="risk-line">{$_('home.handle.risk')}</p>
 				</div>
 				<div class="process-data">
-					<div class="data-point">
-						<div class="data-number">{$_('home.process.minContainer')}</div>
-						<div class="data-label">{$_('home.process.minContainerLabel')}</div>
-					</div>
-					<div class="data-point">
-						<div class="data-number">{$_('home.process.b2b')}</div>
-						<div class="data-label">{$_('home.process.b2bLabel')}</div>
-					</div>
-					<div class="data-point">
-						<div class="data-number">{$_('home.process.custom')}</div>
-						<div class="data-label">{$_('home.process.customLabel')}</div>
-					</div>
+					{#each $json('home.handle.data') as DataPoint[] as point}
+						<div class="data-point">
+							<div class="data-number">{point.value}</div>
+							<div class="data-label">{point.label}</div>
+						</div>
+					{/each}
 				</div>
 			</div>
 		</section>
 
 		<section class="image-split" id="products">
 			<div class="split-left">
-				<img
-					src="{base}/images/port-operations.jpg"
-					alt="Port operations"
-				/>
-				<div class="split-caption">{$_('home.products.madeInUsa')}</div>
+				<img src="{base}/images/port-operations.jpg" alt="" loading="lazy" />
+				<div class="split-caption">{$_('home.categories.caption')}</div>
 			</div>
 			<div class="split-right">
 				<div class="split-info">
-					<h3>{$_('home.products.title')}</h3>
-					<p>{$_('home.products.description')}</p>
+					<h3>{$_('home.categories.title')}</h3>
+					<div class="tiles">
+						{#each $json('home.categories.tiles') as Tile[] as tile, i}
+							<a class="tile" href="{base}/products#{tileAnchors[i]}">
+								<span class="tile-title">{tile.title}</span>
+								<span class="tile-text">{tile.text}</span>
+							</a>
+						{/each}
+					</div>
 				</div>
 			</div>
 		</section>
@@ -327,7 +346,10 @@
 			<div class="contact-wrapper">
 				<h2>{$_('home.contact.title')}</h2>
 				<p class="contact-description">{$_('home.contact.description')}</p>
-				<a href="mailto:info@kgindustries.us" class="contact-button">{$_('home.contact.button')}</a>
+				<button class="contact-button" onclick={() => rfqOpen.set(true)}>
+					{$_('home.contact.button')}
+				</button>
+				<a class="contact-email" href="mailto:{RFQ_EMAIL}">{RFQ_EMAIL}</a>
 			</div>
 		</section>
 	</main>
@@ -477,12 +499,44 @@
 		align-items: center;
 	}
 
+	.overview-text {
+		display: flex;
+		flex-direction: column;
+		gap: 1.25rem;
+	}
+
 	.overview-text p {
-		font-size: 1.15rem;
+		font-size: 1.05rem;
 		line-height: 1.7;
-		color: #d4d4d8;
+		color: #a1a1aa;
 		margin: 0;
 		font-weight: 400;
+	}
+
+	.overview-text p.lead {
+		font-size: 1.3rem;
+		color: #ffffff;
+		line-height: 1.5;
+	}
+
+	.facts {
+		list-style: none;
+		margin: 0.5rem 0 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.4rem;
+		font-size: 0.9rem;
+		color: #a1a1aa;
+	}
+
+	.facts a {
+		color: #a1a1aa;
+		text-decoration: none;
+	}
+
+	.facts a:hover {
+		color: #1c71d8;
 	}
 
 	.overview-detail {
@@ -490,7 +544,7 @@
 		flex-direction: column;
 		gap: 0.75rem;
 		padding: 2rem;
-		border-left: 2px solid #1a1a22;
+		border-inline-start: 2px solid #1a1a22;
 	}
 
 	.detail-label {
@@ -551,8 +605,52 @@
 		font-weight: 400;
 	}
 
-	.process-text p:last-child {
-		margin-bottom: 0;
+	.handle-list {
+		list-style: none;
+		margin: 0 0 2rem;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+	}
+
+	.handle-list li {
+		display: flex;
+		gap: 1.25rem;
+		align-items: flex-start;
+	}
+
+	.handle-num {
+		font-size: 0.8rem;
+		font-weight: 700;
+		color: #1c71d8;
+		letter-spacing: 0.1em;
+		padding-top: 0.2rem;
+		flex-shrink: 0;
+	}
+
+	.handle-list h3 {
+		margin: 0 0 0.35rem;
+		font-size: 1rem;
+		font-weight: 700;
+		color: #ffffff;
+		letter-spacing: 0.02em;
+	}
+
+	.handle-list p {
+		margin: 0;
+		font-size: 0.95rem;
+		line-height: 1.6;
+	}
+
+	.process-text p.risk-line {
+		margin: 0;
+		padding: 1.25rem 1.5rem;
+		border-inline-start: 2px solid #1c71d8;
+		background: #0a0a0d;
+		color: #ffffff;
+		font-weight: 600;
+		line-height: 1.6;
 	}
 
 	.process-data {
@@ -604,7 +702,7 @@
 	.split-caption {
 		position: absolute;
 		bottom: 1.5rem;
-		left: 1.5rem;
+		inset-inline-start: 1.5rem;
 		font-size: 0.7rem;
 		font-weight: 700;
 		letter-spacing: 0.15em;
@@ -616,7 +714,7 @@
 
 	.split-right {
 		background: #0a0a0d;
-		border-left: 1px solid #1a1a22;
+		border-inline-start: 1px solid #1a1a22;
 		display: flex;
 		align-items: center;
 	}
@@ -634,12 +732,40 @@
 		text-transform: uppercase;
 	}
 
-	.split-info p {
-		font-size: 0.95rem;
-		line-height: 1.7;
+	.tiles {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+
+	.tile {
+		display: flex;
+		flex-direction: column;
+		gap: 0.3rem;
+		padding: 1rem 1.25rem;
+		border: 1px solid #1a1a22;
+		border-inline-start: 3px solid #1c71d8;
+		background: #050508;
+		text-decoration: none;
+		transition: border-color 0.2s;
+	}
+
+	.tile:hover {
+		border-color: #1c71d8;
+	}
+
+	.tile-title {
+		font-size: 0.85rem;
+		font-weight: 900;
+		letter-spacing: 0.08em;
+		color: #ffffff;
+		text-transform: uppercase;
+	}
+
+	.tile-text {
+		font-size: 0.9rem;
+		line-height: 1.5;
 		color: #a1a1aa;
-		margin: 0;
-		font-weight: 400;
 	}
 
 	.contact-simple {
@@ -656,20 +782,9 @@
 		position: relative;
 	}
 
-	.contact-number {
-		font-size: 8rem;
-		font-weight: 900;
-		color: rgba(28, 113, 216, 0.08);
-		position: absolute;
-		top: -5rem;
-		left: 50%;
-		transform: translateX(-50%);
-		letter-spacing: -0.05em;
-		pointer-events: none;
-	}
 
 	.contact-wrapper h2 {
-		font-size: clamp(3rem, 8vw, 5rem);
+		font-size: clamp(2.2rem, 7vw, 4.5rem);
 		font-weight: 900;
 		letter-spacing: 0.05em;
 		color: #ffffff;
@@ -699,9 +814,26 @@
 		transition: all 0.3s;
 	}
 
+	.contact-button {
+		font-family: inherit;
+		cursor: pointer;
+	}
+
 	.contact-button:hover {
 		background: #1c71d8;
 		color: #050508;
+	}
+
+	.contact-email {
+		display: block;
+		margin-top: 1.5rem;
+		color: #71717a;
+		font-size: 0.9rem;
+		text-decoration: none;
+	}
+
+	.contact-email:hover {
+		color: #1c71d8;
 	}
 
 	@media (max-width: 1200px) {
@@ -725,7 +857,7 @@
 		}
 
 		.split-right {
-			border-left: none;
+			border-inline-start: none;
 			border-top: 1px solid #1a1a22;
 		}
 	}
@@ -736,9 +868,6 @@
 			gap: 3rem;
 		}
 
-		.process-text {
-			text-align: center;
-		}
 
 		.process-data {
 			align-items: center;
