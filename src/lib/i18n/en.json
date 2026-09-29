@@ -28,32 +28,69 @@
     "handle": {
       "title": "WHAT WE HANDLE",
       "items": [
-        { "title": "Sourcing", "text": "We find the US manufacturer or channel, verify the specification, and negotiate factory pricing." },
-        { "title": "Purchasing", "text": "We buy as the US domestic purchaser. You deal with one counterparty." },
-        { "title": "Export and documentation", "text": "Export filing, commercial invoice, packing list, certificate of origin, and product certificates as required." },
-        { "title": "Freight and insurance to your port", "text": "Landed quotes on CIP or CIF terms to your named port." },
-        { "title": "Consolidation", "text": "Multiple SKUs, and multiple suppliers where needed, combined into one container." }
+        {
+          "title": "Sourcing",
+          "text": "We find the US manufacturer or channel, verify the specification, and negotiate factory pricing."
+        },
+        {
+          "title": "Purchasing",
+          "text": "We buy as the US domestic purchaser. You deal with one counterparty."
+        },
+        {
+          "title": "Export and documentation",
+          "text": "Export filing, commercial invoice, packing list, certificate of origin, and product certificates as required."
+        },
+        {
+          "title": "Freight and insurance to your port",
+          "text": "Base quote CIP to your named port. Full inland delivery to your door on request."
+        },
+        {
+          "title": "Consolidation",
+          "text": "Multiple SKUs, and multiple suppliers where needed, combined into one container."
+        }
       ],
       "risk": "One US counterparty. We carry the US-side purchasing, export compliance, and freight coordination.",
       "data": [
-        { "value": "CIP / CIF", "label": "Landed quotes to your named port" },
-        { "value": "B2B", "label": "Business buyers only" },
-        { "value": "RFQ", "label": "Pricing quoted per RFQ" }
-      ]
+        {
+          "value": "CIP",
+          "label": "Base quote to your port. Door delivery on request."
+        },
+        {
+          "value": "B2B",
+          "label": "Business buyers only"
+        },
+        {
+          "value": "RFQ",
+          "label": "Pricing quoted per RFQ"
+        }
+      ],
+      "delivery": "Port or door, your choice. Our base quote is CIP to your port. If you want delivery to your warehouse, we arrange the full inland leg and price it into the quote. Import customs duties and taxes are always paid by the buyer."
     },
     "categories": {
       "caption": "US-SOURCED · SHIPPED TO YOUR PORT",
       "title": "PRODUCT CATEGORIES",
       "tiles": [
-        { "title": "US Beverages", "text": "US-market sodas and specialty flavors not bottled for your region" },
-        { "title": "Consumer Goods", "text": "US grocery and FMCG lines on request" },
-        { "title": "Industrial & Commercial", "text": "Foodservice equipment, genuine Ford parts, PPE, facilities and MRO supply, packaging" },
-        { "title": "Custom Sourcing (RFQ)", "text": "If it is sold in the US, send us the spec" }
+        {
+          "title": "US Beverages",
+          "text": "US-market sodas and specialty flavors not bottled for your region"
+        },
+        {
+          "title": "Consumer Goods",
+          "text": "US grocery and FMCG lines on request"
+        },
+        {
+          "title": "Industrial & Commercial",
+          "text": "Cambro foodservice equipment, genuine Ford parts, PPE, facilities and MRO supply, packaging"
+        },
+        {
+          "title": "Custom Sourcing (RFQ)",
+          "text": "If it is sold in the US, send us the spec"
+        }
       ]
     },
     "contact": {
       "title": "REQUEST A QUOTE",
-      "description": "Send product names or item numbers, quantity, and destination port. Pricing is quoted per RFQ, landed to your port.",
+      "description": "Send product names or item numbers, quantity, and destination. We reply to every RFQ within 24 hours.",
       "button": "OPEN RFQ"
     }
   },
@@ -81,19 +118,39 @@
       "glass500": "500 ml glass bottle",
       "pack": "Pack",
       "caseOf": "Case of {n}",
-      "pallet": "Pallet configuration",
+      "pallet": "Per pallet",
       "palletValue": "{cases} cases · {units} units",
       "originUS": "Made in USA · Sourced in the US",
       "originMX": "Made in Mexico · Sourced in the US",
-      "add": "Add to RFQ",
-      "added": "Added to RFQ ✓",
-      "selectedCount": "{n, plural, one {# product selected} other {# products selected}}"
+      "add": "Add pallet to RFQ",
+      "added": "In RFQ ✓",
+      "selectedCount": "{n, plural, one {# pallet in RFQ} other {# pallets in RFQ}}",
+      "palletNote": "Sold by the pallet. Each soda you add to the RFQ is one pallet; change the number of pallets in the RFQ.",
+      "containerFit": "{p20} pallets fill a 20' container · {p40} pallets fill a 40' container",
+      "leadTime": "Lead time: {n} weeks from order to container loading"
     },
     "consumer": {
       "title": "CONSUMER GOODS",
       "intro": "US grocery and consumer brands for importers and retailers, sourced against your list. Send item names or UPCs and target quantities.",
       "onRequestTitle": "On request",
-      "onRequest": ["Snacks and confectionery", "Beverages outside the core range", "Household lines"],
+      "onRequest": [
+        {
+          "id": "snacks",
+          "title": "Snacks and confectionery"
+        },
+        {
+          "id": "beverages",
+          "title": "Beverages outside the core range"
+        },
+        {
+          "id": "household",
+          "title": "Household lines"
+        },
+        {
+          "id": "grocery",
+          "title": "Other US grocery and FMCG items"
+        }
+      ],
       "howTitle": "How to order",
       "how": "Send your list with item names or UPCs, target quantities, and destination port. We confirm availability and origin per line, then quote landed to your port."
     },
@@ -103,28 +160,32 @@
       "intro": "Specification-driven sourcing from US and European manufacturers. Country of origin is stated per line on every quote.",
       "cards": [
         {
-          "title": "Commercial foodservice equipment",
-          "text": "Food pans, polycarbonate storage containers, insulated food carriers, fiberglass trays, and dishwashing racks. Built for hotels, caterers, institutional kitchens, hospitals, and foodservice distributors.",
+          "id": "foodservice",
+          "title": "Cambro commercial foodservice equipment",
+          "text": "Cambro food pans, polycarbonate storage containers, insulated food carriers, fiberglass trays, and dishwashing racks. Built for hotels, caterers, institutional kitchens, hospitals, and foodservice distributors.",
           "note": "Order basis: full container.",
           "origin": "Made in USA"
         },
         {
+          "id": "ford",
           "title": "Genuine Ford parts (US-spec)",
           "text": "Genuine Ford OEM parts for US-specification vehicles, sourced through the US dealer network. Send part numbers and quantities.",
           "note": "Lead time quoted per order.",
           "origin": "Sourced in the US"
         },
         {
+          "id": "gloves",
           "title": "Nitrile gloves / PPE",
-          "text": "Heavy-duty, pure nitrile disposable gloves (no filler), in 6 and 8 mil thickness, for industrial, automotive, and law-enforcement use.",
-          "origin": "Made in Malaysia"
+          "text": "Heavy-duty, pure nitrile disposable gloves (no filler), in 6 and 8 mil thickness, for industrial, automotive, and law-enforcement use."
         },
         {
+          "id": "mro",
           "title": "Facilities, MRO, and industrial supply",
           "text": "Pumps, valves, instrumentation, spares, and consumables from US manufacturers without an export channel. Sourced to your specification.",
           "origin": "Stated per line on the quote"
         },
         {
+          "id": "packaging",
           "title": "Packaging and processing equipment",
           "text": "Bottles, matched closures, and food-processing machinery sourced from US and European manufacturers, with compatibility and documentation handled on our side.",
           "note": "Closures and processing machinery supplied to a food producer in Azerbaijan.",
@@ -139,23 +200,59 @@
     "order": {
       "title": "ORDER INFORMATION",
       "rows": [
-        { "label": "Minimums: beverages", "text": "Full pallets. Mixed SKUs across pallets are fine; the container is the practical minimum." },
-        { "label": "Minimums: foodservice equipment", "text": "Full container per order." },
-        { "label": "Minimums: other lines", "text": "Quoted per RFQ." },
-        { "label": "Origin", "text": "Every quote states country of origin per line item. US-made, US-sourced, and non-US items are labelled separately. Certificate of origin provided with shipment." },
-        { "label": "Pricing", "text": "Pricing quoted per RFQ, landed to your named port (CIP or CIF). Duties, taxes, and destination charges are excluded unless stated on the quote." },
-        { "label": "Quote validity", "text": "Every quote carries an expiry date. Factory and freight prices move; prices are re-confirmed after expiry." },
-        { "label": "Payment", "text": "New accounts: 100% prepayment against a proforma invoice. Wire transfer in USD preferred." },
-        { "label": "Documents", "text": "Commercial invoice, packing list, bill of lading, certificate of origin. Product certificates (for example health or phytosanitary for food, heat-treated ISPM 15 pallets) as required by your market. Tell us your import requirements at RFQ." },
-        { "label": "Importer of record", "text": "The buyer, or the buyer's nominated agent, is importer of record and clears goods at destination." },
-        { "label": "Bank details", "text": "Our bank details never change by email. Verify any change by phone with us before paying." }
+        {
+          "label": "Minimums: beverages",
+          "text": "Sold by the full pallet. Mixed SKUs across pallets are fine. 12 pallets fill a 20' container; 24 pallets fill a 40' container."
+        },
+        {
+          "label": "Lead time: beverages",
+          "text": "5 weeks from order to container loading."
+        },
+        {
+          "label": "Minimums: foodservice equipment",
+          "text": "Full container per order."
+        },
+        {
+          "label": "Minimums: other lines",
+          "text": "Quoted per RFQ."
+        },
+        {
+          "label": "Origin",
+          "text": "Every quote states country of origin per line item. US-made, US-sourced, and non-US items are labelled separately. Certificate of origin provided with shipment."
+        },
+        {
+          "label": "Pricing",
+          "text": "Base quote: CIP to your named port. Full inland delivery to your door is available on request; we arrange it and price it into the quote. Import customs clearance, duties, and taxes are paid by the buyer."
+        },
+        {
+          "label": "Quote validity",
+          "text": "Every quote carries an expiry date. Factory and freight prices move; prices are re-confirmed after expiry."
+        },
+        {
+          "label": "Payment",
+          "text": "New accounts: 100% prepayment against a proforma invoice. Wire transfer in USD preferred."
+        },
+        {
+          "label": "Documents",
+          "text": "Commercial invoice, packing list, bill of lading, certificate of origin. Product certificates (for example health or phytosanitary for food, heat-treated ISPM 15 pallets) as required by your market. Tell us your import requirements at RFQ."
+        },
+        {
+          "label": "Importer of record",
+          "text": "The buyer, or the buyer's nominated agent, is importer of record and clears goods at destination."
+        },
+        {
+          "label": "Bank details",
+          "text": "Our bank details never change by email. Verify any change by phone with us before paying."
+        }
       ]
-    }
+    },
+    "pickHint": "Select a line to open an RFQ for it.",
+    "cardCta": "Request a quote"
   },
   "howItWorks": {
     "hero": {
       "title": "How It Works",
-      "subtitle": "From your RFQ to delivery at your port on CIP or CIF terms."
+      "subtitle": "From your RFQ to delivery at your port (CIP) as standard, or to your door on request."
     },
     "steps": [
       {
@@ -165,7 +262,7 @@
       },
       {
         "title": "We confirm scope",
-        "text": "We confirm specification, quantities, packaging, and your import document requirements before quoting. No guesswork on your behalf."
+        "text": "We confirm specification, quantities, packaging, and your import document requirements before quoting. We reply to every RFQ within 24 hours."
       },
       {
         "title": "We source at the factory",
@@ -174,7 +271,7 @@
       },
       {
         "title": "You receive a landed quote",
-        "text": "Line-item pricing delivered CIP or CIF to your named port, with freight and insurance included, a stated expiry date, and a clear list of exclusions."
+        "text": "Line-item pricing CIP to your named port as standard, or delivered to your door if you ask. Freight and insurance included, with a stated expiry date and a clear list of exclusions."
       },
       {
         "title": "Proforma invoice and payment",
@@ -191,43 +288,101 @@
       },
       {
         "title": "Arrival and clearance",
-        "text": "You or your agent clear customs as importer of record and pay local duties and taxes. Destination terminal charges and inland delivery are on your side unless your quote says otherwise.",
+        "text": "You or your agent clear customs as importer of record and pay duties and taxes. If you chose door delivery, we complete the inland leg to your site.",
         "who": "You clear and receive the goods."
       }
     ],
     "incoterms": {
       "title": "CIP vs CIF",
       "items": [
-        { "term": "CIP (Carriage and Insurance Paid to)", "text": "Used for containerized cargo. We pay carriage and insurance to your named place. Insurance is all-risks cover (Institute Cargo Clauses A) under Incoterms 2020." },
-        { "term": "CIF (Cost, Insurance and Freight)", "text": "Sea and port-to-port only. We pay freight and insurance to your named port. Minimum insurance cover is Institute Cargo Clauses C under Incoterms 2020, unless agreed higher." }
+        {
+          "term": "CIP (Carriage and Insurance Paid to)",
+          "text": "Used for containerized cargo. We pay carriage and insurance to your named place. Insurance is all-risks cover (Institute Cargo Clauses A) under Incoterms 2020."
+        },
+        {
+          "term": "CIF (Cost, Insurance and Freight)",
+          "text": "Sea and port-to-port only. We pay freight and insurance to your named port. Minimum insurance cover is Institute Cargo Clauses C under Incoterms 2020, unless agreed higher."
+        }
       ],
       "risk": "Under both terms, risk passes to the buyer when goods are handed to the carrier or loaded on board at origin, not on arrival. That is why insurance is included.",
-      "other": "Other terms (FCA, DAP) available on request."
+      "other": "Other terms (FCA, CIF, DAP to your door) available on request.",
+      "base": "Our base quote is CIP to your port. Door delivery is available on request: we arrange the full route and price the risk into the quote. Import customs, duties, and taxes are always paid by the buyer."
     },
     "table": {
       "title": "Who handles what",
       "item": "Item",
       "buyer": "Buyer",
       "rows": [
-        { "item": "US purchasing and supplier management", "kg": true, "buyer": false },
-        { "item": "Origin trucking, export clearance, US export filing", "kg": true, "buyer": false },
-        { "item": "Ocean freight and cargo insurance (CIP/CIF)", "kg": true, "buyer": false },
-        { "item": "Commercial documents and certificate of origin", "kg": true, "buyer": false },
-        { "item": "Import clearance, duties, VAT", "kg": false, "buyer": true },
-        { "item": "Destination terminal charges, inland delivery", "kg": false, "buyer": true, "note": "unless quoted" },
-        { "item": "Unloading at your facility", "kg": false, "buyer": true },
-        { "item": "Container return / detention after free time", "kg": false, "buyer": true }
+        {
+          "item": "US purchasing and supplier management",
+          "kg": true,
+          "buyer": false
+        },
+        {
+          "item": "Origin trucking, export clearance, US export filing",
+          "kg": true,
+          "buyer": false
+        },
+        {
+          "item": "Ocean freight and cargo insurance (CIP/CIF)",
+          "kg": true,
+          "buyer": false
+        },
+        {
+          "item": "Commercial documents and certificate of origin",
+          "kg": true,
+          "buyer": false
+        },
+        {
+          "item": "Import clearance, duties, VAT",
+          "kg": false,
+          "buyer": true
+        },
+        {
+          "item": "Destination terminal charges, inland delivery to your site",
+          "kg": true,
+          "kgNote": "on request",
+          "buyer": true,
+          "note": "standard (CIP)"
+        },
+        {
+          "item": "Unloading at your facility",
+          "kg": false,
+          "buyer": true
+        },
+        {
+          "item": "Container return / detention after free time",
+          "kg": false,
+          "buyer": true
+        }
+      ]
+    },
+    "delivery": {
+      "title": "Port or door. You choose.",
+      "points": [
+        {
+          "term": "Standard: CIP to your port",
+          "text": "Our base quote covers freight and insurance to your named port."
+        },
+        {
+          "term": "On request: delivery to your door",
+          "text": "Tell us your warehouse or site. We arrange the full inland leg and price the transport and the risk into the quote."
+        },
+        {
+          "term": "Always the buyer: import customs",
+          "text": "You, or your agent, clear import customs and pay duties and taxes. We do not pay destination customs."
+        }
       ]
     }
   },
   "rfq": {
     "title": "Request a Quote",
-    "intro": "Send your RFQ by email. Add the product and destination port below and we pre-fill the email for you.",
+    "intro": "Build your RFQ below, then send it by email or WhatsApp.",
     "selected": "Selected products",
     "remove": "Remove",
     "clear": "Clear all",
-    "product": "Product / item numbers",
-    "productPh": "e.g. Crush Orange, 20 pallets",
+    "product": "Other products / item numbers",
+    "productPh": "e.g. part numbers or a product list",
     "destination": "Destination port / city",
     "destinationPh": "e.g. Jebel Ali",
     "emailButton": "Email RFQ",
@@ -235,6 +390,47 @@
     "linkedin": "KG Industries on LinkedIn",
     "bank": "Our bank details never change by email. Verify any change by phone with us before paying.",
     "shortcut": "Shortcut: press Q to open, Esc to close.",
-    "close": "Close"
+    "close": "Close",
+    "response": "We reply to every RFQ within 24 hours.",
+    "pallets": "Pallets",
+    "totalPallets": "{n, plural, one {# pallet} other {# pallets}} of soda",
+    "fit20": "fits a 20' container (12 pallets)",
+    "fit40": "fits a 40' container (24 pallets)",
+    "over40": "more than one 40' container",
+    "palletHint": "Each soda line is one pallet. Change the number as needed.",
+    "details": "Details",
+    "detailsPh": "Specification, item or part numbers, quantity",
+    "delivery": "Delivery",
+    "deliveryPort": "To my port (CIP, standard)",
+    "deliveryDoor": "To my door / warehouse (inland delivery)",
+    "doorLabel": "Delivery address / city",
+    "doorPh": "e.g. warehouse in Baku",
+    "customsNote": "Import customs, duties, and taxes are paid by the buyer.",
+    "whatsapp": "Send on WhatsApp"
+  },
+  "gloves": {
+    "button": "View test reports",
+    "title": "Nitrile glove test results",
+    "intro": "Permeation testing by an independent A2LA ISO 17025-accredited laboratory.",
+    "black": "Black nitrile gloves",
+    "orange": "Orange nitrile gloves",
+    "result": "No breakthrough detected up to 240 minutes",
+    "method": "Test method",
+    "agent": "Test agent",
+    "conditions": "Conditions",
+    "specimens": "{n} specimens",
+    "observation": "Observation",
+    "swellDeg": "Slight swelling and degradation",
+    "swellNoDeg": "Slight swelling, no degradation",
+    "tested": "Tested",
+    "chartTitle": "Chemical resistance (nitrile)",
+    "chartNote": "General guidance for nitrile glove material.",
+    "excellent": "Excellent",
+    "good": "Good",
+    "fair": "Fair",
+    "poor": "Poor",
+    "disclaimer": "Results apply to the samples tested. These are permeation test reports, not CE, EN 455, or EN ISO 374 certifications. Confirm suitability for your application.",
+    "requestFull": "Request full test reports",
+    "requestItem": "Nitrile gloves: full test reports"
   }
 }

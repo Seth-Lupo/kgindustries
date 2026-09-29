@@ -28,32 +28,69 @@
     "handle": {
       "title": "NƏYİ ÜZƏRİMİZƏ GÖTÜRÜRÜK",
       "items": [
-        { "title": "Tədarükçü axtarışı", "text": "ABŞ istehsalçısını və ya kanalını tapırıq, spesifikasiyanı yoxlayırıq və zavod qiymətini razılaşdırırıq." },
-        { "title": "Satınalma", "text": "ABŞ-da yerli alıcı kimi alırıq. Siz bir tərəf-müqabil ilə işləyirsiniz." },
-        { "title": "İxrac və sənədlər", "text": "İxrac bəyannaməsi, kommersiya invoysu, qablaşdırma vərəqi, mənşə sertifikatı və tələb olunarsa məhsul sertifikatları." },
-        { "title": "Limanınıza qədər yükdaşıma və sığorta", "text": "Göstərdiyiniz limana qədər CIP və ya CIF şərtləri ilə çatdırılma daxil qiymət." },
-        { "title": "Konsolidasiya", "text": "Bir neçə məhsul, lazım olduqda isə bir neçə tədarükçü, bir konteynerdə birləşdirilir." }
+        {
+          "title": "Tədarükçü axtarışı",
+          "text": "ABŞ istehsalçısını və ya kanalını tapırıq, spesifikasiyanı yoxlayırıq və zavod qiymətini razılaşdırırıq."
+        },
+        {
+          "title": "Satınalma",
+          "text": "ABŞ-da yerli alıcı kimi alırıq. Siz bir tərəf-müqabil ilə işləyirsiniz."
+        },
+        {
+          "title": "İxrac və sənədlər",
+          "text": "İxrac bəyannaməsi, kommersiya invoysu, qablaşdırma vərəqi, mənşə sertifikatı və tələb olunarsa məhsul sertifikatları."
+        },
+        {
+          "title": "Limanınıza qədər yükdaşıma və sığorta",
+          "text": "Baza qiymət: göstərdiyiniz limana qədər CIP. Qapınıza qədər tam ölkədaxili çatdırılma sorğu əsasında."
+        },
+        {
+          "title": "Konsolidasiya",
+          "text": "Bir neçə məhsul, lazım olduqda isə bir neçə tədarükçü, bir konteynerdə birləşdirilir."
+        }
       ],
       "risk": "ABŞ-da bir tərəf-müqabil. ABŞ tərəfində satınalma, ixrac tələblərinə uyğunluq və yükdaşımanın təşkili bizim üzərimizdədir.",
       "data": [
-        { "value": "CIP / CIF", "label": "Göstərdiyiniz limana qədər çatdırılma daxil qiymət" },
-        { "value": "B2B", "label": "Yalnız biznes alıcılar üçün" },
-        { "value": "RFQ", "label": "Qiymət sorğu əsasında verilir" }
-      ]
+        {
+          "value": "CIP",
+          "label": "Limanınıza qədər baza qiymət. Qapıya çatdırılma sorğu əsasında."
+        },
+        {
+          "value": "B2B",
+          "label": "Yalnız biznes alıcılar üçün"
+        },
+        {
+          "value": "RFQ",
+          "label": "Qiymət sorğu əsasında verilir"
+        }
+      ],
+      "delivery": "Liman və ya qapı, seçim sizindir. Baza qiymətimiz limanınıza qədər CIP-dir. Anbarınıza çatdırılma istəyirsinizsə, bütün ölkədaxili hissəni təşkil edir və qiymətə daxil edirik. İdxal rüsumları və vergiləri həmişə alıcı ödəyir."
     },
     "categories": {
       "caption": "ABŞ-DAN TƏDARÜK · LİMANINIZA GÖNDƏRİLİR",
       "title": "MƏHSUL KATEQORİYALARI",
       "tiles": [
-        { "title": "ABŞ içkiləri", "text": "Regionunuz üçün doldurulmayan ABŞ bazarı qazlı içkiləri və xüsusi dadlar" },
-        { "title": "İstehlak malları", "text": "Sorğu əsasında ABŞ ərzaq və FMCG məhsulları" },
-        { "title": "Sənaye və kommersiya", "text": "İctimai iaşə avadanlığı, orijinal Ford hissələri, fərdi qoruyucu vasitələr, obyekt və MRO təchizatı, qablaşdırma" },
-        { "title": "Fərdi tədarük (RFQ)", "text": "Məhsul ABŞ-da satılırsa, spesifikasiyanı bizə göndərin" }
+        {
+          "title": "ABŞ içkiləri",
+          "text": "Regionunuz üçün doldurulmayan ABŞ bazarı qazlı içkiləri və xüsusi dadlar"
+        },
+        {
+          "title": "İstehlak malları",
+          "text": "Sorğu əsasında ABŞ ərzaq və FMCG məhsulları"
+        },
+        {
+          "title": "Sənaye və kommersiya",
+          "text": "Cambro iaşə avadanlığı, orijinal Ford hissələri, fərdi qoruyucu vasitələr, obyekt və MRO təchizatı, qablaşdırma"
+        },
+        {
+          "title": "Fərdi tədarük (RFQ)",
+          "text": "Məhsul ABŞ-da satılırsa, spesifikasiyanı bizə göndərin"
+        }
       ]
     },
     "contact": {
       "title": "QİYMƏT SORĞUSU",
-      "description": "Məhsul adlarını və ya kodlarını, miqdarı və təyinat limanını göndərin. Qiymət sorğu əsasında, limanınıza qədər çatdırılma ilə hesablanır.",
+      "description": "Məhsul adlarını və ya kodlarını, miqdarı və təyinat yerini göndərin. Hər sorğuya 24 saat ərzində cavab veririk.",
       "button": "SORĞUNU AÇ"
     }
   },
@@ -81,19 +118,39 @@
       "glass500": "500 ml şüşə butulka",
       "pack": "Qablaşdırma",
       "caseOf": "{n} ədədlik qutu",
-      "pallet": "Palet konfiqurasiyası",
+      "pallet": "Hər paletdə",
       "palletValue": "{cases} qutu · {units} ədəd",
       "originUS": "ABŞ istehsalı · ABŞ-dan tədarük",
       "originMX": "Meksika istehsalı · ABŞ-dan tədarük",
-      "add": "Sorğuya əlavə et",
-      "added": "Sorğuya əlavə edildi ✓",
-      "selectedCount": "{n, plural, other {# məhsul seçildi}}"
+      "add": "Paleti sorğuya əlavə et",
+      "added": "Sorğuda ✓",
+      "selectedCount": "{n, plural, other {Sorğuda # palet}}",
+      "palletNote": "Paletlə satılır. Sorğuya əlavə etdiyiniz hər içki bir paletdir; palet sayını sorğuda dəyişə bilərsiniz.",
+      "containerFit": "{p20} palet 20 futluq konteyneri doldurur · {p40} palet 40 futluq konteyneri doldurur",
+      "leadTime": "Müddət: sifarişdən konteynerin yüklənməsinə qədər {n} həftə"
     },
     "consumer": {
       "title": "İSTEHLAK MALLARI",
       "intro": "İdxalçılar və pərakəndəçilər üçün ABŞ ərzaq və istehlak brendləri, sizin siyahınıza əsasən. Məhsul adlarını və ya UPC kodlarını və hədəf miqdarı göndərin.",
       "onRequestTitle": "Sorğu əsasında",
-      "onRequest": ["Qəlyanaltılar və şirniyyat", "Əsas çeşiddən kənar içkilər", "Məişət məhsulları"],
+      "onRequest": [
+        {
+          "id": "snacks",
+          "title": "Qəlyanaltılar və şirniyyat"
+        },
+        {
+          "id": "beverages",
+          "title": "Əsas çeşiddən kənar içkilər"
+        },
+        {
+          "id": "household",
+          "title": "Məişət məhsulları"
+        },
+        {
+          "id": "grocery",
+          "title": "Digər ABŞ ərzaq və FMCG məhsulları"
+        }
+      ],
       "howTitle": "Necə sifariş etmək olar",
       "how": "Məhsul adları və ya UPC kodları, hədəf miqdar və təyinat limanı ilə siyahınızı göndərin. Hər mövqe üzrə mövcudluğu və mənşəyi təsdiqləyirik, sonra limanınıza qədər çatdırılma daxil qiymət veririk."
     },
@@ -103,28 +160,32 @@
       "intro": "ABŞ və Avropa istehsalçılarından spesifikasiyaya əsaslanan tədarük. Mənşə ölkəsi hər təklifdə hər mövqe üzrə göstərilir.",
       "cards": [
         {
-          "title": "Kommersiya ictimai iaşə avadanlığı",
-          "text": "Qastronom qabları, polikarbonat saxlama konteynerləri, izolyasiyalı qida daşıyıcıları, şüşə lifli sinilər və qabyuyan kasetləri. Otellər, ketering şirkətləri, müəssisə mətbəxləri, xəstəxanalar və iaşə distribyutorları üçün.",
+          "id": "foodservice",
+          "title": "Cambro kommersiya iaşə avadanlığı",
+          "text": "Cambro qastronom qabları, polikarbonat saxlama konteynerləri, izolyasiyalı qida daşıyıcıları, şüşə lifli sinilər və qabyuyan kasetləri. Otellər, ketering şirkətləri, müəssisə mətbəxləri, xəstəxanalar və iaşə distribyutorları üçün.",
           "note": "Sifariş əsası: tam konteyner.",
           "origin": "ABŞ istehsalı"
         },
         {
+          "id": "ford",
           "title": "Orijinal Ford hissələri (ABŞ spesifikasiyası)",
           "text": "ABŞ spesifikasiyalı avtomobillər üçün orijinal Ford OEM hissələri, ABŞ diler şəbəkəsi vasitəsilə. Hissə nömrələrini və miqdarı göndərin.",
           "note": "Çatdırılma müddəti hər sifariş üçün bildirilir.",
           "origin": "ABŞ-dan tədarük"
         },
         {
+          "id": "gloves",
           "title": "Nitril əlcəklər / fərdi qoruyucu vasitələr",
-          "text": "Möhkəm, təmiz nitrildən (doldurucusuz) birdəfəlik əlcəklər, 6 və 8 mil qalınlığında; sənaye, avtoservis və hüquq-mühafizə istifadəsi üçün.",
-          "origin": "Malayziya istehsalı"
+          "text": "Möhkəm, təmiz nitrildən (doldurucusuz) birdəfəlik əlcəklər, 6 və 8 mil qalınlığında; sənaye, avtoservis və hüquq-mühafizə istifadəsi üçün."
         },
         {
+          "id": "mro",
           "title": "Obyekt, MRO və sənaye təchizatı",
           "text": "İxrac kanalı olmayan ABŞ istehsalçılarından nasoslar, klapanlar, ölçü cihazları, ehtiyat hissələri və sərf materialları. Spesifikasiyanıza uyğun tədarük.",
           "origin": "Təklifdə hər mövqe üzrə göstərilir"
         },
         {
+          "id": "packaging",
           "title": "Qablaşdırma və emal avadanlığı",
           "text": "ABŞ və Avropa istehsalçılarından butulkalar, uyğun qapaqlar və qida emalı avadanlığı. Uyğunluq və sənədlər bizim tərəfimizdən həll olunur.",
           "note": "Azərbaycanda qida istehsalçısına qapaqlar və emal avadanlığı tədarük edilib.",
@@ -139,67 +200,189 @@
     "order": {
       "title": "SİFARİŞ MƏLUMATI",
       "rows": [
-        { "label": "Minimum: içkilər", "text": "Tam paletlər. Paletlər üzrə müxtəlif məhsullar mümkündür; praktiki minimum konteynerdir." },
-        { "label": "Minimum: iaşə avadanlığı", "text": "Hər sifariş üçün tam konteyner." },
-        { "label": "Minimum: digər məhsullar", "text": "Sorğu əsasında." },
-        { "label": "Mənşə", "text": "Hər təklifdə mənşə ölkəsi hər mövqe üzrə göstərilir. ABŞ istehsalı, ABŞ-dan tədarük edilən və ABŞ mənşəli olmayan məhsullar ayrıca qeyd olunur. Mənşə sertifikatı yüklə birlikdə təqdim edilir." },
-        { "label": "Qiymət", "text": "Qiymət sorğu əsasında, göstərdiyiniz limana qədər (CIP və ya CIF). Rüsumlar, vergilər və təyinat yerindəki xərclər, təklifdə göstərilməyibsə, daxil deyil." },
-        { "label": "Təklifin etibarlılığı", "text": "Hər təklifin bitmə tarixi var. Zavod və yükdaşıma qiymətləri dəyişir; müddət bitdikdən sonra qiymətlər yenidən təsdiqlənir." },
-        { "label": "Ödəniş", "text": "Yeni müştərilər: proforma invoys əsasında 100% ilkin ödəniş. ABŞ dolları ilə bank köçürməsi üstünlük təşkil edir." },
-        { "label": "Sənədlər", "text": "Kommersiya invoysu, qablaşdırma vərəqi, konosament, mənşə sertifikatı. Bazarınızın tələbinə uyğun məhsul sertifikatları (məsələn, qida üçün sanitar və ya fitosanitar, ISPM 15 termik emal olunmuş paletlər). İdxal tələblərinizi sorğu zamanı bildirin." },
-        { "label": "İdxalçı", "text": "Alıcı və ya alıcının təyin etdiyi agent idxalçıdır və malı təyinat yerində gömrükdən keçirir." },
-        { "label": "Bank rekvizitləri", "text": "Bank rekvizitlərimiz heç vaxt e-poçt vasitəsilə dəyişmir. Ödənişdən əvvəl hər hansı dəyişikliyi bizimlə telefonla təsdiqləyin." }
+        {
+          "label": "Minimum: içkilər",
+          "text": "Tam paletlə satılır. Paletlər üzrə müxtəlif məhsullar mümkündür. 12 palet 20 futluq konteyneri, 24 palet 40 futluq konteyneri doldurur."
+        },
+        {
+          "label": "Müddət: içkilər",
+          "text": "Sifarişdən konteynerin yüklənməsinə qədər 5 həftə."
+        },
+        {
+          "label": "Minimum: iaşə avadanlığı",
+          "text": "Hər sifariş üçün tam konteyner."
+        },
+        {
+          "label": "Minimum: digər məhsullar",
+          "text": "Sorğu əsasında."
+        },
+        {
+          "label": "Mənşə",
+          "text": "Hər təklifdə mənşə ölkəsi hər mövqe üzrə göstərilir. ABŞ istehsalı, ABŞ-dan tədarük edilən və ABŞ mənşəli olmayan məhsullar ayrıca qeyd olunur. Mənşə sertifikatı yüklə birlikdə təqdim edilir."
+        },
+        {
+          "label": "Qiymət",
+          "text": "Baza qiymət: göstərdiyiniz limana qədər CIP. Qapınıza qədər tam ölkədaxili çatdırılma sorğu əsasında mümkündür; onu təşkil edir və qiymətə daxil edirik. İdxal gömrük rəsmiləşdirməsi, rüsumlar və vergilər alıcı tərəfindən ödənilir."
+        },
+        {
+          "label": "Təklifin etibarlılığı",
+          "text": "Hər təklifin bitmə tarixi var. Zavod və yükdaşıma qiymətləri dəyişir; müddət bitdikdən sonra qiymətlər yenidən təsdiqlənir."
+        },
+        {
+          "label": "Ödəniş",
+          "text": "Yeni müştərilər: proforma invoys əsasında 100% ilkin ödəniş. ABŞ dolları ilə bank köçürməsi üstünlük təşkil edir."
+        },
+        {
+          "label": "Sənədlər",
+          "text": "Kommersiya invoysu, qablaşdırma vərəqi, konosament, mənşə sertifikatı. Bazarınızın tələbinə uyğun məhsul sertifikatları (məsələn, qida üçün sanitar və ya fitosanitar, ISPM 15 termik emal olunmuş paletlər). İdxal tələblərinizi sorğu zamanı bildirin."
+        },
+        {
+          "label": "İdxalçı",
+          "text": "Alıcı və ya alıcının təyin etdiyi agent idxalçıdır və malı təyinat yerində gömrükdən keçirir."
+        },
+        {
+          "label": "Bank rekvizitləri",
+          "text": "Bank rekvizitlərimiz heç vaxt e-poçt vasitəsilə dəyişmir. Ödənişdən əvvəl hər hansı dəyişikliyi bizimlə telefonla təsdiqləyin."
+        }
       ]
-    }
+    },
+    "pickHint": "Sorğu açmaq üçün bir mövqe seçin.",
+    "cardCta": "Qiymət sorğusu"
   },
   "howItWorks": {
     "hero": {
       "title": "Necə işləyir",
-      "subtitle": "Sorğunuzdan CIP və ya CIF şərtləri ilə limanınıza çatdırılmaya qədər."
+      "subtitle": "Sorğunuzdan standart olaraq limanınıza (CIP) və ya sorğu ilə qapınıza qədər çatdırılmaya."
     },
     "steps": [
-      { "title": "Sorğunuzu göndərin", "text": "Məhsul və ya kodlar, spesifikasiya, miqdar, təyinat limanı və ya şəhər və istədiyiniz çatdırılma müddəti. Hazırkı tədarükçü qiymətiniz varsa, onu da əlavə edin. Bu, rəqabət apara biləcəyimizi tez deməyə imkan verir.", "who": "Siz tələbi təqdim edirsiniz." },
-      { "title": "Həcmi təsdiqləyirik", "text": "Qiymət verməzdən əvvəl spesifikasiyanı, miqdarı, qablaşdırmanı və idxal sənədləri tələblərinizi təsdiqləyirik. Sizin əvəzinizə təxmin etmirik." },
-      { "title": "Zavoddan tədarük edirik", "text": "ABŞ istehsalçısından və ya kanalından yerli alıcı kimi EXW və ya FCA şərtləri ilə alırıq.", "who": "ABŞ tərəfində satınalma KG-nin üzərindədir." },
-      { "title": "Çatdırılma daxil qiymət alırsınız", "text": "Göstərdiyiniz limana qədər CIP və ya CIF şərtləri ilə mövqe üzrə qiymət; yükdaşıma və sığorta daxil, bitmə tarixi və istisnaların aydın siyahısı ilə." },
-      { "title": "Proforma invoys və ödəniş", "text": "Təsdiq etdikdən sonra razılaşdırılmış İnkoterms, ödəniş şərtləri və göndəriş qrafiki ilə proforma invoys təqdim edirik." },
-      { "title": "İstehsal, konsolidasiya və ixrac", "text": "Malı toplayırıq, konteynerinizdə birləşdiririk və ABŞ ixrac bəyannaməsini təqdim edirik. Kommersiya invoysu, qablaşdırma vərəqi, mənşə sertifikatı və bazarınızın tələb etdiyi məhsul sertifikatlarını hazırlayırıq.", "who": "KG ABŞ ixracatçısı kimi çıxış edir." },
-      { "title": "Göndəriş və sığorta", "text": "Limanınıza dəniz yükdaşımasını sifariş edir və yükü sığortalayırıq. Yola salınma zamanı izləmə məlumatı və göndəriş sənədlərinin surətini alırsınız." },
-      { "title": "Çatma və gömrük rəsmiləşdirməsi", "text": "Siz və ya agentiniz idxalçı kimi gömrük rəsmiləşdirməsini keçir və yerli rüsum və vergiləri ödəyirsiniz. Təyinat terminalı xərcləri və ölkədaxili çatdırılma, təklifdə başqa cür göstərilməyibsə, sizin tərəfinizdədir.", "who": "Siz malı rəsmiləşdirir və qəbul edirsiniz." }
+      {
+        "title": "Sorğunuzu göndərin",
+        "text": "Məhsul və ya kodlar, spesifikasiya, miqdar, təyinat limanı və ya şəhər və istədiyiniz çatdırılma müddəti. Hazırkı tədarükçü qiymətiniz varsa, onu da əlavə edin. Bu, rəqabət apara biləcəyimizi tez deməyə imkan verir.",
+        "who": "Siz tələbi təqdim edirsiniz."
+      },
+      {
+        "title": "Həcmi təsdiqləyirik",
+        "text": "Qiymət verməzdən əvvəl spesifikasiyanı, miqdarı, qablaşdırmanı və idxal sənədləri tələblərinizi təsdiqləyirik. Hər sorğuya 24 saat ərzində cavab veririk."
+      },
+      {
+        "title": "Zavoddan tədarük edirik",
+        "text": "ABŞ istehsalçısından və ya kanalından yerli alıcı kimi EXW və ya FCA şərtləri ilə alırıq.",
+        "who": "ABŞ tərəfində satınalma KG-nin üzərindədir."
+      },
+      {
+        "title": "Çatdırılma daxil qiymət alırsınız",
+        "text": "Mövqe üzrə qiymət: standart olaraq göstərdiyiniz limana qədər CIP və ya istəsəniz qapınıza qədər çatdırılma ilə. Yükdaşıma və sığorta daxil, bitmə tarixi və istisnaların aydın siyahısı ilə."
+      },
+      {
+        "title": "Proforma invoys və ödəniş",
+        "text": "Təsdiq etdikdən sonra razılaşdırılmış İnkoterms, ödəniş şərtləri və göndəriş qrafiki ilə proforma invoys təqdim edirik."
+      },
+      {
+        "title": "İstehsal, konsolidasiya və ixrac",
+        "text": "Malı toplayırıq, konteynerinizdə birləşdiririk və ABŞ ixrac bəyannaməsini təqdim edirik. Kommersiya invoysu, qablaşdırma vərəqi, mənşə sertifikatı və bazarınızın tələb etdiyi məhsul sertifikatlarını hazırlayırıq.",
+        "who": "KG ABŞ ixracatçısı kimi çıxış edir."
+      },
+      {
+        "title": "Göndəriş və sığorta",
+        "text": "Limanınıza dəniz yükdaşımasını sifariş edir və yükü sığortalayırıq. Yola salınma zamanı izləmə məlumatı və göndəriş sənədlərinin surətini alırsınız."
+      },
+      {
+        "title": "Çatma və gömrük rəsmiləşdirməsi",
+        "text": "Siz və ya agentiniz idxalçı kimi gömrük rəsmiləşdirməsini keçir, rüsum və vergiləri ödəyirsiniz. Qapıya çatdırılma seçmisinizsə, ölkədaxili hissəni obyektinizə qədər tamamlayırıq.",
+        "who": "Siz malı rəsmiləşdirir və qəbul edirsiniz."
+      }
     ],
     "incoterms": {
       "title": "CIP və CIF",
       "items": [
-        { "term": "CIP (Carriage and Insurance Paid to)", "text": "Konteyner yükləri üçün istifadə olunur. Göstərdiyiniz yerə qədər daşıma və sığortanı biz ödəyirik. Sığorta İnkoterms 2020 üzrə bütün risklərdən qorunmadır (Institute Cargo Clauses A)." },
-        { "term": "CIF (Cost, Insurance and Freight)", "text": "Yalnız dəniz yolu, limandan limana. Göstərdiyiniz limana qədər yükdaşıma və sığortanı biz ödəyirik. Minimum sığorta İnkoterms 2020 üzrə Institute Cargo Clauses C-dir, daha yüksək razılaşdırılmayıbsa." }
+        {
+          "term": "CIP (Carriage and Insurance Paid to)",
+          "text": "Konteyner yükləri üçün istifadə olunur. Göstərdiyiniz yerə qədər daşıma və sığortanı biz ödəyirik. Sığorta İnkoterms 2020 üzrə bütün risklərdən qorunmadır (Institute Cargo Clauses A)."
+        },
+        {
+          "term": "CIF (Cost, Insurance and Freight)",
+          "text": "Yalnız dəniz yolu, limandan limana. Göstərdiyiniz limana qədər yükdaşıma və sığortanı biz ödəyirik. Minimum sığorta İnkoterms 2020 üzrə Institute Cargo Clauses C-dir, daha yüksək razılaşdırılmayıbsa."
+        }
       ],
       "risk": "Hər iki şərtdə risk alıcıya mal göndəriş yerində daşıyıcıya təhvil verildikdə və ya gəmiyə yükləndikdə keçir, çatma zamanı deyil. Buna görə sığorta daxildir.",
-      "other": "Digər şərtlər (FCA, DAP) sorğu əsasında."
+      "other": "Digər şərtlər (FCA, CIF, qapınıza qədər DAP) sorğu əsasında.",
+      "base": "Baza qiymətimiz limanınıza qədər CIP-dir. Qapıya çatdırılma sorğu əsasında mümkündür: bütün marşrutu təşkil edir və riski qiymətə daxil edirik. İdxal gömrüyü, rüsumlar və vergilər həmişə alıcı tərəfindən ödənilir."
     },
     "table": {
       "title": "Kim nəyə cavabdehdir",
       "item": "Tapşırıq",
       "buyer": "Alıcı",
       "rows": [
-        { "item": "ABŞ-da satınalma və tədarükçülərlə iş", "kg": true, "buyer": false },
-        { "item": "Göndəriş yerinə daşınma, ixrac rəsmiləşdirməsi, ABŞ ixrac bəyannaməsi", "kg": true, "buyer": false },
-        { "item": "Dəniz yükdaşıması və yük sığortası (CIP/CIF)", "kg": true, "buyer": false },
-        { "item": "Kommersiya sənədləri və mənşə sertifikatı", "kg": true, "buyer": false },
-        { "item": "İdxal rəsmiləşdirməsi, rüsumlar, ƏDV", "kg": false, "buyer": true },
-        { "item": "Təyinat terminalı xərcləri, ölkədaxili çatdırılma", "kg": false, "buyer": true, "note": "təklifdə yoxdursa" },
-        { "item": "Obyektinizdə boşaltma", "kg": false, "buyer": true },
-        { "item": "Konteynerin qaytarılması / pulsuz müddətdən sonra demerec", "kg": false, "buyer": true }
+        {
+          "item": "ABŞ-da satınalma və tədarükçülərlə iş",
+          "kg": true,
+          "buyer": false
+        },
+        {
+          "item": "Göndəriş yerinə daşınma, ixrac rəsmiləşdirməsi, ABŞ ixrac bəyannaməsi",
+          "kg": true,
+          "buyer": false
+        },
+        {
+          "item": "Dəniz yükdaşıması və yük sığortası (CIP/CIF)",
+          "kg": true,
+          "buyer": false
+        },
+        {
+          "item": "Kommersiya sənədləri və mənşə sertifikatı",
+          "kg": true,
+          "buyer": false
+        },
+        {
+          "item": "İdxal rəsmiləşdirməsi, rüsumlar, ƏDV",
+          "kg": false,
+          "buyer": true
+        },
+        {
+          "item": "Təyinat terminalı xərcləri, obyektinizə ölkədaxili çatdırılma",
+          "kg": true,
+          "kgNote": "sorğu ilə",
+          "buyer": true,
+          "note": "standart (CIP)"
+        },
+        {
+          "item": "Obyektinizdə boşaltma",
+          "kg": false,
+          "buyer": true
+        },
+        {
+          "item": "Konteynerin qaytarılması / pulsuz müddətdən sonra demerec",
+          "kg": false,
+          "buyer": true
+        }
+      ]
+    },
+    "delivery": {
+      "title": "Liman və ya qapı. Seçim sizindir.",
+      "points": [
+        {
+          "term": "Standart: limanınıza qədər CIP",
+          "text": "Baza qiymətimiz göstərdiyiniz limana qədər yükdaşıma və sığortanı əhatə edir."
+        },
+        {
+          "term": "Sorğu əsasında: qapınıza çatdırılma",
+          "text": "Anbarınızı və ya obyektinizi bildirin. Bütün ölkədaxili hissəni təşkil edir, daşıma və riski qiymətə daxil edirik."
+        },
+        {
+          "term": "Həmişə alıcı: idxal gömrüyü",
+          "text": "Siz və ya agentiniz idxal gömrüyündən keçir, rüsum və vergiləri ödəyirsiniz. Təyinat ölkəsində gömrüyü biz ödəmirik."
+        }
       ]
     }
   },
   "rfq": {
     "title": "Qiymət sorğusu",
-    "intro": "Sorğunuzu e-poçtla göndərin. Aşağıda məhsulu və təyinat limanını qeyd edin, məktubu sizin üçün dolduraq.",
+    "intro": "Sorğunuzu aşağıda hazırlayın, sonra e-poçt və ya WhatsApp ilə göndərin.",
     "selected": "Seçilmiş məhsullar",
     "remove": "Sil",
     "clear": "Hamısını sil",
-    "product": "Məhsul / kodlar",
-    "productPh": "məs. Crush Orange, 20 palet",
+    "product": "Digər məhsullar / kodlar",
+    "productPh": "məs. hissə nömrələri və ya məhsul siyahısı",
     "destination": "Təyinat limanı / şəhər",
     "destinationPh": "məs. Bakı (Ələt)",
     "emailButton": "Sorğunu e-poçtla göndər",
@@ -207,6 +390,47 @@
     "linkedin": "KG Industries LinkedIn-də",
     "bank": "Bank rekvizitlərimiz heç vaxt e-poçt vasitəsilə dəyişmir. Ödənişdən əvvəl hər hansı dəyişikliyi bizimlə telefonla təsdiqləyin.",
     "shortcut": "Qısayol: açmaq üçün Q, bağlamaq üçün Esc.",
-    "close": "Bağla"
+    "close": "Bağla",
+    "response": "Hər sorğuya 24 saat ərzində cavab veririk.",
+    "pallets": "Palet",
+    "totalPallets": "İçki: {n} palet",
+    "fit20": "20 futluq konteynerə sığır (12 palet)",
+    "fit40": "40 futluq konteynerə sığır (24 palet)",
+    "over40": "bir 40 futluq konteynerdən çox",
+    "palletHint": "Hər içki mövqeyi bir paletdir. Lazım olduqda sayı dəyişin.",
+    "details": "Ətraflı",
+    "detailsPh": "Spesifikasiya, məhsul və ya hissə nömrələri, miqdar",
+    "delivery": "Çatdırılma",
+    "deliveryPort": "Limanıma qədər (CIP, standart)",
+    "deliveryDoor": "Qapıma / anbarıma qədər (ölkədaxili çatdırılma)",
+    "doorLabel": "Çatdırılma ünvanı / şəhər",
+    "doorPh": "məs. Bakıda anbar",
+    "customsNote": "İdxal gömrüyü, rüsumlar və vergilər alıcı tərəfindən ödənilir.",
+    "whatsapp": "WhatsApp ilə göndər"
+  },
+  "gloves": {
+    "button": "Test nəticələrinə bax",
+    "title": "Nitril əlcəklərin test nəticələri",
+    "intro": "A2LA tərəfindən ISO 17025 üzrə akkreditə olunmuş müstəqil laboratoriyada keçiricilik testi.",
+    "black": "Qara nitril əlcəklər",
+    "orange": "Narıncı nitril əlcəklər",
+    "result": "240 dəqiqəyə qədər keçmə aşkar edilmədi",
+    "method": "Test metodu",
+    "agent": "Test maddəsi",
+    "conditions": "Şərtlər",
+    "specimens": "{n} nümunə",
+    "observation": "Müşahidə",
+    "swellDeg": "Cüzi şişmə və deqradasiya",
+    "swellNoDeg": "Cüzi şişmə, deqradasiya yoxdur",
+    "tested": "Test tarixi",
+    "chartTitle": "Kimyəvi davamlılıq (nitril)",
+    "chartNote": "Nitril əlcək materialı üçün ümumi təlimat.",
+    "excellent": "Əla",
+    "good": "Yaxşı",
+    "fair": "Orta",
+    "poor": "Zəif",
+    "disclaimer": "Nəticələr test edilmiş nümunələrə aiddir. Bunlar keçiricilik test hesabatlarıdır, CE, EN 455 və ya EN ISO 374 sertifikatları deyil. Tətbiqiniz üçün uyğunluğu yoxlayın.",
+    "requestFull": "Tam test hesabatlarını istə",
+    "requestItem": "Nitril əlcəklər: tam test hesabatları"
   }
 }

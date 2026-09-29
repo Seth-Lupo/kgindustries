@@ -1,36 +1,55 @@
 <script lang="ts">
 	import { tick } from 'svelte';
+	import { get } from 'svelte/store';
 	import { _ } from 'svelte-i18n';
 	import {
 		rfqOpen,
 		rfqItems,
-		toggleRfqItem,
+		rfqFocusKey,
+		updateItem,
+		removeItem,
+		totalPallets,
 		buildRfqMailto,
+		openWhatsApp,
+		PALLETS_20FT,
+		PALLETS_40FT,
 		RFQ_EMAIL,
-		LINKEDIN_URL
+		LINKEDIN_URL,
+		type RfqDraft
 	} from '$lib/stores/rfq';
 
-	let product = $state('');
+	let other = $state('');
 	let port = $state('');
-	let productInput: HTMLInputElement | undefined = $state();
+	let door = $state('');
+	let delivery = $state<'port' | 'door'>('port');
+	let panel: HTMLDivElement | undefined = $state();
 
-	const productText = $derived(
-		[...$rfqItems, product.trim()].filter(Boolean).join('; ')
+	const draft = $derived<RfqDraft>({ items: $rfqItems, other, delivery, port, door });
+	const mailto = $derived(buildRfqMailto(draft));
+	const pallets = $derived(totalPallets($rfqItems));
+	const fitKey = $derived(
+		pallets <= PALLETS_20FT ? 'rfq.fit20' : pallets <= PALLETS_40FT ? 'rfq.fit40' : 'rfq.over40'
 	);
-	const mailto = $derived(buildRfqMailto(productText, port.trim()));
 
 	$effect(() => {
 		document.body.style.overflow = $rfqOpen ? 'hidden' : '';
-		if ($rfqOpen) tick().then(() => productInput?.focus());
+		if ($rfqOpen) {
+			// Read without subscribing, so clearing the key below doesn't re-run this effect.
+			const key = get(rfqFocusKey);
+			tick().then(() => {
+				const target = key
+					? panel?.querySelector<HTMLElement>(`[data-notes="${key}"]`)
+					: panel?.querySelector<HTMLElement>('[data-first]');
+				target?.focus();
+				rfqFocusKey.set(null);
+			});
+		}
 	});
 
 	function isTyping(target: EventTarget | null) {
 		const el = target as HTMLElement | null;
 		if (!el) return false;
-		return (
-			el.isContentEditable ||
-			['INPUT', 'TEXTAREA', 'SELECT'].includes(el.tagName)
-		);
+		return el.isContentEditable || ['INPUT', 'TEXTAREA', 'SELECT'].includes(el.tagName);
 	}
 
 	function handleKeydown(e: KeyboardEvent) {
@@ -45,6 +64,8 @@
 			rfqOpen.set(true);
 		}
 	}
+
+	const setQty = (key: string, qty: number) => updateItem(key, { qty: Math.max(1, Math.min(999, qty || 1)) });
 </script>
 
 <svelte:window onkeydown={handleKeydown} />
@@ -57,7 +78,7 @@
 {#if $rfqOpen}
 	<!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
 	<div class="rfq-backdrop" onclick={() => rfqOpen.set(false)}></div>
-	<div class="rfq-panel" role="dialog" aria-modal="true" aria-labelledby="rfq-title">
+	<div class="rfq-panel" role="dialog" aria-modal="true" aria-labelledby="rfq-title" bind:this={panel}>
 		<div class="panel-head">
 			<h2 id="rfq-title">{$_('rfq.title')}</h2>
 			<button class="close" onclick={() => rfqOpen.set(false)} aria-label={$_('rfq.close')}>
@@ -68,35 +89,91 @@
 		</div>
 
 		<p class="intro">{$_('rfq.intro')}</p>
+		<p class="response">{$_('rfq.response')}</p>
 
 		{#if $rfqItems.length}
 			<div class="selected">
 				<div class="field-label">{$_('rfq.selected')}</div>
 				<ul>
-					{#each $rfqItems as item (item)}
+					{#each $rfqItems as item (item.key)}
 						<li>
-							<span>{item}</span>
-							<button onclick={() => toggleRfqItem(item)} aria-label="{$_('rfq.remove')}: {item}">×</button>
+							<div class="item-row">
+								<span class="item-name">{item.display}</span>
+								<button class="remove" onclick={() => removeItem(item.key)} aria-label="{$_('rfq.remove')}: {item.display}">×</button>
+							</div>
+							{#if item.kind === 'pallet'}
+								<div class="qty">
+									<span class="qty-label">{$_('rfq.pallets')}</span>
+									<div class="stepper">
+										<button onclick={() => setQty(item.key, item.qty - 1)} disabled={item.qty <= 1} aria-label="−">−</button>
+										<input
+											type="number"
+											min="1"
+											inputmode="numeric"
+											value={item.qty}
+											aria-label="{$_('rfq.pallets')}: {item.display}"
+											oninput={(e) => setQty(item.key, parseInt(e.currentTarget.value))}
+										/>
+										<button onclick={() => setQty(item.key, item.qty + 1)} aria-label="+">+</button>
+									</div>
+								</div>
+							{:else}
+								<textarea
+									data-notes={item.key}
+									rows="2"
+									placeholder={$_('rfq.detailsPh')}
+									value={item.notes}
+									aria-label="{$_('rfq.details')}: {item.display}"
+									oninput={(e) => updateItem(item.key, { notes: e.currentTarget.value })}
+								></textarea>
+							{/if}
 						</li>
 					{/each}
 				</ul>
+				{#if pallets}
+					<p class="pallet-total">
+						<strong>{$_('rfq.totalPallets', { values: { n: pallets } })}</strong>
+						· {$_(fitKey)}
+					</p>
+					<p class="hint">{$_('rfq.palletHint')}</p>
+				{/if}
 				<button class="text-btn" onclick={() => rfqItems.set([])}>{$_('rfq.clear')}</button>
 			</div>
 		{/if}
 
 		<label class="field">
 			<span class="field-label">{$_('rfq.product')}</span>
-			<input bind:this={productInput} bind:value={product} placeholder={$_('rfq.productPh')} />
+			<input data-first bind:value={other} placeholder={$_('rfq.productPh')} />
 		</label>
+
+		<fieldset class="field delivery">
+			<legend class="field-label">{$_('rfq.delivery')}</legend>
+			<label class="radio">
+				<input type="radio" bind:group={delivery} value="port" />
+				<span>{$_('rfq.deliveryPort')}</span>
+			</label>
+			<label class="radio">
+				<input type="radio" bind:group={delivery} value="door" />
+				<span>{$_('rfq.deliveryDoor')}</span>
+			</label>
+		</fieldset>
+
 		<label class="field">
 			<span class="field-label">{$_('rfq.destination')}</span>
 			<input bind:value={port} placeholder={$_('rfq.destinationPh')} />
 		</label>
+		{#if delivery === 'door'}
+			<label class="field">
+				<span class="field-label">{$_('rfq.doorLabel')}</span>
+				<input bind:value={door} placeholder={$_('rfq.doorPh')} />
+			</label>
+		{/if}
+		<p class="hint">{$_('rfq.customsNote')}</p>
 
 		<a class="primary" href={mailto}>{$_('rfq.emailButton')}</a>
+		<button class="secondary whatsapp" onclick={() => openWhatsApp(draft)}>{$_('rfq.whatsapp')}</button>
 		<p class="note">{$_('rfq.emailNote')} <a href="mailto:{RFQ_EMAIL}">{RFQ_EMAIL}</a></p>
 
-		<!-- CONFIRM: business WhatsApp number (wa.me link with the same pre-filled text) -->
 		<!-- CONFIRM: optional short form, only via a backend the company controls -->
 
 		<a class="secondary" href={LINKEDIN_URL} target="_blank" rel="noopener">{$_('rfq.linkedin')}</a>
@@ -269,12 +346,159 @@
 		font-size: 0.85rem;
 	}
 
-	.selected li button {
+	.selected li {
+		flex-direction: column;
+		align-items: stretch;
+	}
+
+	.item-row {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.item-name {
+		color: #ffffff;
+		font-weight: 600;
+	}
+
+	.remove {
 		background: none;
 		border: none;
 		color: #71717a;
 		font-size: 1.1rem;
 		cursor: pointer;
+	}
+
+	.qty {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.qty-label {
+		font-size: 0.75rem;
+		color: #71717a;
+	}
+
+	.stepper {
+		display: flex;
+		align-items: stretch;
+		border: 1px solid #27272a;
+	}
+
+	.stepper button {
+		width: 34px;
+		background: #111116;
+		border: none;
+		color: #ffffff;
+		font-size: 1rem;
+		cursor: pointer;
+	}
+
+	.stepper button:disabled {
+		color: #3f3f46;
+		cursor: default;
+	}
+
+	.stepper input {
+		width: 52px;
+		padding: 0.4rem;
+		border: none;
+		border-inline: 1px solid #27272a;
+		text-align: center;
+		font-size: 0.95rem;
+		-moz-appearance: textfield;
+		appearance: textfield;
+	}
+
+	.stepper input::-webkit-outer-spin-button,
+	.stepper input::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
+	textarea {
+		background: #0a0a0d;
+		border: 1px solid #27272a;
+		color: #ffffff;
+		padding: 0.6rem 0.7rem;
+		font-family: inherit;
+		font-size: 0.9rem;
+		resize: vertical;
+	}
+
+	textarea:focus {
+		outline: none;
+		border-color: #1c71d8;
+	}
+
+	.pallet-total {
+		margin: 0.25rem 0 0;
+		font-size: 0.85rem;
+		color: #d4d4d8;
+	}
+
+	.hint {
+		margin: 0.25rem 0 0.5rem;
+		font-size: 0.8rem;
+		line-height: 1.5;
+		color: #71717a;
+	}
+
+	.response {
+		margin: 0;
+		font-size: 0.85rem;
+		font-weight: 600;
+		color: #ffffff;
+		padding: 0.6rem 0.75rem;
+		background: rgba(28, 113, 216, 0.12);
+		border-inline-start: 2px solid #1c71d8;
+	}
+
+	.delivery {
+		border: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.delivery legend {
+		margin-bottom: 0.4rem;
+		padding: 0;
+	}
+
+	.radio {
+		display: flex;
+		align-items: center;
+		gap: 0.6rem;
+		padding: 0.6rem 0.75rem;
+		border: 1px solid #27272a;
+		background: #050508;
+		font-size: 0.9rem;
+		cursor: pointer;
+	}
+
+	.radio + .radio {
+		margin-top: 0.4rem;
+	}
+
+	.radio:has(input:checked) {
+		border-color: #1c71d8;
+		color: #ffffff;
+	}
+
+	.radio input {
+		accent-color: #1c71d8;
+		padding: 0;
+	}
+
+	.whatsapp {
+		background: transparent;
+		font-family: inherit;
+		cursor: pointer;
+		width: 100%;
 	}
 
 	.text-btn {

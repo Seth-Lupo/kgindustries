@@ -103,7 +103,8 @@
 
 		let frameCount = 0;
 		function drawGlobe() {
-			if (!ctx) return;
+			// Stop the loop once the page (and its canvas) has been navigated away from.
+			if (!ctx || !globeCanvas) return;
 			frameCount++;
 
 			// Only render every other frame (30fps instead of 60fps)
@@ -310,6 +311,7 @@
 						{/each}
 					</ol>
 					<p class="risk-line">{$_('home.handle.risk')}</p>
+					<p class="delivery-line">{$_('home.handle.delivery')}</p>
 				</div>
 				<div class="process-data">
 					{#each $json('home.handle.data') as DataPoint[] as point}
@@ -641,6 +643,13 @@
 		margin: 0;
 		font-size: 0.95rem;
 		line-height: 1.6;
+	}
+
+	.process-text p.delivery-line {
+		margin: 1rem 0 0;
+		font-size: 0.95rem;
+		line-height: 1.6;
+		color: #d4d4d8;
 	}
 
 	.process-text p.risk-line {

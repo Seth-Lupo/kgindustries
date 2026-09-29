@@ -18,7 +18,7 @@
 
 	type Step = { title: string; text: string; who?: string };
 	type Term = { term: string; text: string };
-	type TableRow = { item: string; kg: boolean; buyer: boolean; note?: string };
+	type TableRow = { item: string; kg: boolean; buyer: boolean; kgNote?: string; note?: string };
 
 	let activeFlag = $state(0);
 
@@ -32,7 +32,7 @@
 
 <SEO
 	title="How It Works | KG Industries"
-	description="From RFQ to CIP/CIF delivery: KG Industries buys in the US as the domestic purchaser, handles US export, and delivers to your named port."
+	description="From RFQ to delivery: KG Industries buys in the US as the domestic purchaser, handles US export, and quotes CIP to your port as standard, with door delivery on request."
 	canonical="/how-it-works"
 />
 
@@ -44,6 +44,20 @@
 		<div class="hero-content">
 			<h1>{$_('howItWorks.hero.title')}</h1>
 			<p>{$_('howItWorks.hero.subtitle')}</p>
+		</div>
+	</section>
+
+	<section class="delivery-callout">
+		<div class="delivery-inner">
+			<h2>{$_('howItWorks.delivery.title')}</h2>
+			<div class="delivery-grid">
+				{#each $json('howItWorks.delivery.points') as Term[] as point}
+					<div class="delivery-point">
+						<h3>{point.term}</h3>
+						<p>{point.text}</p>
+					</div>
+				{/each}
+			</div>
 		</div>
 	</section>
 
@@ -101,6 +115,7 @@
 						<p>{t.text}</p>
 					</div>
 				{/each}
+				<p class="term-base">{$_('howItWorks.incoterms.base')}</p>
 				<p class="term-risk">{$_('howItWorks.incoterms.risk')}</p>
 				<p class="term-other">{$_('howItWorks.incoterms.other')}</p>
 			</div>
@@ -119,7 +134,10 @@
 						{#each $json('howItWorks.table.rows') as TableRow[] as row}
 							<tr>
 								<td>{row.item}</td>
-								<td class="mark">{row.kg ? '✓' : ''}</td>
+								<td class="mark">
+									{row.kg ? '✓' : ''}
+									{#if row.kgNote}<span class="mark-note">{row.kgNote}</span>{/if}
+								</td>
 								<td class="mark">
 									{row.buyer ? '✓' : ''}
 									{#if row.note}<span class="mark-note">{row.note}</span>{/if}
@@ -463,6 +481,67 @@
 		color: #a1a1aa;
 	}
 
+	.term-base {
+		margin: 1.5rem 0 0 !important;
+		padding: 1rem;
+		background: rgba(28, 113, 216, 0.1);
+		color: #ffffff !important;
+		font-weight: 600;
+	}
+
+	.delivery-callout {
+		position: relative;
+		z-index: 2;
+		padding: 4rem 4vw;
+		background: #050508;
+		border-bottom: 1px solid #1a1a22;
+	}
+
+	.delivery-inner {
+		max-width: 1200px;
+		margin: 0 auto;
+	}
+
+	.delivery-inner h2 {
+		margin: 0 0 2rem;
+		font-size: clamp(1.4rem, 3vw, 2rem);
+		font-weight: 900;
+		letter-spacing: 0.05em;
+		color: #ffffff;
+		text-transform: uppercase;
+	}
+
+	.delivery-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 1.25rem;
+	}
+
+	.delivery-point {
+		padding: 1.5rem;
+		background: #0a0a0d;
+		border: 1px solid #1a1a22;
+		border-top: 3px solid #1c71d8;
+	}
+
+	.delivery-point:last-child {
+		border-top-color: #71717a;
+	}
+
+	.delivery-point h3 {
+		margin: 0 0 0.6rem;
+		font-size: 1rem;
+		font-weight: 700;
+		color: #ffffff;
+	}
+
+	.delivery-point p {
+		margin: 0;
+		font-size: 0.95rem;
+		line-height: 1.6;
+		color: #a1a1aa;
+	}
+
 	.term-risk {
 		margin-top: 1.5rem;
 		padding-top: 1.25rem;
@@ -587,6 +666,14 @@
 		.terms-inner {
 			grid-template-columns: 1fr;
 			gap: 3rem;
+		}
+
+		.delivery-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.delivery-callout {
+			padding: 3rem 4vw;
 		}
 
 		.incoterms {

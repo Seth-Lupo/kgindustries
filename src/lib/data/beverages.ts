@@ -1,9 +1,9 @@
 // US beverage range (34 SKUs). Display order leads with specialty items that
 // local bottlers in export markets do not produce.
 
-// CONFIRM: pallet configurations are from the July 2026 deck. Set to true once
-// confirmed current. Never show prices here.
-export const SHOW_PALLET_CONFIG = false;
+// Pallet configurations from the July 2026 deck. Never show prices here.
+// Each RFQ line for a beverage is one pallet; buyers adjust the count in the RFQ panel.
+export const BEVERAGE_LEAD_TIME_WEEKS = 5;
 
 export type Origin = 'US' | 'MX';
 export type Size = 'glass355' | 'glass500';

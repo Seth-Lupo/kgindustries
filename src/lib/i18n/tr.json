@@ -28,32 +28,69 @@
     "handle": {
       "title": "NELERİ ÜSTLENİYORUZ",
       "items": [
-        { "title": "Tedarik", "text": "ABD'deki üreticiyi veya kanalı buluyor, spesifikasyonu doğruluyor ve fabrika fiyatını müzakere ediyoruz." },
-        { "title": "Satın alma", "text": "ABD'de yurt içi alıcı olarak satın alıyoruz. Tek bir muhatapla çalışırsınız." },
-        { "title": "İhracat ve belgeler", "text": "İhracat beyanı, ticari fatura, çeki listesi, menşe şahadetnamesi ve gerektiğinde ürün sertifikaları." },
-        { "title": "Limanınıza kadar navlun ve sigorta", "text": "Belirttiğiniz limana CIP veya CIF şartlarıyla teslim fiyatı." },
-        { "title": "Konsolidasyon", "text": "Birden fazla ürün ve gerektiğinde birden fazla tedarikçi tek konteynerde birleştirilir." }
+        {
+          "title": "Tedarik",
+          "text": "ABD'deki üreticiyi veya kanalı buluyor, spesifikasyonu doğruluyor ve fabrika fiyatını müzakere ediyoruz."
+        },
+        {
+          "title": "Satın alma",
+          "text": "ABD'de yurt içi alıcı olarak satın alıyoruz. Tek bir muhatapla çalışırsınız."
+        },
+        {
+          "title": "İhracat ve belgeler",
+          "text": "İhracat beyanı, ticari fatura, çeki listesi, menşe şahadetnamesi ve gerektiğinde ürün sertifikaları."
+        },
+        {
+          "title": "Limanınıza kadar navlun ve sigorta",
+          "text": "Temel teklif: belirttiğiniz limana CIP. Kapınıza kadar tam iç taşıma talep üzerine."
+        },
+        {
+          "title": "Konsolidasyon",
+          "text": "Birden fazla ürün ve gerektiğinde birden fazla tedarikçi tek konteynerde birleştirilir."
+        }
       ],
       "risk": "ABD'de tek muhatap. ABD tarafındaki satın alma, ihracat uyumu ve navlun koordinasyonu bizde.",
       "data": [
-        { "value": "CIP / CIF", "label": "Belirttiğiniz limana teslim fiyatı" },
-        { "value": "B2B", "label": "Yalnızca kurumsal alıcılar" },
-        { "value": "RFQ", "label": "Fiyat teklif talebine göre verilir" }
-      ]
+        {
+          "value": "CIP",
+          "label": "Limanınıza temel teklif. Kapıya teslim talep üzerine."
+        },
+        {
+          "value": "B2B",
+          "label": "Yalnızca kurumsal alıcılar"
+        },
+        {
+          "value": "RFQ",
+          "label": "Fiyat teklif talebine göre verilir"
+        }
+      ],
+      "delivery": "Liman ya da kapı, seçim sizin. Temel teklifimiz limanınıza CIP'dir. Deponuza teslim isterseniz, iç taşımanın tamamını ayarlar ve teklife dahil ederiz. İthalat gümrük vergileri ve diğer vergiler her zaman alıcı tarafından ödenir."
     },
     "categories": {
       "caption": "ABD'DEN TEDARİK · LİMANINIZA SEVK",
       "title": "ÜRÜN KATEGORİLERİ",
       "tiles": [
-        { "title": "ABD İçecekleri", "text": "Bölgeniz için şişelenmeyen ABD pazarı gazlı içecekleri ve özel aromalar" },
-        { "title": "Tüketim Ürünleri", "text": "Talep üzerine ABD gıda ve hızlı tüketim ürünleri" },
-        { "title": "Endüstriyel ve Ticari", "text": "Yiyecek-içecek ekipmanı, orijinal Ford parçaları, KKD, tesis ve MRO malzemeleri, ambalaj" },
-        { "title": "Özel Tedarik (RFQ)", "text": "ABD'de satılıyorsa, spesifikasyonu bize gönderin" }
+        {
+          "title": "ABD İçecekleri",
+          "text": "Bölgeniz için şişelenmeyen ABD pazarı gazlı içecekleri ve özel aromalar"
+        },
+        {
+          "title": "Tüketim Ürünleri",
+          "text": "Talep üzerine ABD gıda ve hızlı tüketim ürünleri"
+        },
+        {
+          "title": "Endüstriyel ve Ticari",
+          "text": "Cambro yiyecek-içecek ekipmanı, orijinal Ford parçaları, KKD, tesis ve MRO malzemeleri, ambalaj"
+        },
+        {
+          "title": "Özel Tedarik (RFQ)",
+          "text": "ABD'de satılıyorsa, spesifikasyonu bize gönderin"
+        }
       ]
     },
     "contact": {
       "title": "TEKLİF İSTE",
-      "description": "Ürün adlarını veya kodlarını, miktarı ve varış limanını gönderin. Fiyat, teklif talebine göre limanınıza teslim olarak verilir.",
+      "description": "Ürün adlarını veya kodlarını, miktarı ve varış yerini gönderin. Her teklif talebine 24 saat içinde yanıt veririz.",
       "button": "TALEBİ AÇ"
     }
   },
@@ -81,19 +118,39 @@
       "glass500": "500 ml cam şişe",
       "pack": "Ambalaj",
       "caseOf": "{n}'lü koli",
-      "pallet": "Palet düzeni",
+      "pallet": "Palet başına",
       "palletValue": "{cases} koli · {units} adet",
       "originUS": "ABD üretimi · ABD'den tedarik",
       "originMX": "Meksika üretimi · ABD'den tedarik",
-      "add": "Talebe ekle",
-      "added": "Talebe eklendi ✓",
-      "selectedCount": "{n, plural, other {# ürün seçildi}}"
+      "add": "Paleti talebe ekle",
+      "added": "Talepte ✓",
+      "selectedCount": "{n, plural, other {Talepte # palet}}",
+      "palletNote": "Palet bazında satılır. Talebe eklediğiniz her içecek bir palettir; palet sayısını talepte değiştirebilirsiniz.",
+      "containerFit": "{p20} palet bir 20' konteyneri doldurur · {p40} palet bir 40' konteyneri doldurur",
+      "leadTime": "Teslim süresi: siparişten konteyner yüklemesine {n} hafta"
     },
     "consumer": {
       "title": "TÜKETİM ÜRÜNLERİ",
       "intro": "İthalatçılar ve perakendeciler için ABD gıda ve tüketim markaları, listenize göre tedarik edilir. Ürün adlarını veya UPC kodlarını ve hedef miktarları gönderin.",
       "onRequestTitle": "Talep üzerine",
-      "onRequest": ["Atıştırmalıklar ve şekerlemeler", "Ana ürün yelpazesi dışındaki içecekler", "Ev ürünleri"],
+      "onRequest": [
+        {
+          "id": "snacks",
+          "title": "Atıştırmalıklar ve şekerlemeler"
+        },
+        {
+          "id": "beverages",
+          "title": "Ana ürün yelpazesi dışındaki içecekler"
+        },
+        {
+          "id": "household",
+          "title": "Ev ürünleri"
+        },
+        {
+          "id": "grocery",
+          "title": "Diğer ABD gıda ve hızlı tüketim ürünleri"
+        }
+      ],
       "howTitle": "Nasıl sipariş verilir",
       "how": "Ürün adları veya UPC kodları, hedef miktarlar ve varış limanıyla listenizi gönderin. Her kalem için stok durumu ve menşei teyit eder, ardından limanınıza teslim fiyatı veririz."
     },
@@ -103,28 +160,32 @@
       "intro": "ABD ve Avrupa üreticilerinden spesifikasyona dayalı tedarik. Menşe ülkesi her teklifte her kalem için belirtilir.",
       "cards": [
         {
-          "title": "Ticari yiyecek-içecek ekipmanı",
-          "text": "Gastronom küvetleri, polikarbonat saklama kapları, yalıtımlı yemek taşıma kapları, fiberglas tepsiler ve bulaşık makinesi sepetleri. Oteller, catering firmaları, kurum mutfakları, hastaneler ve yiyecek-içecek distribütörleri için.",
+          "id": "foodservice",
+          "title": "Cambro ticari yiyecek-içecek ekipmanı",
+          "text": "Cambro gastronom küvetleri, polikarbonat saklama kapları, yalıtımlı yemek taşıma kapları, fiberglas tepsiler ve bulaşık makinesi sepetleri. Oteller, catering firmaları, kurum mutfakları, hastaneler ve yiyecek-içecek distribütörleri için.",
           "note": "Sipariş esası: tam konteyner.",
           "origin": "ABD üretimi"
         },
         {
+          "id": "ford",
           "title": "Orijinal Ford parçaları (ABD spesifikasyonu)",
           "text": "ABD spesifikasyonlu araçlar için orijinal Ford OEM parçaları, ABD bayi ağı üzerinden. Parça numaralarını ve miktarları gönderin.",
           "note": "Teslim süresi her sipariş için ayrıca bildirilir.",
           "origin": "ABD'den tedarik"
         },
         {
+          "id": "gloves",
           "title": "Nitril eldiven / KKD",
-          "text": "Dayanıklı, saf nitril (dolgu maddesiz) tek kullanımlık eldivenler; 6 ve 8 mil kalınlıkta; endüstri, otomotiv ve kolluk kullanımı için.",
-          "origin": "Malezya üretimi"
+          "text": "Dayanıklı, saf nitril (dolgu maddesiz) tek kullanımlık eldivenler; 6 ve 8 mil kalınlıkta; endüstri, otomotiv ve kolluk kullanımı için."
         },
         {
+          "id": "mro",
           "title": "Tesis, MRO ve endüstriyel malzemeler",
           "text": "İhracat kanalı olmayan ABD üreticilerinden pompalar, vanalar, ölçü aletleri, yedek parçalar ve sarf malzemeleri. Spesifikasyonunuza göre tedarik.",
           "origin": "Teklifte her kalem için belirtilir"
         },
         {
+          "id": "packaging",
           "title": "Ambalaj ve işleme ekipmanı",
           "text": "ABD ve Avrupa üreticilerinden şişeler, uyumlu kapaklar ve gıda işleme makineleri. Uyumluluk ve belgeler bizim tarafımızda.",
           "note": "Azerbaycan'daki bir gıda üreticisine kapak ve işleme makineleri tedarik edildi.",
@@ -139,67 +200,189 @@
     "order": {
       "title": "SİPARİŞ BİLGİLERİ",
       "rows": [
-        { "label": "Minimum: içecekler", "text": "Tam paletler. Paletler arasında farklı ürünler olabilir; pratik minimum konteynerdir." },
-        { "label": "Minimum: yiyecek-içecek ekipmanı", "text": "Sipariş başına tam konteyner." },
-        { "label": "Minimum: diğer ürünler", "text": "Teklif talebine göre." },
-        { "label": "Menşe", "text": "Her teklifte menşe ülkesi kalem bazında belirtilir. ABD üretimi, ABD'den tedarik edilen ve ABD dışı ürünler ayrı etiketlenir. Menşe şahadetnamesi sevkiyatla birlikte verilir." },
-        { "label": "Fiyat", "text": "Fiyat teklif talebine göre, belirttiğiniz limana teslim (CIP veya CIF). Gümrük vergileri, vergiler ve varış yeri masrafları, teklifte belirtilmedikçe dahil değildir." },
-        { "label": "Teklif geçerliliği", "text": "Her teklifin bir son geçerlilik tarihi vardır. Fabrika ve navlun fiyatları değişir; süre dolduktan sonra fiyatlar yeniden teyit edilir." },
-        { "label": "Ödeme", "text": "Yeni müşteriler: proforma fatura karşılığında %100 peşin ödeme. USD cinsinden banka havalesi tercih edilir." },
-        { "label": "Belgeler", "text": "Ticari fatura, çeki listesi, konşimento, menşe şahadetnamesi. Pazarınızın gerektirdiği ürün sertifikaları (örneğin gıda için sağlık veya bitki sağlığı sertifikası, ISPM 15 ısıl işlem görmüş paletler). İthalat şartlarınızı teklif talebinde bildirin." },
-        { "label": "İthalatçı", "text": "İthalatçı alıcı veya alıcının atadığı acentedir; gümrük işlemlerini varış yerinde yapar." },
-        { "label": "Banka bilgileri", "text": "Banka bilgilerimiz asla e-posta ile değişmez. Ödeme yapmadan önce her değişikliği bizimle telefonla teyit edin." }
+        {
+          "label": "Minimum: içecekler",
+          "text": "Tam palet olarak satılır. Paletler arasında farklı ürünler olabilir. 12 palet bir 20' konteyneri, 24 palet bir 40' konteyneri doldurur."
+        },
+        {
+          "label": "Teslim süresi: içecekler",
+          "text": "Siparişten konteyner yüklemesine 5 hafta."
+        },
+        {
+          "label": "Minimum: yiyecek-içecek ekipmanı",
+          "text": "Sipariş başına tam konteyner."
+        },
+        {
+          "label": "Minimum: diğer ürünler",
+          "text": "Teklif talebine göre."
+        },
+        {
+          "label": "Menşe",
+          "text": "Her teklifte menşe ülkesi kalem bazında belirtilir. ABD üretimi, ABD'den tedarik edilen ve ABD dışı ürünler ayrı etiketlenir. Menşe şahadetnamesi sevkiyatla birlikte verilir."
+        },
+        {
+          "label": "Fiyat",
+          "text": "Temel teklif: belirttiğiniz limana CIP. Kapınıza kadar tam iç taşıma talep üzerine mümkündür; bunu ayarlar ve teklife dahil ederiz. İthalat gümrüklemesi, gümrük vergileri ve diğer vergiler alıcı tarafından ödenir."
+        },
+        {
+          "label": "Teklif geçerliliği",
+          "text": "Her teklifin bir son geçerlilik tarihi vardır. Fabrika ve navlun fiyatları değişir; süre dolduktan sonra fiyatlar yeniden teyit edilir."
+        },
+        {
+          "label": "Ödeme",
+          "text": "Yeni müşteriler: proforma fatura karşılığında %100 peşin ödeme. USD cinsinden banka havalesi tercih edilir."
+        },
+        {
+          "label": "Belgeler",
+          "text": "Ticari fatura, çeki listesi, konşimento, menşe şahadetnamesi. Pazarınızın gerektirdiği ürün sertifikaları (örneğin gıda için sağlık veya bitki sağlığı sertifikası, ISPM 15 ısıl işlem görmüş paletler). İthalat şartlarınızı teklif talebinde bildirin."
+        },
+        {
+          "label": "İthalatçı",
+          "text": "İthalatçı alıcı veya alıcının atadığı acentedir; gümrük işlemlerini varış yerinde yapar."
+        },
+        {
+          "label": "Banka bilgileri",
+          "text": "Banka bilgilerimiz asla e-posta ile değişmez. Ödeme yapmadan önce her değişikliği bizimle telefonla teyit edin."
+        }
       ]
-    }
+    },
+    "pickHint": "Teklif talebi açmak için bir kalem seçin.",
+    "cardCta": "Teklif iste"
   },
   "howItWorks": {
     "hero": {
       "title": "Nasıl Çalışır",
-      "subtitle": "Teklif talebinizden CIP veya CIF şartlarıyla limanınıza teslime kadar."
+      "subtitle": "Teklif talebinizden standart olarak limanınıza (CIP) veya talep üzerine kapınıza teslime kadar."
     },
     "steps": [
-      { "title": "Teklif talebinizi gönderin", "text": "Ürün veya ürün kodları, spesifikasyon, miktar, varış limanı veya şehri ve hedef teslim dönemi. Mevcut tedarikçi fiyatınız varsa ekleyin. Rekabet edip edemeyeceğimizi hızlıca söylememizi sağlar.", "who": "Siz ihtiyacı bildirirsiniz." },
-      { "title": "Kapsamı teyit ediyoruz", "text": "Fiyat vermeden önce spesifikasyonu, miktarları, ambalajı ve ithalat belge şartlarınızı teyit ederiz. Sizin adınıza tahmin yapmayız." },
-      { "title": "Fabrikadan tedarik ediyoruz", "text": "ABD'deki üreticiden veya kanaldan yurt içi alıcı olarak EXW veya FCA şartlarıyla satın alırız.", "who": "ABD tarafındaki satın almayı KG üstlenir." },
-      { "title": "Teslim fiyatını alırsınız", "text": "Belirttiğiniz limana CIP veya CIF şartlarıyla kalem bazında fiyat; navlun ve sigorta dahil, son geçerlilik tarihi ve net bir hariç tutulanlar listesiyle." },
-      { "title": "Proforma fatura ve ödeme", "text": "Onayınızın ardından, kararlaştırılan Incoterm, ödeme şartları ve sevkiyat takvimiyle proforma fatura düzenleriz." },
-      { "title": "Üretim, konsolidasyon ve ihracat", "text": "Ürünleri toplar, konteynerinizde birleştirir ve ABD ihracat beyanını yaparız. Ticari fatura, çeki listesi ve menşe şahadetnamesini, pazarınızın istediği ürün sertifikalarıyla birlikte hazırlarız.", "who": "KG, ABD ihracatçısı olarak hareket eder." },
-      { "title": "Sevkiyat ve sigorta", "text": "Limanınıza deniz navlununu ayarlar ve yükü sigortalarız. Yükleme sırasında takip bilgisi ve sevkiyat belgelerinin bir kopyasını alırsınız." },
-      { "title": "Varış ve gümrükleme", "text": "Siz veya acenteniz ithalatçı olarak gümrükleme yapar ve yerel vergileri ödersiniz. Varış terminali masrafları ve iç taşıma, teklifte aksi belirtilmedikçe sizin tarafınızdadır.", "who": "Ürünleri siz gümrükler ve teslim alırsınız." }
+      {
+        "title": "Teklif talebinizi gönderin",
+        "text": "Ürün veya ürün kodları, spesifikasyon, miktar, varış limanı veya şehri ve hedef teslim dönemi. Mevcut tedarikçi fiyatınız varsa ekleyin. Rekabet edip edemeyeceğimizi hızlıca söylememizi sağlar.",
+        "who": "Siz ihtiyacı bildirirsiniz."
+      },
+      {
+        "title": "Kapsamı teyit ediyoruz",
+        "text": "Fiyat vermeden önce spesifikasyonu, miktarları, ambalajı ve ithalat belge şartlarınızı teyit ederiz. Her teklif talebine 24 saat içinde yanıt veririz."
+      },
+      {
+        "title": "Fabrikadan tedarik ediyoruz",
+        "text": "ABD'deki üreticiden veya kanaldan yurt içi alıcı olarak EXW veya FCA şartlarıyla satın alırız.",
+        "who": "ABD tarafındaki satın almayı KG üstlenir."
+      },
+      {
+        "title": "Teslim fiyatını alırsınız",
+        "text": "Kalem bazında fiyat: standart olarak belirttiğiniz limana CIP veya isterseniz kapınıza teslim. Navlun ve sigorta dahil, son geçerlilik tarihi ve net bir hariç tutulanlar listesiyle."
+      },
+      {
+        "title": "Proforma fatura ve ödeme",
+        "text": "Onayınızın ardından, kararlaştırılan Incoterm, ödeme şartları ve sevkiyat takvimiyle proforma fatura düzenleriz."
+      },
+      {
+        "title": "Üretim, konsolidasyon ve ihracat",
+        "text": "Ürünleri toplar, konteynerinizde birleştirir ve ABD ihracat beyanını yaparız. Ticari fatura, çeki listesi ve menşe şahadetnamesini, pazarınızın istediği ürün sertifikalarıyla birlikte hazırlarız.",
+        "who": "KG, ABD ihracatçısı olarak hareket eder."
+      },
+      {
+        "title": "Sevkiyat ve sigorta",
+        "text": "Limanınıza deniz navlununu ayarlar ve yükü sigortalarız. Yükleme sırasında takip bilgisi ve sevkiyat belgelerinin bir kopyasını alırsınız."
+      },
+      {
+        "title": "Varış ve gümrükleme",
+        "text": "Siz veya acenteniz ithalatçı olarak gümrükleme yapar ve vergileri ödersiniz. Kapıya teslimi seçtiyseniz, tesisinize kadar iç taşımayı tamamlarız.",
+        "who": "Ürünleri siz gümrükler ve teslim alırsınız."
+      }
     ],
     "incoterms": {
       "title": "CIP ve CIF",
       "items": [
-        { "term": "CIP (Carriage and Insurance Paid to)", "text": "Konteyner yükleri için kullanılır. Belirttiğiniz yere kadar taşıma ve sigortayı biz öderiz. Sigorta, Incoterms 2020 kapsamında tüm riskleri kapsar (Institute Cargo Clauses A)." },
-        { "term": "CIF (Cost, Insurance and Freight)", "text": "Yalnızca deniz yolu, limandan limana. Belirttiğiniz limana kadar navlun ve sigortayı biz öderiz. Daha yüksek bir kapsam kararlaştırılmadıkça asgari sigorta Incoterms 2020 kapsamında Institute Cargo Clauses C'dir." }
+        {
+          "term": "CIP (Carriage and Insurance Paid to)",
+          "text": "Konteyner yükleri için kullanılır. Belirttiğiniz yere kadar taşıma ve sigortayı biz öderiz. Sigorta, Incoterms 2020 kapsamında tüm riskleri kapsar (Institute Cargo Clauses A)."
+        },
+        {
+          "term": "CIF (Cost, Insurance and Freight)",
+          "text": "Yalnızca deniz yolu, limandan limana. Belirttiğiniz limana kadar navlun ve sigortayı biz öderiz. Daha yüksek bir kapsam kararlaştırılmadıkça asgari sigorta Incoterms 2020 kapsamında Institute Cargo Clauses C'dir."
+        }
       ],
       "risk": "Her iki şartta da risk, ürünler çıkış yerinde taşıyıcıya teslim edildiğinde veya gemiye yüklendiğinde alıcıya geçer; varışta değil. Bu nedenle sigorta dahildir.",
-      "other": "Diğer şartlar (FCA, DAP) talep üzerine."
+      "other": "Diğer şartlar (FCA, CIF, kapınıza DAP) talep üzerine.",
+      "base": "Temel teklifimiz limanınıza CIP'dir. Kapıya teslim talep üzerine mümkündür: tüm güzergâhı ayarlar ve riski teklife dahil ederiz. İthalat gümrüğü, gümrük vergileri ve diğer vergiler her zaman alıcı tarafından ödenir."
     },
     "table": {
       "title": "Kim neyi üstlenir",
       "item": "Kalem",
       "buyer": "Alıcı",
       "rows": [
-        { "item": "ABD'de satın alma ve tedarikçi yönetimi", "kg": true, "buyer": false },
-        { "item": "Çıkış yerinde kara taşıması, ihracat gümrüklemesi, ABD ihracat beyanı", "kg": true, "buyer": false },
-        { "item": "Deniz navlunu ve yük sigortası (CIP/CIF)", "kg": true, "buyer": false },
-        { "item": "Ticari belgeler ve menşe şahadetnamesi", "kg": true, "buyer": false },
-        { "item": "İthalat gümrüklemesi, gümrük vergileri, KDV", "kg": false, "buyer": true },
-        { "item": "Varış terminali masrafları, iç taşıma", "kg": false, "buyer": true, "note": "teklifte yoksa" },
-        { "item": "Tesisinizde boşaltma", "kg": false, "buyer": true },
-        { "item": "Konteyner iadesi / serbest süre sonrası demuraj", "kg": false, "buyer": true }
+        {
+          "item": "ABD'de satın alma ve tedarikçi yönetimi",
+          "kg": true,
+          "buyer": false
+        },
+        {
+          "item": "Çıkış yerinde kara taşıması, ihracat gümrüklemesi, ABD ihracat beyanı",
+          "kg": true,
+          "buyer": false
+        },
+        {
+          "item": "Deniz navlunu ve yük sigortası (CIP/CIF)",
+          "kg": true,
+          "buyer": false
+        },
+        {
+          "item": "Ticari belgeler ve menşe şahadetnamesi",
+          "kg": true,
+          "buyer": false
+        },
+        {
+          "item": "İthalat gümrüklemesi, gümrük vergileri, KDV",
+          "kg": false,
+          "buyer": true
+        },
+        {
+          "item": "Varış terminali masrafları, tesisinize iç taşıma",
+          "kg": true,
+          "kgNote": "talep üzerine",
+          "buyer": true,
+          "note": "standart (CIP)"
+        },
+        {
+          "item": "Tesisinizde boşaltma",
+          "kg": false,
+          "buyer": true
+        },
+        {
+          "item": "Konteyner iadesi / serbest süre sonrası demuraj",
+          "kg": false,
+          "buyer": true
+        }
+      ]
+    },
+    "delivery": {
+      "title": "Liman ya da kapı. Siz seçin.",
+      "points": [
+        {
+          "term": "Standart: limanınıza CIP",
+          "text": "Temel teklifimiz belirttiğiniz limana kadar navlun ve sigortayı kapsar."
+        },
+        {
+          "term": "Talep üzerine: kapınıza teslim",
+          "text": "Deponuzu veya tesisinizi bildirin. İç taşımanın tamamını ayarlar, taşımayı ve riski teklife dahil ederiz."
+        },
+        {
+          "term": "Her zaman alıcı: ithalat gümrüğü",
+          "text": "İthalat gümrüklemesini siz veya acenteniz yapar, vergileri siz ödersiniz. Varış ülkesindeki gümrüğü biz ödemeyiz."
+        }
       ]
     }
   },
   "rfq": {
     "title": "Teklif İste",
-    "intro": "Teklif talebinizi e-posta ile gönderin. Aşağıya ürünü ve varış limanını yazın, e-postayı sizin için dolduralım.",
+    "intro": "Talebinizi aşağıda hazırlayın, ardından e-posta veya WhatsApp ile gönderin.",
     "selected": "Seçilen ürünler",
     "remove": "Kaldır",
     "clear": "Tümünü temizle",
-    "product": "Ürün / ürün kodları",
-    "productPh": "örn. Crush Orange, 20 palet",
+    "product": "Diğer ürünler / ürün kodları",
+    "productPh": "örn. parça numaraları veya ürün listesi",
     "destination": "Varış limanı / şehir",
     "destinationPh": "örn. Mersin",
     "emailButton": "Talebi e-postayla gönder",
@@ -207,6 +390,47 @@
     "linkedin": "LinkedIn'de KG Industries",
     "bank": "Banka bilgilerimiz asla e-posta ile değişmez. Ödeme yapmadan önce her değişikliği bizimle telefonla teyit edin.",
     "shortcut": "Kısayol: açmak için Q, kapatmak için Esc.",
-    "close": "Kapat"
+    "close": "Kapat",
+    "response": "Her teklif talebine 24 saat içinde yanıt veririz.",
+    "pallets": "Palet",
+    "totalPallets": "İçecek: {n} palet",
+    "fit20": "bir 20' konteynere sığar (12 palet)",
+    "fit40": "bir 40' konteynere sığar (24 palet)",
+    "over40": "birden fazla 40' konteyner",
+    "palletHint": "Her içecek kalemi bir palettir. Gerekirse sayıyı değiştirin.",
+    "details": "Ayrıntılar",
+    "detailsPh": "Spesifikasyon, ürün veya parça numaraları, miktar",
+    "delivery": "Teslimat",
+    "deliveryPort": "Limanıma (CIP, standart)",
+    "deliveryDoor": "Kapıma / depoma (iç taşıma)",
+    "doorLabel": "Teslimat adresi / şehir",
+    "doorPh": "örn. İstanbul'daki depo",
+    "customsNote": "İthalat gümrüğü, gümrük vergileri ve diğer vergiler alıcı tarafından ödenir.",
+    "whatsapp": "WhatsApp ile gönder"
+  },
+  "gloves": {
+    "button": "Test raporlarını gör",
+    "title": "Nitril eldiven test sonuçları",
+    "intro": "A2LA tarafından ISO 17025 kapsamında akredite bağımsız bir laboratuvarda geçirgenlik testi.",
+    "black": "Siyah nitril eldiven",
+    "orange": "Turuncu nitril eldiven",
+    "result": "240 dakikaya kadar geçiş tespit edilmedi",
+    "method": "Test yöntemi",
+    "agent": "Test maddesi",
+    "conditions": "Koşullar",
+    "specimens": "{n} numune",
+    "observation": "Gözlem",
+    "swellDeg": "Hafif şişme ve bozulma",
+    "swellNoDeg": "Hafif şişme, bozulma yok",
+    "tested": "Test tarihi",
+    "chartTitle": "Kimyasal dayanım (nitril)",
+    "chartNote": "Nitril eldiven malzemesi için genel bilgi.",
+    "excellent": "Mükemmel",
+    "good": "İyi",
+    "fair": "Orta",
+    "poor": "Zayıf",
+    "disclaimer": "Sonuçlar test edilen numunelere aittir. Bunlar geçirgenlik test raporlarıdır; CE, EN 455 veya EN ISO 374 sertifikası değildir. Uygulamanıza uygunluğunu teyit edin.",
+    "requestFull": "Tam test raporlarını iste",
+    "requestItem": "Nitril eldiven: tam test raporları"
   }
 }

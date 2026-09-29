@@ -2,11 +2,27 @@
 	import { _, json } from 'svelte-i18n';
 	import SEO from '$lib/components/SEO.svelte';
 	import { base } from '$app/paths';
-	import { beverageFamilies, SHOW_PALLET_CONFIG, type Beverage } from '$lib/data/beverages';
-	import { rfqOpen, rfqItems, toggleRfqItem } from '$lib/stores/rfq';
+	import { beverageFamilies, BEVERAGE_LEAD_TIME_WEEKS, type Beverage } from '$lib/data/beverages';
+	import { rfqLabels } from '$lib/data/rfqLabels';
+	import {
+		rfqOpen,
+		rfqItems,
+		togglePallet,
+		openRfqFor,
+		totalPallets,
+		PALLETS_20FT,
+		PALLETS_40FT
+	} from '$lib/stores/rfq';
+	import GloveTests from '$lib/components/GloveTests.svelte';
 
-	type Card = { title: string; text: string; origin: string; note?: string };
+	type Option = { id: string; title: string };
+	type Card = { id: string; title: string; text: string; origin?: string; note?: string };
 	type Row = { label: string; text: string };
+
+	let glovesOpen = $state(false);
+
+	const bevKey = (b: Beverage) => b.image ?? b.name;
+	const inRfq = (key: string) => $rfqItems.some((i) => i.key === key);
 
 	const sizeLabel = (b: Beverage) => (b.size ? $_(`productsPage.beverages.${b.size}`) : '');
 
@@ -15,6 +31,15 @@
 		[b.name, b.size === 'glass355' ? '355 ml glass' : b.size === 'glass500' ? '500 ml glass' : '']
 			.filter(Boolean)
 			.join(', ');
+
+	const toggleBev = (b: Beverage) =>
+		togglePallet({
+			key: bevKey(b),
+			label: rfqLabel(b),
+			display: [b.name, sizeLabel(b)].filter(Boolean).join(', '),
+			casesPerPallet: b.casesPerPallet,
+			pack: b.pack
+		});
 
 	const altText = (b: Beverage) =>
 		[b.name, sizeLabel(b), $_('productsPage.beverages.caseOf', { values: { n: b.pack } })]
@@ -54,6 +79,16 @@
 						<p class="category-sub">{$_('productsPage.beverages.specialty')}</p>
 					</div>
 
+					<ul class="pallet-facts">
+						<li>{$_('productsPage.beverages.palletNote')}</li>
+						<li>
+							{$_('productsPage.beverages.containerFit', {
+								values: { p20: PALLETS_20FT, p40: PALLETS_40FT }
+							})}
+						</li>
+						<li>{$_('productsPage.beverages.leadTime', { values: { n: BEVERAGE_LEAD_TIME_WEEKS } })}</li>
+					</ul>
+
 					{#each beverageFamilies as family (family.id)}
 						<div class="family">
 							<h3 class="family-title">
@@ -61,8 +96,8 @@
 								<span class="family-count">{family.items.length}</span>
 							</h3>
 							<div class="bev-grid">
-								{#each family.items as bev (bev.image ?? bev.name)}
-									{@const label = rfqLabel(bev)}
+								{#each family.items as bev (bevKey(bev))}
+									{@const added = inRfq(bevKey(bev))}
 									<article class="bev-card">
 										<div class="bev-photo">
 											{#if bev.image}
@@ -87,19 +122,17 @@
 													<dt>{$_('productsPage.beverages.pack')}</dt>
 													<dd>{$_('productsPage.beverages.caseOf', { values: { n: bev.pack } })}</dd>
 												</div>
-												{#if SHOW_PALLET_CONFIG}
-													<div>
-														<dt>{$_('productsPage.beverages.pallet')}</dt>
-														<dd>
-															{$_('productsPage.beverages.palletValue', {
-																values: {
-																	cases: bev.casesPerPallet,
-																	units: bev.unitsPerPallet.toLocaleString('en-US')
-																}
-															})}
-														</dd>
-													</div>
-												{/if}
+												<div>
+													<dt>{$_('productsPage.beverages.pallet')}</dt>
+													<dd>
+														{$_('productsPage.beverages.palletValue', {
+															values: {
+																cases: bev.casesPerPallet,
+																units: bev.unitsPerPallet.toLocaleString('en-US')
+															}
+														})}
+													</dd>
+												</div>
 											</dl>
 											<p class="bev-origin" class:non-us={bev.origin !== 'US'}>
 												{bev.origin === 'MX'
@@ -108,13 +141,11 @@
 											</p>
 											<button
 												class="add-rfq"
-												class:added={$rfqItems.includes(label)}
-												aria-pressed={$rfqItems.includes(label)}
-												onclick={() => toggleRfqItem(label)}
+												class:added
+												aria-pressed={added}
+												onclick={() => toggleBev(bev)}
 											>
-												{$rfqItems.includes(label)
-													? $_('productsPage.beverages.added')
-													: $_('productsPage.beverages.add')}
+												{added ? $_('productsPage.beverages.added') : $_('productsPage.beverages.add')}
 											</button>
 										</div>
 									</article>
@@ -123,9 +154,9 @@
 						</div>
 					{/each}
 
-					{#if $rfqItems.length}
+					{#if totalPallets($rfqItems)}
 						<div class="rfq-bar">
-							<span>{$_('productsPage.beverages.selectedCount', { values: { n: $rfqItems.length } })}</span>
+							<span>{$_('productsPage.beverages.selectedCount', { values: { n: totalPallets($rfqItems) } })}</span>
 							<button onclick={() => rfqOpen.set(true)}>{$_('nav.rfq')}</button>
 						</div>
 					{/if}
@@ -141,11 +172,15 @@
 						<div class="product-card">
 							<div class="card-content">
 								<h3>{$_('productsPage.consumer.onRequestTitle')}</h3>
-								<ul class="plain-list">
-									{#each $json('productsPage.consumer.onRequest') as string[] as line}
-										<li>{line}</li>
+								<p class="pick-hint">{$_('productsPage.pickHint')}</p>
+								<div class="options">
+									{#each $json('productsPage.consumer.onRequest') as Option[] as opt (opt.id)}
+										<button class="option" onclick={() => openRfqFor(opt.id, rfqLabels[opt.id], opt.title)}>
+											<span>{opt.title}</span>
+											<span class="option-cta" aria-hidden="true">RFQ →</span>
+										</button>
 									{/each}
-								</ul>
+								</div>
 								<!-- CONFIRM: named FMCG brand examples (only once confirmed sourced) -->
 							</div>
 						</div>
@@ -168,21 +203,37 @@
 						</div>
 						<div class="split-content">
 							<div class="industrial-list">
-								<!-- CONFIRM: foodservice brand name and logo withheld pending approval -->
-								{#each $json('productsPage.industrial.cards') as Card[] as card}
+								{#each $json('productsPage.industrial.cards') as Card[] as card (card.id)}
 									<div class="industrial-item">
 										<div class="item-info">
-											<h4>{card.title}</h4>
+											<h4>
+												<button
+													class="card-link"
+													onclick={() => openRfqFor(card.id, rfqLabels[card.id], card.title)}
+												>
+													{card.title}
+												</button>
+											</h4>
 											<p>{card.text}</p>
 											{#if card.note}<p class="item-note">{card.note}</p>{/if}
-											<p class="item-origin">
-												<span>{$_('productsPage.originLabel')}</span>
-												{card.origin}
-											</p>
+											{#if card.origin}
+												<p class="item-origin">
+													<span>{$_('productsPage.originLabel')}</span>
+													{card.origin}
+												</p>
+											{/if}
+											<div class="card-actions">
+												<span class="card-cta" aria-hidden="true">{$_('productsPage.cardCta')} →</span>
+												{#if card.id === 'gloves'}
+													<button class="tests-btn" onclick={() => (glovesOpen = true)}>
+														{$_('gloves.button')}
+													</button>
+												{/if}
+											</div>
 										</div>
 									</div>
 								{/each}
-								<!-- CONFIRM: glove certification status (CE / EN 455 / EN ISO 374) per market before any claim -->
+								<!-- Glove popup shows permeation test results only; no CE / EN certification claims. -->
 							</div>
 						</div>
 					</div>
@@ -195,11 +246,18 @@
 							<h2>{$_('productsPage.custom.title')}</h2>
 							<p class="category-intro">{$_('productsPage.custom.text')}</p>
 						</div>
-						<button class="custom-button" onclick={() => rfqOpen.set(true)}>{$_('nav.rfq')}</button>
+						<button
+							class="custom-button"
+							onclick={() => openRfqFor('custom', rfqLabels.custom, $_('productsPage.custom.title'))}
+						>
+							{$_('nav.rfq')}
+						</button>
 					</div>
 				</div>
 			</div>
 		</section>
+
+		<GloveTests bind:open={glovesOpen} />
 
 		<!-- ORDER INFORMATION -->
 		<section class="requirements" id="order-info">
@@ -207,7 +265,6 @@
 				<div class="req-header">
 					<h2>{$_('productsPage.order.title')}</h2>
 				</div>
-				<!-- CONFIRM: beverage minimum (pallets per order; 20' vs 40' container) -->
 				<!-- CONFIRM: foodservice minimum container size -->
 				<div class="order-list">
 					{#each $json('productsPage.order.rows') as Row[] as row, i}
@@ -565,8 +622,7 @@
 		text-transform: uppercase;
 	}
 
-	.card-content p,
-	.plain-list {
+	.card-content p {
 		font-size: 0.95rem;
 		line-height: 1.7;
 		color: #a1a1aa;
@@ -574,8 +630,60 @@
 		font-weight: 400;
 	}
 
-	.plain-list {
-		padding-inline-start: 1.1rem;
+	.pallet-facts {
+		list-style: none;
+		margin: -1.5rem 0 2.5rem;
+		padding: 1rem 1.25rem;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem 2rem;
+		background: #050508;
+		border: 1px solid #1a1a22;
+		border-inline-start: 3px solid #1c71d8;
+		font-size: 0.9rem;
+		color: #ffffff;
+	}
+
+	.pick-hint {
+		margin-bottom: 1rem !important;
+		font-size: 0.85rem !important;
+	}
+
+	.options {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
+	.option {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 1rem;
+		padding: 0.85rem 1rem;
+		background: #0a0a0d;
+		border: 1px solid #27272a;
+		color: #ffffff;
+		font-family: inherit;
+		font-size: 0.95rem;
+		text-align: start;
+		cursor: pointer;
+		transition: border-color 0.2s;
+	}
+
+	.option:hover,
+	.option:focus-visible {
+		border-color: #1c71d8;
+	}
+
+	.option-cta,
+	.card-cta {
+		font-size: 0.7rem;
+		font-weight: 700;
+		letter-spacing: 0.12em;
+		color: #1c71d8;
+		white-space: nowrap;
+		text-transform: uppercase;
 	}
 
 	/* Industrial */
@@ -616,9 +724,74 @@
 	}
 
 	.industrial-item {
+		position: relative;
 		padding: 2rem;
 		background: #0a0a0d;
+		border: 1px solid transparent;
 		border-inline-start: 3px solid #1c71d8;
+		transition: border-color 0.2s;
+	}
+
+	.industrial-item:hover,
+	.industrial-item:focus-within {
+		border-color: #27272a;
+		border-inline-start-color: #1c71d8;
+	}
+
+	/* Stretched button: the whole card opens the RFQ for that line. */
+	.card-link {
+		background: none;
+		border: none;
+		padding: 0;
+		color: inherit;
+		font: inherit;
+		letter-spacing: inherit;
+		text-transform: inherit;
+		text-align: start;
+		cursor: pointer;
+	}
+
+	.card-link::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+	}
+
+	.card-link:focus-visible {
+		outline: none;
+	}
+
+	.industrial-item:has(.card-link:focus-visible) {
+		outline: 2px solid #1c71d8;
+	}
+
+	.card-actions {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		align-items: center;
+		gap: 0.75rem;
+		margin-top: 1.25rem;
+	}
+
+	.tests-btn {
+		position: relative;
+		z-index: 1;
+		padding: 0.55rem 0.9rem;
+		background: transparent;
+		border: 1px solid #27272a;
+		color: #d4d4d8;
+		font-family: inherit;
+		font-size: 0.7rem;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		cursor: pointer;
+	}
+
+	.tests-btn:hover {
+		border-color: #1c71d8;
+		color: #ffffff;
 	}
 
 	.item-info h4 {
@@ -835,6 +1008,12 @@
 		.custom-inner {
 			flex-direction: column;
 			align-items: stretch;
+		}
+
+		.pallet-facts {
+			margin-top: -1.5rem;
+			flex-direction: column;
+			font-size: 0.85rem;
 		}
 
 		.requirements {
