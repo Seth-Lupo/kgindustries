@@ -1,0 +1,1 @@
+import{l as o,u as l,e as t,g as u,j as a}from"./B8cg-rDd.js";function f(e){t===null&&o(),u&&t.l!==null?c(t).m.push(e):l(()=>{const n=a(e);if(typeof n=="function")return n})}function c(e){var n=e.l;return n.u??={a:[],b:[],m:[]}}export{f as o};
