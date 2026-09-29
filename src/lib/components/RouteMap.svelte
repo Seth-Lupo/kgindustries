@@ -43,15 +43,12 @@
 	const routes = destinations.map((d, i) => ({ ...d, d: arc(d.from, d.at), delay: 600 + i * 180 }));
 
 	let wrapper: HTMLDivElement;
-	let routesSvg: SVGSVGElement;
 	let paused = $state(false);
 
-	// Stop all map animation (CSS and SMIL) while the hero is off screen.
+	// Stop all map animation while the hero is off screen.
 	onMount(() => {
 		const io = new IntersectionObserver(([entry]) => {
 			paused = !entry.isIntersecting;
-			if (paused) routesSvg.pauseAnimations();
-			else routesSvg.unpauseAnimations();
 		});
 		io.observe(wrapper);
 		return () => io.disconnect();
@@ -76,7 +73,6 @@
 
 	<svg
 		class="layer routes-layer"
-		bind:this={routesSvg}
 		viewBox="0 0 {MAP.width} {MAP.height}"
 		preserveAspectRatio="xMidYMid slice"
 		focusable="false"
@@ -90,15 +86,6 @@
 				<stop offset="0%" stop-color="var(--gold)" stop-opacity="0.25" />
 				<stop offset="100%" stop-color="var(--gold-light)" stop-opacity="0.9" />
 			</linearGradient>
-			<!-- Tail (left) fades out; rotate="auto" points +x along the direction of travel. -->
-			<linearGradient id="rm-comet" x1="0" x2="1" y1="0" y2="0">
-				<stop offset="0%" stop-color="var(--gold)" stop-opacity="0" />
-				<stop offset="100%" stop-color="var(--gold-light)" stop-opacity="1" />
-			</linearGradient>
-			<radialGradient id="rm-halo">
-				<stop offset="0%" stop-color="var(--gold)" stop-opacity="0.45" />
-				<stop offset="100%" stop-color="var(--gold)" stop-opacity="0" />
-			</radialGradient>
 		</defs>
 
 		<g>
@@ -107,23 +94,14 @@
 			{/each}
 
 			<!--
-				Comets ride each arc with animateMotion. Animating a dash along the whole
-				path (plus a drop-shadow blur) repainted most of the map every frame and
-				dropped frames on large Retina screens; a moving comet only repaints its
-				own few pixels.
+				A short dash travels each arc and ends on the destination dot. The glow is
+				a wider faint dash underneath rather than a drop-shadow filter: re-blurring
+				every arc each frame dropped frames on large Retina screens.
 			-->
 			{#each routes as r (r.id)}
-				<g class="comet" style="--d: {r.delay + 1400}ms">
-					<ellipse class="comet-halo" rx="16" ry="4" />
-					<ellipse rx="11" ry="1.6" fill="url(#rm-comet)" />
-					<circle class="comet-head" cx="9" r="1.9" />
-					<animateMotion
-						dur="5.5s"
-						begin="{r.delay + 1400}ms"
-						repeatCount="indefinite"
-						rotate="auto"
-						path={r.d}
-					/>
+				<g class="gleam" style="--d: {r.delay + 1400}ms">
+					<path class="gleam-halo" d={r.d} pathLength="1" />
+					<path class="gleam-core" d={r.d} pathLength="1" />
 				</g>
 			{/each}
 
@@ -196,17 +174,37 @@
 		animation: draw 2.2s var(--ease-in-out) var(--d) forwards;
 	}
 
-	.comet {
+	.gleam {
 		opacity: 0;
 		animation: fadeIn 0.6s linear var(--d) forwards;
 	}
 
-	.comet-halo {
-		fill: url(#rm-halo);
+	.gleam path {
+		fill: none;
+		stroke-linecap: round;
+		stroke-dasharray: 0.045 0.955;
+		stroke-dashoffset: 1;
+		animation: travel 5.5s linear var(--d) infinite;
 	}
 
-	.comet-head {
-		fill: #fff6e2;
+	.gleam-core {
+		stroke: var(--gold-light);
+		stroke-width: 2.4;
+	}
+
+	.gleam-halo {
+		stroke: var(--gold);
+		stroke-width: 7;
+		opacity: 0.22;
+	}
+
+	@keyframes travel {
+		from {
+			stroke-dashoffset: 1;
+		}
+		to {
+			stroke-dashoffset: 0;
+		}
 	}
 
 	/* Pause everything while the hero is scrolled out of view. */
@@ -277,7 +275,7 @@
 			opacity: 1;
 		}
 
-		.comet,
+		.gleam,
 		.pulse {
 			display: none;
 		}
