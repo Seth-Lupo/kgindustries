@@ -224,9 +224,10 @@
 		display: block;
 	}
 
+	/* Static gradient: animating background-position on clip-text repaints the
+	   huge glyphs every frame and flickers in Safari and Chrome. */
 	.hero-title .gold > span {
 		background: linear-gradient(100deg, var(--gold-dark), var(--gold-light) 40%, var(--gold) 60%, var(--gold-dark));
-		background-size: 200% 100%;
 		-webkit-background-clip: text;
 		background-clip: text;
 		color: transparent;
@@ -240,12 +241,6 @@
 
 	.hero-title .line > .hero-in {
 		animation-name: heroRise;
-	}
-
-	.hero-title .gold > .hero-in {
-		animation:
-			heroRise 1.2s var(--ease-out) calc(0.15s + var(--i) * 0.12s) both,
-			shimmer 8s linear 2s infinite;
 	}
 
 	@keyframes heroUp {
@@ -265,15 +260,6 @@
 		}
 		to {
 			transform: none;
-		}
-	}
-
-	@keyframes shimmer {
-		from {
-			background-position: 200% 0;
-		}
-		to {
-			background-position: -200% 0;
 		}
 	}
 

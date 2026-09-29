@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import { LAND_DOTS, MAP } from '$lib/data/worldDots';
 
 	type Point = { x: number; y: number };
@@ -40,62 +41,132 @@
 	}
 
 	const routes = destinations.map((d, i) => ({ ...d, d: arc(d.from, d.at), delay: 600 + i * 180 }));
+
+	let wrapper: HTMLDivElement;
+	let routesSvg: SVGSVGElement;
+	let paused = $state(false);
+
+	// Stop all map animation (CSS and SMIL) while the hero is off screen.
+	onMount(() => {
+		const io = new IntersectionObserver(([entry]) => {
+			paused = !entry.isIntersecting;
+			if (paused) routesSvg.pauseAnimations();
+			else routesSvg.unpauseAnimations();
+		});
+		io.observe(wrapper);
+		return () => io.disconnect();
+	});
 </script>
 
-<svg
-	class="route-map"
-	viewBox="0 0 {MAP.width} {MAP.height}"
-	preserveAspectRatio="xMidYMid slice"
-	aria-hidden="true"
-	focusable="false"
->
-	<defs>
-		<radialGradient id="rm-glow">
-			<stop offset="0%" stop-color="var(--gold-light)" stop-opacity="0.9" />
-			<stop offset="100%" stop-color="var(--gold)" stop-opacity="0" />
-		</radialGradient>
-		<linearGradient id="rm-arc" x1="0" x2="1" y1="0" y2="0">
-			<stop offset="0%" stop-color="var(--gold)" stop-opacity="0.25" />
-			<stop offset="100%" stop-color="var(--gold-light)" stop-opacity="0.9" />
-		</linearGradient>
-	</defs>
-
-	<g class="drift">
+<!--
+	Land and routes are separate SVGs on separate compositor layers, and the slow
+	drift runs on the wrapper. Scaling an SVG <g> re-rasterizes thousands of land
+	dots every frame, which made them shimmer; this way the land is painted once
+	and only the small animated routes repaint.
+-->
+<div class="route-map" class:paused bind:this={wrapper} aria-hidden="true">
+	<svg
+		class="layer land-layer"
+		viewBox="0 0 {MAP.width} {MAP.height}"
+		preserveAspectRatio="xMidYMid slice"
+		focusable="false"
+	>
 		<path class="land" d={LAND_DOTS} />
+	</svg>
 
-		{#each routes as r (r.id)}
-			<path class="arc" d={r.d} pathLength="1" style="--d: {r.delay}ms" />
-			<path class="gleam" d={r.d} pathLength="1" style="--d: {r.delay + 1400}ms" />
-		{/each}
+	<svg
+		class="layer routes-layer"
+		bind:this={routesSvg}
+		viewBox="0 0 {MAP.width} {MAP.height}"
+		preserveAspectRatio="xMidYMid slice"
+		focusable="false"
+	>
+		<defs>
+			<radialGradient id="rm-glow">
+				<stop offset="0%" stop-color="var(--gold-light)" stop-opacity="0.9" />
+				<stop offset="100%" stop-color="var(--gold)" stop-opacity="0" />
+			</radialGradient>
+			<linearGradient id="rm-arc" x1="0" x2="1" y1="0" y2="0">
+				<stop offset="0%" stop-color="var(--gold)" stop-opacity="0.25" />
+				<stop offset="100%" stop-color="var(--gold-light)" stop-opacity="0.9" />
+			</linearGradient>
+			<!-- Tail (left) fades out; rotate="auto" points +x along the direction of travel. -->
+			<linearGradient id="rm-comet" x1="0" x2="1" y1="0" y2="0">
+				<stop offset="0%" stop-color="var(--gold)" stop-opacity="0" />
+				<stop offset="100%" stop-color="var(--gold-light)" stop-opacity="1" />
+			</linearGradient>
+			<radialGradient id="rm-halo">
+				<stop offset="0%" stop-color="var(--gold)" stop-opacity="0.45" />
+				<stop offset="100%" stop-color="var(--gold)" stop-opacity="0" />
+			</radialGradient>
+		</defs>
 
-		{#each routes as r (r.id)}
-			<g class="node" style="--d: {r.delay + 1100}ms">
-				<circle class="pulse" cx={r.at.x} cy={r.at.y} r="9" />
-				<circle class="dot" cx={r.at.x} cy={r.at.y} r="3.2" />
-			</g>
-		{/each}
+		<g>
+			{#each routes as r (r.id)}
+				<path class="arc" d={r.d} pathLength="1" style="--d: {r.delay}ms" />
+			{/each}
 
-		{#each Object.values(origins) as o, i}
-			<g class="origin" style="--d: {300 + i * 150}ms">
-				<circle cx={o.x} cy={o.y} r="26" fill="url(#rm-glow)" opacity="0.45" />
-				<circle class="pulse" cx={o.x} cy={o.y} r="12" />
-				<circle class="dot" cx={o.x} cy={o.y} r="4.5" />
-			</g>
-		{/each}
-	</g>
-</svg>
+			<!--
+				Comets ride each arc with animateMotion. Animating a dash along the whole
+				path (plus a drop-shadow blur) repainted most of the map every frame and
+				dropped frames on large Retina screens; a moving comet only repaints its
+				own few pixels.
+			-->
+			{#each routes as r (r.id)}
+				<g class="comet" style="--d: {r.delay + 1400}ms">
+					<ellipse class="comet-halo" rx="16" ry="4" />
+					<ellipse rx="11" ry="1.6" fill="url(#rm-comet)" />
+					<circle class="comet-head" cx="9" r="1.9" />
+					<animateMotion
+						dur="5.5s"
+						begin="{r.delay + 1400}ms"
+						repeatCount="indefinite"
+						rotate="auto"
+						path={r.d}
+					/>
+				</g>
+			{/each}
+
+			{#each routes as r (r.id)}
+				<g class="node" style="--d: {r.delay + 1100}ms">
+					<circle class="pulse" cx={r.at.x} cy={r.at.y} r="9" />
+					<circle class="dot" cx={r.at.x} cy={r.at.y} r="3.2" />
+				</g>
+			{/each}
+
+			{#each Object.values(origins) as o, i}
+				<g class="origin" style="--d: {300 + i * 150}ms">
+					<circle cx={o.x} cy={o.y} r="26" fill="url(#rm-glow)" opacity="0.45" />
+					<circle class="pulse" cx={o.x} cy={o.y} r="12" />
+					<circle class="dot" cx={o.x} cy={o.y} r="4.5" />
+				</g>
+			{/each}
+		</g>
+	</svg>
+</div>
 
 <style>
 	.route-map {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		transform-origin: 60% 45%;
+		will-change: transform;
+		animation: drift 38s var(--ease-in-out) infinite alternate;
+	}
+
+	.layer {
+		position: absolute;
+		inset: 0;
 		display: block;
 		width: 100%;
 		height: 100%;
 		overflow: visible;
 	}
 
-	.drift {
-		transform-origin: 60% 45%;
-		animation: drift 38s var(--ease-in-out) infinite alternate;
+	/* Own layer, so route repaints never touch the land dots beneath. */
+	.routes-layer {
+		will-change: transform;
 	}
 
 	@keyframes drift {
@@ -125,18 +196,23 @@
 		animation: draw 2.2s var(--ease-in-out) var(--d) forwards;
 	}
 
-	.gleam {
-		fill: none;
-		stroke: var(--gold-light);
-		stroke-width: 2.4;
-		stroke-linecap: round;
-		stroke-dasharray: 0.045 0.955;
-		stroke-dashoffset: 1;
+	.comet {
 		opacity: 0;
-		filter: drop-shadow(0 0 4px var(--gold));
-		animation:
-			fadeIn 0.6s linear var(--d) forwards,
-			travel 5.5s linear var(--d) infinite;
+		animation: fadeIn 0.6s linear var(--d) forwards;
+	}
+
+	.comet-halo {
+		fill: url(#rm-halo);
+	}
+
+	.comet-head {
+		fill: #fff6e2;
+	}
+
+	/* Pause everything while the hero is scrolled out of view. */
+	.route-map.paused,
+	.route-map.paused :global(*) {
+		animation-play-state: paused !important;
 	}
 
 	.node,
@@ -168,15 +244,6 @@
 		}
 	}
 
-	@keyframes travel {
-		from {
-			stroke-dashoffset: 1;
-		}
-		to {
-			stroke-dashoffset: 0;
-		}
-	}
-
 	@keyframes fadeIn {
 		to {
 			opacity: 1;
@@ -196,6 +263,10 @@
 	}
 
 	@media (prefers-reduced-motion: reduce) {
+		.route-map {
+			animation: none;
+		}
+
 		.arc {
 			stroke-dashoffset: 0;
 		}
@@ -206,7 +277,7 @@
 			opacity: 1;
 		}
 
-		.gleam,
+		.comet,
 		.pulse {
 			display: none;
 		}
