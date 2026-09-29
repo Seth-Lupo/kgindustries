@@ -98,7 +98,7 @@
 	.dropdown {
 		position: absolute;
 		top: calc(100% + 0.5rem);
-		right: 0;
+		inset-inline-end: 0;
 		min-width: 160px;
 		background: rgba(10, 10, 13, 0.98);
 		border: 1px solid #27272a;
@@ -119,7 +119,7 @@
 		color: #a1a1aa;
 		font-size: 0.85rem;
 		font-weight: 500;
-		text-align: left;
+		text-align: start;
 		cursor: pointer;
 		transition: all 0.15s;
 	}
@@ -148,7 +148,7 @@
 		}
 
 		.dropdown {
-			right: 0;
+			inset-inline-end: 0;
 			min-width: 140px;
 		}
 	}
