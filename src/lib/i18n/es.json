@@ -68,25 +68,7 @@
     },
     "categories": {
       "caption": "ABASTECIDO EN EE. UU. · ENVIADO A SU PUERTO",
-      "title": "CATEGORÍAS DE PRODUCTOS",
-      "tiles": [
-        {
-          "title": "Bebidas de EE. UU.",
-          "text": "Refrescos del mercado estadounidense y sabores especiales que no se embotellan para su región"
-        },
-        {
-          "title": "Bienes de consumo",
-          "text": "Alimentos y productos de consumo masivo de EE. UU. bajo pedido"
-        },
-        {
-          "title": "Industrial y comercial",
-          "text": "Equipos Cambro para servicios de alimentos, repuestos originales Ford, EPP, suministros para instalaciones y MRO, envases"
-        },
-        {
-          "title": "Abastecimiento a medida (RFQ)",
-          "text": "Si se vende en EE. UU., envíenos la especificación"
-        }
-      ]
+      "title": "CATEGORÍAS DE PRODUCTOS"
     },
     "contact": {
       "title": "SOLICITAR COTIZACIÓN",
@@ -98,6 +80,55 @@
     "hero": {
       "title": "PRODUCTOS",
       "subtitle": "Productos de EE. UU. para importadores, distribuidores y operadores. Precio según solicitud de cotización, puesto en su puerto."
+    },
+    "hub": {
+      "title": "Elija su tipo de comprador",
+      "intro": "Abastecemos a compradores muy distintos. Elija el que corresponde a su negocio para ver las líneas de productos que le cotizamos.",
+      "view": "Ver productos",
+      "back": "Todos los tipos de comprador"
+    },
+    "segments": {
+      "retail": {
+        "label": "Para compradores minoristas",
+        "title": "Retail",
+        "who": "Supermercados, importadores, mayoristas y distribuidores",
+        "hero": "Bebidas y marcas de consumo de EE. UU. para supermercados, importadores y distribuidores. Precio según solicitud de cotización, puesto en su puerto."
+      },
+      "hospitality": {
+        "label": "Para compradores de hostelería",
+        "title": "Hostelería",
+        "who": "Hoteles, restaurantes, empresas de catering y cocinas institucionales",
+        "hero": "Equipos Cambro para servicios de alimentos, suministros para instalaciones y bebidas de EE. UU. para hoteles, restaurantes y catering. Precio según solicitud de cotización, puesto en su puerto.",
+        "linesTitle": "Servicios de alimentos e instalaciones",
+        "linesIntro": "Equipos y suministros para hoteles, restaurantes, empresas de catering y cocinas institucionales. El país de origen se indica por línea en cada cotización."
+      },
+      "industrial": {
+        "label": "Para compradores industriales y comerciales",
+        "title": "Industrial y comercial",
+        "who": "Fabricantes, plantas, contratistas y equipos de compras",
+        "hero": "Guantes de nitrilo, envases y equipos de procesamiento, y suministro MRO según su especificación. Precio según solicitud de cotización, puesto en su puerto.",
+        "linesTitle": "Industrial y comercial",
+        "linesIntro": "Abastecimiento según especificación de fabricantes de EE. UU. y Europa. El país de origen se indica por línea en cada cotización."
+      },
+      "automotive": {
+        "label": "Para compradores de autopartes",
+        "title": "Autopartes",
+        "who": "Concesionarios, distribuidores de repuestos, talleres y operadores de flotas",
+        "hero": "Repuestos originales Ford OEM para vehículos con especificación de EE. UU., adquiridos a través de la red de concesionarios de EE. UU. Precio según solicitud de cotización, puesto en su puerto.",
+        "linesTitle": "Repuestos originales OEM",
+        "linesIntro": "Repuestos para vehículos Ford con especificación de EE. UU., comprados a través de la red de concesionarios de EE. UU. Envíe números de pieza y cantidades; el país de origen se indica por línea en cada cotización."
+      }
+    },
+    "lineNames": {
+      "beverages": "Bebidas de EE. UU.",
+      "consumer": "Bienes de consumo",
+      "foodservice": "Equipos Cambro para servicios de alimentos",
+      "facility": "Suministros para instalaciones",
+      "gloves": "Guantes de nitrilo Rhinoskin",
+      "packaging": "Envases y equipos de procesamiento",
+      "mro": "MRO y suministro industrial",
+      "ford": "Repuestos originales Ford OEM",
+      "otherBrands": "Otras marcas bajo pedido"
     },
     "originLabel": "Origen",
     "beverages": {
@@ -127,7 +158,8 @@
       "selectedCount": "{n, plural, one {# palé en la solicitud} other {# palés en la solicitud}}",
       "palletNote": "Se vende por palé. Cada refresco que añade a la solicitud es un palé; puede cambiar el número de palés en la solicitud.",
       "containerFit": "{p20} palés llenan un contenedor de 20' · {p40} palés llenan un contenedor de 40'",
-      "leadTime": "Plazo: {n} semanas desde el pedido hasta la carga del contenedor"
+      "leadTime": "Plazo: {n} semanas desde el pedido hasta la carga del contenedor",
+      "viewAll": "Ver el catálogo completo ({n})"
     },
     "consumer": {
       "title": "BIENES DE CONSUMO",
@@ -153,44 +185,6 @@
       ],
       "howTitle": "Cómo pedir",
       "how": "Envíe su lista con nombres o códigos UPC, cantidades objetivo y puerto de destino. Confirmamos disponibilidad y origen por línea y luego cotizamos puesto en su puerto."
-    },
-    "industrial": {
-      "title": "INDUSTRIAL Y",
-      "titleLine2": "COMERCIAL",
-      "intro": "Abastecimiento según especificación de fabricantes de EE. UU. y Europa. El país de origen se indica por línea en cada cotización.",
-      "cards": [
-        {
-          "id": "foodservice",
-          "title": "Equipos comerciales Cambro para servicios de alimentos",
-          "text": "Bandejas gastronorm Cambro, contenedores de policarbonato, contenedores isotérmicos para transporte de alimentos, bandejas de fibra de vidrio y racks de lavavajillas. Para hoteles, catering, cocinas institucionales, hospitales y distribuidores del sector.",
-          "origin": "Hecho en EE. UU."
-        },
-        {
-          "id": "ford",
-          "title": "Repuestos originales Ford (especificación EE. UU.)",
-          "text": "Repuestos originales Ford OEM para vehículos con especificación estadounidense, a través de la red de concesionarios de EE. UU. Envíe números de pieza y cantidades.",
-          "note": "Plazo de entrega cotizado por pedido.",
-          "origin": "Abastecido en EE. UU."
-        },
-        {
-          "id": "gloves",
-          "title": "Guantes de nitrilo Rhinoskin / EPP",
-          "text": "Guantes desechables Rhinoskin resistentes, de nitrilo puro (sin relleno), marca premium, de 6 y 8 mil de espesor, para uso industrial, automotriz y policial. Informes de ensayo de laboratorio independiente disponibles."
-        },
-        {
-          "id": "mro",
-          "title": "Instalaciones, MRO y suministro industrial",
-          "text": "Bombas, válvulas, instrumentación, repuestos y consumibles de fabricantes estadounidenses sin canal de exportación. Abastecido según su especificación.",
-          "origin": "Indicado por línea en la cotización"
-        },
-        {
-          "id": "packaging",
-          "title": "Envases y equipos de procesamiento",
-          "text": "Botellas, tapas compatibles y maquinaria de procesamiento de alimentos de fabricantes de EE. UU. y Europa. Nos encargamos de la compatibilidad y la documentación.",
-          "note": "Tapas y maquinaria de procesamiento suministradas a un productor de alimentos en Azerbaiyán.",
-          "origin": "EE. UU. o UE, indicado en la cotización"
-        }
-      ]
     },
     "custom": {
       "title": "ABASTECIMIENTO A MEDIDA (RFQ)",
@@ -242,7 +236,45 @@
       ]
     },
     "pickHint": "Seleccione una línea para abrir una solicitud.",
-    "cardCta": "Solicitar cotización"
+    "cardCta": "Solicitar cotización",
+    "lines": {
+      "foodservice": {
+        "title": "Equipos comerciales Cambro para servicios de alimentos",
+        "text": "Bandejas gastronorm Cambro, contenedores de policarbonato, contenedores isotérmicos para transporte de alimentos, bandejas de fibra de vidrio y racks de lavavajillas. Para hoteles, catering, cocinas institucionales, hospitales y distribuidores del sector.",
+        "origin": "Hecho en EE. UU."
+      },
+      "facility": {
+        "title": "Suministros para instalaciones",
+        "text": "Artículos de limpieza y housekeeping, químicos de limpieza profesional, productos para baños, iluminación, filtros HVAC y repuestos de mantenimiento para hoteles, restaurantes y cocinas institucionales. Abastecido de fabricantes estadounidenses según su lista.",
+        "origin": "Indicado por línea en la cotización"
+      },
+      "gloves": {
+        "title": "Guantes de nitrilo Rhinoskin / EPP",
+        "text": "Guantes desechables Rhinoskin resistentes, de nitrilo puro (sin relleno), marca premium, de 6 y 8 mil de espesor, para uso industrial, automotriz y policial. Informes de ensayo de laboratorio independiente disponibles."
+      },
+      "packaging": {
+        "title": "Envases y equipos de procesamiento",
+        "text": "Botellas, tapas compatibles y maquinaria de procesamiento de alimentos de fabricantes de EE. UU. y Europa. Nos encargamos de la compatibilidad y la documentación.",
+        "note": "Tapas y maquinaria de procesamiento suministradas a un productor de alimentos en Azerbaiyán.",
+        "origin": "EE. UU. o UE, indicado en la cotización"
+      },
+      "mro": {
+        "title": "MRO y suministro industrial",
+        "text": "Bombas, válvulas, instrumentación, repuestos y consumibles de fabricantes estadounidenses sin canal de exportación. Abastecido según su especificación.",
+        "origin": "Indicado por línea en la cotización"
+      },
+      "ford": {
+        "title": "Repuestos originales Ford (especificación EE. UU.)",
+        "text": "Repuestos originales Ford OEM para vehículos con especificación estadounidense, a través de la red de concesionarios de EE. UU. Envíe números de pieza y cantidades.",
+        "note": "Plazo de entrega cotizado por pedido.",
+        "origin": "Abastecido en EE. UU."
+      },
+      "otherBrands": {
+        "title": "Otras marcas de vehículos (bajo pedido)",
+        "text": "¿Necesita repuestos de otra marca? Envíe la marca, los números de pieza y las cantidades. Verificamos la disponibilidad a través de concesionarios y distribuidores de EE. UU. y la confirmamos por línea en la cotización.",
+        "origin": "Indicado por línea en la cotización"
+      }
+    }
   },
   "howItWorks": {
     "hero": {

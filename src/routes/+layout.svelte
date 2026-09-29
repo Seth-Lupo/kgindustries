@@ -19,13 +19,15 @@
 
 	const navLinks = [
 		{ href: '/', key: 'nav.overview' },
-		{ href: '/products', key: 'nav.products' },
+		{ href: '/products/', key: 'nav.products' },
 		{ href: '/how-it-works', key: 'nav.howItWorks' },
 		{ href: '/#contact', key: 'nav.contact' }
 	];
 
 	const path = $derived(page.url.pathname.replace(base, '') || '/');
-	const isActive = (href: string) => !href.includes('#') && path === href;
+	// Products stays highlighted on the buyer-type pages under it.
+	const isActive = (href: string) =>
+		!href.includes('#') && (href === '/' ? path === '/' : path.startsWith(href));
 
 	const toggleMenu = () => {
 		mobileMenuOpen = !mobileMenuOpen;

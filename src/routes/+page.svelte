@@ -5,12 +5,10 @@
 	import { base } from '$app/paths';
 	import { rfqOpen, RFQ_EMAIL, LINKEDIN_URL } from '$lib/stores/rfq';
 	import { reveal, parallax } from '$lib/actions/motion';
+	import { segments, segmentHref } from '$lib/data/segments';
 
 	type HandleItem = { title: string; text: string };
 	type DataPoint = { value: string; label: string };
-	type Tile = { title: string; text: string };
-
-	const tileAnchors = ['beverages', 'consumer', 'industrial', 'custom'];
 </script>
 
 <SEO
@@ -37,7 +35,7 @@
 					<button class="btn-gold" onclick={() => rfqOpen.set(true)}>
 						{$_('nav.rfq')} <span class="btn-arrow" aria-hidden="true">→</span>
 					</button>
-					<a class="btn-ghost" href="{base}/products">{$_('nav.products')}</a>
+					<a class="btn-ghost" href="{base}/products/">{$_('nav.products')}</a>
 				</div>
 			</div>
 		</div>
@@ -114,13 +112,15 @@
 			<div class="split-info">
 				<h3 use:reveal>{$_('home.categories.title')}</h3>
 				<div class="tiles">
-					{#each $json('home.categories.tiles') as Tile[] as tile, i}
-						<a class="tile" href="{base}/products#{tileAnchors[i]}" use:reveal={{ delay: 80 + i * 90 }}>
+					{#each segments as seg, i (seg.id)}
+						<a class="tile" href="{base}{segmentHref(seg.id)}" use:reveal={{ delay: 80 + i * 90 }}>
 							<span class="tile-head">
-								<span class="tile-title">{tile.title}</span>
+								<span class="tile-title">{$_(`productsPage.segments.${seg.id}.label`)}</span>
 								<span class="tile-arrow btn-arrow" aria-hidden="true">→</span>
 							</span>
-							<span class="tile-text">{tile.text}</span>
+							<span class="tile-text">
+								{seg.lines.map((id) => $_(`productsPage.lineNames.${id}`)).join(', ')}
+							</span>
 						</a>
 					{/each}
 				</div>

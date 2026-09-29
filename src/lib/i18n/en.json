@@ -68,25 +68,7 @@
     },
     "categories": {
       "caption": "US-SOURCED · SHIPPED TO YOUR PORT",
-      "title": "PRODUCT CATEGORIES",
-      "tiles": [
-        {
-          "title": "US Beverages",
-          "text": "US-market sodas and specialty flavors not bottled for your region"
-        },
-        {
-          "title": "Consumer Goods",
-          "text": "US grocery and FMCG lines on request"
-        },
-        {
-          "title": "Industrial & Commercial",
-          "text": "Cambro foodservice equipment, genuine Ford parts, PPE, facilities and MRO supply, packaging"
-        },
-        {
-          "title": "Custom Sourcing (RFQ)",
-          "text": "If it is sold in the US, send us the spec"
-        }
-      ]
+      "title": "PRODUCT CATEGORIES"
     },
     "contact": {
       "title": "REQUEST A QUOTE",
@@ -98,6 +80,55 @@
     "hero": {
       "title": "PRODUCTS",
       "subtitle": "US products for importers, distributors, and operators. Pricing quoted per RFQ, landed to your port."
+    },
+    "hub": {
+      "title": "Shop by buyer type",
+      "intro": "We supply very different kinds of buyers. Choose the one that fits your business to see the product lines we quote for you.",
+      "view": "View products",
+      "back": "All buyer types"
+    },
+    "segments": {
+      "retail": {
+        "label": "For retail buyers",
+        "title": "Retail",
+        "who": "Supermarkets, importers, wholesalers, and distributors",
+        "hero": "US beverages and consumer brands for supermarkets, importers, and distributors. Pricing quoted per RFQ, landed to your port."
+      },
+      "hospitality": {
+        "label": "For hospitality buyers",
+        "title": "Hospitality",
+        "who": "Hotels, restaurants, caterers, and institutional kitchens",
+        "hero": "Cambro foodservice equipment, facility supply, and US beverages for hotels, restaurants, and caterers. Pricing quoted per RFQ, landed to your port.",
+        "linesTitle": "Foodservice & facility",
+        "linesIntro": "Equipment and supplies for hotels, restaurants, caterers, and institutional kitchens. Country of origin is stated per line on every quote."
+      },
+      "industrial": {
+        "label": "For industrial & commercial buyers",
+        "title": "Industrial & Commercial",
+        "who": "Manufacturers, plants, contractors, and procurement teams",
+        "hero": "Nitrile gloves, packaging and processing equipment, and MRO supply sourced to your specification. Pricing quoted per RFQ, landed to your port.",
+        "linesTitle": "Industrial & commercial",
+        "linesIntro": "Specification-driven sourcing from US and European manufacturers. Country of origin is stated per line on every quote."
+      },
+      "automotive": {
+        "label": "For automotive parts buyers",
+        "title": "Automotive Parts",
+        "who": "Dealers, parts distributors, workshops, and fleet operators",
+        "hero": "Genuine Ford OEM parts for US-spec vehicles, sourced through the US dealer network. Pricing quoted per RFQ, landed to your port.",
+        "linesTitle": "Genuine OEM parts",
+        "linesIntro": "Parts for US-specification Ford vehicles, bought through the US dealer network. Send part numbers and quantities; country of origin is stated per line on every quote."
+      }
+    },
+    "lineNames": {
+      "beverages": "US beverages",
+      "consumer": "Consumer goods",
+      "foodservice": "Cambro foodservice equipment",
+      "facility": "Facility supply",
+      "gloves": "Rhinoskin nitrile gloves",
+      "packaging": "Packaging & processing equipment",
+      "mro": "MRO & industrial supply",
+      "ford": "Genuine Ford OEM parts",
+      "otherBrands": "Other brands on request"
     },
     "originLabel": "Origin",
     "beverages": {
@@ -127,7 +158,8 @@
       "selectedCount": "{n, plural, one {# pallet in RFQ} other {# pallets in RFQ}}",
       "palletNote": "Sold by the pallet. Each soda you add to the RFQ is one pallet; change the number of pallets in the RFQ.",
       "containerFit": "{p20} pallets fill a 20' container · {p40} pallets fill a 40' container",
-      "leadTime": "Lead time: {n} weeks from order to container loading"
+      "leadTime": "Lead time: {n} weeks from order to container loading",
+      "viewAll": "View full catalog ({n})"
     },
     "consumer": {
       "title": "CONSUMER GOODS",
@@ -153,44 +185,6 @@
       ],
       "howTitle": "How to order",
       "how": "Send your list with item names or UPCs, target quantities, and destination port. We confirm availability and origin per line, then quote landed to your port."
-    },
-    "industrial": {
-      "title": "INDUSTRIAL &",
-      "titleLine2": "COMMERCIAL",
-      "intro": "Specification-driven sourcing from US and European manufacturers. Country of origin is stated per line on every quote.",
-      "cards": [
-        {
-          "id": "foodservice",
-          "title": "Cambro commercial foodservice equipment",
-          "text": "Cambro food pans, polycarbonate storage containers, insulated food carriers, fiberglass trays, and dishwashing racks. Built for hotels, caterers, institutional kitchens, hospitals, and foodservice distributors.",
-          "origin": "Made in USA"
-        },
-        {
-          "id": "ford",
-          "title": "Genuine Ford parts (US-spec)",
-          "text": "Genuine Ford OEM parts for US-specification vehicles, sourced through the US dealer network. Send part numbers and quantities.",
-          "note": "Lead time quoted per order.",
-          "origin": "Sourced in the US"
-        },
-        {
-          "id": "gloves",
-          "title": "Rhinoskin nitrile gloves / PPE",
-          "text": "Rhinoskin heavy-duty, pure nitrile disposable gloves (no filler), a premium glove brand, in 6 and 8 mil thickness, for industrial, automotive, and law-enforcement use. Independent lab test reports available."
-        },
-        {
-          "id": "mro",
-          "title": "Facilities, MRO, and industrial supply",
-          "text": "Pumps, valves, instrumentation, spares, and consumables from US manufacturers without an export channel. Sourced to your specification.",
-          "origin": "Stated per line on the quote"
-        },
-        {
-          "id": "packaging",
-          "title": "Packaging and processing equipment",
-          "text": "Bottles, matched closures, and food-processing machinery sourced from US and European manufacturers, with compatibility and documentation handled on our side.",
-          "note": "Closures and processing machinery supplied to a food producer in Azerbaijan.",
-          "origin": "US or EU, stated on the quote"
-        }
-      ]
     },
     "custom": {
       "title": "CUSTOM SOURCING (RFQ)",
@@ -242,7 +236,45 @@
       ]
     },
     "pickHint": "Select a line to open an RFQ for it.",
-    "cardCta": "Request a quote"
+    "cardCta": "Request a quote",
+    "lines": {
+      "foodservice": {
+        "title": "Cambro commercial foodservice equipment",
+        "text": "Cambro food pans, polycarbonate storage containers, insulated food carriers, fiberglass trays, and dishwashing racks. Built for hotels, caterers, institutional kitchens, hospitals, and foodservice distributors.",
+        "origin": "Made in USA"
+      },
+      "facility": {
+        "title": "Facility supply",
+        "text": "Housekeeping and janitorial supplies, commercial cleaning chemicals, washroom products, lighting, HVAC filters, and maintenance spares for hotels, restaurants, and institutional kitchens. Sourced from US manufacturers against your list.",
+        "origin": "Stated per line on the quote"
+      },
+      "gloves": {
+        "title": "Rhinoskin nitrile gloves / PPE",
+        "text": "Rhinoskin heavy-duty, pure nitrile disposable gloves (no filler), a premium glove brand, in 6 and 8 mil thickness, for industrial, automotive, and law-enforcement use. Independent lab test reports available."
+      },
+      "packaging": {
+        "title": "Packaging and processing equipment",
+        "text": "Bottles, matched closures, and food-processing machinery sourced from US and European manufacturers, with compatibility and documentation handled on our side.",
+        "note": "Closures and processing machinery supplied to a food producer in Azerbaijan.",
+        "origin": "US or EU, stated on the quote"
+      },
+      "mro": {
+        "title": "MRO and industrial supply",
+        "text": "Pumps, valves, instrumentation, spares, and consumables from US manufacturers without an export channel. Sourced to your specification.",
+        "origin": "Stated per line on the quote"
+      },
+      "ford": {
+        "title": "Genuine Ford parts (US-spec)",
+        "text": "Genuine Ford OEM parts for US-specification vehicles, sourced through the US dealer network. Send part numbers and quantities.",
+        "note": "Lead time quoted per order.",
+        "origin": "Sourced in the US"
+      },
+      "otherBrands": {
+        "title": "Other vehicle brands (on request)",
+        "text": "Need parts for another make? Send the brand, part numbers, and quantities. We check availability through US dealer and distributor channels and confirm it per line on the quote.",
+        "origin": "Stated per line on the quote"
+      }
+    }
   },
   "howItWorks": {
     "hero": {

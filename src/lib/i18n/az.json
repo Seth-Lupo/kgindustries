@@ -68,25 +68,7 @@
     },
     "categories": {
       "caption": "ABŞ-DAN TƏDARÜK · LİMANINIZA GÖNDƏRİLİR",
-      "title": "MƏHSUL KATEQORİYALARI",
-      "tiles": [
-        {
-          "title": "ABŞ içkiləri",
-          "text": "Regionunuz üçün doldurulmayan ABŞ bazarı qazlı içkiləri və xüsusi dadlar"
-        },
-        {
-          "title": "İstehlak malları",
-          "text": "Sorğu əsasında ABŞ ərzaq və FMCG məhsulları"
-        },
-        {
-          "title": "Sənaye və kommersiya",
-          "text": "Cambro iaşə avadanlığı, orijinal Ford hissələri, fərdi qoruyucu vasitələr, obyekt və MRO təchizatı, qablaşdırma"
-        },
-        {
-          "title": "Fərdi tədarük (RFQ)",
-          "text": "Məhsul ABŞ-da satılırsa, spesifikasiyanı bizə göndərin"
-        }
-      ]
+      "title": "MƏHSUL KATEQORİYALARI"
     },
     "contact": {
       "title": "QİYMƏT SORĞUSU",
@@ -98,6 +80,55 @@
     "hero": {
       "title": "MƏHSULLAR",
       "subtitle": "İdxalçılar, distribyutorlar və operatorlar üçün ABŞ məhsulları. Qiymət sorğu əsasında, limanınıza qədər çatdırılma ilə."
+    },
+    "hub": {
+      "title": "Alıcı növünə görə seçin",
+      "intro": "Çox müxtəlif alıcıları təchiz edirik. Sizin üçün qiymət təklif etdiyimiz məhsul xətlərini görmək üçün biznesinizə uyğun olanı seçin.",
+      "view": "Məhsullara bax",
+      "back": "Bütün alıcı növləri"
+    },
+    "segments": {
+      "retail": {
+        "label": "Pərakəndə alıcılar üçün",
+        "title": "Pərakəndə",
+        "who": "Supermarketlər, idxalçılar, topdansatışçılar və distribyutorlar",
+        "hero": "Supermarketlər, idxalçılar və distribyutorlar üçün ABŞ içkiləri və istehlak brendləri. Qiymət sorğu əsasında, limanınıza qədər çatdırılma ilə."
+      },
+      "hospitality": {
+        "label": "Qonaqpərvərlik sektoru alıcıları üçün",
+        "title": "Qonaqpərvərlik",
+        "who": "Otellər, restoranlar, ketrinq şirkətləri və müəssisə mətbəxləri",
+        "hero": "Otellər, restoranlar və ketrinq şirkətləri üçün Cambro iaşə avadanlığı, obyekt təchizatı və ABŞ içkiləri. Qiymət sorğu əsasında, limanınıza qədər çatdırılma ilə.",
+        "linesTitle": "İaşə və obyekt təchizatı",
+        "linesIntro": "Otellər, restoranlar, ketrinq şirkətləri və müəssisə mətbəxləri üçün avadanlıq və ləvazimatlar. Mənşə ölkəsi hər təklifdə hər mövqe üzrə göstərilir."
+      },
+      "industrial": {
+        "label": "Sənaye və kommersiya alıcıları üçün",
+        "title": "Sənaye və kommersiya",
+        "who": "İstehsalçılar, zavodlar, podratçılar və satınalma komandaları",
+        "hero": "Spesifikasiyanıza uyğun nitril əlcəklər, qablaşdırma və emal avadanlığı və MRO təchizatı. Qiymət sorğu əsasında, limanınıza qədər çatdırılma ilə.",
+        "linesTitle": "Sənaye və kommersiya",
+        "linesIntro": "ABŞ və Avropa istehsalçılarından spesifikasiyaya əsaslanan tədarük. Mənşə ölkəsi hər təklifdə hər mövqe üzrə göstərilir."
+      },
+      "automotive": {
+        "label": "Avtomobil hissələri alıcıları üçün",
+        "title": "Avtomobil hissələri",
+        "who": "Dilerlər, ehtiyat hissələri distribyutorları, servislər və avtopark operatorları",
+        "hero": "ABŞ dilerlər şəbəkəsi vasitəsilə tədarük olunan, ABŞ spesifikasiyalı avtomobillər üçün orijinal Ford OEM hissələri. Qiymət sorğu əsasında, limanınıza qədər çatdırılma ilə.",
+        "linesTitle": "Orijinal OEM hissələri",
+        "linesIntro": "ABŞ dilerlər şəbəkəsi vasitəsilə alınan, ABŞ spesifikasiyalı Ford avtomobilləri üçün hissələr. Hissə nömrələrini və miqdarları göndərin; mənşə ölkəsi hər təklifdə hər mövqe üzrə göstərilir."
+      }
+    },
+    "lineNames": {
+      "beverages": "ABŞ içkiləri",
+      "consumer": "İstehlak malları",
+      "foodservice": "Cambro iaşə avadanlığı",
+      "facility": "Obyekt təchizatı",
+      "gloves": "Rhinoskin nitril əlcəklər",
+      "packaging": "Qablaşdırma və emal avadanlığı",
+      "mro": "MRO və sənaye təchizatı",
+      "ford": "Orijinal Ford OEM hissələri",
+      "otherBrands": "Digər markalar (sorğu ilə)"
     },
     "originLabel": "Mənşə",
     "beverages": {
@@ -127,7 +158,8 @@
       "selectedCount": "{n, plural, other {Sorğuda # palet}}",
       "palletNote": "Paletlə satılır. Sorğuya əlavə etdiyiniz hər içki bir paletdir; palet sayını sorğuda dəyişə bilərsiniz.",
       "containerFit": "{p20} palet 20 futluq konteyneri doldurur · {p40} palet 40 futluq konteyneri doldurur",
-      "leadTime": "Müddət: sifarişdən konteynerin yüklənməsinə qədər {n} həftə"
+      "leadTime": "Müddət: sifarişdən konteynerin yüklənməsinə qədər {n} həftə",
+      "viewAll": "Tam kataloqa bax ({n})"
     },
     "consumer": {
       "title": "İSTEHLAK MALLARI",
@@ -153,44 +185,6 @@
       ],
       "howTitle": "Necə sifariş etmək olar",
       "how": "Məhsul adları və ya UPC kodları, hədəf miqdar və təyinat limanı ilə siyahınızı göndərin. Hər mövqe üzrə mövcudluğu və mənşəyi təsdiqləyirik, sonra limanınıza qədər çatdırılma daxil qiymət veririk."
-    },
-    "industrial": {
-      "title": "SƏNAYE VƏ",
-      "titleLine2": "KOMMERSİYA",
-      "intro": "ABŞ və Avropa istehsalçılarından spesifikasiyaya əsaslanan tədarük. Mənşə ölkəsi hər təklifdə hər mövqe üzrə göstərilir.",
-      "cards": [
-        {
-          "id": "foodservice",
-          "title": "Cambro kommersiya iaşə avadanlığı",
-          "text": "Cambro qastronom qabları, polikarbonat saxlama konteynerləri, izolyasiyalı qida daşıyıcıları, şüşə lifli sinilər və qabyuyan kasetləri. Otellər, ketering şirkətləri, müəssisə mətbəxləri, xəstəxanalar və iaşə distribyutorları üçün.",
-          "origin": "ABŞ istehsalı"
-        },
-        {
-          "id": "ford",
-          "title": "Orijinal Ford hissələri (ABŞ spesifikasiyası)",
-          "text": "ABŞ spesifikasiyalı avtomobillər üçün orijinal Ford OEM hissələri, ABŞ diler şəbəkəsi vasitəsilə. Hissə nömrələrini və miqdarı göndərin.",
-          "note": "Çatdırılma müddəti hər sifariş üçün bildirilir.",
-          "origin": "ABŞ-dan tədarük"
-        },
-        {
-          "id": "gloves",
-          "title": "Rhinoskin nitril əlcəklər / fərdi qoruyucu vasitələr",
-          "text": "Rhinoskin möhkəm, təmiz nitrildən (doldurucusuz) birdəfəlik əlcəklər, premium brend, 6 və 8 mil qalınlığında; sənaye, avtoservis və hüquq-mühafizə istifadəsi üçün. Müstəqil laboratoriya test hesabatları mövcuddur."
-        },
-        {
-          "id": "mro",
-          "title": "Obyekt, MRO və sənaye təchizatı",
-          "text": "İxrac kanalı olmayan ABŞ istehsalçılarından nasoslar, klapanlar, ölçü cihazları, ehtiyat hissələri və sərf materialları. Spesifikasiyanıza uyğun tədarük.",
-          "origin": "Təklifdə hər mövqe üzrə göstərilir"
-        },
-        {
-          "id": "packaging",
-          "title": "Qablaşdırma və emal avadanlığı",
-          "text": "ABŞ və Avropa istehsalçılarından butulkalar, uyğun qapaqlar və qida emalı avadanlığı. Uyğunluq və sənədlər bizim tərəfimizdən həll olunur.",
-          "note": "Azərbaycanda qida istehsalçısına qapaqlar və emal avadanlığı tədarük edilib.",
-          "origin": "ABŞ və ya AB, təklifdə göstərilir"
-        }
-      ]
     },
     "custom": {
       "title": "FƏRDİ TƏDARÜK (RFQ)",
@@ -242,7 +236,45 @@
       ]
     },
     "pickHint": "Sorğu açmaq üçün bir mövqe seçin.",
-    "cardCta": "Qiymət sorğusu"
+    "cardCta": "Qiymət sorğusu",
+    "lines": {
+      "foodservice": {
+        "title": "Cambro kommersiya iaşə avadanlığı",
+        "text": "Cambro qastronom qabları, polikarbonat saxlama konteynerləri, izolyasiyalı qida daşıyıcıları, şüşə lifli sinilər və qabyuyan kasetləri. Otellər, ketering şirkətləri, müəssisə mətbəxləri, xəstəxanalar və iaşə distribyutorları üçün.",
+        "origin": "ABŞ istehsalı"
+      },
+      "facility": {
+        "title": "Obyekt təchizatı",
+        "text": "Otellər, restoranlar və müəssisə mətbəxləri üçün təsərrüfat və təmizlik ləvazimatları, kommersiya təmizləyici kimyəvi maddələr, sanitar qovşaq məhsulları, işıqlandırma, HVAC filtrləri və texniki xidmət üçün ehtiyat hissələri. Siyahınıza əsasən ABŞ istehsalçılarından tədarük.",
+        "origin": "Təklifdə hər mövqe üzrə göstərilir"
+      },
+      "gloves": {
+        "title": "Rhinoskin nitril əlcəklər / fərdi qoruyucu vasitələr",
+        "text": "Rhinoskin möhkəm, təmiz nitrildən (doldurucusuz) birdəfəlik əlcəklər, premium brend, 6 və 8 mil qalınlığında; sənaye, avtoservis və hüquq-mühafizə istifadəsi üçün. Müstəqil laboratoriya test hesabatları mövcuddur."
+      },
+      "packaging": {
+        "title": "Qablaşdırma və emal avadanlığı",
+        "text": "ABŞ və Avropa istehsalçılarından butulkalar, uyğun qapaqlar və qida emalı avadanlığı. Uyğunluq və sənədlər bizim tərəfimizdən həll olunur.",
+        "note": "Azərbaycanda qida istehsalçısına qapaqlar və emal avadanlığı tədarük edilib.",
+        "origin": "ABŞ və ya AB, təklifdə göstərilir"
+      },
+      "mro": {
+        "title": "MRO və sənaye təchizatı",
+        "text": "İxrac kanalı olmayan ABŞ istehsalçılarından nasoslar, klapanlar, ölçü cihazları, ehtiyat hissələri və sərf materialları. Spesifikasiyanıza uyğun tədarük.",
+        "origin": "Təklifdə hər mövqe üzrə göstərilir"
+      },
+      "ford": {
+        "title": "Orijinal Ford hissələri (ABŞ spesifikasiyası)",
+        "text": "ABŞ spesifikasiyalı avtomobillər üçün orijinal Ford OEM hissələri, ABŞ diler şəbəkəsi vasitəsilə. Hissə nömrələrini və miqdarı göndərin.",
+        "note": "Çatdırılma müddəti hər sifariş üçün bildirilir.",
+        "origin": "ABŞ-dan tədarük"
+      },
+      "otherBrands": {
+        "title": "Digər avtomobil markaları (sorğu ilə)",
+        "text": "Başqa marka üçün hissələr lazımdır? Markanı, hissə nömrələrini və miqdarları göndərin. Mövcudluğu ABŞ diler və distribyutor kanalları vasitəsilə yoxlayır və təklifdə hər mövqe üzrə təsdiqləyirik.",
+        "origin": "Təklifdə hər mövqe üzrə göstərilir"
+      }
+    }
   },
   "howItWorks": {
     "hero": {
