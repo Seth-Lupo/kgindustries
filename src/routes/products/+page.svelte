@@ -265,7 +265,6 @@
 				<div class="req-header">
 					<h2>{$_('productsPage.order.title')}</h2>
 				</div>
-				<!-- CONFIRM: foodservice minimum container size -->
 				<div class="order-list">
 					{#each $json('productsPage.order.rows') as Row[] as row, i}
 						<div class="order-row" class:open={openRow === i}>

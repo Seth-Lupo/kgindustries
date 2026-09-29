@@ -163,7 +163,6 @@
           "id": "foodservice",
           "title": "Cambro 商用餐饮设备",
           "text": "Cambro 餐盘、聚碳酸酯储物容器、保温送餐箱、玻璃钢托盘和洗碗架。适用于酒店、餐饮服务商、机构厨房、医院和餐饮设备经销商。",
-          "note": "下单方式：整柜。",
           "origin": "美国制造"
         },
         {
@@ -175,8 +174,8 @@
         },
         {
           "id": "gloves",
-          "title": "丁腈手套 / 个人防护用品",
-          "text": "加厚纯丁腈一次性手套（无填充剂），6 mil 和 8 mil 厚度，适用于工业、汽车和执法用途。"
+          "title": "Rhinoskin 丁腈手套 / 个人防护用品",
+          "text": "Rhinoskin 加厚纯丁腈一次性手套（无填充剂），高端品牌，6 mil 和 8 mil 厚度，适用于工业、汽车和执法用途。可提供独立实验室检测报告。"
         },
         {
           "id": "mro",
@@ -207,10 +206,6 @@
         {
           "label": "交期：饮料",
           "text": "从下单到装柜 5 周。"
-        },
-        {
-          "label": "起订量：餐饮设备",
-          "text": "每单整柜。"
         },
         {
           "label": "起订量：其他产品",
@@ -410,8 +405,8 @@
   },
   "gloves": {
     "button": "查看检测报告",
-    "title": "丁腈手套检测结果",
-    "intro": "由经 A2LA 认可（ISO 17025）的独立实验室进行渗透测试。",
+    "title": "Rhinoskin 丁腈手套检测结果",
+    "intro": "Rhinoskin 手套由经 A2LA 认可（ISO 17025）的独立实验室 Akron Rubber Development Laboratory（ARDL）进行渗透测试。",
     "black": "黑色丁腈手套",
     "orange": "橙色丁腈手套",
     "result": "240 分钟内未检测到渗透",
@@ -430,7 +425,9 @@
     "fair": "中",
     "poor": "差",
     "disclaimer": "结果仅适用于所测样品。以上为渗透测试报告，并非 CE、EN 455 或 EN ISO 374 认证。请确认是否适合您的用途。",
-    "requestFull": "索取完整检测报告",
-    "requestItem": "丁腈手套：完整检测报告"
+    "requestFull": "询价 Rhinoskin 手套",
+    "requestItem": "Rhinoskin 丁腈手套",
+    "viewReport": "完整实验室报告（PDF）",
+    "viewChart": "完整耐化学性表（PDF）"
   }
 }

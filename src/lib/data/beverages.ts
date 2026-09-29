@@ -60,7 +60,7 @@ export const beverageFamilies: BeverageFamily[] = [
 		id: 'specialty',
 		items: [
 			us('Dr Pepper Vanilla Float', 'dr-pepper-vanilla-float', 104),
-			us('Mountain Dew Baja Blast', null, 120),
+			us('Mountain Dew Baja Blast', 'mountain-dew-baja-blast', 120),
 			us('Mug Root Beer', 'mug-root-beer', 100)
 		]
 	},

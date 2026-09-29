@@ -1,7 +1,6 @@
-// Nitrile glove test data, summarized from independent lab reports
-// (ASTM D6978 permeation, A2LA ISO 17025-accredited laboratory).
-// The source reports carry manufacturer branding, so they are not published;
-// buyers can request the full reports through the RFQ panel.
+// Rhinoskin nitrile glove test data, summarized from independent lab reports
+// (ASTM D6978 permeation, A2LA ISO 17025-accredited laboratory). The full
+// reports are published unaltered in static/assets/docs.
 
 export interface GloveReport {
 	glove: 'black' | 'orange';
@@ -11,7 +10,10 @@ export interface GloveReport {
 	temperature: string;
 	specimens: number;
 	observation: 'swellDeg' | 'swellNoDeg';
+	pdf: string;
 }
+
+export const GLOVE_CHART_PDF = '/assets/docs/rhinoskin-chemical-resistance-chart.pdf';
 
 export const gloveReports: GloveReport[] = [
 	{
@@ -21,7 +23,8 @@ export const gloveReports: GloveReport[] = [
 		agent: 'Fentanyl citrate injection, 100 mcg/2 mL',
 		temperature: '35 °C',
 		specimens: 3,
-		observation: 'swellDeg'
+		observation: 'swellDeg',
+		pdf: '/assets/docs/rhinoskin-black-nitrile-fentanyl-permeation-2023.pdf'
 	},
 	{
 		glove: 'orange',
@@ -30,11 +33,12 @@ export const gloveReports: GloveReport[] = [
 		agent: 'Fentanyl citrate injection, 100 mcg/2 mL',
 		temperature: '35 °C',
 		specimens: 3,
-		observation: 'swellNoDeg'
+		observation: 'swellNoDeg',
+		pdf: '/assets/docs/rhinoskin-orange-nitrile-fentanyl-permeation-2020.pdf'
 	}
 ];
 
-// General nitrile chemical resistance ratings (from the manufacturer's chart).
+// General nitrile chemical resistance ratings (from the Rhinoskin chart).
 export const nitrileResistance: Record<'excellent' | 'good' | 'fair' | 'poor', string[]> = {
 	excellent: [
 		'Ammonium hydroxide',

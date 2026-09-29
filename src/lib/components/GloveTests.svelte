@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { tick } from 'svelte';
 	import { _ } from 'svelte-i18n';
-	import { gloveReports, nitrileResistance } from '$lib/data/gloves';
+	import { base } from '$app/paths';
+	import { gloveReports, nitrileResistance, GLOVE_CHART_PDF } from '$lib/data/gloves';
 	import { rfqLabels } from '$lib/data/rfqLabels';
 	import { openRfqFor, rfqOpen } from '$lib/stores/rfq';
 
@@ -15,9 +16,9 @@
 		if (open) tick().then(() => dialog?.focus());
 	});
 
-	function requestReports() {
+	function requestQuote() {
 		open = false;
-		openRfqFor('gloveReports', rfqLabels.gloveReports, $_('gloves.requestItem'));
+		openRfqFor('gloves', rfqLabels.gloves, $_('gloves.requestItem'));
 	}
 
 	function handleKeydown(e: KeyboardEvent) {
@@ -42,7 +43,10 @@
 		bind:this={dialog}
 	>
 		<div class="head">
-			<h2 id="glove-title">{$_('gloves.title')}</h2>
+			<div class="brand">
+				<img src="{base}/assets/brands/rhinoskin-logo.webp" alt="Rhinoskin" width="446" height="399" />
+				<h2 id="glove-title">{$_('gloves.title')}</h2>
+			</div>
 			<button class="close" onclick={() => (open = false)} aria-label={$_('rfq.close')}>
 				<svg width="18" height="18" viewBox="0 0 18 18" fill="none">
 					<path d="M4 4l10 10M14 4L4 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
@@ -64,6 +68,7 @@
 						<div><dt>{$_('gloves.observation')}</dt><dd>{$_(`gloves.${r.observation}`)}</dd></div>
 						<div><dt>{$_('gloves.tested')}</dt><dd>{r.tested}</dd></div>
 					</dl>
+					<a class="pdf" href="{base}{r.pdf}" target="_blank" rel="noopener">{$_('gloves.viewReport')} ↗</a>
 				</section>
 			{/each}
 		</div>
@@ -78,10 +83,11 @@
 				</div>
 			{/each}
 		</div>
+		<a class="pdf" href="{base}{GLOVE_CHART_PDF}" target="_blank" rel="noopener">{$_('gloves.viewChart')} ↗</a>
 
 		<p class="disclaimer">{$_('gloves.disclaimer')}</p>
 
-		<button class="primary" onclick={requestReports}>{$_('gloves.requestFull')}</button>
+		<button class="primary" onclick={requestQuote}>{$_('gloves.requestFull')}</button>
 	</div>
 {/if}
 
@@ -126,6 +132,40 @@
 		letter-spacing: 0.08em;
 		text-transform: uppercase;
 		color: #ffffff;
+	}
+
+	.brand {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+	}
+
+	.brand img {
+		width: 64px;
+		height: auto;
+		flex-shrink: 0;
+		background: #ffffff;
+		padding: 4px;
+	}
+
+	.pdf {
+		display: inline-block;
+		margin-top: 0.9rem;
+		font-size: 0.75rem;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: #3584e4;
+		text-decoration: none;
+	}
+
+	.pdf:hover {
+		color: #ffffff;
+		text-decoration: underline;
+	}
+
+	.ratings + .pdf {
+		margin: -0.5rem 0 1.25rem;
 	}
 
 	.close {

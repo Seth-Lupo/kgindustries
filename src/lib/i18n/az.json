@@ -163,7 +163,6 @@
           "id": "foodservice",
           "title": "Cambro kommersiya iaşə avadanlığı",
           "text": "Cambro qastronom qabları, polikarbonat saxlama konteynerləri, izolyasiyalı qida daşıyıcıları, şüşə lifli sinilər və qabyuyan kasetləri. Otellər, ketering şirkətləri, müəssisə mətbəxləri, xəstəxanalar və iaşə distribyutorları üçün.",
-          "note": "Sifariş əsası: tam konteyner.",
           "origin": "ABŞ istehsalı"
         },
         {
@@ -175,8 +174,8 @@
         },
         {
           "id": "gloves",
-          "title": "Nitril əlcəklər / fərdi qoruyucu vasitələr",
-          "text": "Möhkəm, təmiz nitrildən (doldurucusuz) birdəfəlik əlcəklər, 6 və 8 mil qalınlığında; sənaye, avtoservis və hüquq-mühafizə istifadəsi üçün."
+          "title": "Rhinoskin nitril əlcəklər / fərdi qoruyucu vasitələr",
+          "text": "Rhinoskin möhkəm, təmiz nitrildən (doldurucusuz) birdəfəlik əlcəklər, premium brend, 6 və 8 mil qalınlığında; sənaye, avtoservis və hüquq-mühafizə istifadəsi üçün. Müstəqil laboratoriya test hesabatları mövcuddur."
         },
         {
           "id": "mro",
@@ -207,10 +206,6 @@
         {
           "label": "Müddət: içkilər",
           "text": "Sifarişdən konteynerin yüklənməsinə qədər 5 həftə."
-        },
-        {
-          "label": "Minimum: iaşə avadanlığı",
-          "text": "Hər sifariş üçün tam konteyner."
         },
         {
           "label": "Minimum: digər məhsullar",
@@ -410,8 +405,8 @@
   },
   "gloves": {
     "button": "Test nəticələrinə bax",
-    "title": "Nitril əlcəklərin test nəticələri",
-    "intro": "A2LA tərəfindən ISO 17025 üzrə akkreditə olunmuş müstəqil laboratoriyada keçiricilik testi.",
+    "title": "Rhinoskin nitril əlcəklərinin test nəticələri",
+    "intro": "Rhinoskin əlcəkləri A2LA tərəfindən ISO 17025 üzrə akkreditə olunmuş müstəqil laboratoriya olan Akron Rubber Development Laboratory (ARDL) tərəfindən keçiricilik üzrə test edilib.",
     "black": "Qara nitril əlcəklər",
     "orange": "Narıncı nitril əlcəklər",
     "result": "240 dəqiqəyə qədər keçmə aşkar edilmədi",
@@ -430,7 +425,9 @@
     "fair": "Orta",
     "poor": "Zəif",
     "disclaimer": "Nəticələr test edilmiş nümunələrə aiddir. Bunlar keçiricilik test hesabatlarıdır, CE, EN 455 və ya EN ISO 374 sertifikatları deyil. Tətbiqiniz üçün uyğunluğu yoxlayın.",
-    "requestFull": "Tam test hesabatlarını istə",
-    "requestItem": "Nitril əlcəklər: tam test hesabatları"
+    "requestFull": "Rhinoskin əlcəkləri üçün qiymət sorğusu",
+    "requestItem": "Rhinoskin nitril əlcəklər",
+    "viewReport": "Tam laboratoriya hesabatı (PDF)",
+    "viewChart": "Tam kimyəvi davamlılıq cədvəli (PDF)"
   }
 }

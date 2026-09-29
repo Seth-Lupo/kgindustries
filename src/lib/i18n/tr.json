@@ -163,7 +163,6 @@
           "id": "foodservice",
           "title": "Cambro ticari yiyecek-içecek ekipmanı",
           "text": "Cambro gastronom küvetleri, polikarbonat saklama kapları, yalıtımlı yemek taşıma kapları, fiberglas tepsiler ve bulaşık makinesi sepetleri. Oteller, catering firmaları, kurum mutfakları, hastaneler ve yiyecek-içecek distribütörleri için.",
-          "note": "Sipariş esası: tam konteyner.",
           "origin": "ABD üretimi"
         },
         {
@@ -175,8 +174,8 @@
         },
         {
           "id": "gloves",
-          "title": "Nitril eldiven / KKD",
-          "text": "Dayanıklı, saf nitril (dolgu maddesiz) tek kullanımlık eldivenler; 6 ve 8 mil kalınlıkta; endüstri, otomotiv ve kolluk kullanımı için."
+          "title": "Rhinoskin nitril eldiven / KKD",
+          "text": "Rhinoskin dayanıklı, saf nitril (dolgu maddesiz) tek kullanımlık eldivenler; premium marka, 6 ve 8 mil kalınlıkta; endüstri, otomotiv ve kolluk kullanımı için. Bağımsız laboratuvar test raporları mevcuttur."
         },
         {
           "id": "mro",
@@ -207,10 +206,6 @@
         {
           "label": "Teslim süresi: içecekler",
           "text": "Siparişten konteyner yüklemesine 5 hafta."
-        },
-        {
-          "label": "Minimum: yiyecek-içecek ekipmanı",
-          "text": "Sipariş başına tam konteyner."
         },
         {
           "label": "Minimum: diğer ürünler",
@@ -410,8 +405,8 @@
   },
   "gloves": {
     "button": "Test raporlarını gör",
-    "title": "Nitril eldiven test sonuçları",
-    "intro": "A2LA tarafından ISO 17025 kapsamında akredite bağımsız bir laboratuvarda geçirgenlik testi.",
+    "title": "Rhinoskin nitril eldiven test sonuçları",
+    "intro": "Rhinoskin eldivenleri, A2LA tarafından ISO 17025 kapsamında akredite bağımsız bir laboratuvar olan Akron Rubber Development Laboratory (ARDL) tarafından geçirgenlik testine tabi tutuldu.",
     "black": "Siyah nitril eldiven",
     "orange": "Turuncu nitril eldiven",
     "result": "240 dakikaya kadar geçiş tespit edilmedi",
@@ -430,7 +425,9 @@
     "fair": "Orta",
     "poor": "Zayıf",
     "disclaimer": "Sonuçlar test edilen numunelere aittir. Bunlar geçirgenlik test raporlarıdır; CE, EN 455 veya EN ISO 374 sertifikası değildir. Uygulamanıza uygunluğunu teyit edin.",
-    "requestFull": "Tam test raporlarını iste",
-    "requestItem": "Nitril eldiven: tam test raporları"
+    "requestFull": "Rhinoskin eldivenler için teklif iste",
+    "requestItem": "Rhinoskin nitril eldiven",
+    "viewReport": "Tam laboratuvar raporu (PDF)",
+    "viewChart": "Tam kimyasal dayanım tablosu (PDF)"
   }
 }

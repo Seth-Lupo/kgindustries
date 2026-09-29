@@ -7,9 +7,8 @@ export const rfqLabels: Record<string, string> = {
 	grocery: 'Other US grocery / FMCG items',
 	foodservice: 'Cambro commercial foodservice equipment',
 	ford: 'Genuine Ford parts (US-spec)',
-	gloves: 'Nitrile gloves',
+	gloves: 'Rhinoskin nitrile gloves',
 	mro: 'Facilities, MRO and industrial supply',
 	packaging: 'Packaging and processing equipment',
-	custom: 'Custom sourcing',
-	gloveReports: 'Nitrile gloves: full test reports'
+	custom: 'Custom sourcing'
 };

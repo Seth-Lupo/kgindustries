@@ -163,7 +163,6 @@
           "id": "foodservice",
           "title": "Cambro commercial foodservice equipment",
           "text": "Cambro food pans, polycarbonate storage containers, insulated food carriers, fiberglass trays, and dishwashing racks. Built for hotels, caterers, institutional kitchens, hospitals, and foodservice distributors.",
-          "note": "Order basis: full container.",
           "origin": "Made in USA"
         },
         {
@@ -175,8 +174,8 @@
         },
         {
           "id": "gloves",
-          "title": "Nitrile gloves / PPE",
-          "text": "Heavy-duty, pure nitrile disposable gloves (no filler), in 6 and 8 mil thickness, for industrial, automotive, and law-enforcement use."
+          "title": "Rhinoskin nitrile gloves / PPE",
+          "text": "Rhinoskin heavy-duty, pure nitrile disposable gloves (no filler), a premium glove brand, in 6 and 8 mil thickness, for industrial, automotive, and law-enforcement use. Independent lab test reports available."
         },
         {
           "id": "mro",
@@ -207,10 +206,6 @@
         {
           "label": "Lead time: beverages",
           "text": "5 weeks from order to container loading."
-        },
-        {
-          "label": "Minimums: foodservice equipment",
-          "text": "Full container per order."
         },
         {
           "label": "Minimums: other lines",
@@ -410,8 +405,8 @@
   },
   "gloves": {
     "button": "View test reports",
-    "title": "Nitrile glove test results",
-    "intro": "Permeation testing by an independent A2LA ISO 17025-accredited laboratory.",
+    "title": "Rhinoskin nitrile glove test results",
+    "intro": "Rhinoskin gloves, tested for permeation by Akron Rubber Development Laboratory (ARDL), an independent A2LA ISO 17025-accredited laboratory.",
     "black": "Black nitrile gloves",
     "orange": "Orange nitrile gloves",
     "result": "No breakthrough detected up to 240 minutes",
@@ -430,7 +425,9 @@
     "fair": "Fair",
     "poor": "Poor",
     "disclaimer": "Results apply to the samples tested. These are permeation test reports, not CE, EN 455, or EN ISO 374 certifications. Confirm suitability for your application.",
-    "requestFull": "Request full test reports",
-    "requestItem": "Nitrile gloves: full test reports"
+    "requestFull": "Request a quote for Rhinoskin gloves",
+    "requestItem": "Rhinoskin nitrile gloves",
+    "viewReport": "Full lab report (PDF)",
+    "viewChart": "Full chemical resistance chart (PDF)"
   }
 }

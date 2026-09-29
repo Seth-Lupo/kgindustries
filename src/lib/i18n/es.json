@@ -163,7 +163,6 @@
           "id": "foodservice",
           "title": "Equipos comerciales Cambro para servicios de alimentos",
           "text": "Bandejas gastronorm Cambro, contenedores de policarbonato, contenedores isotérmicos para transporte de alimentos, bandejas de fibra de vidrio y racks de lavavajillas. Para hoteles, catering, cocinas institucionales, hospitales y distribuidores del sector.",
-          "note": "Base de pedido: contenedor completo.",
           "origin": "Hecho en EE. UU."
         },
         {
@@ -175,8 +174,8 @@
         },
         {
           "id": "gloves",
-          "title": "Guantes de nitrilo / EPP",
-          "text": "Guantes desechables resistentes de nitrilo puro (sin relleno), de 6 y 8 mil de espesor, para uso industrial, automotriz y policial."
+          "title": "Guantes de nitrilo Rhinoskin / EPP",
+          "text": "Guantes desechables Rhinoskin resistentes, de nitrilo puro (sin relleno), marca premium, de 6 y 8 mil de espesor, para uso industrial, automotriz y policial. Informes de ensayo de laboratorio independiente disponibles."
         },
         {
           "id": "mro",
@@ -207,10 +206,6 @@
         {
           "label": "Plazo: bebidas",
           "text": "5 semanas desde el pedido hasta la carga del contenedor."
-        },
-        {
-          "label": "Mínimos: equipos para servicios de alimentos",
-          "text": "Contenedor completo por pedido."
         },
         {
           "label": "Mínimos: otras líneas",
@@ -410,8 +405,8 @@
   },
   "gloves": {
     "button": "Ver informes de ensayo",
-    "title": "Resultados de ensayo de guantes de nitrilo",
-    "intro": "Ensayos de permeación en un laboratorio independiente acreditado por A2LA según ISO 17025.",
+    "title": "Resultados de ensayo de guantes de nitrilo Rhinoskin",
+    "intro": "Guantes Rhinoskin ensayados en permeación por Akron Rubber Development Laboratory (ARDL), laboratorio independiente acreditado por A2LA según ISO 17025.",
     "black": "Guantes de nitrilo negros",
     "orange": "Guantes de nitrilo naranjas",
     "result": "Sin permeación detectada hasta 240 minutos",
@@ -430,7 +425,9 @@
     "fair": "Regular",
     "poor": "Mala",
     "disclaimer": "Los resultados se refieren a las muestras ensayadas. Son informes de ensayo de permeación, no certificaciones CE, EN 455 ni EN ISO 374. Confirme la idoneidad para su aplicación.",
-    "requestFull": "Solicitar los informes completos",
-    "requestItem": "Guantes de nitrilo: informes de ensayo completos"
+    "requestFull": "Solicitar cotización de guantes Rhinoskin",
+    "requestItem": "Guantes de nitrilo Rhinoskin",
+    "viewReport": "Informe de laboratorio completo (PDF)",
+    "viewChart": "Tabla completa de resistencia química (PDF)"
   }
 }
