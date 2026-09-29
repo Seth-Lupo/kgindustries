@@ -2,6 +2,8 @@
 	import { tick } from 'svelte';
 	import { get } from 'svelte/store';
 	import { _ } from 'svelte-i18n';
+	import { fade, fly } from 'svelte/transition';
+	import { cubicOut } from 'svelte/easing';
 	import {
 		rfqOpen,
 		rfqItems,
@@ -65,6 +67,9 @@
 		}
 	}
 
+	// Slide in from the inline-end edge, which flips for Arabic.
+	const slideX = () => (document.documentElement.dir === 'rtl' ? -480 : 480);
+
 	const setQty = (key: string, qty: number) => updateItem(key, { qty: Math.max(1, Math.min(999, qty || 1)) });
 </script>
 
@@ -77,8 +82,15 @@
 
 {#if $rfqOpen}
 	<!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
-	<div class="rfq-backdrop" onclick={() => rfqOpen.set(false)}></div>
-	<div class="rfq-panel" role="dialog" aria-modal="true" aria-labelledby="rfq-title" bind:this={panel}>
+	<div class="rfq-backdrop" onclick={() => rfqOpen.set(false)} transition:fade={{ duration: 350 }}></div>
+	<div
+		class="rfq-panel"
+		role="dialog"
+		aria-modal="true"
+		aria-labelledby="rfq-title"
+		bind:this={panel}
+		transition:fly={{ x: slideX(), duration: 550, easing: cubicOut, opacity: 1 }}
+	>
 		<div class="panel-head">
 			<h2 id="rfq-title">{$_('rfq.title')}</h2>
 			<button class="close" onclick={() => rfqOpen.set(false)} aria-label={$_('rfq.close')}>
@@ -170,7 +182,7 @@
 		{/if}
 		<p class="hint">{$_('rfq.customsNote')}</p>
 
-		<a class="primary" href={mailto}>{$_('rfq.emailButton')}</a>
+		<a class="btn-gold primary" href={mailto}>{$_('rfq.emailButton')}</a>
 		<button class="secondary whatsapp" onclick={() => openWhatsApp(draft)}>{$_('rfq.whatsapp')}</button>
 		<p class="note">{$_('rfq.emailNote')} <a href="mailto:{RFQ_EMAIL}">{RFQ_EMAIL}</a></p>
 
@@ -192,21 +204,35 @@
 		z-index: 150;
 		align-items: center;
 		gap: 0.5rem;
-		padding: 0.9rem 1.2rem;
-		background: #1c71d8;
-		color: #ffffff;
+		padding: 1rem 1.35rem;
+		background: linear-gradient(135deg, var(--gold-light), var(--gold) 50%, var(--gold-dark));
+		color: var(--navy-950);
 		border: none;
 		font-family: inherit;
 		font-size: 0.75rem;
 		font-weight: 700;
 		letter-spacing: 0.12em;
-		box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
+		box-shadow:
+			0 12px 32px -8px rgba(0, 0, 0, 0.7),
+			0 8px 24px -12px var(--gold-glow);
 		cursor: pointer;
+		animation: fabIn 0.8s var(--ease-out) 0.6s both;
+	}
+
+	@keyframes fabIn {
+		from {
+			opacity: 0;
+			transform: translateY(20px);
+		}
+		to {
+			opacity: 1;
+			transform: none;
+		}
 	}
 
 	.count {
-		background: #ffffff;
-		color: #1c71d8;
+		background: var(--navy-950);
+		color: var(--gold-light);
 		border-radius: 999px;
 		min-width: 1.3rem;
 		height: 1.3rem;
@@ -226,7 +252,9 @@
 	.rfq-backdrop {
 		position: fixed;
 		inset: 0;
-		background: rgba(0, 0, 0, 0.6);
+		background: rgba(4, 7, 14, 0.7);
+		backdrop-filter: blur(4px);
+		-webkit-backdrop-filter: blur(4px);
 		z-index: 300;
 	}
 
@@ -237,15 +265,21 @@
 		inset-inline-end: 0;
 		width: min(440px, 100vw);
 		z-index: 301;
-		background: #0a0a0d;
-		border-inline-start: 1px solid #27272a;
-		padding: 1.75rem 1.5rem 2rem;
+		background: linear-gradient(175deg, var(--navy-800), var(--navy-900) 40%);
+		border-inline-start: 1px solid var(--gold-line);
+		box-shadow: -30px 0 80px -20px rgba(0, 0, 0, 0.8);
+		padding: 1.75rem 1.75rem 2rem;
 		overflow-y: auto;
 		display: flex;
 		flex-direction: column;
 		gap: 1rem;
-		color: #d4d4d8;
+		color: var(--text);
 		box-sizing: border-box;
+	}
+
+	/* The panel scrolls; keep children from being squeezed by the flex column. */
+	.rfq-panel > :global(*) {
+		flex-shrink: 0;
 	}
 
 	.panel-head {
@@ -256,17 +290,18 @@
 
 	h2 {
 		margin: 0;
-		font-size: 1.1rem;
-		font-weight: 900;
-		letter-spacing: 0.1em;
+		font-family: var(--font-display);
+		font-size: 1.8rem;
+		font-weight: 600;
+		letter-spacing: 0.02em;
 		text-transform: uppercase;
-		color: #ffffff;
+		color: var(--ink);
 	}
 
 	.close {
 		background: none;
-		border: 1px solid #27272a;
-		color: #a1a1aa;
+		border: 1px solid var(--line-strong);
+		color: var(--muted);
 		width: 36px;
 		height: 36px;
 		display: flex;
@@ -276,8 +311,8 @@
 	}
 
 	.close:hover {
-		color: #ffffff;
-		border-color: #3f3f46;
+		color: var(--ink);
+		border-color: rgba(255, 255, 255, 0.2);
 	}
 
 	.intro,
@@ -287,7 +322,7 @@
 		margin: 0;
 		font-size: 0.9rem;
 		line-height: 1.6;
-		color: #a1a1aa;
+		color: var(--muted);
 	}
 
 	.note {
@@ -295,7 +330,7 @@
 	}
 
 	.note a {
-		color: #d4d4d8;
+		color: var(--text);
 	}
 
 	.field {
@@ -308,14 +343,14 @@
 		font-size: 0.7rem;
 		font-weight: 700;
 		letter-spacing: 0.12em;
-		color: #71717a;
+		color: var(--dim);
 		text-transform: uppercase;
 	}
 
 	input {
-		background: #050508;
-		border: 1px solid #27272a;
-		color: #ffffff;
+		background: var(--navy-900);
+		border: 1px solid var(--line-strong);
+		color: var(--ink);
 		padding: 0.8rem 0.9rem;
 		font-family: inherit;
 		font-size: 1rem;
@@ -323,7 +358,7 @@
 
 	input:focus {
 		outline: none;
-		border-color: #1c71d8;
+		border-color: var(--gold);
 	}
 
 	.selected ul {
@@ -341,8 +376,8 @@
 		align-items: center;
 		gap: 0.5rem;
 		padding: 0.5rem 0.75rem;
-		background: #050508;
-		border: 1px solid #1a1a22;
+		background: var(--navy-900);
+		border: 1px solid var(--line);
 		font-size: 0.85rem;
 	}
 
@@ -359,14 +394,14 @@
 	}
 
 	.item-name {
-		color: #ffffff;
+		color: var(--ink);
 		font-weight: 600;
 	}
 
 	.remove {
 		background: none;
 		border: none;
-		color: #71717a;
+		color: var(--dim);
 		font-size: 1.1rem;
 		cursor: pointer;
 	}
@@ -380,26 +415,26 @@
 
 	.qty-label {
 		font-size: 0.75rem;
-		color: #71717a;
+		color: var(--dim);
 	}
 
 	.stepper {
 		display: flex;
 		align-items: stretch;
-		border: 1px solid #27272a;
+		border: 1px solid var(--line-strong);
 	}
 
 	.stepper button {
 		width: 34px;
-		background: #111116;
+		background: var(--navy-800);
 		border: none;
-		color: #ffffff;
+		color: var(--ink);
 		font-size: 1rem;
 		cursor: pointer;
 	}
 
 	.stepper button:disabled {
-		color: #3f3f46;
+		color: rgba(255, 255, 255, 0.2);
 		cursor: default;
 	}
 
@@ -407,7 +442,7 @@
 		width: 52px;
 		padding: 0.4rem;
 		border: none;
-		border-inline: 1px solid #27272a;
+		border-inline: 1px solid var(--line-strong);
 		text-align: center;
 		font-size: 0.95rem;
 		-moz-appearance: textfield;
@@ -421,9 +456,9 @@
 	}
 
 	textarea {
-		background: #0a0a0d;
-		border: 1px solid #27272a;
-		color: #ffffff;
+		background: var(--navy-850);
+		border: 1px solid var(--line-strong);
+		color: var(--ink);
 		padding: 0.6rem 0.7rem;
 		font-family: inherit;
 		font-size: 0.9rem;
@@ -432,30 +467,30 @@
 
 	textarea:focus {
 		outline: none;
-		border-color: #1c71d8;
+		border-color: var(--gold);
 	}
 
 	.pallet-total {
 		margin: 0.25rem 0 0;
 		font-size: 0.85rem;
-		color: #d4d4d8;
+		color: var(--text);
 	}
 
 	.hint {
 		margin: 0.25rem 0 0.5rem;
 		font-size: 0.8rem;
 		line-height: 1.5;
-		color: #71717a;
+		color: var(--dim);
 	}
 
 	.response {
 		margin: 0;
 		font-size: 0.85rem;
 		font-weight: 600;
-		color: #ffffff;
+		color: var(--ink);
 		padding: 0.6rem 0.75rem;
-		background: rgba(28, 113, 216, 0.12);
-		border-inline-start: 2px solid #1c71d8;
+		background: rgba(201, 164, 92, 0.12);
+		border-inline-start: 2px solid var(--gold);
 	}
 
 	.delivery {
@@ -474,8 +509,8 @@
 		align-items: center;
 		gap: 0.6rem;
 		padding: 0.6rem 0.75rem;
-		border: 1px solid #27272a;
-		background: #050508;
+		border: 1px solid var(--line-strong);
+		background: var(--navy-900);
 		font-size: 0.9rem;
 		cursor: pointer;
 	}
@@ -485,12 +520,12 @@
 	}
 
 	.radio:has(input:checked) {
-		border-color: #1c71d8;
-		color: #ffffff;
+		border-color: var(--gold);
+		color: var(--ink);
 	}
 
 	.radio input {
-		accent-color: #1c71d8;
+		accent-color: var(--gold);
 		padding: 0;
 	}
 
@@ -505,7 +540,7 @@
 		background: none;
 		border: none;
 		padding: 0;
-		color: #71717a;
+		color: var(--dim);
 		font-size: 0.8rem;
 		text-decoration: underline;
 		cursor: pointer;
@@ -524,35 +559,29 @@
 	}
 
 	.primary {
-		background: #1c71d8;
-		color: #ffffff;
 		margin-top: 0.5rem;
 	}
 
-	.primary:hover {
-		background: #3584e4;
-	}
-
 	.secondary {
-		border: 1px solid #27272a;
-		color: #d4d4d8;
+		border: 1px solid var(--line-strong);
+		color: var(--text);
 	}
 
 	.secondary:hover {
-		border-color: #1c71d8;
-		color: #ffffff;
+		border-color: var(--gold);
+		color: var(--ink);
 	}
 
 	.bank {
 		font-size: 0.8rem;
 		padding: 0.75rem;
-		border-inline-start: 2px solid #1c71d8;
-		background: #050508;
+		border-inline-start: 2px solid var(--gold);
+		background: var(--navy-900);
 	}
 
 	.shortcut {
 		font-size: 0.75rem;
-		color: #52525b;
+		color: var(--dim);
 	}
 
 	@media (max-width: 768px) {

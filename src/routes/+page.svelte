@@ -1,249 +1,16 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import { _, json } from 'svelte-i18n';
 	import SEO from '$lib/components/SEO.svelte';
+	import RouteMap from '$lib/components/RouteMap.svelte';
 	import { base } from '$app/paths';
 	import { rfqOpen, RFQ_EMAIL, LINKEDIN_URL } from '$lib/stores/rfq';
+	import { reveal, parallax } from '$lib/actions/motion';
 
 	type HandleItem = { title: string; text: string };
 	type DataPoint = { value: string; label: string };
 	type Tile = { title: string; text: string };
 
 	const tileAnchors = ['beverages', 'consumer', 'industrial', 'custom'];
-
-	let globeCanvas: HTMLCanvasElement;
-
-	interface FlightPath {
-		startLat: number;
-		startLon: number;
-		endLat: number;
-		endLon: number;
-		progress: number;
-		speed: number;
-		arcPoints: Array<{ lat: number; lon: number }>;
-	}
-
-	onMount(() => {
-		// Globe animation
-		const ctx = globeCanvas.getContext('2d');
-		if (!ctx) return;
-
-		let rotation = 0;
-		const radius = 220;
-		const centerX = globeCanvas.width / 2;
-		const centerY = globeCanvas.height / 2;
-
-		function calculateGreatCircle(
-			lat1: number,
-			lon1: number,
-			lat2: number,
-			lon2: number
-		): Array<{ lat: number; lon: number }> {
-			const points = [];
-			const steps = 50;
-
-			for (let i = 0; i <= steps; i++) {
-				const f = i / steps;
-				const d =
-					2 *
-					Math.asin(
-						Math.sqrt(
-							Math.pow(Math.sin((lat1 - lat2) / 2), 2) +
-								Math.cos(lat1) * Math.cos(lat2) * Math.pow(Math.sin((lon1 - lon2) / 2), 2)
-						)
-					);
-
-				if (d === 0) {
-					points.push({ lat: lat1, lon: lon1 });
-					continue;
-				}
-
-				const A = Math.sin((1 - f) * d) / Math.sin(d);
-				const B = Math.sin(f * d) / Math.sin(d);
-
-				const x = A * Math.cos(lat1) * Math.cos(lon1) + B * Math.cos(lat2) * Math.cos(lon2);
-				const y = A * Math.cos(lat1) * Math.sin(lon1) + B * Math.cos(lat2) * Math.sin(lon2);
-				const z = A * Math.sin(lat1) + B * Math.sin(lat2);
-
-				const lat = Math.atan2(z, Math.sqrt(x * x + y * y));
-				const lon = Math.atan2(y, x);
-
-				points.push({ lat, lon });
-			}
-
-			return points;
-		}
-
-		// Generate flight paths
-		const flights: FlightPath[] = [];
-		for (let i = 0; i < 10; i++) {
-			const startLat = (Math.random() - 0.5) * Math.PI * 0.7;
-			const startLon = Math.random() * Math.PI * 2;
-			const endLat = (Math.random() - 0.5) * Math.PI * 0.7;
-			const endLon = Math.random() * Math.PI * 2;
-
-			flights.push({
-				startLat,
-				startLon,
-				endLat,
-				endLon,
-				progress: Math.random(),
-				speed: 0.0015 + Math.random() * 0.002,
-				arcPoints: calculateGreatCircle(startLat, startLon, endLat, endLon)
-			});
-		}
-
-		function latLonToXYZ(lat: number, lon: number, rot: number) {
-			const adjustedLon = lon + rot;
-			const x = radius * Math.cos(lat) * Math.cos(adjustedLon);
-			const y = radius * Math.sin(lat);
-			const z = radius * Math.cos(lat) * Math.sin(adjustedLon);
-			return { x: centerX + x, y: centerY - y, z };
-		}
-
-		let frameCount = 0;
-		function drawGlobe() {
-			// Stop the loop once the page (and its canvas) has been navigated away from.
-			if (!ctx || !globeCanvas) return;
-			frameCount++;
-
-			// Only render every other frame (30fps instead of 60fps)
-			if (frameCount % 2 !== 0) {
-				requestAnimationFrame(drawGlobe);
-				return;
-			}
-
-			ctx.clearRect(0, 0, globeCanvas.width, globeCanvas.height);
-
-			ctx.shadowBlur = 8;
-			ctx.shadowColor = '#1a5fb4';
-
-			// Draw longitude lines (reduced from 16 to 12)
-			for (let i = 0; i < 12; i++) {
-				const lon = (i * Math.PI) / 6;
-
-				ctx.strokeStyle = '#1c71d8';
-				ctx.lineWidth = 1.2;
-				ctx.globalAlpha = 0.5;
-
-				ctx.beginPath();
-				let first = true;
-				for (let lat = -Math.PI / 2; lat <= Math.PI / 2; lat += 0.05) {
-					const point = latLonToXYZ(lat, lon, rotation);
-					if (point.z > 0) {
-						if (first) {
-							ctx.moveTo(point.x, point.y);
-							first = false;
-						} else {
-							ctx.lineTo(point.x, point.y);
-						}
-					} else {
-						first = true;
-					}
-				}
-				ctx.stroke();
-			}
-
-			// Draw latitude lines (reduced from 7 to 5)
-			for (let i = 0; i < 5; i++) {
-				const lat = ((i - 2) * Math.PI) / 6;
-				const isEquator = i === 2;
-
-				ctx.strokeStyle = isEquator ? '#3584e4' : '#1c71d8';
-				ctx.lineWidth = isEquator ? 2 : 1;
-				ctx.globalAlpha = 0.5;
-
-				ctx.beginPath();
-				let first = true;
-				for (let lon = 0; lon < Math.PI * 2; lon += 0.05) {
-					const point = latLonToXYZ(lat, lon, rotation);
-					if (point.z > 0) {
-						if (first) {
-							ctx.moveTo(point.x, point.y);
-							first = false;
-						} else {
-							ctx.lineTo(point.x, point.y);
-						}
-					} else {
-						first = true;
-					}
-				}
-				ctx.stroke();
-			}
-
-			// Draw flight paths
-			ctx.shadowBlur = 10;
-			flights.forEach((flight) => {
-				flight.progress += flight.speed;
-				if (flight.progress > 1) {
-					flight.progress = 0;
-					const newEndLat = (Math.random() - 0.5) * Math.PI * 0.7;
-					const newEndLon = Math.random() * Math.PI * 2;
-					flight.startLat = flight.endLat;
-					flight.startLon = flight.endLon;
-					flight.endLat = newEndLat;
-					flight.endLon = newEndLon;
-					flight.arcPoints = calculateGreatCircle(
-						flight.startLat,
-						flight.startLon,
-						flight.endLat,
-						flight.endLon
-					);
-				}
-
-				const currentIndex = Math.floor(flight.progress * (flight.arcPoints.length - 1));
-				const currentPoint = flight.arcPoints[currentIndex];
-				const point = latLonToXYZ(currentPoint.lat, currentPoint.lon, rotation);
-
-				if (point.z > 0) {
-					const intensity = Math.min(1, point.z / radius);
-
-					// Draw simplified trail
-					ctx.strokeStyle = 'rgba(255, 255, 255, 0.7)';
-					ctx.lineWidth = 1.8;
-					ctx.shadowColor = 'rgba(255, 255, 255, 0.4)';
-					ctx.globalAlpha = 0.5 * intensity;
-
-					ctx.beginPath();
-					let trailFirst = true;
-					for (let i = 0; i < 8; i++) {
-						const trailIndex = Math.max(0, currentIndex - i * 3);
-						const trailPoint = flight.arcPoints[trailIndex];
-						const trail = latLonToXYZ(trailPoint.lat, trailPoint.lon, rotation);
-
-						if (trail.z > 0) {
-							if (trailFirst) {
-								ctx.moveTo(trail.x, trail.y);
-								trailFirst = false;
-							} else {
-								ctx.lineTo(trail.x, trail.y);
-							}
-						}
-					}
-					ctx.stroke();
-
-					// Draw point
-					ctx.shadowBlur = 12;
-					ctx.globalAlpha = 0.9 * intensity;
-					ctx.fillStyle = '#ffffff';
-					ctx.beginPath();
-					ctx.arc(point.x, point.y, 3.5, 0, Math.PI * 2);
-					ctx.fill();
-
-					// Simplified glow
-					ctx.globalAlpha = 0.3 * intensity;
-					ctx.beginPath();
-					ctx.arc(point.x, point.y, 6, 0, Math.PI * 2);
-					ctx.fill();
-				}
-			});
-
-			rotation += 0.003;
-			requestAnimationFrame(drawGlobe);
-		}
-
-		drawGlobe();
-	});
 </script>
 
 <SEO
@@ -251,726 +18,902 @@
 	description="US trading company supplying beverages, foodservice equipment, genuine Ford parts, and industrial goods to buyers in the Gulf, MENA, Caucasus, and Central Asia. Landed CIP/CIF quotes."
 />
 
-<div class="container">
-	<div class="grain"></div>
+<main>
+	<section class="hero">
+		<div class="hero-map">
+			<RouteMap />
+		</div>
+		<div class="hero-shade" aria-hidden="true"></div>
 
-	<main>
-		<section class="hero">
-			<div class="hero-layout">
-				<div class="hero-text">
-					<h1 class="title-massive">{$_('home.hero.global')}</h1>
-					<div class="title-medium">{$_('home.hero.freight')}</div>
-					<div class="title-small">{$_('home.hero.operations')}</div>
-				</div>
-				<div class="globe-container">
-					<canvas bind:this={globeCanvas} width="600" height="600"></canvas>
+		<div class="hero-inner">
+			<div class="hero-text">
+				<span class="eyebrow hero-in" style="--i: 0">{$_('home.hero.operations')}</span>
+				<h1 class="hero-title">
+					<span class="line"><span class="hero-in" style="--i: 1">{$_('home.hero.global')}</span></span>
+					<span class="line gold"><span class="hero-in" style="--i: 2">{$_('home.hero.freight')}</span></span>
+				</h1>
+				<p class="subtitle hero-in" style="--i: 3">{$_('home.hero.subtitle')}</p>
+				<div class="hero-ctas hero-in" style="--i: 4">
+					<button class="btn-gold" onclick={() => rfqOpen.set(true)}>
+						{$_('nav.rfq')} <span class="btn-arrow" aria-hidden="true">→</span>
+					</button>
+					<a class="btn-ghost" href="{base}/products">{$_('nav.products')}</a>
 				</div>
 			</div>
-			<div class="hero-footer">
-				<p class="subtitle">{$_('home.hero.subtitle')}</p>
+		</div>
+
+		<a class="scroll-cue" href="#overview" aria-label={$_('nav.overview')}>
+			<span></span>
+		</a>
+	</section>
+
+	<section class="overview" id="overview">
+		<div class="overview-content">
+			<div class="overview-text">
+				<span class="eyebrow" use:reveal>{$_('home.overview.label')}</span>
+				<p class="lead" use:reveal={{ delay: 100 }}>{$_('home.overview.p1')}</p>
+				<span class="overview-rule" use:reveal={{ variant: 'rule', delay: 200 }}></span>
+				<p use:reveal={{ delay: 250 }}>{$_('home.overview.p2')}</p>
+				<p use:reveal={{ delay: 350 }}>{$_('home.overview.p3')}</p>
 			</div>
-		</section>
+			<aside class="overview-detail" use:reveal={{ delay: 300, variant: 'scale' }}>
+				<span class="detail-label">{$_('home.overview.factsLabel')}</span>
+				<span class="detail-value">KG Industries LLC</span>
+				<ul class="facts">
+					<li>{$_('home.overview.registered')}</li>
+					<li><a href="mailto:{RFQ_EMAIL}">{RFQ_EMAIL}</a></li>
+					<li><a href={LINKEDIN_URL} target="_blank" rel="noopener">LinkedIn ↗</a></li>
+				</ul>
+			</aside>
+		</div>
+	</section>
 
-		<section class="overview" id="overview">
-			<div class="overview-content">
-				<div class="overview-text">
-					<span class="detail-label">{$_('home.overview.label')}</span>
-					<p class="lead">{$_('home.overview.p1')}</p>
-					<p>{$_('home.overview.p2')}</p>
-					<p>{$_('home.overview.p3')}</p>
-				</div>
-				<div class="overview-detail">
-					<span class="detail-label">{$_('home.overview.factsLabel')}</span>
-					<span class="detail-value">KG Industries LLC</span>
-					<ul class="facts">
-						<li>{$_('home.overview.registered')}</li>
-						<li><a href="mailto:{RFQ_EMAIL}">{RFQ_EMAIL}</a></li>
-						<li><a href={LINKEDIN_URL} target="_blank" rel="noopener">LinkedIn</a></li>
-					</ul>
-				</div>
+	<section class="image-full">
+		<img use:parallax src="{base}/images/container-operations.jpg" alt="" loading="lazy" />
+		<div class="image-tint" aria-hidden="true"></div>
+	</section>
+
+	<section class="process">
+		<div class="process-layout">
+			<div class="process-text">
+				<h2 use:reveal>{$_('home.handle.title')}</h2>
+				<ol class="handle-list">
+					{#each $json('home.handle.items') as HandleItem[] as item, i}
+						<li use:reveal={{ delay: i * 90 }}>
+							<span class="handle-num">{String(i + 1).padStart(2, '0')}</span>
+							<div>
+								<h3>{item.title}</h3>
+								<p>{item.text}</p>
+							</div>
+						</li>
+					{/each}
+				</ol>
+				<p class="risk-line" use:reveal>{$_('home.handle.risk')}</p>
+				<p class="delivery-line" use:reveal>{$_('home.handle.delivery')}</p>
 			</div>
-		</section>
+			<div class="process-data">
+				{#each $json('home.handle.data') as DataPoint[] as point, i}
+					<div class="data-point" use:reveal={{ delay: 150 + i * 120 }}>
+						<div class="data-number">{point.value}</div>
+						<div class="data-label">{point.label}</div>
+					</div>
+				{/each}
+			</div>
+		</div>
+	</section>
 
-		<section class="image-full">
-			<img src="{base}/images/container-operations.jpg" alt="" loading="lazy" />
-		</section>
-
-		<section class="process">
-			<div class="process-layout">
-				<div class="process-text">
-					<h2>{$_('home.handle.title')}</h2>
-					<ol class="handle-list">
-						{#each $json('home.handle.items') as HandleItem[] as item, i}
-							<li>
-								<span class="handle-num">{String(i + 1).padStart(2, '0')}</span>
-								<div>
-									<h3>{item.title}</h3>
-									<p>{item.text}</p>
-								</div>
-							</li>
-						{/each}
-					</ol>
-					<p class="risk-line">{$_('home.handle.risk')}</p>
-					<p class="delivery-line">{$_('home.handle.delivery')}</p>
-				</div>
-				<div class="process-data">
-					{#each $json('home.handle.data') as DataPoint[] as point}
-						<div class="data-point">
-							<div class="data-number">{point.value}</div>
-							<div class="data-label">{point.label}</div>
-						</div>
+	<section class="image-split" id="products">
+		<div class="split-left">
+			<img use:parallax={0.08} src="{base}/images/port-operations.jpg" alt="" loading="lazy" />
+			<div class="image-tint" aria-hidden="true"></div>
+			<div class="split-caption" use:reveal={{ variant: 'fade', delay: 300 }}>
+				{$_('home.categories.caption')}
+			</div>
+		</div>
+		<div class="split-right">
+			<div class="split-info">
+				<h3 use:reveal>{$_('home.categories.title')}</h3>
+				<div class="tiles">
+					{#each $json('home.categories.tiles') as Tile[] as tile, i}
+						<a class="tile" href="{base}/products#{tileAnchors[i]}" use:reveal={{ delay: 80 + i * 90 }}>
+							<span class="tile-head">
+								<span class="tile-title">{tile.title}</span>
+								<span class="tile-arrow btn-arrow" aria-hidden="true">→</span>
+							</span>
+							<span class="tile-text">{tile.text}</span>
+						</a>
 					{/each}
 				</div>
 			</div>
-		</section>
+		</div>
+	</section>
 
-		<section class="image-split" id="products">
-			<div class="split-left">
-				<img src="{base}/images/port-operations.jpg" alt="" loading="lazy" />
-				<div class="split-caption">{$_('home.categories.caption')}</div>
-			</div>
-			<div class="split-right">
-				<div class="split-info">
-					<h3>{$_('home.categories.title')}</h3>
-					<div class="tiles">
-						{#each $json('home.categories.tiles') as Tile[] as tile, i}
-							<a class="tile" href="{base}/products#{tileAnchors[i]}">
-								<span class="tile-title">{tile.title}</span>
-								<span class="tile-text">{tile.text}</span>
-							</a>
-						{/each}
-					</div>
-				</div>
-			</div>
-		</section>
-
-		<section class="contact-simple" id="contact">
-			<div class="contact-wrapper">
-				<h2>{$_('home.contact.title')}</h2>
-				<p class="contact-description">{$_('home.contact.description')}</p>
-				<button class="contact-button" onclick={() => rfqOpen.set(true)}>
-					{$_('home.contact.button')}
+	<section class="contact-simple" id="contact">
+		<div class="contact-glow" aria-hidden="true"></div>
+		<div class="contact-wrapper">
+			<span class="contact-rule" use:reveal={{ variant: 'rule' }}></span>
+			<h2 use:reveal={{ delay: 100 }}>{$_('home.contact.title')}</h2>
+			<p class="contact-description" use:reveal={{ delay: 200 }}>{$_('home.contact.description')}</p>
+			<div use:reveal={{ delay: 300 }}>
+				<button class="btn-gold contact-button" onclick={() => rfqOpen.set(true)}>
+					{$_('home.contact.button')} <span class="btn-arrow" aria-hidden="true">→</span>
 				</button>
-				<a class="contact-email" href="mailto:{RFQ_EMAIL}">{RFQ_EMAIL}</a>
 			</div>
-		</section>
-	</main>
-</div>
+			<a class="contact-email" href="mailto:{RFQ_EMAIL}" use:reveal={{ delay: 400, variant: 'fade' }}>{RFQ_EMAIL}</a>
+		</div>
+	</section>
+</main>
 
 <style>
-	@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
-
-	:global(*),
-	:global(*::before),
-	:global(*::after) {
-		box-sizing: border-box;
-	}
-
-	:global(html),
-	:global(body) {
-		margin: 0;
-		padding: 0;
-		width: 100%;
-		overflow-x: clip;
-	}
-
-	:global(body) {
-		background: #050508;
-		color: #d4d4d8;
-		font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-	}
-
-	.container {
-		position: relative;
-		min-height: 100vh;
-		width: 100%;
-		max-width: 100vw;
-		margin: 0 auto;
-		overflow-x: clip;
-	}
-
-	.grain {
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='6.5' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-		opacity: 0.18;
-		pointer-events: none;
-		z-index: 1;
-	}
-
 	main {
 		position: relative;
-		z-index: 2;
-		padding-top: 10rem;
 	}
+
+	/* ---------- Hero ---------- */
 
 	.hero {
-		min-height: 85vh;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
 		position: relative;
-		padding: 0 4vw;
-	}
-
-	.hero-layout {
+		min-height: 100vh;
+		min-height: 100svh;
 		display: flex;
 		align-items: center;
-		justify-content: center;
+		padding: calc(var(--header-h) + 2rem) var(--gutter) 6rem;
+		overflow: hidden;
+		background:
+			radial-gradient(ellipse 70% 60% at 72% 42%, rgba(36, 51, 82, 0.55), transparent 70%),
+			linear-gradient(to bottom, var(--navy-950), var(--navy-900));
+	}
+
+	.hero-map {
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+	}
+
+	.hero-shade {
+		position: absolute;
+		inset: 0;
+		z-index: 1;
+		pointer-events: none;
+		background:
+			linear-gradient(90deg, rgba(6, 10, 20, 0.92) 0%, rgba(6, 10, 20, 0.55) 38%, transparent 65%),
+			linear-gradient(to top, var(--navy-900) 0%, transparent 28%);
+	}
+
+	:global(:root[dir='rtl']) .hero-shade {
+		background:
+			linear-gradient(-90deg, rgba(6, 10, 20, 0.92) 0%, rgba(6, 10, 20, 0.55) 38%, transparent 65%),
+			linear-gradient(to top, var(--navy-900) 0%, transparent 28%);
+	}
+
+	.hero-inner {
 		position: relative;
-		gap: 2rem;
-		margin-bottom: 3rem;
+		z-index: 2;
+		width: 100%;
+		max-width: 1280px;
+		margin: 0 auto;
 	}
 
 	.hero-text {
-		position: relative;
-		z-index: 3;
-		flex-shrink: 0;
-		text-align: center;
+		max-width: 980px;
 	}
 
-	.title-massive {
-		font-size: clamp(7rem, 18vw, 16rem);
-		font-weight: 900;
-		letter-spacing: -0.06em;
-		line-height: 0.75;
-		margin: 0;
-		color: #ffffff;
+	.hero-text > .eyebrow,
+	.subtitle {
+		max-width: 480px;
+	}
+
+	.hero-title {
+		margin: 1.75rem 0 0;
+		font-family: var(--font-display);
+		font-weight: 600;
+		font-size: clamp(3.2rem, 8.2vw, 8rem);
+		line-height: 0.92;
+		letter-spacing: -0.01em;
+		color: var(--ink);
 		text-transform: uppercase;
 	}
 
-	.title-medium {
-		font-size: clamp(3.5rem, 9vw, 8rem);
-		font-weight: 900;
-		letter-spacing: 0.5em;
-		margin: 0.5rem 0 0 0;
-		color: #1c71d8;
-		text-transform: uppercase;
+	.hero-title .line {
+		display: block;
+		overflow: hidden;
+		padding-bottom: 0.06em;
 	}
 
-	.title-small {
-		font-size: clamp(1rem, 2vw, 1.5rem);
-		font-weight: 700;
-		letter-spacing: 0.6em;
-		margin-top: 1.5rem;
-		color: #52525b;
-		text-transform: uppercase;
+	.hero-title .line > span {
+		display: block;
 	}
 
-	.globe-container {
-		position: absolute;
-		right: 2vw;
-		top: 50%;
-		transform: translateY(-50%);
-		z-index: 2;
-		opacity: 0.85;
+	.hero-title .gold > span {
+		background: linear-gradient(100deg, var(--gold-dark), var(--gold-light) 40%, var(--gold) 60%, var(--gold-dark));
+		background-size: 200% 100%;
+		-webkit-background-clip: text;
+		background-clip: text;
+		color: transparent;
+		letter-spacing: 0.05em;
 	}
 
-	canvas {
-		filter: contrast(1.25) brightness(1.05);
+	/* Staggered entrance for hero lines. */
+	.hero-in {
+		animation: heroUp 1.2s var(--ease-out) calc(0.15s + var(--i) * 0.12s) both;
 	}
 
-	.hero-footer {
-		text-align: center;
+	.hero-title .line > .hero-in {
+		animation-name: heroRise;
+	}
+
+	.hero-title .gold > .hero-in {
+		animation:
+			heroRise 1.2s var(--ease-out) calc(0.15s + var(--i) * 0.12s) both,
+			shimmer 8s linear 2s infinite;
+	}
+
+	@keyframes heroUp {
+		from {
+			opacity: 0;
+			transform: translateY(24px);
+		}
+		to {
+			opacity: 1;
+			transform: none;
+		}
+	}
+
+	@keyframes heroRise {
+		from {
+			transform: translateY(105%);
+		}
+		to {
+			transform: none;
+		}
+	}
+
+	@keyframes shimmer {
+		from {
+			background-position: 200% 0;
+		}
+		to {
+			background-position: -200% 0;
+		}
 	}
 
 	.subtitle {
-		font-size: 0.95rem;
-		letter-spacing: 0.18em;
-		color: #71717a;
-		text-transform: uppercase;
-		margin: 0;
-		font-weight: 500;
+		margin: 2rem 0 0;
+		max-width: 460px;
+		font-size: 1.05rem;
+		line-height: 1.7;
+		color: var(--text);
 	}
 
+	.hero-ctas {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+		margin-top: 2.75rem;
+	}
+
+	.scroll-cue {
+		position: absolute;
+		z-index: 2;
+		bottom: 2rem;
+		left: 50%;
+		width: 1px;
+		height: 56px;
+		background: var(--line-strong);
+		overflow: hidden;
+	}
+
+	.scroll-cue span {
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(to bottom, transparent, var(--gold));
+		animation: cue 2.2s var(--ease-in-out) infinite;
+	}
+
+	@keyframes cue {
+		from {
+			transform: translateY(-100%);
+		}
+		to {
+			transform: translateY(100%);
+		}
+	}
+
+	/* ---------- Overview ---------- */
+
 	.overview {
-		padding: 5rem 4vw;
-		border-top: 1px solid #1a1a22;
-		border-bottom: 1px solid #1a1a22;
+		padding: clamp(5rem, 11vw, 9rem) var(--gutter);
+		background: var(--navy-900);
 	}
 
 	.overview-content {
-		max-width: 1200px;
+		max-width: 1280px;
 		margin: 0 auto;
 		display: grid;
-		grid-template-columns: 2fr 1fr;
-		gap: 4rem;
+		grid-template-columns: 1.7fr 1fr;
+		gap: clamp(2.5rem, 6vw, 6rem);
 		align-items: center;
 	}
 
 	.overview-text {
 		display: flex;
 		flex-direction: column;
-		gap: 1.25rem;
+		gap: 1.4rem;
 	}
 
 	.overview-text p {
-		font-size: 1.05rem;
-		line-height: 1.7;
-		color: #a1a1aa;
 		margin: 0;
-		font-weight: 400;
+		font-size: 1.05rem;
+		line-height: 1.8;
+		color: var(--muted);
 	}
 
 	.overview-text p.lead {
-		font-size: 1.3rem;
-		color: #ffffff;
-		line-height: 1.5;
+		margin-top: 0.5rem;
+		font-family: var(--font-display);
+		font-size: clamp(1.7rem, 3vw, 2.4rem);
+		font-weight: 500;
+		line-height: 1.3;
+		color: var(--ink);
+	}
+
+	.overview-rule {
+		width: 120px;
+	}
+
+	.overview-detail {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+		padding: 2.5rem;
+		background: linear-gradient(160deg, var(--navy-800), var(--navy-850));
+		border: 1px solid var(--line);
+		box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.6);
+	}
+
+	.overview-detail::before {
+		content: '';
+		position: absolute;
+		top: -1px;
+		inset-inline: -1px;
+		height: 2px;
+		background: linear-gradient(90deg, var(--gold-dark), var(--gold-light), var(--gold-dark));
+	}
+
+	.detail-label {
+		font-size: 0.68rem;
+		font-weight: 600;
+		letter-spacing: 0.24em;
+		color: var(--gold);
+	}
+
+	.detail-value {
+		font-family: var(--font-display);
+		font-size: 1.8rem;
+		font-weight: 600;
+		color: var(--ink);
 	}
 
 	.facts {
 		list-style: none;
-		margin: 0.5rem 0 0;
-		padding: 0;
+		margin: 0.75rem 0 0;
+		padding: 1.25rem 0 0;
+		border-top: 1px solid var(--line);
 		display: flex;
 		flex-direction: column;
-		gap: 0.4rem;
+		gap: 0.6rem;
 		font-size: 0.9rem;
-		color: #a1a1aa;
+		color: var(--muted);
 	}
 
 	.facts a {
-		color: #a1a1aa;
+		color: var(--text);
 		text-decoration: none;
+		transition: color 0.3s;
 	}
 
 	.facts a:hover {
-		color: #1c71d8;
+		color: var(--gold-light);
 	}
 
-	.overview-detail {
-		display: flex;
-		flex-direction: column;
-		gap: 0.75rem;
-		padding: 2rem;
-		border-inline-start: 2px solid #1a1a22;
-	}
-
-	.detail-label {
-		font-size: 0.7rem;
-		font-weight: 700;
-		letter-spacing: 0.15em;
-		color: #52525b;
-	}
-
-	.detail-value {
-		font-size: 1.2rem;
-		font-weight: 700;
-		letter-spacing: 0.02em;
-		color: #ffffff;
-	}
+	/* ---------- Photography ---------- */
 
 	.image-full {
-		width: 100%;
-		height: 50vh;
+		position: relative;
+		height: clamp(320px, 62vh, 640px);
 		overflow: hidden;
 	}
 
-	.image-full img {
+	.image-full img,
+	.split-left img {
+		position: absolute;
+		inset: 0;
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
 		display: block;
-		filter: grayscale(60%) contrast(1.1) brightness(0.85);
+		filter: grayscale(35%) contrast(1.08) brightness(0.8);
+		will-change: transform;
 	}
 
+	/* Navy duotone over the photos so they sit in the palette. */
+	.image-tint {
+		position: absolute;
+		inset: 0;
+		background:
+			linear-gradient(to bottom, var(--navy-900), transparent 25%, transparent 70%, var(--navy-900)),
+			linear-gradient(135deg, rgba(11, 18, 32, 0.55), rgba(201, 164, 92, 0.12));
+		mix-blend-mode: normal;
+		pointer-events: none;
+	}
+
+	/* ---------- What we handle ---------- */
+
 	.process {
-		padding: 6rem 4vw;
-		border-top: 1px solid #1a1a22;
+		padding: clamp(5rem, 10vw, 8rem) var(--gutter);
+		background: var(--navy-900);
 	}
 
 	.process-layout {
-		max-width: 1200px;
+		max-width: 1280px;
 		margin: 0 auto;
 		display: grid;
 		grid-template-columns: 1.5fr 1fr;
-		gap: 5rem;
+		gap: clamp(3rem, 7vw, 7rem);
 	}
 
 	.process-text h2 {
-		font-size: 1.5rem;
-		font-weight: 900;
-		letter-spacing: 0.08em;
-		color: #ffffff;
-		margin: 0 0 2rem 0;
+		margin: 0 0 3rem;
+		font-family: var(--font-display);
+		font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+		font-weight: 600;
+		line-height: 1.05;
+		color: var(--ink);
 		text-transform: uppercase;
-	}
-
-	.process-text p {
-		font-size: 1rem;
-		line-height: 1.8;
-		color: #a1a1aa;
-		margin: 0 0 1.5rem 0;
-		font-weight: 400;
+		letter-spacing: 0.02em;
 	}
 
 	.handle-list {
 		list-style: none;
-		margin: 0 0 2rem;
+		margin: 0 0 3rem;
 		padding: 0;
 		display: flex;
 		flex-direction: column;
-		gap: 1.5rem;
 	}
 
 	.handle-list li {
+		position: relative;
 		display: flex;
-		gap: 1.25rem;
+		gap: 1.75rem;
 		align-items: flex-start;
+		padding: 1.5rem 0;
+		border-top: 1px solid var(--line);
+		transition: background-color 0.4s var(--ease-out);
+	}
+
+	.handle-list li:last-child {
+		border-bottom: 1px solid var(--line);
+	}
+
+	.handle-list li::before {
+		content: '';
+		position: absolute;
+		top: -1px;
+		inset-inline-start: 0;
+		width: 100%;
+		height: 1px;
+		background: var(--gold);
+		transform: scaleX(0);
+		transform-origin: left;
+		transition: transform 0.6s var(--ease-out);
+	}
+
+	:global(:root[dir='rtl']) .handle-list li::before {
+		transform-origin: right;
+	}
+
+	.handle-list li:hover::before {
+		transform: scaleX(1);
 	}
 
 	.handle-num {
-		font-size: 0.8rem;
-		font-weight: 700;
-		color: #1c71d8;
-		letter-spacing: 0.1em;
-		padding-top: 0.2rem;
 		flex-shrink: 0;
+		min-width: 2.5rem;
+		font-family: var(--font-display);
+		font-size: 1.6rem;
+		font-weight: 600;
+		line-height: 1;
+		color: var(--gold);
 	}
 
 	.handle-list h3 {
-		margin: 0 0 0.35rem;
-		font-size: 1rem;
-		font-weight: 700;
-		color: #ffffff;
-		letter-spacing: 0.02em;
+		margin: 0 0 0.4rem;
+		font-size: 1.05rem;
+		font-weight: 600;
+		color: var(--ink);
 	}
 
 	.handle-list p {
 		margin: 0;
 		font-size: 0.95rem;
-		line-height: 1.6;
+		line-height: 1.7;
+		color: var(--muted);
 	}
 
-	.process-text p.delivery-line {
-		margin: 1rem 0 0;
-		font-size: 0.95rem;
-		line-height: 1.6;
-		color: #d4d4d8;
-	}
-
-	.process-text p.risk-line {
+	.risk-line {
 		margin: 0;
-		padding: 1.25rem 1.5rem;
-		border-inline-start: 2px solid #1c71d8;
-		background: #0a0a0d;
-		color: #ffffff;
-		font-weight: 600;
-		line-height: 1.6;
+		padding: 1.5rem 1.75rem;
+		background: linear-gradient(90deg, var(--gold-wash), transparent);
+		border-inline-start: 2px solid var(--gold);
+		color: var(--ink);
+		font-weight: 500;
+		line-height: 1.7;
+	}
+
+	:global(:root[dir='rtl']) .risk-line {
+		background: linear-gradient(-90deg, var(--gold-wash), transparent);
+	}
+
+	.delivery-line {
+		margin: 1.5rem 0 0;
+		font-size: 0.95rem;
+		line-height: 1.7;
+		color: var(--muted);
 	}
 
 	.process-data {
 		display: flex;
 		flex-direction: column;
-		gap: 3rem;
-		padding-top: 3rem;
+		gap: 1.25rem;
+		padding-top: 6rem;
 	}
 
 	.data-point {
-		border-top: 1px solid #1a1a22;
-		padding-top: 1rem;
+		position: relative;
+		padding: 2rem 2rem 1.75rem;
+		background: linear-gradient(160deg, var(--navy-800), var(--navy-850));
+		border: 1px solid var(--line);
+		transition:
+			border-color 0.4s var(--ease-out),
+			transform 0.4s var(--ease-out);
+	}
+
+	.data-point:hover {
+		border-color: var(--gold-line);
+		transform: translateY(-3px);
 	}
 
 	.data-number {
-		font-size: 2rem;
-		font-weight: 900;
-		letter-spacing: 0.02em;
-		color: #1c71d8;
-		margin-bottom: 0.5rem;
+		font-family: var(--font-display);
+		font-size: clamp(2.8rem, 5vw, 3.6rem);
+		font-weight: 600;
+		line-height: 1;
+		letter-spacing: 0.04em;
+		margin-bottom: 0.75rem;
+		background: linear-gradient(135deg, var(--gold-light), var(--gold) 55%, var(--gold-dark));
+		-webkit-background-clip: text;
+		background-clip: text;
+		color: transparent;
 	}
 
 	.data-label {
-		font-size: 0.85rem;
-		line-height: 1.4;
-		color: #71717a;
-		font-weight: 500;
+		font-size: 0.88rem;
+		line-height: 1.5;
+		color: var(--muted);
 	}
+
+	/* ---------- Categories ---------- */
 
 	.image-split {
 		display: grid;
-		grid-template-columns: 1.2fr 0.8fr;
-		min-height: 50vh;
-		border-top: 1px solid #1a1a22;
+		grid-template-columns: 1.1fr 0.9fr;
+		min-height: 70vh;
+		background: var(--navy-850);
 	}
 
 	.split-left {
 		position: relative;
 		overflow: hidden;
-	}
-
-	.split-left img {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		filter: grayscale(60%) contrast(1.1) brightness(0.85);
+		min-height: 420px;
 	}
 
 	.split-caption {
 		position: absolute;
-		bottom: 1.5rem;
-		inset-inline-start: 1.5rem;
-		font-size: 0.7rem;
-		font-weight: 700;
-		letter-spacing: 0.15em;
-		color: #ffffff;
-		background: rgba(5, 5, 8, 0.9);
-		padding: 0.5rem 1rem;
-		border: 1px solid #1a1a22;
+		bottom: 2rem;
+		inset-inline-start: 2rem;
+		font-size: 0.68rem;
+		font-weight: 600;
+		letter-spacing: 0.22em;
+		color: var(--ink);
+		background: rgba(6, 10, 20, 0.7);
+		backdrop-filter: blur(10px);
+		-webkit-backdrop-filter: blur(10px);
+		padding: 0.75rem 1.1rem;
+		border: 1px solid var(--gold-line);
 	}
 
 	.split-right {
-		background: #0a0a0d;
-		border-inline-start: 1px solid #1a1a22;
 		display: flex;
 		align-items: center;
 	}
 
 	.split-info {
-		padding: 3rem 2.5rem;
+		width: 100%;
+		padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 4vw, 4rem);
 	}
 
 	.split-info h3 {
-		font-size: 1.2rem;
-		font-weight: 900;
-		letter-spacing: 0.08em;
-		color: #ffffff;
-		margin: 0 0 1.5rem 0;
+		margin: 0 0 2rem;
+		font-family: var(--font-display);
+		font-size: clamp(2rem, 3.5vw, 2.8rem);
+		font-weight: 600;
+		line-height: 1.1;
+		color: var(--ink);
 		text-transform: uppercase;
+		letter-spacing: 0.02em;
 	}
 
 	.tiles {
 		display: flex;
 		flex-direction: column;
-		gap: 0.75rem;
+		gap: 0.85rem;
 	}
 
 	.tile {
+		position: relative;
 		display: flex;
 		flex-direction: column;
-		gap: 0.3rem;
-		padding: 1rem 1.25rem;
-		border: 1px solid #1a1a22;
-		border-inline-start: 3px solid #1c71d8;
-		background: #050508;
+		gap: 0.4rem;
+		padding: 1.3rem 1.5rem;
+		background: rgba(11, 18, 32, 0.6);
+		border: 1px solid var(--line);
 		text-decoration: none;
-		transition: border-color 0.2s;
+		overflow: hidden;
+		transition:
+			border-color 0.4s var(--ease-out),
+			background-color 0.4s var(--ease-out),
+			transform 0.4s var(--ease-out);
+	}
+
+	.tile::before {
+		content: '';
+		position: absolute;
+		inset-block: 0;
+		inset-inline-start: 0;
+		width: 2px;
+		background: var(--gold);
+		transform: scaleY(0.35);
+		transition: transform 0.5s var(--ease-out);
 	}
 
 	.tile:hover {
-		border-color: #1c71d8;
+		border-color: var(--gold-line);
+		background: rgba(26, 38, 64, 0.6);
+	}
+
+	.tile:hover::before {
+		transform: scaleY(1);
+	}
+
+	.tile-head {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 1rem;
 	}
 
 	.tile-title {
-		font-size: 0.85rem;
-		font-weight: 900;
-		letter-spacing: 0.08em;
-		color: #ffffff;
+		font-size: 0.82rem;
+		font-weight: 700;
+		letter-spacing: 0.14em;
+		color: var(--ink);
 		text-transform: uppercase;
+	}
+
+	.tile-arrow {
+		color: var(--gold);
 	}
 
 	.tile-text {
 		font-size: 0.9rem;
-		line-height: 1.5;
-		color: #a1a1aa;
+		line-height: 1.6;
+		color: var(--muted);
 	}
 
+	/* ---------- Contact ---------- */
+
 	.contact-simple {
-		padding: 10rem 4vw;
-		border-top: 1px solid #1a1a22;
-		background: #0a0a0d;
 		position: relative;
+		overflow: hidden;
+		padding: clamp(6rem, 14vw, 11rem) var(--gutter);
+		background: var(--navy-950);
+		border-top: 1px solid var(--line);
+	}
+
+	.contact-glow {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		width: min(1100px, 140vw);
+		aspect-ratio: 2 / 1;
+		transform: translate(-50%, -50%);
+		background: radial-gradient(ellipse at center, rgba(201, 164, 92, 0.13), transparent 62%);
+		animation: glow 9s var(--ease-in-out) infinite alternate;
+		pointer-events: none;
+	}
+
+	@keyframes glow {
+		from {
+			opacity: 0.6;
+			transform: translate(-50%, -50%) scale(0.95);
+		}
+		to {
+			opacity: 1;
+			transform: translate(-50%, -50%) scale(1.05);
+		}
 	}
 
 	.contact-wrapper {
-		max-width: 900px;
+		position: relative;
+		max-width: 860px;
 		margin: 0 auto;
 		text-align: center;
-		position: relative;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 	}
 
+	.contact-rule {
+		width: 80px;
+		margin-bottom: 2.5rem;
+		background: linear-gradient(90deg, transparent, var(--gold), transparent) !important;
+		transform-origin: center !important;
+	}
 
 	.contact-wrapper h2 {
-		font-size: clamp(2.2rem, 7vw, 4.5rem);
-		font-weight: 900;
-		letter-spacing: 0.05em;
-		color: #ffffff;
-		margin: 0 0 2.5rem 0;
+		margin: 0 0 2rem;
+		font-family: var(--font-display);
+		font-size: clamp(2.6rem, 7vw, 5.2rem);
+		font-weight: 600;
+		line-height: 1;
+		color: var(--ink);
 		text-transform: uppercase;
+		letter-spacing: 0.02em;
 	}
 
 	.contact-description {
-		font-size: 1.15rem;
+		margin: 0 0 3rem;
+		font-size: 1.1rem;
 		line-height: 1.8;
-		color: #a1a1aa;
-		margin: 0 0 3.5rem 0;
-		font-weight: 400;
+		color: var(--muted);
 	}
 
 	.contact-button {
-		display: inline-block;
-		padding: 1.5rem 3.5rem;
-		background: transparent;
-		border: 2px solid #1c71d8;
-		color: #1c71d8;
-		text-decoration: none;
-		font-size: 0.9rem;
-		font-weight: 700;
-		letter-spacing: 0.15em;
-		text-transform: uppercase;
-		transition: all 0.3s;
-	}
-
-	.contact-button {
-		font-family: inherit;
-		cursor: pointer;
-	}
-
-	.contact-button:hover {
-		background: #1c71d8;
-		color: #050508;
+		padding: 1.3rem 2.75rem;
+		font-size: 0.8rem;
 	}
 
 	.contact-email {
 		display: block;
-		margin-top: 1.5rem;
-		color: #71717a;
+		margin-top: 1.75rem;
+		color: var(--dim);
 		font-size: 0.9rem;
 		text-decoration: none;
+		transition: color 0.3s;
 	}
 
 	.contact-email:hover {
-		color: #1c71d8;
+		color: var(--gold-light);
 	}
 
-	@media (max-width: 1200px) {
-		.globe-container {
-			right: -10vw;
-			opacity: 0.6;
-		}
+	/* ---------- Responsive ---------- */
 
-		canvas {
-			width: 500px;
-			height: 500px;
-		}
-
-		.overview-content {
+	@media (max-width: 1100px) {
+		.overview-content,
+		.process-layout {
 			grid-template-columns: 1fr;
-			gap: 2rem;
+		}
+
+		.process-data {
+			padding-top: 0;
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
 		}
 
 		.image-split {
 			grid-template-columns: 1fr;
 		}
 
-		.split-right {
-			border-inline-start: none;
-			border-top: 1px solid #1a1a22;
-		}
-	}
-
-	@media (max-width: 768px) {
-		.process-layout {
-			grid-template-columns: 1fr;
-			gap: 3rem;
-		}
-
-
-		.process-data {
-			align-items: center;
-		}
-
-		.data-point {
-			text-align: center;
-			width: 100%;
-			max-width: 300px;
+		.split-left {
+			min-height: 50vh;
 		}
 	}
 
 	@media (max-width: 900px) {
-		main {
-			padding-top: 8rem;
-		}
-
 		.hero {
+			flex-direction: column;
+			justify-content: flex-start;
+			align-items: stretch;
 			min-height: auto;
-			padding: 2rem 4vw 4rem;
+			padding: calc(var(--header-h) + 2.5rem) var(--gutter) 0;
 		}
 
-		.hero-layout {
-			flex-direction: column;
-			gap: 1.5rem;
+		/* On phones the map becomes a band below the headline, zoomed to the Atlantic–Gulf corridor. */
+		.hero-map {
+			position: relative;
+			inset: auto;
+			order: 2;
+			direction: ltr;
+			height: 82vw;
+			margin: 1.5rem calc(var(--gutter) * -1) -1rem;
+			overflow: hidden;
+		}
+
+		.hero-map :global(.route-map) {
+			width: 175%;
+			height: auto;
+			aspect-ratio: 2 / 1;
+			margin-left: -40%;
+		}
+
+		.hero-shade {
+			background: linear-gradient(to top, var(--navy-900) 0%, transparent 18%);
+		}
+
+		:global(:root[dir='rtl']) .hero-shade {
+			background: linear-gradient(to top, var(--navy-900) 0%, transparent 18%);
 		}
 
 		.hero-text {
-			text-align: center;
+			max-width: none;
 		}
 
-		.title-massive {
-			font-size: clamp(3.5rem, 15vw, 7rem);
-			line-height: 0.85;
+		.overview {
+			padding-top: 3rem;
 		}
 
-		.title-medium {
-			font-size: clamp(2rem, 10vw, 4rem);
-			letter-spacing: 0.3em;
-			padding-left: 0.3em;
-		}
-
-		.title-small {
-			font-size: 0.75rem;
-			letter-spacing: 0.4em;
-			padding-left: 0.4em;
-			margin-top: 1rem;
-		}
-
-		.globe-container {
-			position: relative;
-			right: 0;
-			transform: none;
-			opacity: 0.6;
-		}
-
-		canvas {
-			width: 280px;
-			height: 280px;
-		}
-
-		.hero-footer {
-			margin-top: 1rem;
+		.hero-title {
+			font-size: clamp(2.6rem, 13.5vw, 6rem);
 		}
 
 		.subtitle {
-			font-size: 0.75rem;
-			letter-spacing: 0.1em;
-		}
-
-		.overview,
-		.process,
-		.contact-simple {
-			padding: 4rem 4vw;
-		}
-
-		.overview-text p {
 			font-size: 1rem;
 		}
 
-		.process-text p {
-			font-size: 0.95rem;
+		.hero-ctas {
+			flex-direction: column;
 		}
 
-		.image-full {
-			height: 40vh;
+		.hero-ctas > * {
+			width: 100%;
 		}
 
-		.image-split {
-			min-height: auto;
+		.scroll-cue {
+			display: none;
+		}
+	}
+
+	@media (max-width: 640px) {
+		.process-data {
+			grid-template-columns: 1fr;
 		}
 
-		.split-left {
-			min-height: 40vh;
+		.overview-detail {
+			padding: 2rem 1.5rem;
+		}
+
+		.data-point {
+			padding: 1.5rem;
+		}
+
+		.split-caption {
+			inset-inline: 1rem auto;
+			bottom: 1rem;
+		}
+
+		.tile {
+			padding: 1.1rem 1.2rem;
 		}
 	}
 </style>

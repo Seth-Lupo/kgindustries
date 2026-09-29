@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { tick } from 'svelte';
+	import { fade, scale } from 'svelte/transition';
+	import { cubicOut } from 'svelte/easing';
 	import { _ } from 'svelte-i18n';
 	import { base } from '$app/paths';
 	import { gloveReports, nitrileResistance, GLOVE_CHART_PDF } from '$lib/data/gloves';
@@ -33,7 +35,7 @@
 
 {#if open}
 	<!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
-	<div class="backdrop" onclick={() => (open = false)}></div>
+	<div class="backdrop" onclick={() => (open = false)} transition:fade={{ duration: 300 }}></div>
 	<div
 		class="modal"
 		role="dialog"
@@ -41,6 +43,7 @@
 		aria-labelledby="glove-title"
 		tabindex="-1"
 		bind:this={dialog}
+		transition:scale={{ start: 0.96, duration: 450, easing: cubicOut }}
 	>
 		<div class="head">
 			<div class="brand">
@@ -95,24 +98,27 @@
 	.backdrop {
 		position: fixed;
 		inset: 0;
-		background: rgba(0, 0, 0, 0.7);
+		background: rgba(4, 7, 14, 0.75);
+		backdrop-filter: blur(4px);
+		-webkit-backdrop-filter: blur(4px);
 		z-index: 250;
 	}
 
 	.modal {
 		position: fixed;
 		z-index: 251;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
+		inset: 0;
+		margin: auto;
+		height: fit-content;
 		width: min(760px, calc(100vw - 2rem));
 		max-height: calc(100vh - 2rem);
 		max-height: calc(100dvh - 2rem);
 		overflow-y: auto;
-		background: #0a0a0d;
-		border: 1px solid #27272a;
-		padding: 1.75rem;
-		color: #d4d4d8;
+		background: linear-gradient(175deg, var(--navy-800), var(--navy-900) 40%);
+		border: 1px solid var(--gold-line);
+		box-shadow: 0 40px 100px -30px rgba(0, 0, 0, 0.9);
+		padding: 2rem;
+		color: var(--text);
 		box-sizing: border-box;
 		outline: none;
 	}
@@ -131,7 +137,7 @@
 		font-weight: 900;
 		letter-spacing: 0.08em;
 		text-transform: uppercase;
-		color: #ffffff;
+		color: var(--ink);
 	}
 
 	.brand {
@@ -155,12 +161,12 @@
 		font-weight: 700;
 		letter-spacing: 0.08em;
 		text-transform: uppercase;
-		color: #3584e4;
+		color: var(--gold-light);
 		text-decoration: none;
 	}
 
 	.pdf:hover {
-		color: #ffffff;
+		color: var(--ink);
 		text-decoration: underline;
 	}
 
@@ -171,8 +177,8 @@
 	.close {
 		flex-shrink: 0;
 		background: none;
-		border: 1px solid #27272a;
-		color: #a1a1aa;
+		border: 1px solid var(--line-strong);
+		color: var(--muted);
 		width: 36px;
 		height: 36px;
 		display: flex;
@@ -187,7 +193,7 @@
 		margin: 0;
 		font-size: 0.9rem;
 		line-height: 1.6;
-		color: #a1a1aa;
+		color: var(--muted);
 	}
 
 	.reports {
@@ -198,9 +204,9 @@
 	}
 
 	.report {
-		background: #050508;
-		border: 1px solid #1a1a22;
-		border-inline-start: 3px solid #1c71d8;
+		background: var(--navy-900);
+		border: 1px solid var(--line);
+		border-inline-start: 3px solid var(--gold);
 		padding: 1.1rem;
 	}
 
@@ -209,7 +215,7 @@
 		margin: 0 0 0.5rem;
 		font-size: 0.95rem;
 		font-weight: 700;
-		color: #ffffff;
+		color: var(--ink);
 	}
 
 	.result {
@@ -228,12 +234,12 @@
 	}
 
 	dt {
-		color: #71717a;
+		color: var(--dim);
 	}
 
 	dd {
 		margin: 0;
-		color: #d4d4d8;
+		color: var(--text);
 	}
 
 	.ratings {
@@ -245,9 +251,9 @@
 
 	.rating {
 		padding: 0.8rem 1rem;
-		background: #050508;
-		border: 1px solid #1a1a22;
-		border-inline-start: 3px solid #3f3f46;
+		background: var(--navy-900);
+		border: 1px solid var(--line);
+		border-inline-start: 3px solid rgba(255, 255, 255, 0.2);
 	}
 
 	.rating-excellent {
@@ -255,7 +261,7 @@
 	}
 
 	.rating-good {
-		border-inline-start-color: #1c71d8;
+		border-inline-start-color: #6fa8dc;
 	}
 
 	.rating-fair {
@@ -272,11 +278,11 @@
 		font-weight: 700;
 		letter-spacing: 0.12em;
 		text-transform: uppercase;
-		color: #ffffff;
+		color: var(--ink);
 	}
 
 	.rating h4 span {
-		color: #52525b;
+		color: var(--dim);
 		margin-inline-start: 0.4rem;
 	}
 
@@ -284,22 +290,22 @@
 		margin: 0;
 		font-size: 0.8rem;
 		line-height: 1.7;
-		color: #a1a1aa;
+		color: var(--muted);
 	}
 
 	.disclaimer {
 		font-size: 0.8rem;
 		padding-top: 1rem;
-		border-top: 1px solid #1a1a22;
+		border-top: 1px solid var(--line);
 	}
 
 	.primary {
 		margin-top: 1.25rem;
 		width: 100%;
 		padding: 1rem;
-		background: #1c71d8;
+		background: linear-gradient(135deg, var(--gold-light), var(--gold) 50%, var(--gold-dark));
 		border: none;
-		color: #ffffff;
+		color: var(--navy-950);
 		font-family: inherit;
 		font-size: 0.8rem;
 		font-weight: 700;
@@ -309,7 +315,7 @@
 	}
 
 	.primary:hover {
-		background: #3584e4;
+		filter: brightness(1.08);
 	}
 
 	@media (max-width: 640px) {

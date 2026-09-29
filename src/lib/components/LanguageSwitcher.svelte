@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { fly } from 'svelte/transition';
+	import { cubicOut } from 'svelte/easing';
 	import { locale, setLocale, supportedLocales } from '$lib/i18n';
 
 	let isOpen = $state(false);
@@ -34,7 +36,7 @@
 	</button>
 
 	{#if isOpen}
-		<div class="dropdown">
+		<div class="dropdown" transition:fly={{ y: -8, duration: 280, easing: cubicOut }}>
 			{#each supportedLocales as loc}
 				<button
 					class="dropdown-item"
@@ -60,10 +62,10 @@
 		align-items: center;
 		gap: 0.5rem;
 		padding: 0.5rem 0.75rem;
-		background: rgba(26, 26, 34, 0.8);
-		border: 1px solid #27272a;
-		border-radius: 6px;
-		color: #a1a1aa;
+		background: rgba(17, 26, 46, 0.7);
+		border: 1px solid var(--line-strong);
+		border-radius: 2px;
+		color: var(--muted);
 		font-size: 0.75rem;
 		font-weight: 600;
 		letter-spacing: 0.05em;
@@ -72,9 +74,9 @@
 	}
 
 	.switcher-button:hover {
-		background: rgba(39, 39, 42, 0.9);
-		border-color: #3f3f46;
-		color: #ffffff;
+		background: rgba(26, 38, 64, 0.9);
+		border-color: rgba(255, 255, 255, 0.2);
+		color: var(--ink);
 	}
 
 	.flag {
@@ -88,7 +90,7 @@
 
 	.chevron {
 		transition: transform 0.2s;
-		color: #52525b;
+		color: var(--dim);
 	}
 
 	.chevron.open {
@@ -100,12 +102,13 @@
 		top: calc(100% + 0.5rem);
 		inset-inline-end: 0;
 		min-width: 160px;
-		background: rgba(10, 10, 13, 0.98);
-		border: 1px solid #27272a;
-		border-radius: 8px;
+		background: rgba(14, 23, 40, 0.96);
+		border: 1px solid var(--line-strong);
+		border-radius: 2px;
 		overflow: hidden;
 		box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-		backdrop-filter: blur(8px);
+		backdrop-filter: blur(16px);
+		-webkit-backdrop-filter: blur(16px);
 	}
 
 	.dropdown-item {
@@ -116,7 +119,7 @@
 		padding: 0.75rem 1rem;
 		background: transparent;
 		border: none;
-		color: #a1a1aa;
+		color: var(--muted);
 		font-size: 0.85rem;
 		font-weight: 500;
 		text-align: start;
@@ -125,13 +128,13 @@
 	}
 
 	.dropdown-item:hover {
-		background: rgba(28, 113, 216, 0.1);
-		color: #ffffff;
+		background: rgba(201, 164, 92, 0.1);
+		color: var(--ink);
 	}
 
 	.dropdown-item.active {
-		background: rgba(28, 113, 216, 0.15);
-		color: #1c71d8;
+		background: rgba(201, 164, 92, 0.15);
+		color: var(--gold-light);
 	}
 
 	.dropdown-item .name {

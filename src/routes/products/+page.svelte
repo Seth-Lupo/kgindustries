@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { _, json } from 'svelte-i18n';
+	import { fly } from 'svelte/transition';
+	import { cubicOut } from 'svelte/easing';
 	import SEO from '$lib/components/SEO.svelte';
 	import { base } from '$app/paths';
 	import { beverageFamilies, BEVERAGE_LEAD_TIME_WEEKS, type Beverage } from '$lib/data/beverages';
@@ -14,6 +16,8 @@
 		PALLETS_40FT
 	} from '$lib/stores/rfq';
 	import GloveTests from '$lib/components/GloveTests.svelte';
+	import PageHero from '$lib/components/PageHero.svelte';
+	import { reveal } from '$lib/actions/motion';
 
 	type Option = { id: string; title: string };
 	type Card = { id: string; title: string; text: string; origin?: string; note?: string };
@@ -55,31 +59,21 @@
 	canonical="/products"
 />
 
-<div class="container">
-	<div class="grain"></div>
-
+<div class="page-wrap">
 	<div class="products-page">
-		<section class="products-hero">
-			<div class="flag-container">
-				<img src="{base}/images/us-flag.png" alt="" class="hero-flag" />
-			</div>
-			<div class="hero-content">
-				<h1>{$_('productsPage.hero.title')}</h1>
-				<p>{$_('productsPage.hero.subtitle')}</p>
-			</div>
-		</section>
+		<PageHero title={$_('productsPage.hero.title')} subtitle={$_('productsPage.hero.subtitle')} />
 
 		<section class="category-section">
 			<div class="category-layout">
 				<!-- US BEVERAGES -->
 				<div class="category-block beverage-block" id="beverages">
-					<div class="category-header">
+					<div class="category-header" use:reveal>
 						<h2>{$_('productsPage.beverages.title')}</h2>
 						<p class="category-intro">{$_('productsPage.beverages.intro')}</p>
 						<p class="category-sub">{$_('productsPage.beverages.specialty')}</p>
 					</div>
 
-					<ul class="pallet-facts">
+					<ul class="pallet-facts" use:reveal={{ delay: 100 }}>
 						<li>{$_('productsPage.beverages.palletNote')}</li>
 						<li>
 							{$_('productsPage.beverages.containerFit', {
@@ -91,14 +85,14 @@
 
 					{#each beverageFamilies as family (family.id)}
 						<div class="family">
-							<h3 class="family-title">
+							<h3 class="family-title" use:reveal>
 								{$_(`productsPage.beverages.families.${family.id}`)}
 								<span class="family-count">{family.items.length}</span>
 							</h3>
 							<div class="bev-grid">
-								{#each family.items as bev (bevKey(bev))}
+								{#each family.items as bev, i (bevKey(bev))}
 									{@const added = inRfq(bevKey(bev))}
-									<article class="bev-card">
+									<article class="bev-card" class:added use:reveal={{ delay: (i % 5) * 70 }}>
 										<div class="bev-photo">
 											{#if bev.image}
 												<img
@@ -155,21 +149,21 @@
 					{/each}
 
 					{#if totalPallets($rfqItems)}
-						<div class="rfq-bar">
+						<div class="rfq-bar" transition:fly={{ y: 24, duration: 450, easing: cubicOut }}>
 							<span>{$_('productsPage.beverages.selectedCount', { values: { n: totalPallets($rfqItems) } })}</span>
-							<button onclick={() => rfqOpen.set(true)}>{$_('nav.rfq')}</button>
+							<button class="btn-gold" onclick={() => rfqOpen.set(true)}>{$_('nav.rfq')}</button>
 						</div>
 					{/if}
 				</div>
 
 				<!-- CONSUMER GOODS -->
 				<div class="category-block consumer-block" id="consumer">
-					<div class="category-header">
+					<div class="category-header" use:reveal>
 						<h2>{$_('productsPage.consumer.title')}</h2>
 						<p class="category-intro">{$_('productsPage.consumer.intro')}</p>
 					</div>
 					<div class="consumer-grid">
-						<div class="product-card">
+						<div class="product-card" use:reveal>
 							<div class="card-content">
 								<h3>{$_('productsPage.consumer.onRequestTitle')}</h3>
 								<p class="pick-hint">{$_('productsPage.pickHint')}</p>
@@ -177,14 +171,14 @@
 									{#each $json('productsPage.consumer.onRequest') as Option[] as opt (opt.id)}
 										<button class="option" onclick={() => openRfqFor(opt.id, rfqLabels[opt.id], opt.title)}>
 											<span>{opt.title}</span>
-											<span class="option-cta" aria-hidden="true">RFQ →</span>
+											<span class="option-cta" aria-hidden="true">RFQ <span class="btn-arrow">→</span></span>
 										</button>
 									{/each}
 								</div>
 								<!-- CONFIRM: named FMCG brand examples (only once confirmed sourced) -->
 							</div>
 						</div>
-						<div class="product-card">
+						<div class="product-card" use:reveal={{ delay: 120 }}>
 							<div class="card-content">
 								<h3>{$_('productsPage.consumer.howTitle')}</h3>
 								<p>{$_('productsPage.consumer.how')}</p>
@@ -197,14 +191,14 @@
 				<!-- INDUSTRIAL & COMMERCIAL -->
 				<div class="category-block industrial-block" id="industrial">
 					<div class="split-layout">
-						<div class="split-header">
+						<div class="split-header" use:reveal>
 							<h2>{$_('productsPage.industrial.title')}<br />{$_('productsPage.industrial.titleLine2')}</h2>
 							<p class="category-intro">{$_('productsPage.industrial.intro')}</p>
 						</div>
 						<div class="split-content">
 							<div class="industrial-list">
-								{#each $json('productsPage.industrial.cards') as Card[] as card (card.id)}
-									<div class="industrial-item">
+								{#each $json('productsPage.industrial.cards') as Card[] as card, i (card.id)}
+									<div class="industrial-item" use:reveal={{ delay: (i % 3) * 80 }}>
 										<div class="item-info">
 											<h4>
 												<button
@@ -223,7 +217,7 @@
 												</p>
 											{/if}
 											<div class="card-actions">
-												<span class="card-cta" aria-hidden="true">{$_('productsPage.cardCta')} →</span>
+												<span class="card-cta" aria-hidden="true">{$_('productsPage.cardCta')} <span class="btn-arrow">→</span></span>
 												{#if card.id === 'gloves'}
 													<button class="tests-btn" onclick={() => (glovesOpen = true)}>
 														{$_('gloves.button')}
@@ -240,17 +234,17 @@
 				</div>
 
 				<!-- CUSTOM SOURCING -->
-				<div class="category-block custom-block" id="custom">
+				<div class="category-block custom-block" id="custom" use:reveal={{ variant: 'scale' }}>
 					<div class="custom-inner">
 						<div>
 							<h2>{$_('productsPage.custom.title')}</h2>
 							<p class="category-intro">{$_('productsPage.custom.text')}</p>
 						</div>
 						<button
-							class="custom-button"
+							class="btn-gold custom-button"
 							onclick={() => openRfqFor('custom', rfqLabels.custom, $_('productsPage.custom.title'))}
 						>
-							{$_('nav.rfq')}
+							{$_('nav.rfq')} <span class="btn-arrow" aria-hidden="true">→</span>
 						</button>
 					</div>
 				</div>
@@ -262,10 +256,10 @@
 		<!-- ORDER INFORMATION -->
 		<section class="requirements" id="order-info">
 			<div class="req-container">
-				<div class="req-header">
+				<div class="req-header" use:reveal>
 					<h2>{$_('productsPage.order.title')}</h2>
 				</div>
-				<div class="order-list">
+				<div class="order-list" use:reveal={{ delay: 100 }}>
 					{#each $json('productsPage.order.rows') as Row[] as row, i}
 						<div class="order-row" class:open={openRow === i}>
 							<button
@@ -276,7 +270,7 @@
 								<span>{row.label}</span>
 								<span class="chev" aria-hidden="true">+</span>
 							</button>
-							<div class="order-text">{row.text}</div>
+							<div class="order-text"><div>{row.text}</div></div>
 						</div>
 					{/each}
 				</div>
@@ -286,179 +280,185 @@
 </div>
 
 <style>
-	.container {
+	.page-wrap {
 		position: relative;
 		min-height: 100vh;
 		width: 100%;
-		max-width: 100vw;
-		margin: 0 auto;
 		overflow-x: clip;
-	}
-
-	.grain {
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='6.5' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-		opacity: 0.18;
-		pointer-events: none;
-		z-index: 1;
 	}
 
 	.products-page {
 		min-height: 100vh;
-		padding-top: 5rem;
-		background: #050508;
-	}
-
-	.products-hero {
-		padding: 6rem 4vw 4rem;
-		border-bottom: 1px solid #1a1a22;
-		text-align: center;
-		position: relative;
-		overflow: hidden;
-		background: #050508;
-	}
-
-	.flag-container {
-		position: absolute;
-		top: -5%;
-		right: -10%;
-		width: 700px;
-		height: 450px;
-		opacity: 0.12;
-		transform: rotate(-15deg);
-		pointer-events: none;
-		z-index: 0;
-	}
-
-	.hero-flag {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		filter: grayscale(60%) contrast(1.1) brightness(0.5);
-		mix-blend-mode: screen;
-	}
-
-	.hero-content {
-		position: relative;
-		z-index: 1;
-		max-width: 760px;
-		margin: 0 auto;
-	}
-
-	.hero-content h1 {
-		font-size: clamp(2.5rem, 8vw, 5.5rem);
-		font-weight: 900;
-		letter-spacing: 0.05em;
-		color: #ffffff;
-		margin: 0 0 1.5rem 0;
-		text-transform: uppercase;
-	}
-
-	.hero-content p {
-		font-size: 1.1rem;
-		line-height: 1.6;
-		color: #a1a1aa;
-		margin: 0;
-		font-weight: 400;
+		background: var(--navy-900);
 	}
 
 	.category-section {
 		position: relative;
-		z-index: 2;
-		padding: 6rem 4vw;
+		padding: clamp(3rem, 7vw, 6rem) var(--gutter);
 	}
 
 	.category-layout {
-		max-width: 1400px;
+		max-width: 1320px;
 		margin: 0 auto;
 		display: flex;
 		flex-direction: column;
-		gap: 6rem;
+		gap: clamp(3rem, 7vw, 6rem);
 	}
 
 	.category-block {
-		border-top: 1px solid #1a1a22;
-		padding-top: 3rem;
-		scroll-margin-top: 6rem;
+		position: relative;
+		scroll-margin-top: calc(var(--header-h) + 1.5rem);
 	}
 
 	.category-header {
-		margin-bottom: 3rem;
+		margin-bottom: 2.5rem;
 		max-width: 820px;
 	}
 
 	.category-header h2,
-	.custom-block h2 {
-		font-size: 1.8rem;
-		font-weight: 900;
-		letter-spacing: 0.08em;
-		color: #ffffff;
-		margin: 0 0 1rem 0;
+	.custom-block h2,
+	.split-header h2 {
+		margin: 0 0 1.1rem;
+		font-family: var(--font-display);
+		font-size: clamp(2rem, 4vw, 3rem);
+		font-weight: 600;
+		line-height: 1.05;
+		letter-spacing: 0.02em;
+		color: var(--ink);
 		text-transform: uppercase;
 	}
 
+	.category-header h2::after,
+	.split-header h2::after {
+		content: '';
+		display: block;
+		width: 56px;
+		height: 1px;
+		margin-top: 1.1rem;
+		background: var(--gold);
+	}
+
 	.category-intro {
-		font-size: 1.05rem;
-		line-height: 1.7;
-		color: #d4d4d8;
 		margin: 0;
+		font-size: 1.05rem;
+		line-height: 1.75;
+		color: var(--text);
 	}
 
 	.category-sub {
-		font-size: 0.95rem;
-		line-height: 1.6;
-		color: #a1a1aa;
 		margin: 0.75rem 0 0;
+		font-size: 0.95rem;
+		line-height: 1.65;
+		color: var(--muted);
 	}
 
-	/* Beverages */
-	.beverage-block {
-		background: #0a0a0d;
-		padding: 3rem;
-		border: 1px solid #1a1a22;
+	/* Shared panel surface for each category. */
+	.beverage-block,
+	.consumer-block,
+	.industrial-block,
+	.custom-block {
+		padding: clamp(1.5rem, 4vw, 3.5rem);
+		background: linear-gradient(170deg, var(--navy-850), var(--navy-900) 70%);
+		border: 1px solid var(--line);
+	}
+
+	/* ---------- Beverages ---------- */
+
+	.pallet-facts {
+		list-style: none;
+		margin: -0.5rem 0 3rem;
+		padding: 1.1rem 1.4rem;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.6rem 2.25rem;
+		background: linear-gradient(90deg, var(--gold-wash), transparent 80%);
+		border-inline-start: 2px solid var(--gold);
+		font-size: 0.9rem;
+		color: var(--ink);
+	}
+
+	:global(:root[dir='rtl']) .pallet-facts {
+		background: linear-gradient(-90deg, var(--gold-wash), transparent 80%);
+	}
+
+	.pallet-facts li {
+		position: relative;
+		padding-inline-start: 1rem;
+	}
+
+	.pallet-facts li::before {
+		content: '';
+		position: absolute;
+		inset-inline-start: 0;
+		top: 0.6em;
+		width: 5px;
+		height: 5px;
+		background: var(--gold);
+		transform: rotate(45deg);
 	}
 
 	.family + .family {
-		margin-top: 3rem;
+		margin-top: 3.5rem;
 	}
 
 	.family-title {
 		display: flex;
 		align-items: center;
 		gap: 0.75rem;
-		font-size: 0.85rem;
-		font-weight: 700;
-		letter-spacing: 0.15em;
-		color: #a1a1aa;
+		margin: 0 0 1.5rem;
+		padding-bottom: 0.9rem;
+		border-bottom: 1px solid var(--line);
+		font-size: 0.75rem;
+		font-weight: 600;
+		letter-spacing: 0.22em;
+		color: var(--gold-light);
 		text-transform: uppercase;
-		margin: 0 0 1.25rem;
-		padding-bottom: 0.75rem;
-		border-bottom: 1px solid #1a1a22;
 	}
 
 	.family-count {
-		font-size: 0.7rem;
-		color: #52525b;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-width: 1.6rem;
+		height: 1.6rem;
+		padding: 0 0.4rem;
+		border: 1px solid var(--gold-line);
+		font-size: 0.65rem;
+		letter-spacing: 0;
+		color: var(--muted);
 	}
 
 	.bev-grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+		grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
 		gap: 1.25rem;
 	}
 
 	.bev-card {
-		background: #050508;
-		border: 1px solid #1a1a22;
+		position: relative;
 		display: flex;
 		flex-direction: column;
+		background: var(--navy-800);
+		border: 1px solid var(--line);
+		transition:
+			border-color 0.45s var(--ease-out),
+			box-shadow 0.45s var(--ease-out),
+			translate 0.45s var(--ease-out);
+	}
+
+	.bev-card:hover {
+		translate: 0 -4px;
+		border-color: var(--gold-line);
+		box-shadow: 0 24px 48px -24px rgba(0, 0, 0, 0.7);
+	}
+
+	.bev-card.added {
+		border-color: var(--gold);
+		box-shadow: 0 0 0 1px var(--gold), 0 20px 40px -24px var(--gold-glow);
 	}
 
 	.bev-photo {
+		position: relative;
 		aspect-ratio: 1 / 1;
 		background: #ffffff;
 		overflow: hidden;
@@ -469,6 +469,11 @@
 		height: 100%;
 		object-fit: contain;
 		display: block;
+		transition: transform 0.8s var(--ease-out);
+	}
+
+	.bev-card:hover .bev-photo img {
+		transform: scale(1.06);
 	}
 
 	.bev-placeholder {
@@ -479,34 +484,34 @@
 		justify-content: center;
 		text-align: center;
 		padding: 1.5rem;
-		background: #111116;
-		color: #71717a;
-		font-weight: 700;
-		letter-spacing: 0.05em;
-		font-size: 0.95rem;
+		background: linear-gradient(160deg, var(--navy-700), var(--navy-800));
+		color: var(--muted);
+		font-family: var(--font-display);
+		font-size: 1.15rem;
+		font-weight: 600;
 	}
 
 	.bev-body {
-		padding: 1rem;
+		padding: 1.1rem;
 		display: flex;
 		flex-direction: column;
-		gap: 0.6rem;
+		gap: 0.65rem;
 		flex: 1;
 	}
 
 	.bev-name {
 		margin: 0;
 		font-size: 0.95rem;
-		font-weight: 700;
-		color: #ffffff;
-		line-height: 1.3;
+		font-weight: 600;
+		color: var(--ink);
+		line-height: 1.35;
 	}
 
 	.bev-meta {
 		margin: 0;
 		display: flex;
 		flex-direction: column;
-		gap: 0.25rem;
+		gap: 0.3rem;
 		font-size: 0.8rem;
 	}
 
@@ -517,130 +522,108 @@
 	}
 
 	.bev-meta dt {
-		color: #71717a;
+		color: var(--dim);
 	}
 
 	.bev-meta dd {
 		margin: 0;
-		color: #d4d4d8;
+		color: var(--text);
 		text-align: end;
 	}
 
 	.bev-origin {
 		margin: 0;
 		font-size: 0.75rem;
-		color: #a1a1aa;
-		letter-spacing: 0.02em;
+		color: var(--muted);
 	}
 
 	.bev-origin.non-us {
-		color: #f5c211;
+		color: #e8b85c;
 	}
 
 	.add-rfq {
 		margin-top: auto;
-		padding: 0.6rem;
+		padding: 0.7rem;
 		background: transparent;
-		border: 1px solid #27272a;
-		color: #a1a1aa;
+		border: 1px solid var(--line-strong);
+		color: var(--text);
 		font-family: inherit;
-		font-size: 0.7rem;
-		font-weight: 700;
-		letter-spacing: 0.1em;
+		font-size: 0.68rem;
+		font-weight: 600;
+		letter-spacing: 0.16em;
 		text-transform: uppercase;
 		cursor: pointer;
-		transition: all 0.2s;
+		transition:
+			background-color 0.35s var(--ease-out),
+			border-color 0.35s var(--ease-out),
+			color 0.35s var(--ease-out);
 	}
 
 	.add-rfq:hover {
-		border-color: #1c71d8;
-		color: #ffffff;
+		border-color: var(--gold);
+		color: var(--gold-light);
 	}
 
 	.add-rfq.added {
-		background: #1c71d8;
-		border-color: #1c71d8;
-		color: #ffffff;
+		background: var(--gold);
+		border-color: var(--gold);
+		color: var(--navy-950);
 	}
 
 	.rfq-bar {
 		position: sticky;
-		bottom: 1rem;
-		margin-top: 2rem;
+		bottom: 1.25rem;
+		z-index: 5;
+		margin-top: 2.5rem;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 		gap: 1rem;
-		padding: 0.9rem 1.2rem;
-		background: #111116;
-		border: 1px solid #1c71d8;
+		padding: 0.85rem 0.85rem 0.85rem 1.4rem;
+		background: rgba(14, 23, 40, 0.82);
+		backdrop-filter: blur(16px) saturate(140%);
+		-webkit-backdrop-filter: blur(16px) saturate(140%);
+		border: 1px solid var(--gold-line);
+		box-shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.8);
 		font-size: 0.9rem;
-		color: #ffffff;
-		z-index: 5;
+		color: var(--ink);
 	}
 
-	.rfq-bar button,
-	.custom-button {
-		padding: 0.7rem 1.2rem;
-		background: #1c71d8;
-		border: none;
-		color: #ffffff;
-		font-family: inherit;
-		font-size: 0.75rem;
-		font-weight: 700;
-		letter-spacing: 0.12em;
-		cursor: pointer;
+	.rfq-bar button {
+		padding: 0.85rem 1.4rem;
+		font-size: 0.7rem;
 		white-space: nowrap;
 	}
 
-	/* Consumer */
-	.consumer-block {
-		background: #0a0a0d;
-		padding: 4rem;
-	}
+	/* ---------- Consumer ---------- */
 
 	.consumer-grid {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
-		gap: 2rem;
+		gap: 1.5rem;
 	}
 
 	.product-card {
-		background: #050508;
-		border: 1px solid #1a1a22;
-		padding: 2.5rem;
 		position: relative;
+		padding: clamp(1.5rem, 3vw, 2.5rem);
+		background: var(--navy-800);
+		border: 1px solid var(--line);
 	}
 
 	.card-content h3 {
-		font-size: 1.1rem;
-		font-weight: 900;
-		letter-spacing: 0.05em;
-		color: #ffffff;
-		margin: 0 0 1rem 0;
+		margin: 0 0 1rem;
+		font-size: 0.85rem;
+		font-weight: 700;
+		letter-spacing: 0.16em;
+		color: var(--gold-light);
 		text-transform: uppercase;
 	}
 
 	.card-content p {
-		font-size: 0.95rem;
-		line-height: 1.7;
-		color: #a1a1aa;
 		margin: 0;
-		font-weight: 400;
-	}
-
-	.pallet-facts {
-		list-style: none;
-		margin: -1.5rem 0 2.5rem;
-		padding: 1rem 1.25rem;
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.5rem 2rem;
-		background: #050508;
-		border: 1px solid #1a1a22;
-		border-inline-start: 3px solid #1c71d8;
-		font-size: 0.9rem;
-		color: #ffffff;
+		font-size: 0.95rem;
+		line-height: 1.75;
+		color: var(--muted);
 	}
 
 	.pick-hint {
@@ -659,82 +642,97 @@
 		justify-content: space-between;
 		align-items: center;
 		gap: 1rem;
-		padding: 0.85rem 1rem;
-		background: #0a0a0d;
-		border: 1px solid #27272a;
-		color: #ffffff;
+		padding: 0.95rem 1.1rem;
+		background: var(--navy-900);
+		border: 1px solid var(--line);
+		color: var(--ink);
 		font-family: inherit;
 		font-size: 0.95rem;
 		text-align: start;
 		cursor: pointer;
-		transition: border-color 0.2s;
+		transition:
+			border-color 0.35s var(--ease-out),
+			background-color 0.35s var(--ease-out);
 	}
 
 	.option:hover,
 	.option:focus-visible {
-		border-color: #1c71d8;
+		border-color: var(--gold-line);
+		background: var(--navy-700);
 	}
 
 	.option-cta,
 	.card-cta {
-		font-size: 0.7rem;
-		font-weight: 700;
-		letter-spacing: 0.12em;
-		color: #1c71d8;
+		font-size: 0.68rem;
+		font-weight: 600;
+		letter-spacing: 0.16em;
+		color: var(--gold);
 		white-space: nowrap;
 		text-transform: uppercase;
 	}
 
-	/* Industrial */
-	.industrial-block {
-		background: #050508;
-		padding: 4rem;
-		border: 2px solid #1a1a22;
+	.option:hover .btn-arrow,
+	.industrial-item:hover .btn-arrow {
+		transform: translateX(4px);
 	}
 
+	:global(:root[dir='rtl']) .option:hover .btn-arrow,
+	:global(:root[dir='rtl']) .industrial-item:hover .btn-arrow {
+		transform: scaleX(-1) translateX(4px);
+	}
+
+	/* ---------- Industrial ---------- */
+
 	.split-layout {
-		max-width: 1200px;
-		margin: 0 auto;
 		display: grid;
 		grid-template-columns: 0.8fr 1.2fr;
-		gap: 5rem;
+		gap: clamp(2rem, 5vw, 5rem);
 		align-items: start;
 	}
 
 	.split-header {
-		position: relative;
-		padding-top: 2rem;
-	}
-
-	.split-header h2 {
-		font-size: 2.5rem;
-		font-weight: 900;
-		letter-spacing: 0.05em;
-		color: #ffffff;
-		margin: 0 0 1.5rem;
-		text-transform: uppercase;
-		line-height: 1.1;
+		position: sticky;
+		top: calc(var(--header-h) + 2rem);
 	}
 
 	.industrial-list {
 		display: flex;
 		flex-direction: column;
-		gap: 1.5rem;
+		gap: 1rem;
 	}
 
 	.industrial-item {
 		position: relative;
-		padding: 2rem;
-		background: #0a0a0d;
-		border: 1px solid transparent;
-		border-inline-start: 3px solid #1c71d8;
-		transition: border-color 0.2s;
+		padding: clamp(1.4rem, 2.5vw, 2rem);
+		background: var(--navy-800);
+		border: 1px solid var(--line);
+		overflow: hidden;
+		transition:
+			border-color 0.45s var(--ease-out),
+			background-color 0.45s var(--ease-out);
+	}
+
+	.industrial-item::before {
+		content: '';
+		position: absolute;
+		inset-block: 0;
+		inset-inline-start: 0;
+		width: 2px;
+		background: var(--gold);
+		transform: scaleY(0.3);
+		transform-origin: top;
+		transition: transform 0.55s var(--ease-out);
 	}
 
 	.industrial-item:hover,
 	.industrial-item:focus-within {
-		border-color: #27272a;
-		border-inline-start-color: #1c71d8;
+		border-color: var(--gold-line);
+		background: var(--navy-700);
+	}
+
+	.industrial-item:hover::before,
+	.industrial-item:focus-within::before {
+		transform: scaleY(1);
 	}
 
 	/* Stretched button: the whole card opens the RFQ for that line. */
@@ -761,7 +759,7 @@
 	}
 
 	.industrial-item:has(.card-link:focus-visible) {
-		outline: 2px solid #1c71d8;
+		outline: 2px solid var(--gold);
 	}
 
 	.card-actions {
@@ -770,72 +768,83 @@
 		justify-content: space-between;
 		align-items: center;
 		gap: 0.75rem;
-		margin-top: 1.25rem;
+		margin-top: 1.4rem;
 	}
 
 	.tests-btn {
 		position: relative;
 		z-index: 1;
-		padding: 0.55rem 0.9rem;
+		padding: 0.6rem 1rem;
 		background: transparent;
-		border: 1px solid #27272a;
-		color: #d4d4d8;
+		border: 1px solid var(--line-strong);
+		color: var(--text);
 		font-family: inherit;
-		font-size: 0.7rem;
-		font-weight: 700;
-		letter-spacing: 0.1em;
+		font-size: 0.68rem;
+		font-weight: 600;
+		letter-spacing: 0.14em;
 		text-transform: uppercase;
 		cursor: pointer;
+		transition:
+			border-color 0.3s,
+			color 0.3s;
 	}
 
 	.tests-btn:hover {
-		border-color: #1c71d8;
-		color: #ffffff;
+		border-color: var(--gold);
+		color: var(--gold-light);
 	}
 
 	.item-info h4 {
-		font-size: 1.05rem;
-		font-weight: 900;
-		letter-spacing: 0.05em;
-		color: #ffffff;
-		margin: 0 0 0.75rem 0;
+		margin: 0 0 0.75rem;
+		font-size: 1rem;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		color: var(--ink);
 		text-transform: uppercase;
 	}
 
 	.item-info p {
-		font-size: 0.95rem;
-		line-height: 1.6;
-		color: #a1a1aa;
 		margin: 0;
-		font-weight: 400;
+		font-size: 0.95rem;
+		line-height: 1.7;
+		color: var(--muted);
 	}
 
 	.item-info .item-note {
 		margin-top: 0.75rem;
 		font-size: 0.85rem;
-		color: #71717a;
+		color: var(--dim);
 	}
 
 	.item-info .item-origin {
 		margin-top: 1rem;
 		font-size: 0.8rem;
-		color: #d4d4d8;
+		color: var(--text);
 	}
 
 	.item-origin span {
-		color: #52525b;
-		font-weight: 700;
-		letter-spacing: 0.12em;
-		text-transform: uppercase;
-		font-size: 0.7rem;
 		margin-inline-end: 0.5rem;
+		font-size: 0.66rem;
+		font-weight: 600;
+		letter-spacing: 0.18em;
+		text-transform: uppercase;
+		color: var(--gold);
 	}
 
-	/* Custom sourcing */
+	/* ---------- Custom sourcing ---------- */
+
 	.custom-block {
-		background: #0a0a0d;
-		padding: 3rem;
-		border: 1px solid #1c71d8;
+		overflow: hidden;
+		border-color: var(--gold-line);
+		background:
+			radial-gradient(ellipse at 100% 0%, rgba(201, 164, 92, 0.14), transparent 55%),
+			linear-gradient(170deg, var(--navy-800), var(--navy-900));
+	}
+
+	:global(:root[dir='rtl']) .custom-block {
+		background:
+			radial-gradient(ellipse at 0% 0%, rgba(201, 164, 92, 0.14), transparent 55%),
+			linear-gradient(170deg, var(--navy-800), var(--navy-900));
 	}
 
 	.custom-inner {
@@ -850,17 +859,17 @@
 	}
 
 	.custom-button {
-		padding: 1.1rem 1.8rem;
+		flex-shrink: 0;
 	}
 
-	/* Order information */
+	/* ---------- Order information ---------- */
+
 	.requirements {
 		position: relative;
-		z-index: 2;
-		padding: 6rem 4vw;
-		background: #0a0a0d;
-		border-top: 1px solid #1a1a22;
-		scroll-margin-top: 5rem;
+		padding: clamp(4rem, 9vw, 7rem) var(--gutter);
+		background: var(--navy-950);
+		border-top: 1px solid var(--line);
+		scroll-margin-top: var(--header-h);
 	}
 
 	.req-container {
@@ -874,41 +883,43 @@
 	}
 
 	.req-header h2 {
-		font-size: 3rem;
-		font-weight: 900;
-		letter-spacing: 0.08em;
-		color: #ffffff;
 		margin: 0;
+		font-family: var(--font-display);
+		font-size: clamp(2.2rem, 5vw, 3.6rem);
+		font-weight: 600;
+		letter-spacing: 0.03em;
+		color: var(--ink);
 		text-transform: uppercase;
 	}
 
 	.order-list {
-		border-top: 1px solid #1a1a22;
+		border-top: 1px solid var(--gold-line);
 	}
 
 	.order-row {
 		display: grid;
 		grid-template-columns: 260px 1fr;
 		gap: 2rem;
-		padding: 1.25rem 0;
-		border-bottom: 1px solid #1a1a22;
+		padding: 1.5rem 0;
+		border-bottom: 1px solid var(--line);
+		transition: background-color 0.4s var(--ease-out);
 	}
 
 	.order-label {
-		background: none;
-		border: none;
-		padding: 0;
-		text-align: start;
-		font-family: inherit;
-		font-size: 0.75rem;
-		font-weight: 700;
-		letter-spacing: 0.15em;
-		color: #71717a;
-		text-transform: uppercase;
-		cursor: default;
 		display: flex;
 		justify-content: space-between;
 		align-items: flex-start;
+		padding: 0;
+		background: none;
+		border: none;
+		text-align: start;
+		font-family: inherit;
+		font-size: 0.72rem;
+		font-weight: 600;
+		letter-spacing: 0.18em;
+		color: var(--gold);
+		text-transform: uppercase;
+		cursor: default;
 		pointer-events: none;
 	}
 
@@ -916,70 +927,24 @@
 		display: none;
 	}
 
+	.order-text > div {
+		overflow: hidden;
+	}
+
 	.order-text {
 		font-size: 0.95rem;
-		line-height: 1.7;
-		color: #d4d4d8;
+		line-height: 1.75;
+		color: var(--text);
 	}
 
 	@media (max-width: 900px) {
-		.flag-container {
-			width: 400px;
-			height: 250px;
-			top: -5%;
-			right: -25%;
-			opacity: 0.1;
-		}
-
-		.consumer-grid {
-			grid-template-columns: 1fr;
-		}
-
-		.consumer-block,
-		.industrial-block,
-		.custom-block {
-			padding: 2rem 1.25rem;
-		}
-
+		.consumer-grid,
 		.split-layout {
 			grid-template-columns: 1fr;
-			gap: 2rem;
 		}
 
 		.split-header {
-			padding-top: 0;
-		}
-
-		.split-header h2 {
-			font-size: 2rem;
-		}
-
-		.industrial-item {
-			padding: 1.5rem 1.25rem;
-		}
-
-		.product-card {
-			padding: 1.75rem 1.25rem;
-		}
-
-		.req-header h2 {
-			font-size: 2rem;
-		}
-
-		.products-hero {
-			padding: 4rem 4vw 3rem;
-		}
-
-		.category-section {
-			padding: 3rem 4vw;
-		}
-
-		.category-layout {
-			gap: 3.5rem;
-		}
-
-		.beverage-block {
-			padding: 1.5rem 1rem;
+			position: static;
 		}
 
 		.bev-grid {
@@ -988,7 +953,7 @@
 		}
 
 		.bev-body {
-			padding: 0.75rem;
+			padding: 0.8rem;
 		}
 
 		.bev-name {
@@ -1004,19 +969,24 @@
 			text-align: start;
 		}
 
+		.bev-card:hover {
+			translate: none;
+		}
+
 		.custom-inner {
 			flex-direction: column;
 			align-items: stretch;
 		}
 
 		.pallet-facts {
-			margin-top: -1.5rem;
 			flex-direction: column;
 			font-size: 0.85rem;
 		}
 
-		.requirements {
-			padding: 4rem 4vw;
+		.rfq-bar {
+			bottom: 5rem;
+			padding: 0.7rem 0.7rem 0.7rem 1rem;
+			font-size: 0.8rem;
 		}
 
 		/* Accordion on mobile */
@@ -1029,16 +999,17 @@
 		.order-label {
 			pointer-events: auto;
 			cursor: pointer;
-			padding: 1.1rem 0;
+			padding: 1.25rem 0;
 			width: 100%;
-			color: #d4d4d8;
+			color: var(--ink);
 		}
 
 		.chev {
 			display: inline;
-			font-size: 1.1rem;
-			color: #1c71d8;
-			transition: transform 0.2s;
+			font-size: 1.2rem;
+			line-height: 1;
+			color: var(--gold);
+			transition: transform 0.4s var(--ease-out);
 		}
 
 		.order-row.open .chev {
@@ -1046,13 +1017,17 @@
 		}
 
 		.order-text {
-			display: none;
-			padding-bottom: 1.1rem;
-			color: #a1a1aa;
+			display: grid;
+			grid-template-rows: 0fr;
+			color: var(--muted);
+			transition:
+				grid-template-rows 0.5s var(--ease-out),
+				padding 0.5s var(--ease-out);
 		}
 
 		.order-row.open .order-text {
-			display: block;
+			grid-template-rows: 1fr;
+			padding-bottom: 1.25rem;
 		}
 	}
 </style>
