@@ -28,28 +28,28 @@ export const segments: Segment[] = [
 		lines: ['beverages', 'consumer'],
 		seoTitle: 'Retail Buyers | US Beverages and Consumer Goods | KG Industries',
 		seoDescription:
-			'US soft drinks by the pallet and US grocery and consumer brands for supermarkets, importers, and distributors. Pricing quoted per RFQ, landed to your port.'
+			'US soft drinks by the pallet and US grocery and consumer brands for supermarkets, importers, and distributors. Pricing quoted per RFQ, delivered to your business.'
 	},
 	{
 		id: 'hospitality',
 		lines: ['foodservice', 'facility', 'beverages'],
 		seoTitle: 'Hospitality Buyers | Cambro, Facility Supply, US Beverages | KG Industries',
 		seoDescription:
-			'Cambro foodservice equipment, facility supply, and US beverages for hotels, restaurants, caterers, and institutional kitchens. Pricing quoted per RFQ, landed to your port.'
+			'Cambro foodservice equipment, facility supply, and US beverages for hotels, restaurants, caterers, and institutional kitchens. Pricing quoted per RFQ, delivered to your business.'
 	},
 	{
 		id: 'industrial',
 		lines: ['gloves', 'packaging', 'mro'],
 		seoTitle: 'Industrial & Commercial Buyers | Gloves, Packaging, MRO | KG Industries',
 		seoDescription:
-			'Rhinoskin nitrile gloves, packaging and processing equipment, and MRO and industrial supply from US and European manufacturers. Pricing quoted per RFQ, landed to your port.'
+			'Rhinoskin nitrile gloves, packaging and processing equipment, and MRO and industrial supply from US and European manufacturers. Pricing quoted per RFQ, delivered to your business.'
 	},
 	{
 		id: 'automotive',
 		lines: ['ford', 'otherBrands'],
 		seoTitle: 'Automotive Parts Buyers | Genuine Ford OEM Parts | KG Industries',
 		seoDescription:
-			'Genuine Ford OEM parts for US-spec vehicles, sourced through the US dealer network. Pricing quoted per RFQ, landed to your port.'
+			'Genuine Ford OEM parts for US-spec vehicles, sourced through the US dealer network. Pricing quoted per RFQ, delivered to your business.'
 	}
 ];
 

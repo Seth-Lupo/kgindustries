@@ -23,7 +23,7 @@
 	let other = $state('');
 	let port = $state('');
 	let door = $state('');
-	let delivery = $state<'port' | 'door'>('port');
+	let delivery = $state<'port' | 'door'>('door');
 	let panel: HTMLDivElement | undefined = $state();
 
 	const draft = $derived<RfqDraft>({ items: $rfqItems, other, delivery, port, door });
@@ -161,12 +161,12 @@
 		<fieldset class="field delivery">
 			<legend class="field-label">{$_('rfq.delivery')}</legend>
 			<label class="radio">
-				<input type="radio" bind:group={delivery} value="port" />
-				<span>{$_('rfq.deliveryPort')}</span>
-			</label>
-			<label class="radio">
 				<input type="radio" bind:group={delivery} value="door" />
 				<span>{$_('rfq.deliveryDoor')}</span>
+			</label>
+			<label class="radio">
+				<input type="radio" bind:group={delivery} value="port" />
+				<span>{$_('rfq.deliveryPort')}</span>
 			</label>
 		</fieldset>
 
@@ -180,7 +180,6 @@
 				<input bind:value={door} placeholder={$_('rfq.doorPh')} />
 			</label>
 		{/if}
-		<p class="hint">{$_('rfq.customsNote')}</p>
 
 		<a class="btn-gold primary" href={mailto}>{$_('rfq.emailButton')}</a>
 		<button class="secondary whatsapp" onclick={() => openWhatsApp(draft)}>{$_('rfq.whatsapp')}</button>

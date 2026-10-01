@@ -15,15 +15,13 @@
       "global": "GLOBAL",
       "freight": "TEDARİK",
       "operations": "ABD TİCARETİ VE İHRACAT",
-      "subtitle": "Uluslararası alıcılar için ABD ürünleri, limanınıza teslim"
+      "subtitle": "Uluslararası alıcılar için tedarik edilip teslim edilen ABD ürünleri"
     },
     "overview": {
       "label": "BİZ KİMİZ",
       "p1": "KG Industries, ABD merkezli bir ticaret ve tedarik şirketidir. Uluslararası alıcılara, üreticilerin doğrudan ihraç etmediği ABD ürünlerine erişim sağlıyoruz.",
-      "p2": "Birçok ABD üreticisi yalnızca yurt içi distribütörler aracılığıyla satış yapar veya hiç ihracat birimi yoktur. Yurt dışındaki alıcılar iki üç bölgesel aracıya ödeme yapar ya da ürünü hiç satın alamaz. Biz ABD'de yurt içi alıcı olarak satın alıyor, ihracatı kendimiz yürütüyor ve limanınıza teslim ediyoruz.",
-      "p3": "Körfez, Orta Doğu ve Kuzey Afrika, Kafkasya, Orta Asya, Avrupa ve Latin Amerika'daki satın alma ekipleri, ithalatçılar, distribütörler ve işletmecilerle çalışıyoruz.",
-      "factsLabel": "ŞİRKET",
-      "registered": "Delaware, ABD'de kayıtlı"
+      "p2": "Birçok ABD üreticisi yalnızca yurt içi distribütörler aracılığıyla satış yapar veya hiç ihracat birimi yoktur. Yurt dışındaki alıcılar iki üç bölgesel aracıya ödeme yapar ya da ürünü hiç satın alamaz. Biz ABD'de yurt içi alıcı olarak satın alıyor, ihracatı kendimiz yürütüyor ve işletmenize teslim ediyoruz.",
+      "p3": "Körfez, Orta Doğu ve Kuzey Afrika, Kafkasya, Orta Asya, Avrupa ve Latin Amerika'daki satın alma ekipleri, ithalatçılar, distribütörler ve işletmecilerle çalışıyoruz."
     },
     "handle": {
       "title": "NELERİ ÜSTLENİYORUZ",
@@ -41,8 +39,8 @@
           "text": "İhracat beyanı, ticari fatura, çeki listesi, menşe şahadetnamesi ve gerektiğinde ürün sertifikaları."
         },
         {
-          "title": "Limanınıza kadar navlun ve sigorta",
-          "text": "Temel teklif: belirttiğiniz limana CIP. Kapınıza kadar tam iç taşıma talep üzerine."
+          "title": "Navlun ve sigorta",
+          "text": "İşletmenize teslime kadar navlun ve kargo sigortası."
         },
         {
           "title": "Konsolidasyon",
@@ -52,8 +50,8 @@
       "risk": "ABD'de tek muhatap. ABD tarafındaki satın alma, ihracat uyumu ve navlun koordinasyonu bizde.",
       "data": [
         {
-          "value": "CIP",
-          "label": "Limanınıza temel teklif. Kapıya teslim talep üzerine."
+          "value": "24 saat",
+          "label": "Her teklif talebine yanıt"
         },
         {
           "value": "B2B",
@@ -64,10 +62,10 @@
           "label": "Fiyat teklif talebine göre verilir"
         }
       ],
-      "delivery": "Liman ya da kapı, seçim sizin. Temel teklifimiz limanınıza CIP'dir. Deponuza teslim isterseniz, iç taşımanın tamamını ayarlar ve teklife dahil ederiz. İthalat gümrük vergileri ve diğer vergiler her zaman alıcı tarafından ödenir."
+      "delivery": "İşletmenize teslim. Deponuza veya tesisinize kadar navlun ve sigortayı ayarlar, teklife dahil ederiz. Teslim şartları her anlaşmada Incoterms 2020 kapsamında belirlenir."
     },
     "categories": {
-      "caption": "ABD'DEN TEDARİK · LİMANINIZA SEVK",
+      "caption": "ABD'DEN TEDARİK · İŞLETMENİZE TESLİM",
       "title": "ÜRÜN KATEGORİLERİ"
     },
     "contact": {
@@ -79,7 +77,7 @@
   "productsPage": {
     "hero": {
       "title": "ÜRÜNLER",
-      "subtitle": "İthalatçılar, distribütörler ve işletmeciler için ABD ürünleri. Fiyat teklif talebine göre, limanınıza teslim."
+      "subtitle": "İthalatçılar, distribütörler ve işletmeciler için ABD ürünleri. Fiyat teklif talebine göre, işletmenize teslim."
     },
     "hub": {
       "title": "Alıcı türüne göre seçin",
@@ -92,13 +90,13 @@
         "label": "Perakende alıcılar için",
         "title": "Perakende",
         "who": "Süpermarketler, ithalatçılar, toptancılar ve distribütörler",
-        "hero": "Süpermarketler, ithalatçılar ve distribütörler için ABD içecekleri ve tüketim markaları. Fiyat teklif talebine göre, limanınıza teslim."
+        "hero": "Süpermarketler, ithalatçılar ve distribütörler için ABD içecekleri ve tüketim markaları. Fiyat teklif talebine göre, işletmenize teslim."
       },
       "hospitality": {
         "label": "Otel ve restoran alıcıları için",
         "title": "Konaklama ve Yiyecek-İçecek",
         "who": "Oteller, restoranlar, catering firmaları ve kurumsal mutfaklar",
-        "hero": "Oteller, restoranlar ve catering firmaları için Cambro yiyecek-içecek ekipmanı, tesis malzemeleri ve ABD içecekleri. Fiyat teklif talebine göre, limanınıza teslim.",
+        "hero": "Oteller, restoranlar ve catering firmaları için Cambro yiyecek-içecek ekipmanı, tesis malzemeleri ve ABD içecekleri. Fiyat teklif talebine göre, işletmenize teslim.",
         "linesTitle": "Yiyecek-içecek ve tesis",
         "linesIntro": "Oteller, restoranlar, catering firmaları ve kurumsal mutfaklar için ekipman ve malzemeler. Menşe ülke her teklifte her kalem için belirtilir."
       },
@@ -106,7 +104,7 @@
         "label": "Endüstriyel ve ticari alıcılar için",
         "title": "Endüstriyel ve Ticari",
         "who": "Üreticiler, fabrikalar, yükleniciler ve satın alma ekipleri",
-        "hero": "Spesifikasyonunuza göre nitril eldiven, ambalaj ve işleme ekipmanı ve MRO malzemeleri. Fiyat teklif talebine göre, limanınıza teslim.",
+        "hero": "Spesifikasyonunuza göre nitril eldiven, ambalaj ve işleme ekipmanı ve MRO malzemeleri. Fiyat teklif talebine göre, işletmenize teslim.",
         "linesTitle": "Endüstriyel ve ticari",
         "linesIntro": "ABD ve Avrupa üreticilerinden spesifikasyona dayalı tedarik. Menşe ülkesi her teklifte her kalem için belirtilir."
       },
@@ -114,7 +112,7 @@
         "label": "Otomotiv parça alıcıları için",
         "title": "Otomotiv Parçaları",
         "who": "Bayiler, yedek parça distribütörleri, servisler ve filo işletmecileri",
-        "hero": "ABD bayi ağı üzerinden tedarik edilen, ABD spesifikasyonlu araçlar için orijinal Ford OEM parçaları. Fiyat teklif talebine göre, limanınıza teslim.",
+        "hero": "ABD bayi ağı üzerinden tedarik edilen, ABD spesifikasyonlu araçlar için orijinal Ford OEM parçaları. Fiyat teklif talebine göre, işletmenize teslim.",
         "linesTitle": "Orijinal OEM parçaları",
         "linesIntro": "ABD bayi ağı üzerinden satın alınan, ABD spesifikasyonlu Ford araçları için parçalar. Parça numaralarını ve miktarları gönderin; menşe ülke her teklifte her kalem için belirtilir."
       }
@@ -184,11 +182,11 @@
         }
       ],
       "howTitle": "Nasıl sipariş verilir",
-      "how": "Ürün adları veya UPC kodları, hedef miktarlar ve varış limanıyla listenizi gönderin. Her kalem için stok durumu ve menşei teyit eder, ardından limanınıza teslim fiyatı veririz."
+      "how": "Ürün adları veya UPC kodları, hedef miktarlar ve teslim yeriyle listenizi gönderin. Her kalem için stok durumu ve menşei teyit eder, ardından işletmenize teslim fiyatı veririz."
     },
     "custom": {
       "title": "ÖZEL TEDARİK (RFQ)",
-      "text": "ABD'de satılıyorsa, spesifikasyonu bize gönderin. Ürün kodlarını, miktarı ve varış limanını ekleyin."
+      "text": "ABD'de satılıyorsa, spesifikasyonu bize gönderin. Ürün kodlarını, miktarı ve teslim yerini ekleyin."
     },
     "order": {
       "title": "SİPARİŞ BİLGİLERİ",
@@ -211,7 +209,7 @@
         },
         {
           "label": "Fiyat",
-          "text": "Temel teklif: belirttiğiniz limana CIP. Kapınıza kadar tam iç taşıma talep üzerine mümkündür; bunu ayarlar ve teklife dahil ederiz. İthalat gümrüklemesi, gümrük vergileri ve diğer vergiler alıcı tarafından ödenir."
+          "text": "Fiyat teklif talebine göre, işletmenize teslim. Navlun ve sigorta dahildir; teslim şartları her anlaşmada Incoterms 2020 kapsamında belirlenir."
         },
         {
           "label": "Teklif geçerliliği",
@@ -224,10 +222,6 @@
         {
           "label": "Belgeler",
           "text": "Ticari fatura, çeki listesi, konşimento, menşe şahadetnamesi. Pazarınızın gerektirdiği ürün sertifikaları (örneğin gıda için sağlık veya bitki sağlığı sertifikası, ISPM 15 ısıl işlem görmüş paletler). İthalat şartlarınızı teklif talebinde bildirin."
-        },
-        {
-          "label": "İthalatçı",
-          "text": "İthalatçı alıcı veya alıcının atadığı acentedir; gümrük işlemlerini varış yerinde yapar."
         },
         {
           "label": "Banka bilgileri",
@@ -279,26 +273,21 @@
   "howItWorks": {
     "hero": {
       "title": "Nasıl Çalışır",
-      "subtitle": "Teklif talebinizden standart olarak limanınıza (CIP) veya talep üzerine kapınıza teslime kadar."
+      "subtitle": "Teklif talebinizden işletmenize teslime kadar."
     },
     "steps": [
       {
         "title": "Teklif talebinizi gönderin",
-        "text": "Ürün veya ürün kodları, spesifikasyon, miktar, varış limanı veya şehri ve hedef teslim dönemi. Mevcut tedarikçi fiyatınız varsa ekleyin. Rekabet edip edemeyeceğimizi hızlıca söylememizi sağlar.",
+        "text": "Ürün veya ürün kodları, spesifikasyon, miktar, teslim yeri ve hedef teslim dönemi. Mevcut tedarikçi fiyatınız varsa ekleyin. Rekabet edip edemeyeceğimizi hızlıca söylememizi sağlar.",
         "who": "Siz ihtiyacı bildirirsiniz."
       },
       {
-        "title": "Kapsamı teyit ediyoruz",
-        "text": "Fiyat vermeden önce spesifikasyonu, miktarları, ambalajı ve ithalat belge şartlarınızı teyit ederiz. Her teklif talebine 24 saat içinde yanıt veririz."
+        "title": "Kapsamı ve fiyatı teyit ediyoruz",
+        "text": "Spesifikasyonu, miktarları, ambalajı ve belgeleri teyit eder, ardından size en iyi fiyatı almak için üreticilerimizle çalışırız. Her teklif talebine 24 saat içinde yanıt veririz."
       },
       {
-        "title": "Fabrikadan tedarik ediyoruz",
-        "text": "ABD'deki üreticiden veya kanaldan yurt içi alıcı olarak EXW veya FCA şartlarıyla satın alırız.",
-        "who": "ABD tarafındaki satın almayı KG üstlenir."
-      },
-      {
-        "title": "Teslim fiyatını alırsınız",
-        "text": "Kalem bazında fiyat: standart olarak belirttiğiniz limana CIP veya isterseniz kapınıza teslim. Navlun ve sigorta dahil, son geçerlilik tarihi ve net bir hariç tutulanlar listesiyle."
+        "title": "Teklifinizi alırsınız",
+        "text": "İşletmenize teslim kalem bazında fiyat, navlun ve sigorta dahil. Her teklifte Incoterm, son geçerlilik tarihi ve net bir hariç tutulanlar listesi yer alır."
       },
       {
         "title": "Proforma fatura ve ödeme",
@@ -311,12 +300,12 @@
       },
       {
         "title": "Sevkiyat ve sigorta",
-        "text": "Limanınıza deniz navlununu ayarlar ve yükü sigortalarız. Yükleme sırasında takip bilgisi ve sevkiyat belgelerinin bir kopyasını alırsınız."
+        "text": "Navlunu ayarlar ve yükü sigortalarız. Yükleme sırasında takip bilgisi ve sevkiyat belgelerinin bir kopyasını alırsınız."
       },
       {
-        "title": "Varış ve gümrükleme",
-        "text": "Siz veya acenteniz ithalatçı olarak gümrükleme yapar ve vergileri ödersiniz. Kapıya teslimi seçtiyseniz, tesisinize kadar iç taşımayı tamamlarız.",
-        "who": "Ürünleri siz gümrükler ve teslim alırsınız."
+        "title": "Varış ve teslim",
+        "text": "Ürünler işletmenize teslim edilir. Gümrük sorumlulukları siparişiniz için kararlaştırılan Incoterm'e göre belirlenir.",
+        "who": "Ürünleri teslim alırsınız."
       }
     ],
     "incoterms": {
@@ -332,8 +321,8 @@
         }
       ],
       "risk": "Her iki şartta da risk, ürünler çıkış yerinde taşıyıcıya teslim edildiğinde veya gemiye yüklendiğinde alıcıya geçer; varışta değil. Bu nedenle sigorta dahildir.",
-      "other": "Diğer şartlar (FCA, CIF, kapınıza DAP) talep üzerine.",
-      "base": "Temel teklifimiz limanınıza CIP'dir. Kapıya teslim talep üzerine mümkündür: tüm güzergâhı ayarlar ve riski teklife dahil ederiz. İthalat gümrüğü, gümrük vergileri ve diğer vergiler her zaman alıcı tarafından ödenir."
+      "other": "Diğer şartlar (FCA, CIF, DAP) talep üzerine.",
+      "base": "Teslim şartları her anlaşmada Incoterms 2020 kapsamında belirlenir. Genellikle CIP ile başlarız ve işletmenize kadar teslimi ayarlayabiliriz."
     },
     "table": {
       "title": "Kim neyi üstlenir",
@@ -361,11 +350,6 @@
           "buyer": false
         },
         {
-          "item": "İthalat gümrüklemesi, gümrük vergileri, KDV",
-          "kg": false,
-          "buyer": true
-        },
-        {
           "item": "Varış terminali masrafları, tesisinize iç taşıma",
           "kg": true,
           "kgNote": "talep üzerine",
@@ -385,19 +369,19 @@
       ]
     },
     "delivery": {
-      "title": "Liman ya da kapı. Siz seçin.",
+      "title": "İşletmenize teslim.",
       "points": [
         {
-          "term": "Standart: limanınıza CIP",
-          "text": "Temel teklifimiz belirttiğiniz limana kadar navlun ve sigortayı kapsar."
+          "term": "Navlun ve sigorta dahil",
+          "text": "Her teklif navlun ve kargo sigortasını içerir."
         },
         {
-          "term": "Talep üzerine: kapınıza teslim",
-          "text": "Deponuzu veya tesisinizi bildirin. İç taşımanın tamamını ayarlar, taşımayı ve riski teklife dahil ederiz."
+          "term": "Deponuza veya tesisinize",
+          "text": "Ürünlerin nereye gitmesi gerektiğini bildirin. Tüm güzergâhı ayarlar ve teklife dahil ederiz."
         },
         {
-          "term": "Her zaman alıcı: ithalat gümrüğü",
-          "text": "İthalat gümrüklemesini siz veya acenteniz yapar, vergileri siz ödersiniz. Varış ülkesindeki gümrüğü biz ödemeyiz."
+          "term": "Her anlaşmaya özel şartlar",
+          "text": "Teslim şartları her sipariş için Incoterms 2020 kapsamında belirlenir ve teklifte belirtilir."
         }
       ]
     }
@@ -428,11 +412,10 @@
     "details": "Ayrıntılar",
     "detailsPh": "Spesifikasyon, ürün veya parça numaraları, miktar",
     "delivery": "Teslimat",
-    "deliveryPort": "Limanıma (CIP, standart)",
-    "deliveryDoor": "Kapıma / depoma (iç taşıma)",
+    "deliveryPort": "Bir limana (CIP)",
+    "deliveryDoor": "İşletmeme (depo veya tesis)",
     "doorLabel": "Teslimat adresi / şehir",
     "doorPh": "örn. İstanbul'daki depo",
-    "customsNote": "İthalat gümrüğü, gümrük vergileri ve diğer vergiler alıcı tarafından ödenir.",
     "whatsapp": "WhatsApp ile gönder"
   },
   "gloves": {

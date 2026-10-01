@@ -15,15 +15,13 @@
       "global": "GLOBAL",
       "freight": "SOURCING",
       "operations": "US TRADE & EXPORT",
-      "subtitle": "US products for international buyers, delivered to your port"
+      "subtitle": "US products sourced and delivered to international buyers"
     },
     "overview": {
       "label": "WHO WE ARE",
       "p1": "KG Industries is a US trading and sourcing company. We give international buyers access to US products that manufacturers do not export directly.",
-      "p2": "Many US manufacturers sell only through domestic distributors, or have no export function at all. Overseas buyers end up paying through two or three regional agents, or cannot buy at all. We purchase in the United States as the domestic buyer, handle the export ourselves, and deliver to your port.",
-      "p3": "We work with procurement teams, importers, distributors, and operators across the Gulf, the Middle East and North Africa, the Caucasus, Central Asia, Europe, and Latin America.",
-      "factsLabel": "COMPANY",
-      "registered": "Registered in Delaware, USA"
+      "p2": "Many US manufacturers sell only through domestic distributors, or have no export function at all. Overseas buyers end up paying through two or three regional agents, or cannot buy at all. We purchase in the United States as the domestic buyer, handle the export ourselves, and deliver to your business.",
+      "p3": "We work with procurement teams, importers, distributors, and operators across the Gulf, the Middle East and North Africa, the Caucasus, Central Asia, Europe, and Latin America."
     },
     "handle": {
       "title": "WHAT WE HANDLE",
@@ -41,8 +39,8 @@
           "text": "Export filing, commercial invoice, packing list, certificate of origin, and product certificates as required."
         },
         {
-          "title": "Freight and insurance to your port",
-          "text": "Base quote CIP to your named port. Full inland delivery to your door on request."
+          "title": "Freight and insurance",
+          "text": "Freight and cargo insurance arranged through to delivery at your business."
         },
         {
           "title": "Consolidation",
@@ -52,8 +50,8 @@
       "risk": "One US counterparty. We carry the US-side purchasing, export compliance, and freight coordination.",
       "data": [
         {
-          "value": "CIP",
-          "label": "Base quote to your port. Door delivery on request."
+          "value": "24h",
+          "label": "Reply to every RFQ"
         },
         {
           "value": "B2B",
@@ -64,10 +62,10 @@
           "label": "Pricing quoted per RFQ"
         }
       ],
-      "delivery": "Port or door, your choice. Our base quote is CIP to your port. If you want delivery to your warehouse, we arrange the full inland leg and price it into the quote. Import customs duties and taxes are always paid by the buyer."
+      "delivery": "Delivered to your business. We arrange freight and insurance through to your warehouse or site and price it into the quote. Delivery terms are agreed for each deal under Incoterms 2020."
     },
     "categories": {
-      "caption": "US-SOURCED · SHIPPED TO YOUR PORT",
+      "caption": "US-SOURCED · DELIVERED TO YOUR BUSINESS",
       "title": "PRODUCT CATEGORIES"
     },
     "contact": {
@@ -79,7 +77,7 @@
   "productsPage": {
     "hero": {
       "title": "PRODUCTS",
-      "subtitle": "US products for importers, distributors, and operators. Pricing quoted per RFQ, landed to your port."
+      "subtitle": "US products for importers, distributors, and operators. Pricing quoted per RFQ, delivered to your business."
     },
     "hub": {
       "title": "Shop by buyer type",
@@ -92,13 +90,13 @@
         "label": "For retail buyers",
         "title": "Retail",
         "who": "Supermarkets, importers, wholesalers, and distributors",
-        "hero": "US beverages and consumer brands for supermarkets, importers, and distributors. Pricing quoted per RFQ, landed to your port."
+        "hero": "US beverages and consumer brands for supermarkets, importers, and distributors. Pricing quoted per RFQ, delivered to your business."
       },
       "hospitality": {
         "label": "For hospitality buyers",
         "title": "Hospitality",
         "who": "Hotels, restaurants, caterers, and institutional kitchens",
-        "hero": "Cambro foodservice equipment, facility supply, and US beverages for hotels, restaurants, and caterers. Pricing quoted per RFQ, landed to your port.",
+        "hero": "Cambro foodservice equipment, facility supply, and US beverages for hotels, restaurants, and caterers. Pricing quoted per RFQ, delivered to your business.",
         "linesTitle": "Foodservice & facility",
         "linesIntro": "Equipment and supplies for hotels, restaurants, caterers, and institutional kitchens. Country of origin is stated per line on every quote."
       },
@@ -106,7 +104,7 @@
         "label": "For industrial & commercial buyers",
         "title": "Industrial & Commercial",
         "who": "Manufacturers, plants, contractors, and procurement teams",
-        "hero": "Nitrile gloves, packaging and processing equipment, and MRO supply sourced to your specification. Pricing quoted per RFQ, landed to your port.",
+        "hero": "Nitrile gloves, packaging and processing equipment, and MRO supply sourced to your specification. Pricing quoted per RFQ, delivered to your business.",
         "linesTitle": "Industrial & commercial",
         "linesIntro": "Specification-driven sourcing from US and European manufacturers. Country of origin is stated per line on every quote."
       },
@@ -114,7 +112,7 @@
         "label": "For automotive parts buyers",
         "title": "Automotive Parts",
         "who": "Dealers, parts distributors, workshops, and fleet operators",
-        "hero": "Genuine Ford OEM parts for US-spec vehicles, sourced through the US dealer network. Pricing quoted per RFQ, landed to your port.",
+        "hero": "Genuine Ford OEM parts for US-spec vehicles, sourced through the US dealer network. Pricing quoted per RFQ, delivered to your business.",
         "linesTitle": "Genuine OEM parts",
         "linesIntro": "Parts for US-specification Ford vehicles, bought through the US dealer network. Send part numbers and quantities; country of origin is stated per line on every quote."
       }
@@ -184,11 +182,11 @@
         }
       ],
       "howTitle": "How to order",
-      "how": "Send your list with item names or UPCs, target quantities, and destination port. We confirm availability and origin per line, then quote landed to your port."
+      "how": "Send your list with item names or UPCs, target quantities, and delivery location. We confirm availability and origin per line, then quote delivered to your business."
     },
     "custom": {
       "title": "CUSTOM SOURCING (RFQ)",
-      "text": "If it is sold in the US, send us the spec. Include item numbers, quantity, and destination port."
+      "text": "If it is sold in the US, send us the spec. Include item numbers, quantity, and delivery location."
     },
     "order": {
       "title": "ORDER INFORMATION",
@@ -211,7 +209,7 @@
         },
         {
           "label": "Pricing",
-          "text": "Base quote: CIP to your named port. Full inland delivery to your door is available on request; we arrange it and price it into the quote. Import customs clearance, duties, and taxes are paid by the buyer."
+          "text": "Quoted per RFQ, delivered to your business. Freight and insurance are included; delivery terms are agreed for each deal under Incoterms 2020."
         },
         {
           "label": "Quote validity",
@@ -224,10 +222,6 @@
         {
           "label": "Documents",
           "text": "Commercial invoice, packing list, bill of lading, certificate of origin. Product certificates (for example health or phytosanitary for food, heat-treated ISPM 15 pallets) as required by your market. Tell us your import requirements at RFQ."
-        },
-        {
-          "label": "Importer of record",
-          "text": "The buyer, or the buyer's nominated agent, is importer of record and clears goods at destination."
         },
         {
           "label": "Bank details",
@@ -279,26 +273,21 @@
   "howItWorks": {
     "hero": {
       "title": "How It Works",
-      "subtitle": "From your RFQ to delivery at your port (CIP) as standard, or to your door on request."
+      "subtitle": "From your RFQ to delivery at your business."
     },
     "steps": [
       {
         "title": "Send your RFQ",
-        "text": "Product or item numbers, specification, quantity, destination port or city, and target delivery window. If you have a current supplier price, include it. It lets us tell you quickly whether we can compete.",
+        "text": "Product or item numbers, specification, quantity, delivery location, and target delivery window. If you have a current supplier price, include it. It lets us tell you quickly whether we can compete.",
         "who": "You provide the requirement."
       },
       {
-        "title": "We confirm scope",
-        "text": "We confirm specification, quantities, packaging, and your import document requirements before quoting. We reply to every RFQ within 24 hours."
+        "title": "We confirm scope and pricing",
+        "text": "We confirm specification, quantities, packaging, and documents, then work with our manufacturers to get you the best price. We reply to every RFQ within 24 hours."
       },
       {
-        "title": "We source at the factory",
-        "text": "We buy from the US manufacturer or channel as the domestic purchaser, at ex-works (EXW) or FCA terms.",
-        "who": "KG carries the US-side purchase."
-      },
-      {
-        "title": "You receive a landed quote",
-        "text": "Line-item pricing CIP to your named port as standard, or delivered to your door if you ask. Freight and insurance included, with a stated expiry date and a clear list of exclusions."
+        "title": "You receive a quote",
+        "text": "Line-item pricing delivered to your business, with freight and insurance included. Every quote states the Incoterm, an expiry date, and a clear list of exclusions."
       },
       {
         "title": "Proforma invoice and payment",
@@ -311,12 +300,12 @@
       },
       {
         "title": "Shipment and insurance",
-        "text": "We book ocean freight to your port and insure the cargo. You receive tracking and a copy of the shipping documents at departure."
+        "text": "We book freight and insure the cargo. You receive tracking and a copy of the shipping documents at departure."
       },
       {
-        "title": "Arrival and clearance",
-        "text": "You or your agent clear customs as importer of record and pay duties and taxes. If you chose door delivery, we complete the inland leg to your site.",
-        "who": "You clear and receive the goods."
+        "title": "Arrival and delivery",
+        "text": "Goods are delivered to your business. Customs responsibilities follow the Incoterm agreed for your order.",
+        "who": "You receive the goods."
       }
     ],
     "incoterms": {
@@ -332,8 +321,8 @@
         }
       ],
       "risk": "Under both terms, risk passes to the buyer when goods are handed to the carrier or loaded on board at origin, not on arrival. That is why insurance is included.",
-      "other": "Other terms (FCA, CIF, DAP to your door) available on request.",
-      "base": "Our base quote is CIP to your port. Door delivery is available on request: we arrange the full route and price the risk into the quote. Import customs, duties, and taxes are always paid by the buyer."
+      "other": "Other terms (FCA, CIF, DAP) available on request.",
+      "base": "Delivery terms are agreed for each deal under Incoterms 2020. CIP is our usual starting point, and we can arrange delivery through to your business."
     },
     "table": {
       "title": "Who handles what",
@@ -361,11 +350,6 @@
           "buyer": false
         },
         {
-          "item": "Import clearance, duties, VAT",
-          "kg": false,
-          "buyer": true
-        },
-        {
           "item": "Destination terminal charges, inland delivery to your site",
           "kg": true,
           "kgNote": "on request",
@@ -385,19 +369,19 @@
       ]
     },
     "delivery": {
-      "title": "Port or door. You choose.",
+      "title": "Delivered to your business.",
       "points": [
         {
-          "term": "Standard: CIP to your port",
-          "text": "Our base quote covers freight and insurance to your named port."
+          "term": "Freight and insurance included",
+          "text": "Every quote includes freight and cargo insurance."
         },
         {
-          "term": "On request: delivery to your door",
-          "text": "Tell us your warehouse or site. We arrange the full inland leg and price the transport and the risk into the quote."
+          "term": "To your warehouse or site",
+          "text": "Tell us where the goods need to go. We arrange the full route and price it into the quote."
         },
         {
-          "term": "Always the buyer: import customs",
-          "text": "You, or your agent, clear import customs and pay duties and taxes. We do not pay destination customs."
+          "term": "Terms agreed per deal",
+          "text": "Delivery terms are set for each order under Incoterms 2020 and stated on the quote."
         }
       ]
     }
@@ -428,11 +412,10 @@
     "details": "Details",
     "detailsPh": "Specification, item or part numbers, quantity",
     "delivery": "Delivery",
-    "deliveryPort": "To my port (CIP, standard)",
-    "deliveryDoor": "To my door / warehouse (inland delivery)",
+    "deliveryPort": "To a port (CIP)",
+    "deliveryDoor": "To my business (warehouse or site)",
     "doorLabel": "Delivery address / city",
     "doorPh": "e.g. warehouse in Baku",
-    "customsNote": "Import customs, duties, and taxes are paid by the buyer.",
     "whatsapp": "Send on WhatsApp"
   },
   "gloves": {

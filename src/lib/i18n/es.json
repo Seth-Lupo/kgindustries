@@ -15,15 +15,13 @@
       "global": "GLOBAL",
       "freight": "COMPRAS",
       "operations": "COMERCIO Y EXPORTACIÓN DESDE EE. UU.",
-      "subtitle": "Productos de EE. UU. para compradores internacionales, entregados en su puerto"
+      "subtitle": "Productos de EE. UU. abastecidos y entregados a compradores internacionales"
     },
     "overview": {
       "label": "QUIÉNES SOMOS",
       "p1": "KG Industries es una empresa estadounidense de comercio y abastecimiento. Damos a compradores internacionales acceso a productos de EE. UU. que los fabricantes no exportan directamente.",
-      "p2": "Muchos fabricantes estadounidenses venden solo a través de distribuidores nacionales o no tienen área de exportación. Los compradores extranjeros terminan pagando a través de dos o tres agentes regionales, o no pueden comprar. Nosotros compramos en Estados Unidos como comprador nacional, gestionamos la exportación y entregamos en su puerto.",
-      "p3": "Trabajamos con equipos de compras, importadores, distribuidores y operadores en el Golfo, Oriente Medio y el Norte de África, el Cáucaso, Asia Central, Europa y América Latina.",
-      "factsLabel": "EMPRESA",
-      "registered": "Registrada en Delaware, EE. UU."
+      "p2": "Muchos fabricantes estadounidenses venden solo a través de distribuidores nacionales o no tienen área de exportación. Los compradores extranjeros terminan pagando a través de dos o tres agentes regionales, o no pueden comprar. Nosotros compramos en Estados Unidos como comprador nacional, gestionamos la exportación y entregamos en su empresa.",
+      "p3": "Trabajamos con equipos de compras, importadores, distribuidores y operadores en el Golfo, Oriente Medio y el Norte de África, el Cáucaso, Asia Central, Europa y América Latina."
     },
     "handle": {
       "title": "DE QUÉ NOS ENCARGAMOS",
@@ -41,8 +39,8 @@
           "text": "Declaración de exportación, factura comercial, lista de empaque, certificado de origen y certificados de producto según se requiera."
         },
         {
-          "title": "Flete y seguro hasta su puerto",
-          "text": "Cotización base CIP al puerto que indique. Entrega terrestre completa hasta su puerta bajo pedido."
+          "title": "Flete y seguro",
+          "text": "Flete y seguro de carga hasta la entrega en su empresa."
         },
         {
           "title": "Consolidación",
@@ -52,8 +50,8 @@
       "risk": "Una sola contraparte en EE. UU. Asumimos la compra en EE. UU., el cumplimiento de exportación y la coordinación del flete.",
       "data": [
         {
-          "value": "CIP",
-          "label": "Cotización base a su puerto. Entrega a puerta bajo pedido."
+          "value": "24 h",
+          "label": "Respuesta a cada solicitud"
         },
         {
           "value": "B2B",
@@ -64,10 +62,10 @@
           "label": "Precio según solicitud de cotización"
         }
       ],
-      "delivery": "Puerto o puerta, usted elige. Nuestra cotización base es CIP a su puerto. Si quiere la entrega en su almacén, organizamos todo el tramo terrestre y lo incluimos en el precio. Los aranceles e impuestos de importación siempre los paga el comprador."
+      "delivery": "Entrega en su empresa. Organizamos el flete y el seguro hasta su almacén o planta y lo incluimos en el precio. Las condiciones de entrega se acuerdan en cada operación según Incoterms 2020."
     },
     "categories": {
-      "caption": "ABASTECIDO EN EE. UU. · ENVIADO A SU PUERTO",
+      "caption": "ABASTECIDO EN EE. UU. · ENTREGADO EN SU EMPRESA",
       "title": "CATEGORÍAS DE PRODUCTOS"
     },
     "contact": {
@@ -79,7 +77,7 @@
   "productsPage": {
     "hero": {
       "title": "PRODUCTOS",
-      "subtitle": "Productos de EE. UU. para importadores, distribuidores y operadores. Precio según solicitud de cotización, puesto en su puerto."
+      "subtitle": "Productos de EE. UU. para importadores, distribuidores y operadores. Precio según solicitud de cotización, entregado en su empresa."
     },
     "hub": {
       "title": "Elija su tipo de comprador",
@@ -92,13 +90,13 @@
         "label": "Para compradores minoristas",
         "title": "Retail",
         "who": "Supermercados, importadores, mayoristas y distribuidores",
-        "hero": "Bebidas y marcas de consumo de EE. UU. para supermercados, importadores y distribuidores. Precio según solicitud de cotización, puesto en su puerto."
+        "hero": "Bebidas y marcas de consumo de EE. UU. para supermercados, importadores y distribuidores. Precio según solicitud de cotización, entregado en su empresa."
       },
       "hospitality": {
         "label": "Para compradores de hostelería",
         "title": "Hostelería",
         "who": "Hoteles, restaurantes, empresas de catering y cocinas institucionales",
-        "hero": "Equipos Cambro para servicios de alimentos, suministros para instalaciones y bebidas de EE. UU. para hoteles, restaurantes y catering. Precio según solicitud de cotización, puesto en su puerto.",
+        "hero": "Equipos Cambro para servicios de alimentos, suministros para instalaciones y bebidas de EE. UU. para hoteles, restaurantes y catering. Precio según solicitud de cotización, entregado en su empresa.",
         "linesTitle": "Servicios de alimentos e instalaciones",
         "linesIntro": "Equipos y suministros para hoteles, restaurantes, empresas de catering y cocinas institucionales. El país de origen se indica por línea en cada cotización."
       },
@@ -106,7 +104,7 @@
         "label": "Para compradores industriales y comerciales",
         "title": "Industrial y comercial",
         "who": "Fabricantes, plantas, contratistas y equipos de compras",
-        "hero": "Guantes de nitrilo, envases y equipos de procesamiento, y suministro MRO según su especificación. Precio según solicitud de cotización, puesto en su puerto.",
+        "hero": "Guantes de nitrilo, envases y equipos de procesamiento, y suministro MRO según su especificación. Precio según solicitud de cotización, entregado en su empresa.",
         "linesTitle": "Industrial y comercial",
         "linesIntro": "Abastecimiento según especificación de fabricantes de EE. UU. y Europa. El país de origen se indica por línea en cada cotización."
       },
@@ -114,7 +112,7 @@
         "label": "Para compradores de autopartes",
         "title": "Autopartes",
         "who": "Concesionarios, distribuidores de repuestos, talleres y operadores de flotas",
-        "hero": "Repuestos originales Ford OEM para vehículos con especificación de EE. UU., adquiridos a través de la red de concesionarios de EE. UU. Precio según solicitud de cotización, puesto en su puerto.",
+        "hero": "Repuestos originales Ford OEM para vehículos con especificación de EE. UU., adquiridos a través de la red de concesionarios de EE. UU. Precio según solicitud de cotización, entregado en su empresa.",
         "linesTitle": "Repuestos originales OEM",
         "linesIntro": "Repuestos para vehículos Ford con especificación de EE. UU., comprados a través de la red de concesionarios de EE. UU. Envíe números de pieza y cantidades; el país de origen se indica por línea en cada cotización."
       }
@@ -184,11 +182,11 @@
         }
       ],
       "howTitle": "Cómo pedir",
-      "how": "Envíe su lista con nombres o códigos UPC, cantidades objetivo y puerto de destino. Confirmamos disponibilidad y origen por línea y luego cotizamos puesto en su puerto."
+      "how": "Envíe su lista con nombres o códigos UPC, cantidades objetivo y lugar de entrega. Confirmamos disponibilidad y origen por línea y luego cotizamos entregado en su empresa."
     },
     "custom": {
       "title": "ABASTECIMIENTO A MEDIDA (RFQ)",
-      "text": "Si se vende en EE. UU., envíenos la especificación. Incluya códigos de artículo, cantidad y puerto de destino."
+      "text": "Si se vende en EE. UU., envíenos la especificación. Incluya códigos de artículo, cantidad y lugar de entrega."
     },
     "order": {
       "title": "INFORMACIÓN DE PEDIDOS",
@@ -211,7 +209,7 @@
         },
         {
           "label": "Precios",
-          "text": "Cotización base: CIP al puerto que indique. La entrega terrestre completa hasta su puerta está disponible bajo pedido; la organizamos y la incluimos en el precio. El despacho de importación, los aranceles y los impuestos los paga el comprador."
+          "text": "Precio según solicitud de cotización, entregado en su empresa. Flete y seguro incluidos; las condiciones de entrega se acuerdan en cada operación según Incoterms 2020."
         },
         {
           "label": "Validez de la cotización",
@@ -224,10 +222,6 @@
         {
           "label": "Documentos",
           "text": "Factura comercial, lista de empaque, conocimiento de embarque, certificado de origen. Certificados de producto (por ejemplo, sanitarios o fitosanitarios para alimentos, palés tratados térmicamente ISPM 15) según exija su mercado. Indíquenos sus requisitos de importación en la solicitud."
-        },
-        {
-          "label": "Importador",
-          "text": "El comprador, o el agente que designe, es el importador y despacha la mercancía en destino."
         },
         {
           "label": "Datos bancarios",
@@ -279,26 +273,21 @@
   "howItWorks": {
     "hero": {
       "title": "Cómo funciona",
-      "subtitle": "Desde su solicitud hasta la entrega en su puerto (CIP) como estándar, o en su puerta bajo pedido."
+      "subtitle": "Desde su solicitud hasta la entrega en su empresa."
     },
     "steps": [
       {
         "title": "Envíe su solicitud",
-        "text": "Productos o códigos, especificación, cantidad, puerto o ciudad de destino y plazo de entrega deseado. Si tiene un precio actual de proveedor, inclúyalo. Así podemos decirle rápido si podemos competir.",
+        "text": "Productos o códigos, especificación, cantidad, lugar de entrega y plazo de entrega deseado. Si tiene un precio actual de proveedor, inclúyalo. Así podemos decirle rápido si podemos competir.",
         "who": "Usted indica el requerimiento."
       },
       {
-        "title": "Confirmamos el alcance",
-        "text": "Antes de cotizar confirmamos especificación, cantidades, empaque y sus requisitos de documentos de importación. Respondemos a cada solicitud en menos de 24 horas."
+        "title": "Confirmamos alcance y precio",
+        "text": "Confirmamos especificación, cantidades, empaque y documentos, y trabajamos con nuestros fabricantes para conseguirle el mejor precio. Respondemos a cada solicitud en menos de 24 horas."
       },
       {
-        "title": "Compramos en fábrica",
-        "text": "Compramos al fabricante o canal en EE. UU. como comprador nacional, en términos EXW o FCA.",
-        "who": "KG asume la compra en EE. UU."
-      },
-      {
-        "title": "Recibe una cotización puesta en destino",
-        "text": "Precio por línea CIP al puerto que indique como estándar, o con entrega en su puerta si lo pide. Flete y seguro incluidos, con fecha de vencimiento y una lista clara de exclusiones."
+        "title": "Recibe su cotización",
+        "text": "Precio por línea entregado en su empresa, con flete y seguro incluidos. Cada cotización indica el Incoterm, la fecha de vencimiento y una lista clara de exclusiones."
       },
       {
         "title": "Factura proforma y pago",
@@ -311,12 +300,12 @@
       },
       {
         "title": "Envío y seguro",
-        "text": "Reservamos el flete marítimo hasta su puerto y aseguramos la carga. Recibe el seguimiento y una copia de los documentos de embarque a la salida."
+        "text": "Reservamos el flete y aseguramos la carga. Recibe el seguimiento y una copia de los documentos de embarque a la salida."
       },
       {
-        "title": "Llegada y despacho",
-        "text": "Usted o su agente despachan la aduana como importador y pagan aranceles e impuestos. Si eligió entrega a puerta, completamos el tramo terrestre hasta su planta.",
-        "who": "Usted despacha y recibe la mercancía."
+        "title": "Llegada y entrega",
+        "text": "La mercancía se entrega en su empresa. Las responsabilidades aduaneras siguen el Incoterm acordado para su pedido.",
+        "who": "Usted recibe la mercancía."
       }
     ],
     "incoterms": {
@@ -332,8 +321,8 @@
         }
       ],
       "risk": "En ambos términos, el riesgo pasa al comprador cuando la mercancía se entrega al transportista o se carga a bordo en origen, no a la llegada. Por eso se incluye el seguro.",
-      "other": "Otros términos (FCA, CIF, DAP a su puerta) disponibles bajo pedido.",
-      "base": "Nuestra cotización base es CIP a su puerto. La entrega a puerta está disponible bajo pedido: organizamos toda la ruta e incluimos el riesgo en el precio. La aduana de importación, los aranceles y los impuestos siempre los paga el comprador."
+      "other": "Otros términos (FCA, CIF, DAP) disponibles bajo pedido.",
+      "base": "Las condiciones de entrega se acuerdan en cada operación según Incoterms 2020. Normalmente partimos de CIP y podemos organizar la entrega hasta su empresa."
     },
     "table": {
       "title": "Quién se encarga de qué",
@@ -361,11 +350,6 @@
           "buyer": false
         },
         {
-          "item": "Despacho de importación, aranceles, IVA",
-          "kg": false,
-          "buyer": true
-        },
-        {
           "item": "Gastos de terminal en destino, entrega terrestre hasta su planta",
           "kg": true,
           "kgNote": "bajo pedido",
@@ -385,19 +369,19 @@
       ]
     },
     "delivery": {
-      "title": "Puerto o puerta. Usted elige.",
+      "title": "Entregado en su empresa.",
       "points": [
         {
-          "term": "Estándar: CIP a su puerto",
-          "text": "Nuestra cotización base incluye flete y seguro hasta el puerto que indique."
+          "term": "Flete y seguro incluidos",
+          "text": "Cada cotización incluye flete y seguro de carga."
         },
         {
-          "term": "Bajo pedido: entrega en su puerta",
-          "text": "Indíquenos su almacén o planta. Organizamos todo el tramo terrestre e incluimos el transporte y el riesgo en el precio."
+          "term": "En su almacén o planta",
+          "text": "Indíquenos a dónde debe llegar la mercancía. Organizamos toda la ruta y la incluimos en el precio."
         },
         {
-          "term": "Siempre el comprador: aduana de importación",
-          "text": "Usted, o su agente, despacha la aduana de importación y paga aranceles e impuestos. Nosotros no pagamos la aduana en destino."
+          "term": "Condiciones por operación",
+          "text": "Las condiciones de entrega se fijan para cada pedido según Incoterms 2020 y se indican en la cotización."
         }
       ]
     }
@@ -428,11 +412,10 @@
     "details": "Detalles",
     "detailsPh": "Especificación, códigos o números de pieza, cantidad",
     "delivery": "Entrega",
-    "deliveryPort": "En mi puerto (CIP, estándar)",
-    "deliveryDoor": "En mi puerta / almacén (entrega terrestre)",
+    "deliveryPort": "A un puerto (CIP)",
+    "deliveryDoor": "A mi empresa (almacén o planta)",
     "doorLabel": "Dirección / ciudad de entrega",
     "doorPh": "p. ej. almacén en São Paulo",
-    "customsNote": "La aduana de importación, los aranceles y los impuestos los paga el comprador.",
     "whatsapp": "Enviar por WhatsApp"
   },
   "gloves": {

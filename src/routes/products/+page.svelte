@@ -11,7 +11,7 @@
 
 <SEO
 	title="Products | KG Industries"
-	description="US products for retail, hospitality, industrial, and automotive buyers: beverages, consumer goods, Cambro foodservice equipment, facility and MRO supply, nitrile gloves, packaging, and genuine Ford parts. Pricing quoted per RFQ, landed to your port."
+	description="US products for retail, hospitality, industrial, and automotive buyers: beverages, consumer goods, Cambro foodservice equipment, facility and MRO supply, nitrile gloves, packaging, and genuine Ford parts. Pricing quoted per RFQ, delivered to your business."
 	canonical="/products/"
 />
 

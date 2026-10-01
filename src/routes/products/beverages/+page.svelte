@@ -14,7 +14,7 @@
 
 <SEO
 	title="US Beverages Catalog | KG Industries"
-	description="Full catalog of US-market soft drinks and specialty flavors, sold by the pallet and shipped in consolidated containers. Pricing quoted per RFQ, landed to your port."
+	description="Full catalog of US-market soft drinks and specialty flavors, sold by the pallet and shipped in consolidated containers. Pricing quoted per RFQ, delivered to your business."
 	canonical="/products/beverages/"
 />
 

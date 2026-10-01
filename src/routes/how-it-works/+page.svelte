@@ -26,11 +26,13 @@
 	let flow: HTMLOListElement;
 	let progress = $state(0);
 
-	onMount(() => {
-		const interval = setInterval(() => {
-			activeFlag = (activeFlag + 1) % destinations.length;
-		}, 1800);
+	// The flag advances each time the pulse finishes its run down the arrow,
+	// so the arrow and the destination country always stay in step.
+	const nextFlag = () => {
+		activeFlag = (activeFlag + 1) % destinations.length;
+	};
 
+	onMount(() => {
 		// Fill the timeline as the reader moves through the steps.
 		let frame = 0;
 		const update = () => {
@@ -46,7 +48,6 @@
 		window.addEventListener('scroll', onScroll, { passive: true });
 
 		return () => {
-			clearInterval(interval);
 			cancelAnimationFrame(frame);
 			window.removeEventListener('scroll', onScroll);
 		};
@@ -55,7 +56,7 @@
 
 <SEO
 	title="How It Works | KG Industries"
-	description="From RFQ to delivery: KG Industries buys in the US as the domestic purchaser, handles US export, and quotes CIP to your port as standard, with door delivery on request."
+	description="From RFQ to delivery: KG Industries works with US manufacturers to get the best price, handles US export, and delivers to your business on terms agreed for each deal."
 	canonical="/how-it-works"
 />
 
@@ -105,7 +106,7 @@
 					</div>
 					<div class="arrow-container">
 						<div class="arrow-track">
-							<div class="fluid"></div>
+							<div class="fluid" onanimationiteration={nextFlag}></div>
 						</div>
 						<div class="arrow-mask"></div>
 					</div>
@@ -420,8 +421,8 @@
 		opacity: 0;
 		transform: scale(1.08);
 		transition:
-			opacity 0.8s var(--ease-out),
-			transform 1.6s var(--ease-out);
+			opacity 0.45s var(--ease-out),
+			transform 1.2s var(--ease-out);
 	}
 
 	.flag-bottom img.active {
@@ -452,7 +453,7 @@
 		height: 40px;
 		background: linear-gradient(to bottom, transparent, var(--gold-light), transparent);
 		box-shadow: 0 0 8px var(--gold);
-		animation: fluidFlow 2s var(--ease-in-out) infinite;
+		animation: fluidFlow 2.4s var(--ease-in-out) infinite;
 	}
 
 	@keyframes fluidFlow {

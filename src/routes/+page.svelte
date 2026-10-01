@@ -3,7 +3,7 @@
 	import SEO from '$lib/components/SEO.svelte';
 	import RouteMap from '$lib/components/RouteMap.svelte';
 	import { base } from '$app/paths';
-	import { rfqOpen, RFQ_EMAIL, LINKEDIN_URL } from '$lib/stores/rfq';
+	import { rfqOpen, RFQ_EMAIL } from '$lib/stores/rfq';
 	import { reveal, parallax } from '$lib/actions/motion';
 	import { segments, segmentHref } from '$lib/data/segments';
 
@@ -54,15 +54,6 @@
 				<p use:reveal={{ delay: 250 }}>{$_('home.overview.p2')}</p>
 				<p use:reveal={{ delay: 350 }}>{$_('home.overview.p3')}</p>
 			</div>
-			<aside class="overview-detail" use:reveal={{ delay: 300, variant: 'scale' }}>
-				<span class="detail-label">{$_('home.overview.factsLabel')}</span>
-				<span class="detail-value">KG Industries LLC</span>
-				<ul class="facts">
-					<li>{$_('home.overview.registered')}</li>
-					<li><a href="mailto:{RFQ_EMAIL}">{RFQ_EMAIL}</a></li>
-					<li><a href={LINKEDIN_URL} target="_blank" rel="noopener">LinkedIn ↗</a></li>
-				</ul>
-			</aside>
 		</div>
 	</section>
 
@@ -315,13 +306,10 @@
 	.overview-content {
 		max-width: 1280px;
 		margin: 0 auto;
-		display: grid;
-		grid-template-columns: 1.7fr 1fr;
-		gap: clamp(2.5rem, 6vw, 6rem);
-		align-items: center;
 	}
 
 	.overview-text {
+		max-width: 860px;
 		display: flex;
 		flex-direction: column;
 		gap: 1.4rem;
@@ -345,62 +333,6 @@
 
 	.overview-rule {
 		width: 120px;
-	}
-
-	.overview-detail {
-		position: relative;
-		display: flex;
-		flex-direction: column;
-		gap: 0.75rem;
-		padding: 2.5rem;
-		background: linear-gradient(160deg, var(--navy-800), var(--navy-850));
-		border: 1px solid var(--line);
-		box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.6);
-	}
-
-	.overview-detail::before {
-		content: '';
-		position: absolute;
-		top: -1px;
-		inset-inline: -1px;
-		height: 2px;
-		background: linear-gradient(90deg, var(--gold-dark), var(--gold-light), var(--gold-dark));
-	}
-
-	.detail-label {
-		font-size: 0.68rem;
-		font-weight: 600;
-		letter-spacing: 0.24em;
-		color: var(--gold);
-	}
-
-	.detail-value {
-		font-family: var(--font-display);
-		font-size: 1.8rem;
-		font-weight: 600;
-		color: var(--ink);
-	}
-
-	.facts {
-		list-style: none;
-		margin: 0.75rem 0 0;
-		padding: 1.25rem 0 0;
-		border-top: 1px solid var(--line);
-		display: flex;
-		flex-direction: column;
-		gap: 0.6rem;
-		font-size: 0.9rem;
-		color: var(--muted);
-	}
-
-	.facts a {
-		color: var(--text);
-		text-decoration: none;
-		transition: color 0.3s;
-	}
-
-	.facts a:hover {
-		color: var(--gold-light);
 	}
 
 	/* ---------- Photography ---------- */
@@ -796,7 +728,6 @@
 	/* ---------- Responsive ---------- */
 
 	@media (max-width: 1100px) {
-		.overview-content,
 		.process-layout {
 			grid-template-columns: 1fr;
 		}
@@ -883,10 +814,6 @@
 	@media (max-width: 640px) {
 		.process-data {
 			grid-template-columns: 1fr;
-		}
-
-		.overview-detail {
-			padding: 2rem 1.5rem;
 		}
 
 		.data-point {
