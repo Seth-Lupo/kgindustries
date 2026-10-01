@@ -1,5 +1,5 @@
-// US beverage range (34 SKUs). Display order leads with specialty items that
-// local bottlers in export markets do not produce.
+// US beverage range (34 SKUs). Display order leads with Coca-Cola, then specialty
+// items that local bottlers in export markets do not produce.
 
 // Pallet configurations from the July 2026 deck. Never show prices here.
 // Each RFQ line for a beverage is one pallet; buyers adjust the count in the RFQ panel.
@@ -47,6 +47,19 @@ const mx = (name: string, slug: string, size: Size, cases: number): Beverage => 
 
 export const beverageFamilies: BeverageFamily[] = [
 	{
+		id: 'cocaCola',
+		items: [
+			us('Coca-Cola Cherry Float', 'coca-cola-cherry-float', 104),
+			us('Coca-Cola Vanilla', 'coca-cola-vanilla', 104),
+			us('Coca-Cola Cherry', 'coca-cola-cherry', 104),
+			us('Coca-Cola Zero Sugar Vanilla', 'coca-cola-zero-sugar-vanilla', 104),
+			us('Coca-Cola Zero Sugar Cherry', 'coca-cola-zero-sugar-cherry', 104),
+			us('Coca-Cola Original', 'coca-cola-original', 104),
+			us('Coca-Cola Zero Sugar', 'coca-cola-zero-sugar', 104),
+			us('Coca-Cola Caffeine Free', 'coca-cola-caffeine-free', 104)
+		]
+	},
+	{
 		id: 'crush',
 		items: [
 			us('Crush Orange', 'crush-orange', 100),
@@ -81,19 +94,6 @@ export const beverageFamilies: BeverageFamily[] = [
 			mx('Mexican Coca-Cola', 'mexican-coca-cola-500ml-glass', 'glass500', 48),
 			mx('Mexican Fanta Orange', 'mexican-fanta-orange-355ml-glass', 'glass355', 60),
 			mx('Mexican Sprite', 'mexican-sprite-355ml-glass', 'glass355', 60)
-		]
-	},
-	{
-		id: 'cocaCola',
-		items: [
-			us('Coca-Cola Cherry Float', 'coca-cola-cherry-float', 104),
-			us('Coca-Cola Vanilla', 'coca-cola-vanilla', 104),
-			us('Coca-Cola Cherry', 'coca-cola-cherry', 104),
-			us('Coca-Cola Zero Sugar Vanilla', 'coca-cola-zero-sugar-vanilla', 104),
-			us('Coca-Cola Zero Sugar Cherry', 'coca-cola-zero-sugar-cherry', 104),
-			us('Coca-Cola Original', 'coca-cola-original', 104),
-			us('Coca-Cola Zero Sugar', 'coca-cola-zero-sugar', 104),
-			us('Coca-Cola Caffeine Free', 'coca-cola-caffeine-free', 104)
 		]
 	},
 	{
